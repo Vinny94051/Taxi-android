@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:id="@+id/registration_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+
+        <ImageView
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_arrow_back_black_24dp" />
+
+        <TextView
+            android:id="@+id/registration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:text="@string/registration"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/hint_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/registration_field"
+        android:layout_marginTop="48dp"
+        android:text="@string/enter_sms_code"
+        android:textAlignment="center"
+        android:textAppearance="@style/sms_" />
+
+    <LinearLayout
+        android:id="@+id/enter_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/hint_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/first_num"
+            android:layout_width="@dimen/number_width"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:hint="@string/zero_hint"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:inputType="number"
+            android:textSize="14sp"/>
+
+        <EditText
+            android:id="@+id/second_num"
+            android:layout_width="@dimen/number_width"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:clickable="false"
+            android:hint="@string/zero_hint"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textSize="@dimen/number_sms_code_size" />
+
+        <EditText
+            android:id="@+id/third_num"
+            android:layout_width="@dimen/number_width"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:clickable="false"
+            android:hint="@string/zero_hint"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textSize="@dimen/number_sms_code_size" />
+
+        <EditText
+            android:id="@+id/fourth_num"
+            android:layout_width="@dimen/number_width"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:clickable="false"
+            android:hint="@string/zero_hint"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textSize="@dimen/number_sms_code_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/main_button_registration"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="72dp"
+        android:background="@drawable/rectangle"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:text="@string/con_tinue"
+            android:textAppearance="@style/start"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</RelativeLayout>

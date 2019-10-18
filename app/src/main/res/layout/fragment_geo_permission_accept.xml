@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/add_data_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+
+        <ImageView
+            android:id="@+id/back_btn_geo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_arrow_back_black_24dp" />
+
+        <TextView
+            android:id="@+id/registration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:text="@string/add_geo_data"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/markers"
+        android:src="@drawable/img_for_geo_data_fragment"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/add_data_field"
+        android:layout_marginTop="64dp"
+        android:layout_width="136dp"
+        android:layout_height="104dp"
+        />
+
+    <TextView
+        android:id="@+id/hint_geo_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/geo_hint"
+        android:layout_below="@id/markers"
+        android:layout_marginTop="32dp"
+        android:textAlignment="center"
+        android:textAppearance="@style/sms_"
+        android:layout_marginStart="29dp"
+        android:layout_marginEnd="29dp" />
+
+    <LinearLayout
+        android:id="@+id/main_button_add_geo"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="72dp"
+        android:background="@drawable/rectangle"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:text="@string/allow"
+            android:textAppearance="@style/start"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+</RelativeLayout>
