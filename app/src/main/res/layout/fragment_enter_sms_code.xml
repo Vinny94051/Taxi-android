@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white">
@@ -55,6 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:hint="@string/zero_hint"
+            android:backgroundTint="@color/sms_input_tint"
             android:maxLength="1"
             android:textAlignment="center"
             android:inputType="number"
@@ -66,6 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/sms_input_tint"
             android:clickable="false"
             android:hint="@string/zero_hint"
             android:inputType="number"
@@ -83,6 +86,7 @@
             android:hint="@string/zero_hint"
             android:inputType="number"
             android:maxLength="1"
+            android:backgroundTint="@color/sms_input_tint"
             android:textAlignment="center"
             android:textSize="@dimen/number_sms_code_size" />
 
@@ -94,33 +98,47 @@
             android:clickable="false"
             android:hint="@string/zero_hint"
             android:inputType="number"
+            android:backgroundTint="@color/sms_input_tint"
             android:maxLength="1"
             android:textAlignment="center"
             android:textSize="@dimen/number_sms_code_size" />
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/main_button_registration"
-        android:layout_width="wrap_content"
+        android:layout_width="292dp"
         android:layout_height="48dp"
-        android:layout_centerHorizontal="true"
+        android:background="@drawable/arrow_stroke_bg"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginStart="18dp"
         android:layout_marginTop="88dp"
         android:layout_marginEnd="18dp"
         android:layout_marginBottom="72dp"
-        android:background="@drawable/rectangle"
-        android:orientation="horizontal">
-
+        >
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
+            android:id="@+id/main_btn_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="10dp"
+            android:paddingBottom="8dp"
+            android:paddingStart="8dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_margin="2dp"
+            android:background="@drawable/arrow_overlay"
             android:text="@string/con_tinue"
             android:textAppearance="@style/start"
-            android:textStyle="bold" />
-    </LinearLayout>
+            android:textStyle="bold"
+            tools:ignore="RtlSymmetry" />
+
+        <ImageView
+            android:layout_width="72dp"
+            android:layout_height="48dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/arrow_bg"
+            android:padding="4dp"
+            android:src="@drawable/arrow_forward_black_24dp" />
+    </RelativeLayout>
 
 </RelativeLayout>

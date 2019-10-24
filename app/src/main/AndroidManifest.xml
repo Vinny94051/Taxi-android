@@ -1,8 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.taximuslim">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@drawable/ic_logo"
         android:label="@string/app_name"
@@ -11,11 +18,38 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDcrOph1sg1RemEd-XkUavOdr1O5uf6WLg" />
+
+        <service
+            android:name=".mapfunc.FetchAddressIntentService"
+            android:exported="false"/>
+
+        <activity
+            android:name=".presentation.view.main.MapsController"
+            android:label="@string/title_activity_maps_controller"
+            android:windowSoftInputMode="stateVisible"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <activity android:name=".presentation.view.auth.AuthController">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".presentation.view.splashscreen.SplashScreenController">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

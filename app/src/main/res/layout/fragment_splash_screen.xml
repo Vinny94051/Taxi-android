@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/splash_screen_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/wish_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/to_order_main_btn"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:background="@drawable/rectangle_4"
+        android:paddingStart="12dp"
+        android:paddingTop="32dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="32dp"
+        android:textColor="#424242"
+        android:textSize="16sp" />
+
+    <RelativeLayout
+        android:id="@+id/to_order_main_btn"
+        android:layout_width="292dp"
+        android:layout_height="48dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="18dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="72dp"
+        android:background="@drawable/arrow_stroke_bg">
+
+        <TextView
+            android:id="@+id/main_btn_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+            android:background="@drawable/arrow_overlay"
+            android:paddingStart="8dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="8dp"
+            android:text="@string/to_order"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:textAppearance="@style/start"
+            android:textStyle="bold"
+            tools:ignore="RtlSymmetry" />
+
+        <ImageView
+            android:layout_width="72dp"
+            android:layout_height="48dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/arrow_bg"
+            android:padding="4dp"
+            android:src="@drawable/arrow_forward_black_24dp" />
+    </RelativeLayout>
+</RelativeLayout>

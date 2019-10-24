@@ -86,7 +86,6 @@
         android:layout_marginBottom="64dp"
         android:layout_marginEnd="18dp"
         >
-
         <TextView
             android:id="@+id/main_btn_text"
             android:layout_width="match_parent"
@@ -94,7 +93,9 @@
             android:paddingTop="10dp"
             android:paddingBottom="8dp"
             android:paddingStart="8dp"
-            android:layout_margin="1dp"
+            android:layout_margin="2dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
             android:background="@drawable/arrow_overlay"
             android:text="@string/allow"
             android:textAppearance="@style/start"

@@ -19,8 +19,11 @@ class GeoDataFragment : BaseAuthFragment() {
         when (p0?.id) {
             R.id.main_button_add_geo -> {
                 //TODO запрос разрешения на локацию
-                //  (activity as AuthController).replaceFragment()
-                showToast("I am alive")
+                (activity as AuthController).replaceFragment(
+                    TOUAgreeFragment.INSTANCE,
+                    R.id.container,
+                    TOUAgreeFragment.FRAGMENT_ID
+                )
             }
             R.id.back_btn_geo -> {
                 (activity as AuthController).replaceFragment(

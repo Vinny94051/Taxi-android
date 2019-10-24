@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
     <LinearLayout
         android:id="@+id/add_data_field"
         android:layout_width="match_parent"
@@ -50,29 +51,43 @@
         android:layout_marginStart="29dp"
         android:layout_marginEnd="29dp" />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/main_button_add_geo"
-        android:layout_width="wrap_content"
+        android:layout_width="292dp"
         android:layout_height="48dp"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="18dp"
+        android:background="@drawable/arrow_stroke_bg"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="24dp"
         android:layout_marginBottom="72dp"
-        android:background="@drawable/rectangle"
-        android:orientation="horizontal">
-
+        android:layout_marginEnd="34dp"
+        >
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
+            android:id="@+id/main_btn_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="10dp"
+            android:paddingBottom="8dp"
+            android:paddingStart="8dp"
+            android:layout_margin="2dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/arrow_overlay"
             android:text="@string/allow"
             android:textAppearance="@style/start"
-            android:textStyle="bold" />
-    </LinearLayout>
+            android:textStyle="bold"
+            tools:ignore="RtlSymmetry" />
 
+        <ImageView
+            android:layout_width="72dp"
+            android:layout_height="48dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/arrow_bg"
+            android:padding="4dp"
+            android:src="@drawable/arrow_forward_black_24dp" />
+    </RelativeLayout>
 
 </RelativeLayout>
+
+
