@@ -131,14 +131,15 @@
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/comment_1_icon" />
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <TextView
                 android:id="@+id/comment_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/сomment_to_driver"
                 android:layout_marginStart="8dp"
                 android:layout_marginBottom="-6dp"
-                android:hint="@string/your_comment"
-                android:imeOptions="actionSend"
+                android:textColor="@color/colorThemeGreen"
+                android:textStyle="bold"
                 android:singleLine="true"
                 android:textSize="14sp"
                 tools:ignore="SmallSp" />
@@ -151,8 +152,8 @@
             android:layout_below="@id/comment_layout"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="12dp"
-            android:padding="4dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="4dp">
 
             <Button
                 android:id="@+id/economy_order"
@@ -163,7 +164,8 @@
                 android:background="@drawable/order_button_back"
                 android:paddingStart="8dp"
                 android:paddingTop="3dp"
-                android:paddingEnd="24dp"
+                android:paddingEnd="8dp"
+                android:drawablePadding="4dp"
                 android:paddingBottom="4dp"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
@@ -179,7 +181,8 @@
                 android:background="@drawable/order_button_back"
                 android:paddingStart="8dp"
                 android:paddingTop="3dp"
-                android:paddingEnd="24dp"
+                android:drawablePadding="4dp"
+                android:paddingEnd="8dp"
                 android:paddingBottom="4dp"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
@@ -195,12 +198,13 @@
                 android:background="@drawable/order_button_back"
                 android:paddingStart="8dp"
                 android:paddingTop="3dp"
-                android:paddingEnd="20dp"
+                android:drawablePadding="4dp"
+                android:paddingEnd="8dp"
                 android:paddingBottom="4dp"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
-                android:textSize="12sp"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <RelativeLayout

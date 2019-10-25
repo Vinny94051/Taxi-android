@@ -31,4 +31,25 @@ class FetchAddressIntentService(private val context: Context) {
         mMap.animateCamera(CameraUpdateFactory.zoomTo(zoom))
     }
 
+    fun getLocationFromAddress(context: Context, strAddress: String): LatLng? {
+        val coder = Geocoder(context)
+        val address: List<Address>?
+        var p1: LatLng? = null
+
+        try {
+            address = coder.getFromLocationName(strAddress, 5)
+            if (address == null) {
+                return null
+            }
+            val location = address[0]
+            location.latitude
+            location.longitude
+
+            p1 = LatLng(location.latitude, location.longitude)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return p1
+    }
+
 }

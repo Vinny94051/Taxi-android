@@ -8,9 +8,11 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import com.example.taximuslim.R
 import com.example.taximuslim.baseUI.controller.BaseController
+import com.example.taximuslim.design.CommentDialogWindow
 import com.example.taximuslim.design.PriceDialogWindow
 import com.example.taximuslim.mapfunc.FetchAddressIntentService
 import com.example.taximuslim.presenter.maps.MainPresenter
@@ -22,54 +24,66 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import kotlinx.android.synthetic.main.activity_maps_controller.*
 
+
+//TODO Своевременный вывод price layout и alert dialog
 class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListener {
 
-    companion object {
-        private const val ECONOMY_BUTTON_NUMBER = 0
-        private const val COMFORT_BUTTON_NUMBER = 1
-        private const val BUSINESS_BUTTON_NUMBER = 2
-    }
-
     private lateinit var mMap: GoogleMap
-    private var buttonsStates = arrayOf(false, false, false)
     private var presenter = MainPresenter()
     private val permissionManager = PermissionManager(this)
     private var priceDialogWindow: PriceDialogWindow? = null
+    private var commentDialogWindow: CommentDialogWindow? = null
     private val mapManger = FetchAddressIntentService(this)
+    private var btnManager: ButtonManager? = null
 
     override fun onClick(p0: View?) {
         when (p0?.id) {
             R.id.economy_order -> {
-                setButtonView(economy_order, ECONOMY_BUTTON_NUMBER)
+                btnManager?.apply {
+                    this.checkEconomyBtnState()
+                    this.economyPriceForDialog()
+                }
+                if (!your_price_layout.isVisible)
+                    showPriceEditText()
             }
             R.id.comfort_order -> {
-                setButtonView(comfort_order, COMFORT_BUTTON_NUMBER)
+                btnManager?.apply {
+                    this.checkComfortBtnState()
+                    this.comfortPriceForDialog()
+                }
+                if (!your_price_layout.isVisible)
+                    showPriceEditText()
             }
             R.id.business_order -> {
-                setButtonView(business_order, BUSINESS_BUTTON_NUMBER)
+                btnManager?.apply {
+                    this.checkBusinessBtnState()
+                    this.businessPriceForDialog()
+                }
+                if (!your_price_layout.isVisible)
+                    showPriceEditText()
             }
             R.id.main_button_order_taxi -> {
 
             }
-
             R.id.place_location -> showAlertDialog()
+
+            R.id.comment_text -> showCommentAlertDialog()
         }
     }
+
+    private fun showCommentAlertDialog() = commentDialogWindow?.show()
 
     override fun layoutId() = R.layout.activity_maps_controller
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        btnManager = ButtonManager(this)
         initViews()
         initPresenter()
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
-
-//    private fun updatePrice() {
-//        presenter.updatePrice()
-//    }
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
@@ -90,14 +104,22 @@ class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListene
         business_order.setOnClickListener(this)
         main_button_order_taxi.setOnClickListener(this)
         place_location.setOnClickListener(this)
+        comment_text.setOnClickListener(this)
         onFocusListener(your_price)
         setTextOnButtons()
         addYourPriceTextChangeListener()
 
         val activity = this
         priceDialogWindow = PriceDialogWindow(activity)
+        commentDialogWindow = CommentDialogWindow(activity)
 
-        place_location.onSubmitNext { showPriceEditText() }
+        place_location.onSubmitNext {
+            btnManager?.let { btnManager_ ->
+                if (btnManager_.isAtLeastOneBtnActive())
+                    showPriceEditText()
+            }
+            addMarkerOnPointB(place_location.text.toString())
+        }
     }
 
     private fun addYourPriceTextChangeListener() =
@@ -115,10 +137,7 @@ class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListene
             }
         })
 
-    private fun showAlertDialog() {
-        priceDialogWindow?.show()
-        //  updatePrice()
-    }
+    private fun showAlertDialog() = priceDialogWindow?.show()
 
     /**
      *Show edit text for entering price if all address fields not empty
@@ -137,9 +156,8 @@ class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListene
      */
     private fun onFocusListener(editText: EditText) {
         editText.onFocusChangeListener = View.OnFocusChangeListener { view, isFocus ->
-            if (isFocus) {
+            if (isFocus && btnManager?.isAtLeastOneBtnActive()!!) {
                 showAlertDialog()
-                // updatePrice()
             }
         }
     }
@@ -152,23 +170,6 @@ class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListene
 
     private fun createTextForButton(btn: Button, id: Int) =
         btn.setSpannedText(getSpannedText(java.lang.String.format(resources.getString(id))))
-
-
-    private fun setButtonView(button: Button, arrayNumber: Int) {
-        if (buttonsStates[arrayNumber]) {
-            setDefaultState(button)
-        } else {
-            setActivateState(button)
-        }
-    }
-
-    private fun setActivateState(button: Button) {
-        //TODO Кнопка переходит в состояние активности
-    }
-
-    private fun setDefaultState(button: Button) {
-        //TODO Кнопка переходит в стандартное состояние
-    }
 
     private fun updateLocation() {
         presenter.updateLocation()
@@ -183,17 +184,9 @@ class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListene
                     SpannableStringBuilder(mapManger.latLngToAddress(location.toLatLng()))
             })
 
-//        presenter.priceLiveData.observe(this,
-//            Observer { price ->
-//                your_price.text = price
-//            }
-//        )
-
         PriceDialogWindow.price.observe(this, Observer {
             your_price.text = it
         })
-
-
     }
 
     override fun onRequestPermissionsResult(
@@ -204,14 +197,17 @@ class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListene
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             PermissionConstants.LOCATION_PERMISSION_REQUEST_CODE -> {
-                if (grantResults.isNotEmpty()) {
-                    if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults.isNotEmpty())
+                    if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
                         updateLocation()
-                    }
-                }
             }
         }
     }
+
+    private fun addMarkerOnPointB(address: String) =
+        mapManger.getLocationFromAddress(this, address)?.let { location ->
+            mapManger.addMarkerAndMoveCameraToIt(mMap, location, 24f)
+        }
 
 
 }

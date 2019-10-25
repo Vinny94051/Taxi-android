@@ -24,25 +24,25 @@
 
         <service
             android:name=".mapfunc.FetchAddressIntentService"
-            android:exported="false"/>
+            android:exported="false" />
 
         <activity
             android:name=".presentation.view.main.MapsController"
             android:label="@string/title_activity_maps_controller"
-            android:windowSoftInputMode="stateVisible"
-            >
+            android:windowSoftInputMode="stateVisible">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 
         </activity>
         <activity android:name=".presentation.view.auth.AuthController">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".presentation.view.splashscreen.SplashScreenController">
