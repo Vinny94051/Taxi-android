@@ -10,11 +10,14 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taximuslim.R
 import com.example.taximuslim.baseUI.controller.BaseController
 import com.example.taximuslim.design.CommentDialogWindow
 import com.example.taximuslim.design.PriceDialogWindow
 import com.example.taximuslim.mapfunc.FetchAddressIntentService
+import com.example.taximuslim.presentation.view.main.list.MapsCustomAdapter
+import com.example.taximuslim.presentation.view.main.list.PlacesModel
 import com.example.taximuslim.presenter.maps.MainPresenter
 import com.example.taximuslim.utils.*
 import com.example.taximuslim.utils.permissions.PermissionConstants
@@ -35,6 +38,8 @@ class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListene
     private var commentDialogWindow: CommentDialogWindow? = null
     private val mapManger = FetchAddressIntentService(this)
     private var btnManager: ButtonManager? = null
+    private val adapter = MapsCustomAdapter()
+
 
     override fun onClick(p0: View?) {
         when (p0?.id) {
@@ -65,10 +70,16 @@ class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListene
             R.id.main_button_order_taxi -> {
 
             }
-            R.id.place_location -> showAlertDialog()
+            R.id.place_location -> showPriceAlertDialog()
 
             R.id.comment_text -> showCommentAlertDialog()
+
+            R.id.burger_menu_main -> showBurgerMenu()
         }
+    }
+
+    private fun showBurgerMenu() {
+        TODO("Show burger menu")
     }
 
     private fun showCommentAlertDialog() = commentDialogWindow?.show()
@@ -105,6 +116,8 @@ class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListene
         main_button_order_taxi.setOnClickListener(this)
         place_location.setOnClickListener(this)
         comment_text.setOnClickListener(this)
+        burger_menu_main.setOnClickListener(this)
+        initList()
         onFocusListener(your_price)
         setTextOnButtons()
         addYourPriceTextChangeListener()
@@ -125,19 +138,19 @@ class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListene
     private fun addYourPriceTextChangeListener() =
         your_price.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
-                showAlertDialog()
+                showPriceAlertDialog()
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                showAlertDialog()
+                showPriceAlertDialog()
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                showAlertDialog()
+                showPriceAlertDialog()
             }
         })
 
-    private fun showAlertDialog() = priceDialogWindow?.show()
+    private fun showPriceAlertDialog() = priceDialogWindow?.show()
 
     /**
      *Show edit text for entering price if all address fields not empty
@@ -157,7 +170,7 @@ class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListene
     private fun onFocusListener(editText: EditText) {
         editText.onFocusChangeListener = View.OnFocusChangeListener { view, isFocus ->
             if (isFocus && btnManager?.isAtLeastOneBtnActive()!!) {
-                showAlertDialog()
+                showPriceAlertDialog()
             }
         }
     }
@@ -172,7 +185,7 @@ class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListene
         btn.setSpannedText(getSpannedText(java.lang.String.format(resources.getString(id))))
 
     private fun updateLocation() {
-        presenter.updateLocation()
+        presenter.loadLocation()
         mMap.isMyLocationEnabled = true
     }
 
@@ -186,6 +199,10 @@ class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListene
 
         PriceDialogWindow.price.observe(this, Observer {
             your_price.text = it
+        })
+
+        presenter.placesForMapsView.observe(this, Observer {
+            adapter.replaceAll(it)
         })
     }
 
@@ -210,4 +227,11 @@ class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListene
         }
 
 
+    private fun initList() {
+        recycler_list.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recycler_list.adapter = adapter
+        presenter.loadPlaces()
+
+    }
 }

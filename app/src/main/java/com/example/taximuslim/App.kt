@@ -1,7 +1,7 @@
 package com.example.taximuslim
 
-import android.annotation.SuppressLint
 import android.app.Application
+import android.content.Context
 
 class App : Application() {
     init {
@@ -10,6 +10,6 @@ class App : Application() {
 
     companion object {
         private var instance: App? = null
-        fun getApplicationContext() = instance!!.applicationContext
+        fun getApplicationContext(): Context = instance!!.applicationContext
     }
 }

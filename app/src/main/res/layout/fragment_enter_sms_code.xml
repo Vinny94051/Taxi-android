@@ -37,6 +37,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/registration_field"
         android:layout_marginTop="48dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:text="@string/enter_sms_code"
         android:textAlignment="center"
         android:textAppearance="@style/sms_" />

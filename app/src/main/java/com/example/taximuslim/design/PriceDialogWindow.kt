@@ -23,7 +23,6 @@ class PriceDialogWindow(context: Context) : ParentDialog(context) {
         }
     }
 
-
     companion object {
         var price = MutableLiveData<Editable>()
     }

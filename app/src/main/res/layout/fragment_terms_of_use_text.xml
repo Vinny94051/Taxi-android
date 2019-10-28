@@ -23,6 +23,7 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="12dp"
+            android:textStyle="bold"
             android:text="@string/app_rules"
             android:textAlignment="center"
             android:textAppearance="@style/auth_high"
@@ -46,7 +47,7 @@
                 android:layout_marginBottom="22dp"
                 android:text="@string/terms_of_use"
                 android:textAlignment="viewStart"
-                android:textAppearance="@style/sms_" />
+                android:textSize="16sp" />
         </ScrollView>
     </RelativeLayout>
 
