@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
- 
+
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -30,7 +30,7 @@
         <activity
             android:name=".presentation.view.main.MapsController"
             android:label="@string/title_activity_maps_controller"
-            android:windowSoftInputMode="stateVisible">
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 

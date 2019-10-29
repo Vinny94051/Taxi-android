@@ -5,6 +5,7 @@ import android.location.Address
 import android.location.Geocoder
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import java.io.IOException
@@ -25,8 +26,11 @@ class FetchAddressIntentService(private val context: Context) {
         return address
     }
 
-    fun addMarkerAndMoveCameraToIt(mMap: GoogleMap, location: LatLng, zoom: Float) {
-        mMap.addMarker(MarkerOptions().position(location))
+    fun addMarkerAndMoveCameraToIt(mMap: GoogleMap, location: LatLng, zoom: Float, markerIconId : Int) {
+        mMap.addMarker(MarkerOptions()
+            .position(location)
+            .icon(BitmapDescriptorFactory.fromResource(markerIconId))
+        )
         mMap.moveCamera(CameraUpdateFactory.newLatLng(location))
         mMap.animateCamera(CameraUpdateFactory.zoomTo(zoom))
     }

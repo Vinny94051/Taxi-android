@@ -1,4 +1,4 @@
-package com.example.taximuslim.design
+package com.example.taximuslim.design.dialogswindow
 
 import android.content.Context
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.Window
 import androidx.lifecycle.MutableLiveData
 import com.example.taximuslim.R
+import com.example.taximuslim.design.parents.ParentDialog
 import com.example.taximuslim.utils.PriceHolder
 import kotlinx.android.synthetic.main.dialog_price_window.*
 

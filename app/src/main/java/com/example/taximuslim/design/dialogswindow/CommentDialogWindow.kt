@@ -1,10 +1,11 @@
-package com.example.taximuslim.design
+package com.example.taximuslim.design.dialogswindow
 
 import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.Window
 import com.example.taximuslim.R
+import com.example.taximuslim.design.parents.ParentDialog
 import kotlinx.android.synthetic.main.comment_dialog_window.*
 
 class CommentDialogWindow(context: Context) : ParentDialog(context) {

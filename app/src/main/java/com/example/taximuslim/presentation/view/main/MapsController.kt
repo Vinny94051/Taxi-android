@@ -13,11 +13,10 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taximuslim.R
 import com.example.taximuslim.baseUI.controller.BaseController
-import com.example.taximuslim.design.CommentDialogWindow
-import com.example.taximuslim.design.PriceDialogWindow
+import com.example.taximuslim.design.dialogswindow.CommentDialogWindow
+import com.example.taximuslim.design.dialogswindow.PriceDialogWindow
 import com.example.taximuslim.mapfunc.FetchAddressIntentService
 import com.example.taximuslim.presentation.view.main.list.MapsCustomAdapter
-import com.example.taximuslim.presentation.view.main.list.PlacesModel
 import com.example.taximuslim.presenter.maps.MainPresenter
 import com.example.taximuslim.utils.*
 import com.example.taximuslim.utils.permissions.PermissionConstants
@@ -68,12 +67,9 @@ class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListene
                     showPriceEditText()
             }
             R.id.main_button_order_taxi -> {
-
             }
             R.id.place_location -> showPriceAlertDialog()
-
             R.id.comment_text -> showCommentAlertDialog()
-
             R.id.burger_menu_main -> showBurgerMenu()
         }
     }
@@ -88,9 +84,9 @@ class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListene
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        btnManager = ButtonManager(this)
         initViews()
         initPresenter()
+
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -110,6 +106,7 @@ class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListene
     }
 
     fun initViews() {
+        btnManager = ButtonManager(this)
         economy_order.setOnClickListener(this)
         comfort_order.setOnClickListener(this)
         business_order.setOnClickListener(this)
@@ -124,7 +121,8 @@ class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListene
 
         val activity = this
         priceDialogWindow = PriceDialogWindow(activity)
-        commentDialogWindow = CommentDialogWindow(activity)
+        commentDialogWindow =
+            CommentDialogWindow(activity)
 
         place_location.onSubmitNext {
             btnManager?.let { btnManager_ ->
@@ -137,20 +135,17 @@ class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListene
 
     private fun addYourPriceTextChangeListener() =
         your_price.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {
-                showPriceAlertDialog()
-            }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                showPriceAlertDialog()
-            }
-
+            override fun afterTextChanged(p0: Editable?) {}
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 showPriceAlertDialog()
             }
         })
 
-    private fun showPriceAlertDialog() = priceDialogWindow?.show()
+    private fun showPriceAlertDialog() {
+        priceDialogWindow?.show()
+        your_price.clearFocus()
+    }
 
     /**
      *Show edit text for entering price if all address fields not empty
@@ -192,7 +187,12 @@ class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListene
     private fun initPresenter() {
         presenter.currentLocation.observe(this,
             androidx.lifecycle.Observer { location ->
-                mapManger.addMarkerAndMoveCameraToIt(mMap, location.toLatLng(), 15f)
+                mapManger.addMarkerAndMoveCameraToIt(
+                    mMap,
+                    location.toLatLng(),
+                    15f,
+                    R.drawable.green_marker
+                )
                 user_location.text =
                     SpannableStringBuilder(mapManger.latLngToAddress(location.toLatLng()))
             })
@@ -223,7 +223,7 @@ class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListene
 
     private fun addMarkerOnPointB(address: String) =
         mapManger.getLocationFromAddress(this, address)?.let { location ->
-            mapManger.addMarkerAndMoveCameraToIt(mMap, location, 24f)
+            mapManger.addMarkerAndMoveCameraToIt(mMap, location, 15f, R.drawable.green_marker)
         }
 
 
@@ -232,6 +232,5 @@ class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListene
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recycler_list.adapter = adapter
         presenter.loadPlaces()
-
     }
 }
