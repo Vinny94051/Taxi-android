@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.SpannableStringBuilder
 import android.text.TextWatcher
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -16,20 +17,28 @@ import com.example.taximuslim.baseUI.controller.BaseController
 import com.example.taximuslim.design.dialogswindow.CommentDialogWindow
 import com.example.taximuslim.design.dialogswindow.PriceDialogWindow
 import com.example.taximuslim.mapfunc.FetchAddressIntentService
+import com.example.taximuslim.presentation.view.menu.fragments.GuideFragment
+import com.example.taximuslim.presentation.view.menu.fragments.HelpFragment
 import com.example.taximuslim.presentation.view.main.list.MapsCustomAdapter
+import com.example.taximuslim.presentation.view.main.managers.ButtonManager
+import com.example.taximuslim.presentation.view.main.managers.NavigationDrawerManager
+import com.example.taximuslim.presentation.view.menu.fragments.HistoryFragment
+import com.example.taximuslim.presentation.view.menu.fragments.SettingsFragment
 import com.example.taximuslim.presenter.maps.MainPresenter
 import com.example.taximuslim.utils.*
+import com.example.taximuslim.utils.navigator.ControllerChanger
 import com.example.taximuslim.utils.permissions.PermissionConstants
 import com.example.taximuslim.utils.permissions.PermissionManager
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_maps_controller.*
 
 
 //TODO Своевременный вывод price layout и alert dialog
-class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListener {
-
+class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListener,
+    NavigationView.OnNavigationItemSelectedListener {
     private lateinit var mMap: GoogleMap
     private var presenter = MainPresenter()
     private val permissionManager = PermissionManager(this)
@@ -38,7 +47,7 @@ class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListene
     private val mapManger = FetchAddressIntentService(this)
     private var btnManager: ButtonManager? = null
     private val adapter = MapsCustomAdapter()
-
+    private val controllerChanger = ControllerChanger(this)
 
     override fun onClick(p0: View?) {
         when (p0?.id) {
@@ -70,13 +79,12 @@ class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListene
             }
             R.id.place_location -> showPriceAlertDialog()
             R.id.comment_text -> showCommentAlertDialog()
-            R.id.burger_menu_main -> showBurgerMenu()
+            R.id.burger_menu_main -> {
+                NavigationDrawerManager.showNavigationDrawer(drawer_layout)
+            }
         }
     }
 
-    private fun showBurgerMenu() {
-        TODO("Show burger menu")
-    }
 
     private fun showCommentAlertDialog() = commentDialogWindow?.show()
 
@@ -86,7 +94,7 @@ class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListene
         super.onCreate(savedInstanceState)
         initViews()
         initPresenter()
-
+        NavigationDrawerManager.navigationDrawerStateListener(drawer_layout)
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -105,6 +113,27 @@ class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListene
         comment_text.clearFocus()
     }
 
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.nav_driver -> {
+                showToast("Driver activity")
+             //   controllerChanger.openMenuController("")
+            }
+            R.id.nav_guide ->
+                controllerChanger.openMenuController(GuideFragment.FRAGMENT_ID)
+
+            R.id.nav_history ->
+                controllerChanger.openMenuController(HistoryFragment.FRAGMENT_ID)
+
+            R.id.nav_settings ->
+                controllerChanger.openMenuController(SettingsFragment.FRAGMENT_ID)
+
+            R.id.nav_help ->
+                controllerChanger.openMenuController(HelpFragment.FRAGMENT_ID)
+        }
+        return false
+    }
+
     fun initViews() {
         btnManager = ButtonManager(this)
         economy_order.setOnClickListener(this)
@@ -118,7 +147,7 @@ class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListene
         onFocusListener(your_price)
         setTextOnButtons()
         addYourPriceTextChangeListener()
-
+        nav_view.setNavigationItemSelectedListener(this)
         val activity = this
         priceDialogWindow = PriceDialogWindow(activity)
         commentDialogWindow =
@@ -233,4 +262,6 @@ class MapsController : BaseController(), OnMapReadyCallback, View.OnClickListene
         recycler_list.adapter = adapter
         presenter.loadPlaces()
     }
+
+
 }

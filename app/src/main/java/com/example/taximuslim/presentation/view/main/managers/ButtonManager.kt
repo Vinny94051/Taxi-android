@@ -1,8 +1,9 @@
-package com.example.taximuslim.presentation.view.main
+package com.example.taximuslim.presentation.view.main.managers
 
 import android.content.Context
 import android.widget.Button
 import com.example.taximuslim.R
+import com.example.taximuslim.presentation.view.main.MapsController
 import com.example.taximuslim.utils.PriceHolder
 
 class ButtonManager(private val context: Context) {

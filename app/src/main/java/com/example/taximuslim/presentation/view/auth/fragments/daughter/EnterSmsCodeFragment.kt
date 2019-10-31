@@ -18,6 +18,10 @@ class EnterSmsCodeFragment : BaseAuthFragment() {
     private val presenter = AuthPresenter()
     var smsCode: Int? = null
 
+    companion object {
+        const val FRAGMENT_ID = "ENTER_SMS_CODE_FRAGMENT"
+        val INSTANCE = EnterSmsCodeFragment()
+    }
 
     override fun initViews() {
         addTextChangedListener(first_num, second_num)
@@ -82,11 +86,6 @@ class EnterSmsCodeFragment : BaseAuthFragment() {
     private fun isSmsCodeRight() = getUserCode() == smsCode
 
     override fun layoutId() = R.layout.fragment_enter_sms_code
-
-    companion object {
-        const val FRAGMENT_ID = "ENTER_SMS_CODE_FRAGMENT"
-        val INSTANCE = EnterSmsCodeFragment()
-    }
 
 
     private fun addTextChangedListener(editTextAddListener: EditText, editTextReqFocus: EditText) {
