@@ -94,4 +94,22 @@
     <string name="help">Служба поддержки</string>
     <string name="guide">Гид</string>
     <string name="history">История заказов</string>
+    <string name="auth_head">Авторизация</string>
+    <string name="phone_number_hint">Номер телефона</string>
+    <string name="password_head">Пароль</string>
+    <string name="password_hint">Пароль</string>
+    <string name="forgot_password_text">Забыли пароль?</string>
+    <string name="enter">Войти</string>
+    <string name="number_for_cnnection">Номер для связи</string>
+    <string name="stub_number">+749597556983</string>
+    <string name="call_us">Позвонить нам</string>
+    <string name="stub_mail">pravilny_put@mail.ru</string>
+    <string name="owner">Кому</string>
+    <string name="example_mail_ru">example@mail.ru</string>
+    <string name="your_email_text">Ваш email</string>
+    <string name="them_text">Тема</string>
+    <string name="stub_data">08 сентября 15:30</string>
+    <string name="text_text">Текст</string>
+    <string name="enter_message_text">Введите текст сообщения</string>
+    <string name="sent_letter">Отправить письмо</string>
 </resources>

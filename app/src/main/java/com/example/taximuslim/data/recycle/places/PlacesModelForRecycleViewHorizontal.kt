@@ -20,9 +20,11 @@ class PlacesModelForRecycleViewHorizontal constructor(var img: Int, var text: St
     override fun load(listener: (ArrayList<PlacesModelForRecycleViewHorizontal>) -> Unit) {
         //getData and invoke listener
         val data = arrayListOf(
-            PlacesModelForRecycleViewHorizontal(R.drawable.w_1, "first image"),
-            PlacesModelForRecycleViewHorizontal(R.drawable.w_3, "second image"),
-            PlacesModelForRecycleViewHorizontal(R.drawable.w_4, "third image")
+            PlacesModelForRecycleViewHorizontal(R.drawable.mecheti, "Мечети"),
+            PlacesModelForRecycleViewHorizontal(R.drawable.moleln_rooms,"Молельные комнаты"),
+            PlacesModelForRecycleViewHorizontal(R.drawable.culture, "Культура"),
+            PlacesModelForRecycleViewHorizontal(R.drawable.shops, "Магазины"),
+            PlacesModelForRecycleViewHorizontal(R.drawable.cafe_and_restouronts, "Кафе и рестораны")
         )
         listener.invoke(data)
     }

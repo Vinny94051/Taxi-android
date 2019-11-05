@@ -3,6 +3,7 @@ package com.example.taximuslim.presentation.view.auth
 import android.os.Bundle
 import com.example.taximuslim.R
 import com.example.taximuslim.baseUI.controller.BaseController
+import com.example.taximuslim.presentation.view.auth.fragments.daughter.AuthorizationFragment
 import com.example.taximuslim.presentation.view.auth.fragments.daughter.StartFragment
 
 class AuthController : BaseController() {
@@ -13,6 +14,10 @@ class AuthController : BaseController() {
         replaceFragment(
             StartFragment.INSTANCE,R.id.container,
             StartFragment.FRAGMENT_ID)
+
+//        replaceFragment(AuthorizationFragment.INSTANCE,
+//            R.id.container,
+//            AuthorizationFragment.FRAGMENT_ID)
     }
 
 }
