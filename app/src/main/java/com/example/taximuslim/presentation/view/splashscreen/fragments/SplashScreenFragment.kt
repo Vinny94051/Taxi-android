@@ -6,20 +6,16 @@ import android.view.View
 import com.example.taximuslim.R
 
 import com.example.taximuslim.baseUI.fragment.BaseFragment
+import com.example.taximuslim.presentation.view.main.MapsActivity
 import kotlinx.android.synthetic.main.fragment_splash_screen.*
 import kotlin.random.Random
 
 class SplashScreenFragment : BaseFragment(), View.OnClickListener {
     override fun onClick(p0: View?) {
         when (p0?.id) {
-            R.id.to_order_main_btn -> {
-                startActivity(
-                    Intent(
-                        this.activity!!,
-                        Class.forName("com.example.taximuslim.presentation.view.main.MapsController")
-                    )
-                )
-            }
+            R.id.to_order_main_btn ->
+                startActivity(Intent(this.activity!!, MapsActivity::class.java))
+
         }
     }
 
