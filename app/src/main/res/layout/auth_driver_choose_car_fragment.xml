@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.view.auth.driver.car.AuthDriverChooseCarFragment">
+
+    <TextView
+        android:id="@+id/carMark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/car_mark"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:textColor="@color/contrastTextColor"
+        android:layout_marginTop="@dimen/large_margin"
+        android:layout_marginStart="@dimen/default_margin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/carSeria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/car_seria"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:textColor="@color/contrastTextColor"
+        android:layout_marginTop="@dimen/medium_margin"
+        android:layout_marginStart="@dimen/default_margin"
+        app:layout_constraintTop_toBottomOf="@id/carMark"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/carColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/car_color"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:textColor="@color/contrastTextColor"
+        android:layout_marginTop="@dimen/medium_margin"
+        android:layout_marginStart="@dimen/default_margin"
+        app:layout_constraintTop_toBottomOf="@id/carSeria"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/markSpinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/large_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:textSize="14sp"
+        android:textColor="@color/notContrastTextColor"
+        app:layout_constraintBottom_toBottomOf="@+id/carMark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/carMark"
+        app:layout_constraintTop_toTopOf="@id/carMark" />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/seriaSpinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/large_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:textSize="14sp"
+        android:textColor="@color/notContrastTextColor"
+        app:layout_constraintBottom_toBottomOf="@+id/carSeria"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/carSeria"
+        app:layout_constraintTop_toTopOf="@id/carSeria" />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/colorSpinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/large_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:textSize="14sp"
+        android:textColor="@color/notContrastTextColor"
+        app:layout_constraintBottom_toBottomOf="@+id/carColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/carColor"
+        app:layout_constraintTop_toTopOf="@id/carColor" />
+
+    <RelativeLayout
+        android:id="@+id/mainButton"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="@dimen/button_horizontal_margin"
+        android:layout_marginEnd="@dimen/button_horizontal_margin"
+        android:layout_marginBottom="@dimen/default_bottom_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/arrow_stroke_bg">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+            android:background="@drawable/arrow_overlay"/>
+
+        <TextView
+            android:id="@+id/main_btn_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:text="@string/con_tinue"
+            android:textColor="@color/colorThemeGreen"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="72dp"
+            android:layout_height="48dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/arrow_bg"
+            android:padding="4dp"
+            android:src="@drawable/arrow_forward_black_24dp" />
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

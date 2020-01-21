@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/driver_auth_navigation">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/driver_auth_navigation"
+    app:startDestination="@id/authDriverFirstStepFragment">
 
+    <fragment
+        android:id="@+id/authDriverFirstStepFragment"
+        android:name="com.example.taximuslim.presentation.view.auth.driver.AuthDriverFirstStepFragment"
+        android:label="fragment_auth_driver_ferst_step"
+        tools:layout="@layout/fragment_auth_driver_ferst_step" >
+        <action
+            android:id="@+id/action_authDriverFirstStepFragment_to_authDriverChooseCarFragment"
+            app:destination="@id/authDriverChooseCarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/authDriverChooseCarFragment"
+        android:name="com.example.taximuslim.presentation.view.auth.driver.car.AuthDriverChooseCarFragment"
+        android:label="@string/car_info"
+        tools:layout="@layout/auth_driver_choose_car_fragment" >
+        <action
+            android:id="@+id/action_authDriverChooseCarFragment_to_authDriverCarNumbFragment"
+            app:destination="@id/authDriverCarNumbFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/authDriverCarNumbFragment"
+        android:name="com.example.taximuslim.presentation.view.auth.driver.carNumb.AuthDriverCarNumbFragment"
+        android:label="@string/your_car_numb"
+        tools:layout="@layout/auth_driver_car_numb_fragment" />
 </navigation>

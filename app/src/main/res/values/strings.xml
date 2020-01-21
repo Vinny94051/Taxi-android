@@ -121,4 +121,11 @@
     <string name="driver_auth_document_text">Для этого Вам понадобятся 5 минут времени и следующие документы:</string>
     <string name="driver_auth_document_list">— ваша фотография\n— фотография машины \n— свидетельство о регистрации ТС\n— водительское удостверение</string>
     <string name="come_later">Пройти позже</string>
+    <string name="car_info">Информация о машине</string>
+    <string name="car_numb">Госномер</string>
+    <string name="your_car_numb">Номер вашей машины</string>
+    <string name="car_mark">Марка</string>
+    <string name="car_seria">Сария</string>
+    <string name="car_color">Цвет</string>
+    <string name="car_numb_need_for">Госномер необходим, чтобы пассажир смог найти Вашу машину</string>
 </resources>
