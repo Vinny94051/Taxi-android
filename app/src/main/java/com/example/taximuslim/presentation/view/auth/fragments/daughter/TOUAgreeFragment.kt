@@ -4,8 +4,9 @@ import android.content.Intent
 import android.text.Html
 import android.view.View
 import com.example.taximuslim.R
-import com.example.taximuslim.presentation.view.auth.AuthController
+import com.example.taximuslim.presentation.view.auth.AuthActivity
 import com.example.taximuslim.presentation.view.auth.fragments.base.BaseAuthFragment
+import com.example.taximuslim.presentation.view.splashscreen.SplashScreenActivity
 import kotlinx.android.synthetic.main.fragment_terms_of_use_agree.*
 
 class TOUAgreeFragment : BaseAuthFragment() {
@@ -14,16 +15,13 @@ class TOUAgreeFragment : BaseAuthFragment() {
     override fun onClick(p0: View?) {
         when (p0?.id) {
             R.id.main_button_tou_agree -> {
-                if (checkBox.isChecked) {
-                    val intent = Intent(
-                        this.activity,
-                        Class.forName("com.example.taximuslim.presentation.view.splashscreen.SplashScreenController")
-                    )
-                    startActivity(intent)
-                } else showToast(getString(R.string.tou_exception))
+                if (checkBox.isChecked)
+                    startActivity(Intent(this.activity, SplashScreenActivity::class.java))
+                else
+                    showToast(getString(R.string.tou_exception))
             }
             R.id.checkBox -> {
-                (activity as AuthController).replaceFragment(
+                (activity as AuthActivity).replaceFragment(
                     TOUTextFragment.INSTANCE, R.id.container, TOUTextFragment.FRAGMENT_ID
                 )
             }

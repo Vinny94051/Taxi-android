@@ -2,7 +2,7 @@ package com.example.taximuslim.presentation.view.auth.fragments.daughter
 
 import android.view.View
 import com.example.taximuslim.R
-import com.example.taximuslim.presentation.view.auth.AuthController
+import com.example.taximuslim.presentation.view.auth.AuthActivity
 import com.example.taximuslim.presentation.view.auth.fragments.base.BaseAuthFragment
 import kotlinx.android.synthetic.main.fragment_welcome.*
 
@@ -10,7 +10,7 @@ class WelcomeFragment : BaseAuthFragment() {
     override fun onClick(p0: View?) {
         when (p0?.id) {
             R.id.main_button_welcome -> {
-                (activity as AuthController)
+                (activity as AuthActivity)
                     .replaceFragment(
                         EnterNumberFragment.INSTANCE, R.id.container,
                         EnterNumberFragment.FRAGMENT_ID

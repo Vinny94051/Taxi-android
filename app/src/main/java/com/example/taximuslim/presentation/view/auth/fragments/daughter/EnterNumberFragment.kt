@@ -2,9 +2,9 @@ package com.example.taximuslim.presentation.view.auth.fragments.daughter
 
 import android.view.View
 import com.example.taximuslim.R
-import com.example.taximuslim.presentation.view.auth.AuthController
+import com.example.taximuslim.presentation.view.auth.AuthActivity
 import com.example.taximuslim.presentation.view.auth.fragments.base.BaseAuthFragment
-import com.example.taximuslim.presenter.auth.AuthPresenter
+import com.example.taximuslim.presentation.viewmodel.auth.AuthViewModel
 import com.example.taximuslim.utils.NumberValidator
 import kotlinx.android.synthetic.main.fragment_enter_number.*
 
@@ -23,14 +23,14 @@ class EnterNumberFragment : BaseAuthFragment() {
         continue_btn.setOnClickListener(this)
     }
 
-    private val presenter = AuthPresenter()
+    private val presenter = AuthViewModel()
 
     override fun onClick(p0: View?) {
         when (p0?.id) {
             R.id.continue_btn -> {
                 if (NumberValidator.isValidNumber(enter_number.text.toString())) {
                     saveNumber()
-                    (activity as AuthController)
+                    (activity as AuthActivity)
                         .replaceFragment(
                             EnterSmsCodeFragment.INSTANCE,
                             R.id.container,
