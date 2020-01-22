@@ -15,8 +15,10 @@ abstract class BaseActivity : AppCompatActivity(), IBaseActivity {
 
     fun replaceFragment(fragment: Fragment, container: Int, tag: String) = supportFragmentManager
         .beginTransaction()
+        .addToBackStack(tag)
         .replace(container, fragment, tag)
         .commit()
 
-    fun showToast(message: String) = Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    fun showToast(message: String) =
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }

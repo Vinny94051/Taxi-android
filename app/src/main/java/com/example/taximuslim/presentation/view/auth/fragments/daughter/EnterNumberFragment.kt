@@ -20,14 +20,14 @@ class EnterNumberFragment : BaseAuthFragment() {
     override fun layoutId() = R.layout.fragment_enter_number
 
     override fun initViews() {
-        continue_btn.setOnClickListener(this)
+        enter_button.setOnClickListener(this)
     }
 
     private val presenter = AuthViewModel()
 
     override fun onClick(p0: View?) {
         when (p0?.id) {
-            R.id.continue_btn -> {
+            R.id.enter_button -> {
                 if (NumberValidator.isValidNumber(enter_number.text.toString())) {
                     saveNumber()
                     (activity as AuthActivity)

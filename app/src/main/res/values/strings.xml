@@ -112,4 +112,9 @@
     <string name="text_text">Текст</string>
     <string name="enter_message_text">Введите текст сообщения</string>
     <string name="sent_letter">Отправить письмо</string>
+    <string name="authorization">Авторизация</string>
+    <string name="auth_head_second">На указанный номер придет SMS-код для продолжения регистрации</string>
+    <string name="ru_num_code">+7</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="no_account">Нет аккаунта?</string>
 </resources>
