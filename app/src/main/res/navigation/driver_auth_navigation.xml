@@ -27,5 +27,14 @@
         android:id="@+id/authDriverCarNumbFragment"
         android:name="com.example.taximuslim.presentation.view.auth.driver.carNumb.AuthDriverCarNumbFragment"
         android:label="@string/your_car_numb"
-        tools:layout="@layout/auth_driver_car_numb_fragment" />
+        tools:layout="@layout/auth_driver_car_numb_fragment" >
+        <action
+            android:id="@+id/action_authDriverCarNumbFragment_to_authDriverCarPhoto"
+            app:destination="@id/authDriverCarPhoto" />
+    </fragment>
+    <fragment
+        android:id="@+id/authDriverCarPhoto"
+        android:name="com.example.taximuslim.presentation.view.auth.driver.carPhoto.AuthDriverCarPhoto"
+        android:label="@string/car_photo"
+        tools:layout="@layout/auth_driver_car_photo_fragment" />
 </navigation>

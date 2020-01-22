@@ -128,4 +128,12 @@
     <string name="car_seria">Сария</string>
     <string name="car_color">Цвет</string>
     <string name="car_numb_need_for">Госномер необходим, чтобы пассажир смог найти Вашу машину</string>
+    <string name="info_about_car">Информация о машине</string>
+    <string name="edit">Редактировать</string>
+    <string name="mark_and_seria">Марка и серия</string>
+    <string name="color">Цвет</string>
+    <string name="car_photo">Фотография машины</string>
+    <string name="delete">Удалить</string>
+    <string name="take_car_photo_with_numb">Сфотографируйте машину полностью, чтобы был виден госномер</string>
+    <string name="car_sertificate">Свидетельство о регистрации ТС</string>
 </resources>
