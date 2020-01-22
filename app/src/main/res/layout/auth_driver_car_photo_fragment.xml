@@ -1,317 +1,327 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/transparent"
-    tools:context=".presentation.view.auth.driver.carPhoto.AuthDriverCarPhoto">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.taximuslim.presentation.view.auth.driver.carPhoto.AuthDriverCarPhotoViewModel" />
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        tools:context=".presentation.view.auth.driver.carPhoto.AuthDriverCarPhoto">
 
-        <TextView
-            android:id="@+id/carInfoText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_margin"
-            android:layout_marginTop="@dimen/large_margin"
-            android:text="@string/info_about_car"
-            android:textColor="@color/contrastTextColor"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/large_margin"
-            android:layout_marginEnd="@dimen/default_margin"
-            android:lineSpacingExtra="2sp"
-            android:text="@string/edit"
-            android:textColor="@color/colorThemeGreen"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/carInfoCard"
-            android:layout_width="0dp"
-            android:layout_height="102dp"
-            android:layout_marginStart="@dimen/default_margin"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="@dimen/default_margin"
-            app:cardCornerRadius="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/carInfoText">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/carMarkSeriesText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="12dp"
-                    android:lineSpacingExtra="4sp"
-                    android:text="@string/mark_and_seria"
-                    android:textColor="@color/contrastTextColor"
-                    android:textSize="14sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/carColorText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="@dimen/small_margin"
-                    android:lineSpacingExtra="4sp"
-                    android:text="@string/color"
-                    android:textColor="@color/contrastTextColor"
-                    android:textSize="14sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/carMarkSeriesText" />
-
-                <TextView
-                    android:id="@+id/carNumbText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="@dimen/small_margin"
-                    android:lineSpacingExtra="4sp"
-                    android:text="@string/car_numb"
-                    android:textColor="@color/contrastTextColor"
-                    android:textSize="14sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/carColorText" />
-
-                <TextView
-                    android:id="@+id/carMarkSeries"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/small_margin"
-                    android:layout_marginTop="12dp"
-                    android:textColor="@color/contrastTextColor"
-                    android:textSize="14sp"
-                    app:layout_constraintStart_toEndOf="@id/carMarkSeriesText"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/carColor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/small_margin"
-                    android:layout_marginTop="@dimen/small_margin"
-                    android:textSize="14sp"
-                    app:layout_constraintStart_toEndOf="@id/carColorText"
-                    app:layout_constraintTop_toBottomOf="@id/carMarkSeries" />
-
-                <TextView
-                    android:id="@+id/carNumb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/small_margin"
-                    android:layout_marginTop="@dimen/small_margin"
-                    android:textColor="@color/contrastTextColor"
-                    android:textSize="14sp"
-                    app:layout_constraintStart_toEndOf="@id/carNumbText"
-                    app:layout_constraintTop_toBottomOf="@id/carColor" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/carPhotoText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_margin"
-            android:layout_marginTop="@dimen/medium_margin"
-            android:text="@string/car_photo"
-            android:textColor="@color/contrastTextColor"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/carInfoCard" />
-
-        <TextView
-            android:id="@+id/deleteCarPhotoText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_margin"
-            android:layout_marginEnd="@dimen/default_margin"
-            android:lineSpacingExtra="2sp"
-            android:visibility="gone"
-            android:text="@string/delete"
-            android:textColor="@color/colorThemeGreen"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/carInfoCard" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/carPhotoCard"
-            android:layout_width="0dp"
-            android:layout_height="152dp"
-            android:layout_marginStart="@dimen/default_margin"
-            android:layout_marginTop="12sp"
-            android:layout_marginEnd="@dimen/default_margin"
-            android:background="@color/colorCardBackground"
-            app:cardCornerRadius="@dimen/default_card_radius"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/carPhotoText">
-
-            <ImageView
-                android:id="@+id/carPhotoImage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="center"
-                android:src="@drawable/take_photo_placeholder"/>
-
-            <ImageView
-                android:id="@+id/carPhotoCorrect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:visibility="gone"
-                android:src="@drawable/ic_succes_laoding"/>
-
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/takePhotoText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_margin"
-            android:layout_marginTop="@dimen/small_margin"
-            android:layout_marginEnd="@dimen/default_margin"
-            android:lineSpacingExtra="4sp"
-            android:text="@string/take_car_photo_with_numb"
-            android:textColor="@color/notContrastTextColor"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/carPhotoCard" />
-
-        <TextView
-            android:id="@+id/carLicenceText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_margin"
-            android:layout_marginTop="@dimen/large_margin"
-            android:text="@string/car_sertificate"
-            android:textColor="@color/contrastTextColor"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/takePhotoText" />
-
-        <TextView
-            android:id="@+id/deleteLicencePhotoText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:layout_marginTop="@dimen/large_margin"
-            android:layout_marginEnd="@dimen/default_margin"
-            android:lineSpacingExtra="2sp"
-            android:text="@string/delete"
-            android:textColor="@color/colorThemeGreen"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/takePhotoText" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/carLicenceCard"
-            android:layout_width="0dp"
-            android:layout_height="152dp"
-            android:layout_marginStart="@dimen/default_margin"
-            android:layout_marginTop="12sp"
-            android:layout_marginEnd="@dimen/default_margin"
-            android:background="@color/colorCardBackground"
-            app:cardCornerRadius="@dimen/default_card_radius"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/carLicenceText">
-
-            <ImageView
-                android:id="@+id/carLicenceImage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="center"
-                android:src="@drawable/take_photo_placeholder"/>
-
-            <ImageView
-                android:id="@+id/licencePhotoCorrect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:visibility="gone"
-                android:src="@drawable/ic_error_loading"/>
-
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/takeCorrectPhoto"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_margin"
-            android:layout_marginTop="@dimen/small_margin"
-            android:layout_marginEnd="@dimen/default_margin"
-            android:lineSpacingExtra="4sp"
-            android:text="@string/take_car_photo_with_numb"
-            android:textColor="@color/notContrastTextColor"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/carLicenceCard" />
-
-        <RelativeLayout
-            android:id="@+id/mainButton"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="@dimen/button_horizontal_margin"
-            android:layout_marginTop="@dimen/medium_margin"
-            android:layout_marginEnd="@dimen/button_horizontal_margin"
-            android:layout_marginBottom="@dimen/medium_margin"
-            android:background="@drawable/arrow_stroke_bg"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/takeCorrectPhoto">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="2dp"
-                android:background="@drawable/arrow_overlay" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/main_btn_text"
+                android:id="@+id/carInfoText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/default_margin"
-                android:text="@string/con_tinue"
+                android:layout_marginTop="@dimen/large_margin"
+                android:text="@string/info_about_car"
+                android:textColor="@color/contrastTextColor"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/large_margin"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:lineSpacingExtra="2sp"
+                android:text="@string/edit"
                 android:textColor="@color/colorThemeGreen"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:layout_width="72dp"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/carInfoCard"
+                android:layout_width="0dp"
+                android:layout_height="102dp"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="@dimen/default_margin"
+                app:cardCornerRadius="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/carInfoText">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/carMarkSeriesText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="12dp"
+                        android:lineSpacingExtra="4sp"
+                        android:text="@string/mark_and_seria"
+                        android:textColor="@color/contrastTextColor"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/carColorText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:lineSpacingExtra="4sp"
+                        android:text="@string/color"
+                        android:textColor="@color/contrastTextColor"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/carMarkSeriesText" />
+
+                    <TextView
+                        android:id="@+id/carNumbText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:lineSpacingExtra="4sp"
+                        android:text="@string/car_numb"
+                        android:textColor="@color/contrastTextColor"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/carColorText" />
+
+                    <TextView
+                        android:id="@+id/carMarkSeries"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/small_margin"
+                        android:layout_marginTop="12dp"
+                        android:textColor="@color/contrastTextColor"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toEndOf="@id/carMarkSeriesText"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/carColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/small_margin"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toEndOf="@id/carColorText"
+                        app:layout_constraintTop_toBottomOf="@id/carMarkSeries" />
+
+                    <TextView
+                        android:id="@+id/carNumb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/small_margin"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:textColor="@color/contrastTextColor"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toEndOf="@id/carNumbText"
+                        app:layout_constraintTop_toBottomOf="@id/carColor" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/carPhotoText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:text="@string/car_photo"
+                android:textColor="@color/contrastTextColor"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/carInfoCard" />
+
+            <TextView
+                android:id="@+id/deleteCarPhotoText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:lineSpacingExtra="2sp"
+                android:visibility="gone"
+                android:text="@string/delete"
+                android:textColor="@color/colorThemeGreen"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/carInfoCard" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/carPhotoCard"
+                android:layout_width="0dp"
+                android:layout_height="152dp"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginTop="12sp"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:background="@color/colorCardBackground"
+                app:cardCornerRadius="@dimen/default_card_radius"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/carPhotoText">
+
+                <ImageView
+                    android:id="@+id/carPhotoImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="center"
+                    android:src="@drawable/take_photo_placeholder" />
+
+                <ImageView
+                    android:id="@+id/carPhotoCorrect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    android:src="@drawable/ic_succes_laoding" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/takePhotoText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:lineSpacingExtra="4sp"
+                android:text="@string/take_car_photo_with_numb"
+                android:textColor="@color/notContrastTextColor"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/carPhotoCard" />
+
+            <TextView
+                android:id="@+id/carLicenceText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginTop="@dimen/large_margin"
+                android:text="@string/car_sertificate"
+                android:textColor="@color/contrastTextColor"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/takePhotoText" />
+
+            <TextView
+                android:id="@+id/deleteLicencePhotoText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/large_margin"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:lineSpacingExtra="2sp"
+                android:text="@string/delete"
+                android:textColor="@color/colorThemeGreen"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/takePhotoText" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/carLicenceCard"
+                android:layout_width="0dp"
+                android:layout_height="152dp"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginTop="12sp"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:background="@color/colorCardBackground"
+                app:cardCornerRadius="@dimen/default_card_radius"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/carLicenceText">
+
+                <ImageView
+                    android:id="@+id/carLicenceImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="center"
+                    android:src="@drawable/take_photo_placeholder" />
+
+                <ImageView
+                    android:id="@+id/licencePhotoCorrect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    android:src="@drawable/ic_error_loading" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/takeCorrectPhoto"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:lineSpacingExtra="4sp"
+                android:text="@string/take_car_photo_with_numb"
+                android:textColor="@color/notContrastTextColor"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/carLicenceCard" />
+
+            <RelativeLayout
+                android:id="@+id/mainButton"
+                android:layout_width="0dp"
                 android:layout_height="48dp"
-                android:layout_alignParentEnd="true"
-                android:background="@drawable/arrow_bg"
-                android:padding="4dp"
-                android:src="@drawable/arrow_forward_black_24dp" />
-        </RelativeLayout>
+                android:layout_marginStart="@dimen/button_horizontal_margin"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:layout_marginEnd="@dimen/button_horizontal_margin"
+                android:layout_marginBottom="@dimen/medium_margin"
+                android:background="@drawable/arrow_stroke_bg"
+                android:onClick="@{() -> viewModel.checkDataAndGoNext()}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/takeCorrectPhoto">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:background="@drawable/arrow_overlay" />
 
-</ScrollView>
+                <TextView
+                    android:id="@+id/main_btn_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/default_margin"
+                    android:text="@string/con_tinue"
+                    android:textColor="@color/colorThemeGreen"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/arrow_bg"
+                    android:padding="4dp"
+                    android:src="@drawable/arrow_forward_black_24dp" />
+            </RelativeLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>

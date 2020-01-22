@@ -12,6 +12,7 @@ import androidx.navigation.findNavController
 
 import com.example.taximuslim.R
 import com.example.taximuslim.baseUI.fragment.BaseFragment
+import kotlinx.android.synthetic.main.auth_driver_car_numb_fragment.*
 
 class AuthDriverCarNumbFragment : BaseFragment() {
 
@@ -27,7 +28,14 @@ class AuthDriverCarNumbFragment : BaseFragment() {
     }
 
     private fun setListeners(){
-        viewModel.writeCarNumb()
+        setMainButtonListener()
+    }
+
+
+    private fun setMainButtonListener(){
+        mainButton.setOnClickListener {
+            viewModel.writeCarNumb()
+        }
     }
 
     private fun setObservers(){

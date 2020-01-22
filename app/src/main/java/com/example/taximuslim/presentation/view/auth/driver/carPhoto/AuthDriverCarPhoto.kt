@@ -6,8 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.Observer
 
 import com.example.taximuslim.R
+import com.example.taximuslim.databinding.AuthDriverCarPhotoFragmentBinding
 
 class AuthDriverCarPhoto : Fragment() {
 
@@ -21,13 +24,21 @@ class AuthDriverCarPhoto : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.auth_driver_car_photo_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+        val binding = AuthDriverCarPhotoFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProviders.of(this).get(AuthDriverCarPhotoViewModel::class.java)
-        // TODO: Use the ViewModel
+        binding.viewModel = viewModel
+        return  binding.root
     }
 
+    override fun onStart() {
+        super.onStart()
+        setObservers()
+    }
+
+    private fun setObservers(){
+        viewModel.navigateToNext.observe(viewLifecycleOwner, Observer {
+            //TODO
+            viewModel.onNavigate()
+        })
+    }
 }
