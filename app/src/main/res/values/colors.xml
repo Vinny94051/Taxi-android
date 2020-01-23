@@ -9,4 +9,5 @@
     <color name="notContrastTextColor">#808080</color>
 
     <color name="colorCardBackground">#FFFBF5</color>
+    <color name="colorTextAccent">#00AA7E</color>
 </resources>

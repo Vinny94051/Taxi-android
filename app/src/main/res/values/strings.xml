@@ -136,4 +136,19 @@
     <string name="delete">Удалить</string>
     <string name="take_car_photo_with_numb">Сфотографируйте машину полностью, чтобы был виден госномер</string>
     <string name="car_sertificate">Свидетельство о регистрации ТС</string>
+    <string name="about_you">О себе</string>
+    <string name="delete_photo">Удалить фото</string>
+    <string name="name">Имя</string>
+    <string name="second_name">Фамилия</string>
+    <string name="email">Email</string>
+    <string name="input_name">Введите имя</string>
+    <string name="input_second_name">Введите фамилию</string>
+    <string name="input_email">Введите адресс электронной почты</string>
+    <string name="texi_licence_front">Лицензия такси (лицевая сторона)</string>
+    <string name="photo_shoud_be_correct">Фотография должна быть четкой, без следов изменений</string>
+    <string name="taxi_licence_back">Лицензия такси (обратная сторона)</string>
+    <string name="documents">Документы</string>
+    <string name="series_and_numb_driver_licence">Серия и номер водительского удостоверения</string>
+    <string name="driver_licence_front">Водительское удостверение (лицевая сторона)</string>
+    <string name="driver_licence_back">Водительское удостверение (обратная сторона)</string>
 </resources>

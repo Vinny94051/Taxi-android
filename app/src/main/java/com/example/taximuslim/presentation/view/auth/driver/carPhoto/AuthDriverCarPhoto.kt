@@ -8,23 +8,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 
 import com.example.taximuslim.R
 import com.example.taximuslim.databinding.AuthDriverCarPhotoFragmentBinding
 
 class AuthDriverCarPhoto : Fragment() {
 
-    companion object {
-        fun newInstance() = AuthDriverCarPhoto()
-    }
-
     private lateinit var viewModel: AuthDriverCarPhotoViewModel
+    private lateinit var binding: AuthDriverCarPhotoFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = AuthDriverCarPhotoFragmentBinding.inflate(inflater, container, false)
+        binding = AuthDriverCarPhotoFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProviders.of(this).get(AuthDriverCarPhotoViewModel::class.java)
         binding.viewModel = viewModel
         return  binding.root
@@ -36,9 +35,12 @@ class AuthDriverCarPhoto : Fragment() {
     }
 
     private fun setObservers(){
-        viewModel.navigateToNext.observe(viewLifecycleOwner, Observer {
-            //TODO
-            viewModel.onNavigate()
+        viewModel.navigateToNext.observe(viewLifecycleOwner, Observer {navigate ->
+            if (navigate) {
+                val navController = binding.root.findNavController()
+                navController.navigate(R.id.action_authDriverCarPhoto_to_authDriverAboutYouFragment)
+                viewModel.onNavigate()
+            }
         })
     }
 }
