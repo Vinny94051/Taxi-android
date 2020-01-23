@@ -6,14 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 
 import com.example.taximuslim.R
+import com.example.taximuslim.databinding.AuthDriverValidatePersonFragmentBinding
 
 class AuthDriverValidatePersonFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = AuthDriverValidatePersonFragment()
-    }
 
     private lateinit var viewModel: AuthDriverValidatePersonViewModel
 
@@ -21,13 +20,20 @@ class AuthDriverValidatePersonFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.auth_driver_validate_person_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+        val binding = AuthDriverValidatePersonFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProviders.of(this).get(AuthDriverValidatePersonViewModel::class.java)
-        // TODO: Use the ViewModel
+        binding.viewModel = viewModel
+        return binding.root
     }
 
+    override fun onStart() {
+        super.onStart()
+        viewModel.navigate.observe(viewLifecycleOwner, Observer{navigate ->
+            if (navigate){
+                val navController = view!!.findNavController()
+                navController.navigate(R.id.action_authDriverValidatePersonFragment_to_driverAuthRuleFragment)
+                viewModel.onNavigate()
+            }
+        })
+    }
 }

@@ -54,5 +54,22 @@
         android:id="@+id/authDriverDocumentsFragment"
         android:name="com.example.taximuslim.presentation.view.auth.driver.documents.AuthDriverDocumentsFragment"
         android:label="@string/documents"
-        tools:layout="@layout/auth_driver_documents_fragment" />
+        tools:layout="@layout/auth_driver_documents_fragment" >
+        <action
+            android:id="@+id/action_authDriverDocumentsFragment_to_authDriverValidatePersonFragment"
+            app:destination="@id/authDriverValidatePersonFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/authDriverValidatePersonFragment"
+        android:name="com.example.taximuslim.presentation.view.auth.driver.validatePreson.AuthDriverValidatePersonFragment"
+        android:label="@string/person_validation"
+        tools:layout="@layout/auth_driver_validate_person_fragment" >
+        <action
+            android:id="@+id/action_authDriverValidatePersonFragment_to_driverAuthRuleFragment"
+            app:destination="@id/driverAuthRuleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/driverAuthRuleFragment"
+        android:name="com.example.taximuslim.presentation.view.auth.driver.rules.DriverAuthRuleFragment"
+        android:label="DriverAuthRuleFragment" />
 </navigation>

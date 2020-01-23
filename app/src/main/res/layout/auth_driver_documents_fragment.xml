@@ -1,80 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/transparent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.view.auth.driver.documents.AuthDriverDocumentsFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.taximuslim.presentation.view.auth.driver.documents.AuthDriverDocumentsViewModel" />
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/large_margin">
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        tools:context=".presentation.view.auth.driver.documents.AuthDriverDocumentsFragment">
 
-        <TextView
-            android:id="@+id/driveLicenceText"
-            style="@style/ContrastFieldText"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_margin"
-            android:layout_marginTop="@dimen/large_margin"
-            android:text="@string/series_and_numb_driver_licence"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:paddingBottom="@dimen/large_margin">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/licenceNumbCard"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="@dimen/small_margin"
-            android:layout_marginStart="@dimen/default_margin"
-            android:layout_marginEnd="@dimen/default_margin"
-            app:cardCornerRadius="6dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/driveLicenceText">
+            <TextView
+                android:id="@+id/driveLicenceText"
+                style="@style/ContrastFieldText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginTop="@dimen/large_margin"
+                android:text="@string/series_and_numb_driver_licence"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-            <EditText
-                android:id="@+id/licenceNumbEdit"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="2dp"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:textStyle="bold"
-                android:inputType="textCapCharacters"
-                android:background="@android:color/white"
-                android:backgroundTint="@android:color/white"
-                android:foregroundTint="@android:color/white"
-                android:textSize="14sp"
-                android:textColor="@color/notContrastTextColor"/>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/licenceNumbCard"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginEnd="@dimen/default_margin"
+                app:cardCornerRadius="6dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/driveLicenceText">
 
-        </androidx.cardview.widget.CardView>
+                <EditText
+                    android:id="@+id/licenceNumbEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textStyle="bold"
+                    android:inputType="textCapCharacters"
+                    android:background="@android:color/white"
+                    android:backgroundTint="@android:color/white"
+                    android:foregroundTint="@android:color/white"
+                    android:textSize="14sp"
+                    android:textColor="@color/notContrastTextColor" />
 
-        <TextView
-            android:id="@+id/taxiLicenceTextFront"
-            style="@style/ContrastFieldText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_margin"
-            android:layout_marginTop="@dimen/large_margin"
-            android:layout_marginEnd="@dimen/default_margin"
-            android:text="@string/driver_licence_front"
-            app:layout_constraintEnd_toStartOf="@+id/deleteLicenceFrontPhoto"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/licenceNumbCard" />
+            </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/deleteLicenceFrontPhoto"
-            style="@style/AccentText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/default_margin"
-            android:text="@string/delete"
-            app:layout_constraintBottom_toBottomOf="@+id/taxiLicenceTextFront"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/taxiLicenceTextFront" />
+            <TextView
+                android:id="@+id/taxiLicenceTextFront"
+                style="@style/ContrastFieldText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginTop="@dimen/large_margin"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:text="@string/driver_licence_front"
+                app:layout_constraintEnd_toStartOf="@+id/deleteLicenceFrontPhoto"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/licenceNumbCard" />
+
+            <TextView
+                android:id="@+id/deleteLicenceFrontPhoto"
+                style="@style/AccentText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:text="@string/delete"
+                app:layout_constraintBottom_toBottomOf="@+id/taxiLicenceTextFront"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/taxiLicenceTextFront" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/licencePhotoFrontCard"
@@ -118,28 +126,28 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/licencePhotoFrontCard" />
 
-        <TextView
-            android:id="@+id/taxiLicenceTextBack"
-            style="@style/ContrastFieldText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_margin"
-            android:layout_marginTop="@dimen/large_margin"
-            android:text="@string/driver_licence_back"
-            app:layout_constraintEnd_toStartOf="@+id/deleteLicenceBackPhoto"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/licenceFrontInfo" />
+            <TextView
+                android:id="@+id/taxiLicenceTextBack"
+                style="@style/ContrastFieldText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginTop="@dimen/large_margin"
+                android:text="@string/driver_licence_back"
+                app:layout_constraintEnd_toStartOf="@+id/deleteLicenceBackPhoto"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/licenceFrontInfo" />
 
-        <TextView
-            android:id="@+id/deleteLicenceBackPhoto"
-            style="@style/AccentText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/default_margin"
-            android:text="@string/delete"
-            app:layout_constraintBottom_toBottomOf="@+id/taxiLicenceTextBack"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/taxiLicenceTextBack" />
+            <TextView
+                android:id="@+id/deleteLicenceBackPhoto"
+                style="@style/AccentText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:text="@string/delete"
+                app:layout_constraintBottom_toBottomOf="@+id/taxiLicenceTextBack"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/taxiLicenceTextBack" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/licencePhotoBackCard"
@@ -188,6 +196,7 @@
                 android:layout_height="48dp"
                 android:layout_marginStart="37dp"
                 android:layout_marginEnd="37dp"
+                android:onClick="@{() -> viewModel.checkAndWriteData()}"
                 android:layout_marginTop="@dimen/large_margin"
                 app:layout_constraintTop_toBottomOf="@id/licenceBackInfo"
                 app:layout_constraintStart_toStartOf="parent"
@@ -200,5 +209,6 @@
                     layout="@layout/button" />
             </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

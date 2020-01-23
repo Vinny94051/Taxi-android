@@ -151,4 +151,10 @@
     <string name="series_and_numb_driver_licence">Серия и номер водительского удостоверения</string>
     <string name="driver_licence_front">Водительское удостверение (лицевая сторона)</string>
     <string name="driver_licence_back">Водительское удостверение (обратная сторона)</string>
+    <string name="person_validation">Подтверждение личности</string>
+    <string name="validation_text">Поднесите водительские права перед собой и сделайте фото, как на примере</string>
+    <string name="validation_rules">— на фото должно быть отчетливо видно лицо и ваше водительское удостверение\n
+        — фото должно быть сделано при хорошем освщениии в хорошем качестве\n
+        — не допускаются фотографии в солнцезащитных очках</string>
+    <string name="your_photo">Ваша фотография</string>
 </resources>
