@@ -36,8 +36,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/registration_field"
-        android:layout_marginTop="48dp"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="32dp"
         android:text="@string/enter_sms_code"
         android:textAlignment="center"
@@ -57,12 +57,12 @@
             android:layout_width="@dimen/number_width"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:hint="@string/zero_hint"
             android:backgroundTint="@color/sms_input_tint"
+            android:hint="@string/zero_hint"
+            android:inputType="number"
             android:maxLength="1"
             android:textAlignment="center"
-            android:inputType="number"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
         <EditText
             android:id="@+id/second_num"
@@ -84,11 +84,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/sms_input_tint"
             android:clickable="false"
             android:hint="@string/zero_hint"
             android:inputType="number"
             android:maxLength="1"
-            android:backgroundTint="@color/sms_input_tint"
             android:textAlignment="center"
             android:textSize="@dimen/number_sms_code_size" />
 
@@ -97,50 +97,17 @@
             android:layout_width="@dimen/number_width"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:backgroundTint="@color/sms_input_tint"
             android:clickable="false"
             android:hint="@string/zero_hint"
             android:inputType="number"
-            android:backgroundTint="@color/sms_input_tint"
             android:maxLength="1"
             android:textAlignment="center"
             android:textSize="@dimen/number_sms_code_size" />
     </LinearLayout>
 
-    <RelativeLayout
+    <include
         android:id="@+id/main_button_registration"
-        android:layout_width="292dp"
-        android:layout_height="48dp"
-        android:background="@drawable/arrow_stroke_bg"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginBottom="72dp"
-        >
-        <TextView
-            android:id="@+id/main_btn_text"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingTop="10dp"
-            android:paddingBottom="8dp"
-            android:paddingStart="8dp"
-            android:layout_marginBottom="2dp"
-            android:layout_marginTop="2dp"
-            android:layout_margin="2dp"
-            android:background="@drawable/arrow_overlay"
-            android:text="@string/con_tinue"
-            android:textAppearance="@style/start"
-            android:textStyle="bold"
-            tools:ignore="RtlSymmetry" />
-
-        <ImageView
-            android:layout_width="72dp"
-            android:layout_height="48dp"
-            android:layout_alignParentEnd="true"
-            android:background="@drawable/arrow_bg"
-            android:padding="4dp"
-            android:src="@drawable/arrow_forward_black_24dp" />
-    </RelativeLayout>
+        layout="@layout/button" />
 
 </RelativeLayout>

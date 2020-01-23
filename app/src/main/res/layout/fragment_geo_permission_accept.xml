@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
+
     <LinearLayout
         android:id="@+id/add_data_field"
         android:layout_width="match_parent"
@@ -31,62 +32,28 @@
 
     <ImageView
         android:id="@+id/markers"
-        android:src="@drawable/img_for_geo_data_fragment"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/add_data_field"
-        android:layout_marginTop="64dp"
         android:layout_width="136dp"
         android:layout_height="104dp"
-        />
+        android:layout_below="@id/add_data_field"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="64dp"
+        android:src="@drawable/img_for_geo_data_fragment" />
 
     <TextView
         android:id="@+id/hint_geo_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/geo_hint"
         android:layout_below="@id/markers"
-        android:layout_marginTop="32dp"
-        android:textAlignment="center"
-        android:textAppearance="@style/sms_"
         android:layout_marginStart="29dp"
-        android:layout_marginEnd="29dp" />
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="29dp"
+        android:text="@string/geo_hint"
+        android:textAlignment="center"
+        android:textAppearance="@style/sms_" />
 
-    <RelativeLayout
+    <include
         android:id="@+id/main_button_add_geo"
-        android:layout_width="292dp"
-        android:layout_height="48dp"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/arrow_stroke_bg"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="72dp"
-        android:layout_marginEnd="34dp"
-        >
-        <TextView
-            android:id="@+id/main_btn_text"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingTop="10dp"
-            android:paddingBottom="8dp"
-            android:paddingStart="8dp"
-            android:layout_margin="2dp"
-            android:layout_marginBottom="2dp"
-            android:layout_marginTop="2dp"
-            android:background="@drawable/arrow_overlay"
-            android:text="@string/allow"
-            android:textAppearance="@style/start"
-            android:textStyle="bold"
-            tools:ignore="RtlSymmetry" />
-
-        <ImageView
-            android:layout_width="72dp"
-            android:layout_height="48dp"
-            android:layout_alignParentEnd="true"
-            android:background="@drawable/arrow_bg"
-            android:padding="4dp"
-            android:src="@drawable/arrow_forward_black_24dp" />
-    </RelativeLayout>
+        layout="@layout/button" />
 
 </RelativeLayout>
 
