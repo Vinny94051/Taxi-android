@@ -28,6 +28,6 @@ class WelcomeFragment : BaseAuthFragment() {
     }
 
     override fun layoutId() = R.layout.fragment_welcome
-
+    override fun buttonText(): String = getString(R.string.start)
 
 }

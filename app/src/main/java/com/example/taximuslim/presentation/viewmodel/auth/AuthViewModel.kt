@@ -7,6 +7,7 @@ import com.example.taximuslim.baseUI.viewmodel.NetworkViewModel
 import com.example.taximuslim.data.auth.NumberSaver
 import com.example.taximuslim.data.auth.SmsCodeReceiver
 import com.example.taximuslim.domain.IAuthInteractor
+import com.example.taximuslim.domain.models.PreseptModel
 import com.example.taximuslim.domain.models.RegistrationStatus
 import javax.inject.Inject
 
@@ -37,8 +38,18 @@ class AuthViewModel : NetworkViewModel() {
         get() = _loadRegistrationNumberStatusLiveData
 
     fun loadRegistrationNumberStatus(phoneNumber: String) {
-            interactor.getNumberRegistrationStatus(phoneNumber) { status ->
-                _loadRegistrationNumberStatusLiveData.value = status
-            }
+        interactor.getNumberRegistrationStatus(phoneNumber) { status ->
+            _loadRegistrationNumberStatusLiveData.value = status
+        }
+    }
+
+    private val _loadPreseptLiveData = MutableLiveData<PreseptModel>()
+    val loadPreseptLiveData: LiveData<PreseptModel>
+        get() = _loadPreseptLiveData
+
+    fun loadPresept(){
+        interactor.getPresept { presept ->
+            _loadPreseptLiveData.value = presept
+        }
     }
 }

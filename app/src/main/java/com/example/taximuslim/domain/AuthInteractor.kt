@@ -1,9 +1,8 @@
 package com.example.taximuslim.domain
 
-import com.example.taximuslim.App
 import com.example.taximuslim.data.repository.AuthRepo
+import com.example.taximuslim.domain.models.PreseptModel
 import com.example.taximuslim.domain.models.RegistrationStatus
-import javax.inject.Inject
 
 class AuthInteractor : IAuthInteractor {
 
@@ -15,6 +14,12 @@ class AuthInteractor : IAuthInteractor {
     ) {
         authRepo.getNumberRegistrationStatus(phoneNumber) { registrationStatus ->
             listener.invoke(registrationStatus)
+        }
+    }
+
+    override fun getPresept(listener: (PreseptModel) -> Unit){
+        authRepo.getPrecept{ presept ->
+            listener.invoke(presept)
         }
     }
 

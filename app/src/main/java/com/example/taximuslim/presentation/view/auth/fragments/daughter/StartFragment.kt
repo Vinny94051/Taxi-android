@@ -10,6 +10,8 @@ class StartFragment : BaseAuthFragment() {
     override fun initViews() = main_button.setOnClickListener(this)
     override fun layoutId() = R.layout.fragment_start
 
+    override fun buttonText(): String = getString(R.string.start)
+
     override fun onClick(p0: View?) {
         when (p0?.id) {
             R.id.main_button -> {

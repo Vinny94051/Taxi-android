@@ -1,6 +1,8 @@
 package com.example.taximuslim.data.repository.mapping
 
 import com.example.taximuslim.data.network.dto.auth.NumberRegistrationStatusResponse
+import com.example.taximuslim.data.network.dto.auth.PreseptResponse
+import com.example.taximuslim.domain.models.PreseptModel
 import com.example.taximuslim.domain.models.RegistrationStatus
 
 class Mapper {
@@ -11,6 +13,9 @@ class Mapper {
                 "entry" -> RegistrationStatus.ENTRY
                 else -> RegistrationStatus.ERROR
             }
-        }
+
+        fun mapPresept(response: PreseptResponse): PreseptModel =
+            PreseptModel(response.backgroundImage, response.text)
+    }
 
 }

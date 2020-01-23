@@ -18,6 +18,8 @@ class EnterNumberFragment : BaseAuthFragment() {
     }
 
     override fun layoutId() = R.layout.fragment_enter_number
+    override fun buttonText(): String = getString(R.string.con_tinue)
+
 
     override fun initViews() {
         enter_button.setOnClickListener(this)

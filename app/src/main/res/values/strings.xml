@@ -117,4 +117,9 @@
     <string name="ru_num_code">+7</string>
     <string name="register">Зарегистрироваться</string>
     <string name="no_account">Нет аккаунта?</string>
+    <string name="error_message_no_account">Аккаунт не найден. Зарегистрируйтесь</string>
+    <string name="error_message_internet_exeption">Ошибка подключения. Попробуйте еще раз</string>
+    <string name="error_message_empty_number">Введите номер телефона</string>
+    <string name="error_message_invalid_number">Номер введен не верно</string>
+    <string name="skip">Пропустить</string>
 </resources>

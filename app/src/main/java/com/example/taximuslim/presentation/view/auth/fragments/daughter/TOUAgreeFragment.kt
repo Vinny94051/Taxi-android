@@ -12,6 +12,8 @@ import kotlinx.android.synthetic.main.fragment_terms_of_use_agree.*
 class TOUAgreeFragment : BaseAuthFragment() {
     override fun layoutId() = R.layout.fragment_terms_of_use_agree
 
+    override fun buttonText(): String = getString(R.string.next)
+
     override fun onClick(p0: View?) {
         when (p0?.id) {
             R.id.main_button_tou_agree -> {

@@ -17,6 +17,8 @@ class GeoDataFragment : BaseAuthFragment() {
         val INSTANCE = GeoDataFragment()
     }
 
+    override fun buttonText(): String = getString(R.string.allow)
+
     override fun layoutId() = R.layout.fragment_geo_permission_accept
 
     override fun onClick(p0: View?) {

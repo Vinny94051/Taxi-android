@@ -8,6 +8,8 @@ import kotlinx.android.synthetic.main.fragment_terms_of_use_text.*
 
 class TOUTextFragment : BaseAuthFragment() {
     override fun layoutId() = R.layout.fragment_terms_of_use_text
+    override fun buttonText(): String = getString(R.string.back)
+
 
     override fun onClick(p0: View?) {
         when (p0?.id) {

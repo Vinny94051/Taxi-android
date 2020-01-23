@@ -11,6 +11,7 @@ import com.example.taximuslim.presentation.viewmodel.menu.MenuPresenter
 import kotlinx.android.synthetic.main.fragment_guide.*
 
 class GuideFragment : BaseFragment() {
+
     companion object {
         const val FRAGMENT_ID = "GUIDE_FRAGMENT"
         val INSTANCE = GuideFragment()

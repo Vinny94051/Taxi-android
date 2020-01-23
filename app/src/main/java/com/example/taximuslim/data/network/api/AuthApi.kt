@@ -19,10 +19,10 @@ interface AuthApi {
     ) : Call<NumberRegistrationStatusResponse>
 
     @POST("client/login")
-    suspend fun checkSmsCode(
+     fun checkSmsCode(
         phoneAndCode : CheckSmsCodeRequest
     ) : CheckSmsCodeResponse
 
     @GET("precept")
-    suspend fun getPrecept() : PreseptResponse
+     fun getPrecept() : Call<PreseptResponse>
 }

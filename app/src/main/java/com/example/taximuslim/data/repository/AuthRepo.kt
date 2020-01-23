@@ -5,7 +5,9 @@ import com.example.taximuslim.App
 import com.example.taximuslim.data.network.api.AuthApi
 import com.example.taximuslim.data.network.dto.NumberRequest
 import com.example.taximuslim.data.network.dto.auth.NumberRegistrationStatusResponse
+import com.example.taximuslim.data.network.dto.auth.PreseptResponse
 import com.example.taximuslim.data.repository.mapping.Mapper
+import com.example.taximuslim.domain.models.PreseptModel
 import com.example.taximuslim.domain.models.RegistrationStatus
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,26 +24,44 @@ class AuthRepo @Inject constructor() {
     lateinit var api: AuthApi
 
 
-     fun getNumberRegistrationStatus(
+    fun getNumberRegistrationStatus(
         phoneNumber: String,
         listener: ((RegistrationStatus)) -> Unit
     ) {
-      api.getNumberRegistrationStatus(NumberRequest(phoneNumber)).enqueue(object :
-          Callback<NumberRegistrationStatusResponse> {
-          override fun onFailure(call: Call<NumberRegistrationStatusResponse>, t: Throwable) {
-              Log.e("repo::", t.message.toString())
-          }
+        api.getNumberRegistrationStatus(NumberRequest(phoneNumber)).enqueue(object :
+            Callback<NumberRegistrationStatusResponse> {
+            override fun onFailure(call: Call<NumberRegistrationStatusResponse>, t: Throwable) {
+                Log.e("repo::", t.message.toString())
+            }
 
-          override fun onResponse(
-              call: Call<NumberRegistrationStatusResponse>,
-              response: Response<NumberRegistrationStatusResponse>
-          ) {
-                if(response.isSuccessful)
-                    response.body()?.let{ reponse ->
-                        listener.invoke(Mapper.mapRegistrationStatus(reponse))
+            override fun onResponse(
+                call: Call<NumberRegistrationStatusResponse>,
+                response: Response<NumberRegistrationStatusResponse>
+            ) {
+                if (response.isSuccessful)
+                    response.body()?.let { _response ->
+                        listener.invoke(Mapper.mapRegistrationStatus(_response))
                     }
-          }
-      })
+            }
+        })
+    }
+
+    fun getPrecept(listener: (PreseptModel) -> Unit) {
+        api.getPrecept().enqueue(object : Callback<PreseptResponse> {
+            override fun onFailure(call: Call<PreseptResponse>, t: Throwable) {
+                Log.e("repo::", t.message.toString())
+            }
+
+            override fun onResponse(
+                call: Call<PreseptResponse>,
+                response: Response<PreseptResponse>
+            ) {
+                if (response.isSuccessful)
+                    response.body()?.let { _response ->
+                        listener.invoke(Mapper.mapPresept(_response))
+                    }
+            }
+        })
     }
 
 }

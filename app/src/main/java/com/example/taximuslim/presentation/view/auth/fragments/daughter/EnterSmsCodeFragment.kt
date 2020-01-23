@@ -16,12 +16,14 @@ import com.example.taximuslim.presentation.viewmodel.auth.AuthViewModel
 class EnterSmsCodeFragment : BaseAuthFragment() {
 
     private val presenter = AuthViewModel()
-    var smsCode: Int? = null
+    private var smsCode: Int? = null
 
     companion object {
         const val FRAGMENT_ID = "ENTER_SMS_CODE_FRAGMENT"
         val INSTANCE = EnterSmsCodeFragment()
     }
+
+    override fun buttonText(): String = getString(R.string.con_tinue)
 
     override fun initViews() {
         addTextChangedListener(first_num, second_num)
