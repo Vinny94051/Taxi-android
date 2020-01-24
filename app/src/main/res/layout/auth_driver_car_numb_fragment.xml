@@ -35,6 +35,7 @@
             android:layout_marginEnd="@dimen/default_margin"
             android:backgroundTint="@color/colorThemeGreen"
             app:cardCornerRadius="4dp"
+            app:cardElevation="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/carNumbText">

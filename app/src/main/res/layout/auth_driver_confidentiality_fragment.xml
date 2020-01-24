@@ -70,6 +70,7 @@
                     android:textAppearance="@style/SecondaryText"
                     android:onClick="@{() -> viewModel.onPoliticsClick()}"
                     android:text="@string/confidentiality_politics"
+                    android:lineSpacingExtra="4dp"
                     android:translationZ="90dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/politicCheckBox"

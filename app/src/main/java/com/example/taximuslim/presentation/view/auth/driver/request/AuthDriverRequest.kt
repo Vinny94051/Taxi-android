@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 
 import com.example.taximuslim.R
@@ -20,6 +21,7 @@ class AuthDriverRequest : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        (activity as AppCompatActivity).supportActionBar?.show()
         val binding = AuthDriverRequestFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProviders.of(this).get(AuthDriverRequestViewModel::class.java)
         binding.lifecycleOwner = viewLifecycleOwner

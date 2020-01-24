@@ -62,31 +62,53 @@
             app:layout_constraintStart_toEndOf="@id/carMark"
             app:layout_constraintTop_toTopOf="@id/carMark" />
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="#808080"
+            app:layout_constraintEnd_toEndOf="@id/markSpinner"
+            app:layout_constraintStart_toStartOf="@id/markSpinner"
+            app:layout_constraintTop_toBottomOf="@id/markSpinner"/>
+
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/seriaSpinner"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/large_margin"
             android:layout_marginEnd="@dimen/default_margin"
             android:textSize="14sp"
             android:textColor="@color/notContrastTextColor"
             app:layout_constraintBottom_toBottomOf="@+id/carSeria"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/carSeria"
+            app:layout_constraintStart_toStartOf="@id/markSpinner"
             app:layout_constraintTop_toTopOf="@id/carSeria" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="#808080"
+            app:layout_constraintEnd_toEndOf="@id/seriaSpinner"
+            app:layout_constraintStart_toStartOf="@id/seriaSpinner"
+            app:layout_constraintTop_toBottomOf="@id/seriaSpinner"/>
 
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/colorSpinner"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/large_margin"
             android:layout_marginEnd="@dimen/default_margin"
             android:textSize="14sp"
             android:textColor="@color/notContrastTextColor"
             app:layout_constraintBottom_toBottomOf="@+id/carColor"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/carColor"
+            app:layout_constraintStart_toStartOf="@id/markSpinner"
             app:layout_constraintTop_toTopOf="@id/carColor" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="#808080"
+            app:layout_constraintEnd_toEndOf="@id/colorSpinner"
+            app:layout_constraintStart_toStartOf="@id/colorSpinner"
+            app:layout_constraintTop_toBottomOf="@id/colorSpinner"/>
 
         <LinearLayout
             android:id="@+id/buttonLayout"

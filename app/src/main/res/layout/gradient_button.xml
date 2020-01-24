@@ -27,8 +27,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:paddingStart="20dp"
-        android:textAppearance="@style/start"
-        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textAppearance="@style/AccentText"
         tools:text="Продолжить"
         tools:ignore="RtlSymmetry" />
 
