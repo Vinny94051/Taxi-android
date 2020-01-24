@@ -5,10 +5,6 @@
 
     <gradient
         android:type="linear"
-        android:startX="25"
-        android:startY="50"
-        android:endX="75"
-        android:endY="50"
         android:endColor="#EBD1A7"
         android:startColor="#00AA7E" />
 </shape>

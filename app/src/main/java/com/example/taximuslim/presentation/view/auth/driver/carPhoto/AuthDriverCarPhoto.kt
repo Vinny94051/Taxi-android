@@ -26,6 +26,7 @@ class AuthDriverCarPhoto : Fragment() {
     ): View? {
         binding = AuthDriverCarPhotoFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProviders.of(this).get(AuthDriverCarPhotoViewModel::class.java)
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
         return  binding.root
     }

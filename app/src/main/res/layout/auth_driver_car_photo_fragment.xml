@@ -26,9 +26,7 @@
                 android:layout_marginStart="@dimen/default_margin"
                 android:layout_marginTop="@dimen/large_margin"
                 android:text="@string/info_about_car"
-                android:textColor="@color/contrastTextColor"
-                android:textSize="14sp"
-                android:textStyle="bold"
+                android:textAppearance="@style/ContrastFieldText"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -131,9 +129,7 @@
                 android:layout_marginStart="@dimen/default_margin"
                 android:layout_marginTop="@dimen/medium_margin"
                 android:text="@string/car_photo"
-                android:textColor="@color/contrastTextColor"
-                android:textSize="14sp"
-                android:textStyle="bold"
+                android:textAppearance="@style/ContrastFieldText"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/carInfoCard" />
 
@@ -190,10 +186,8 @@
                 android:layout_marginStart="@dimen/default_margin"
                 android:layout_marginTop="@dimen/small_margin"
                 android:layout_marginEnd="@dimen/default_margin"
-                android:lineSpacingExtra="4sp"
                 android:text="@string/take_car_photo_with_numb"
-                android:textColor="@color/notContrastTextColor"
-                android:textSize="14sp"
+                android:textAppearance="@style/SecondaryText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/licencePhotoFrontCard" />
@@ -205,9 +199,7 @@
                 android:layout_marginStart="@dimen/default_margin"
                 android:layout_marginTop="@dimen/large_margin"
                 android:text="@string/car_sertificate"
-                android:textColor="@color/contrastTextColor"
-                android:textSize="14sp"
-                android:textStyle="bold"
+                android:textAppearance="@style/ContrastFieldText"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/takePhotoText" />
 

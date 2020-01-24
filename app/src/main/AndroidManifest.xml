@@ -31,6 +31,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDcrOph1sg1RemEd-XkUavOdr1O5uf6WLg" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
         <service
             android:name="com.example.taximuslim.utils.mapfunc.FetchAddressIntentService"
