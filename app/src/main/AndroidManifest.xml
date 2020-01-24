@@ -13,17 +13,15 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_logo"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
-        tools:targetApi="m"
-        >
-        <activity android:name=".presentation.view.auth.driver.AuthDriverMainActivity">
-
-        </activity>
+        tools:targetApi="m">
+        <activity android:name=".presentation.view.driverMainScreen.DriverMainScreen"></activity>
+        <activity android:name=".presentation.view.auth.driver.AuthDriverMainActivity"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -33,7 +31,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <service
-            android:name="com.example.taximuslim.utils.mapfunc.FetchAddressIntentService"
+            android:name=".utils.mapfunc.FetchAddressIntentService"
             android:exported="false" />
 
         <activity
@@ -49,6 +47,7 @@
         <activity android:name=".presentation.view.auth.AuthActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
