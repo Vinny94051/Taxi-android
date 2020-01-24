@@ -2,7 +2,9 @@ package com.example.taximuslim.utils
 
 import android.location.Location
 import android.os.Build
+import android.text.Editable
 import android.text.Html
+import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.view.inputmethod.EditorInfo
 import android.widget.Button
@@ -42,5 +44,9 @@ fun EditText.onSubmitNext(func: () -> Unit) {
         true
     }
 }
+
+fun String.toEditable(): Editable = SpannableStringBuilder(this)
+
+
 
 

@@ -8,6 +8,9 @@ import com.example.taximuslim.presentation.view.auth.fragments.daughter.Authoriz
 class AuthActivity : BaseActivity() {
     override fun layoutId() = R.layout.controller_intro
 
+    var userNumber : String? = null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

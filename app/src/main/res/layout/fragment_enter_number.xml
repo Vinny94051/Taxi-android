@@ -1,116 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/enter_number_screen_back"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/enter_number_screen_back">
 
-    <RelativeLayout
+    <androidx.cardview.widget.CardView
         android:id="@+id/welcome_frag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/enter_button"
         android:layout_centerInParent="true"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/welcome">
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        app:cardElevation="16dp"
+        app:cardCornerRadius="@dimen/default_margin"
+        android:background="@drawable/welcome"
+        >
 
-        <TextView
-            android:id="@+id/high"
+        <RelativeLayout
+            android:id="@+id/welcome_frag_"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerInParent="true"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
-            android:text="@string/registration"
-            android:textAppearance="@style/auth_high"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/sms"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/high"
-            android:layout_centerInParent="true"
-            android:textAlignment="center"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="32dp"
-            android:text="@string/sms"
-            android:textAppearance="@style/first_text"/>
-
-        <LinearLayout
-            android:id="@+id/number"
-            android:layout_below="@id/sms"
-            android:layout_marginTop="8dp"
-            android:layout_centerInParent="true"
-            android:layout_marginBottom="32dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            >
 
             <TextView
+                android:id="@+id/high"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/_7"
-                android:textSize="20sp"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="@string/registration"
+                android:textAppearance="@style/auth_high"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/enter_number"
+            <TextView
+                android:id="@+id/sms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="number"
-                android:backgroundTint="@color/sms_input_tint"
-                android:textSize="20sp"
-                android:maxLength="10"
-                android:hint="@string/enter_phone_number"
-                android:layout_marginStart="8dp"
-                />
-        </LinearLayout>
-    </RelativeLayout>
+                android:layout_below="@id/high"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="14dp"
+                android:layout_marginBottom="@dimen/default_margin"
+                android:text="@string/sms"
+                android:textAlignment="center"
+                android:textAppearance="@style/first_text" />
 
+            <LinearLayout
+                android:id="@+id/number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/sms"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="42dp"
+                android:layout_marginEnd="42dp"
+                android:orientation="horizontal">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_7"
+                    android:textSize="14sp" />
 
-    <RelativeLayout
+                <EditText
+                    android:id="@+id/enter_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:backgroundTint="@color/sms_input_tint"
+                    android:hint="@string/enter_phone_number"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/number"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/big_margin">
+
+                <TextView
+                    android:id="@+id/haveAccTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Уже есть аккаунт?"
+                    android:textAppearance="@style/first_text" />
+
+                <TextView
+                    android:id="@+id/enterTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_toEndOf="@id/haveAccTextView"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:text="Войти"
+                    android:textColor="@color/colorThemeGreen"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <include
         android:id="@+id/enter_button"
-        android:layout_width="292dp"
-        android:layout_height="48dp"
-        android:background="@drawable/arrow_stroke_bg"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="64dp"
-        android:layout_marginEnd="18dp"
-        android:padding="-1dp"
-        >
-        <TextView
-            android:id="@+id/main_btn_text"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingTop="10dp"
-            android:paddingBottom="8dp"
-            android:paddingStart="8dp"
-            android:layout_margin="2dp"
-            android:layout_marginBottom="2dp"
-            android:layout_marginTop="2dp"
-            android:background="@drawable/arrow_overlay"
-            android:text="@string/allow"
-            android:textAppearance="@style/start"
-            android:textStyle="bold"
-            tools:ignore="RtlSymmetry" />
-
-        <ImageView
-            android:layout_width="72dp"
-            android:layout_height="48dp"
-            android:layout_alignParentEnd="true"
-            android:background="@drawable/arrow_bg"
-            android:padding="4dp"
-            android:src="@drawable/arrow_forward_black_24dp" />
-    </RelativeLayout>
+        layout="@layout/button" />
 
 </RelativeLayout>

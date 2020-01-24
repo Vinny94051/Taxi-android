@@ -8,22 +8,33 @@ import kotlinx.android.synthetic.main.fragment_enter_sms_code.*
 import android.text.Editable
 import android.widget.EditText
 import androidx.lifecycle.Observer
+import com.example.taximuslim.App
+import com.example.taximuslim.data.network.dto.auth.CheckSmsCodeRequest
 import com.example.taximuslim.presentation.view.auth.AuthActivity
 import com.example.taximuslim.presentation.view.auth.fragments.base.BaseAuthFragment
 import com.example.taximuslim.presentation.viewmodel.auth.AuthViewModel
+import com.example.taximuslim.utils.prefference.getAuthHeader
+import com.example.taximuslim.utils.prefference.saveVerToken
+import com.example.taximuslim.utils.toEditable
+import javax.inject.Inject
 
 
 class EnterSmsCodeFragment : BaseAuthFragment() {
-
-    private val presenter = AuthViewModel()
-    private var smsCode: Int? = null
 
     companion object {
         const val FRAGMENT_ID = "ENTER_SMS_CODE_FRAGMENT"
         val INSTANCE = EnterSmsCodeFragment()
     }
 
-    override fun buttonText(): String = getString(R.string.continuee)
+    init {
+        App.appComponent.inject(this)
+    }
+
+    @Inject
+    lateinit var viewModel: AuthViewModel
+
+
+    override fun buttonText(): String = getString(R.string.con_tinue)
 
     override fun initViews() {
         addTextChangedListener(first_num, second_num)
@@ -43,14 +54,9 @@ class EnterSmsCodeFragment : BaseAuthFragment() {
                     )
             }
             R.id.main_button_registration -> {
-                if (isSmsCodeRight())
-                    (activity as AuthActivity)
-                        .replaceFragment(
-                            GeoDataFragment.INSTANCE,
-                            R.id.container,
-                            GeoDataFragment.FRAGMENT_ID
-                        )
-                else showToast(getString(R.string.sms_code_exception))
+                (activity as AuthActivity).userNumber?.let { number ->
+                    viewModel.loadToken(CheckSmsCodeRequest(number, getUserCode()))
+                }
             }
 
         }
@@ -58,18 +64,67 @@ class EnterSmsCodeFragment : BaseAuthFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initPresenter()
+        initViewModel()
     }
 
-    private fun initPresenter() {
-        presenter.liveDataSmsCode.observe(activity!!, Observer { liveSmsCode ->
-            smsCode = liveSmsCode
+    private fun initViewModel() {
+        viewModel.loadTokenLiveData.observe(this, Observer { token ->
+
+            when (token) {
+                "{status=no code}" -> showErrorView(getString(R.string.error_message_bad_code))
+                else -> {
+                    saveVerToken(context!!, token)
+                    openGeoDataFragment()
+                }
+            }
         })
-        presenter.loadSmsCode()
+    }
+
+    private fun showErrorView(error: String) {
+        first_num.text = "".toEditable()
+        second_num.text = "".toEditable()
+        third_num.text = "".toEditable()
+        fourth_num.text = "".toEditable()
+        first_num.requestFocus()
+        changeEditTextTint(first_num, R.color.red)
+        changeEditTextTint(second_num, R.color.red)
+        changeEditTextTint(third_num, R.color.red)
+        changeEditTextTint(fourth_num, R.color.red)
+        setOnKeyListener(first_num)
+        setOnKeyListener(second_num)
+        setOnKeyListener(third_num)
+        setOnKeyListener(fourth_num)
+        setOnKeyListener(first_num)
+        errorMessageTextView.visibility = View.VISIBLE
+        errorMessageTextView.text = error
+    }
+
+    private fun setOnKeyListener(editText: EditText) {
+        editText.setOnKeyListener { _, _, _ ->
+            hideErrorView()
+            false
+        }
+    }
+
+    private fun hideErrorView() {
+        changeEditTextTint(first_num, R.color.sms_input_tint)
+        changeEditTextTint(second_num, R.color.sms_input_tint)
+        changeEditTextTint(third_num, R.color.sms_input_tint)
+        changeEditTextTint(fourth_num, R.color.sms_input_tint)
+        errorMessageTextView.visibility = View.GONE
+    }
+
+    private fun openGeoDataFragment() {
+        (activity as AuthActivity)
+            .replaceFragment(
+                GeoDataFragment.INSTANCE,
+                R.id.container,
+                GeoDataFragment.FRAGMENT_ID
+            )
     }
 
 
-    private fun getUserCode(): Int {
+    private fun getUserCode(): String {
         val firstNum = first_num.text.toString()
         val secondNum = second_num.text.toString()
         val thirdNum = third_num.text.toString()
@@ -80,12 +135,10 @@ class EnterSmsCodeFragment : BaseAuthFragment() {
             thirdNum.isNotEmpty() &&
             fourthNum.isNotEmpty()
         ) {
-            return (firstNum + secondNum + thirdNum + fourthNum).toInt()
+            return (firstNum + secondNum + thirdNum + fourthNum)
         }
-        return 0
+        return ""
     }
-
-    private fun isSmsCodeRight() = getUserCode() == smsCode
 
     override fun layoutId() = R.layout.fragment_enter_sms_code
 

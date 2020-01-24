@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Taxi Muslim</string>
+    <string name="app_name">Taxi</string>
     <string name="auth_high">В приложении вы сможете</string>
     <string name="first_text">—Просмотреть ближайшие мечети, халяльные места и заказать к ним такси</string>
     <string name="second_text">— Устанавливать цену за такси, которую считаете сраведливой</string>
@@ -173,4 +173,5 @@
     <string name="add_photo">Добавить фото</string>
     <string name="success_auth_driver_request">Ваша заявка успешно отправлена. Как только она будет одобрена модератором, Вы сможете брать заказы</string>
     <string name="go_to_main_screen">Перейти на главную</string>
+    <string name="error_message_bad_code">Неверный код</string>
 </resources>

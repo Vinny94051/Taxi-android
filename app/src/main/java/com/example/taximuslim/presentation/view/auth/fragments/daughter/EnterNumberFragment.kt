@@ -25,8 +25,6 @@ class EnterNumberFragment : BaseAuthFragment() {
         enter_button.setOnClickListener(this)
     }
 
-    private val presenter = AuthViewModel()
-
     override fun onClick(p0: View?) {
         when (p0?.id) {
             R.id.enter_button -> {
@@ -43,9 +41,10 @@ class EnterNumberFragment : BaseAuthFragment() {
         }
     }
 
-    private fun saveNumber() =
-        presenter.saveNumber(COUNTRY_CODE + enter_number.text.toString())
-
+    //TODO пока без кода страны отправлять
+    private fun saveNumber() {
+        (activity as AuthActivity).userNumber = (/*COUNTRY_CODE + */  enter_number.text.toString())
+    }
 
 
 }

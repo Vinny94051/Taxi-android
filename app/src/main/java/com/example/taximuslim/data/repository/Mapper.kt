@@ -1,4 +1,4 @@
-package com.example.taximuslim.data.repository.mapping
+package com.example.taximuslim.data.repository
 
 import com.example.taximuslim.data.network.dto.auth.NumberRegistrationStatusResponse
 import com.example.taximuslim.data.network.dto.auth.PreseptResponse
@@ -16,6 +16,10 @@ class Mapper {
 
         fun mapPresept(response: PreseptResponse): PreseptModel =
             PreseptModel(response.backgroundImage, response.text)
+
+        fun maToken(tokenResponse: Any): String {
+            return tokenResponse.toString()
+        }
     }
 
 }
