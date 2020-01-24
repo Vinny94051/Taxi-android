@@ -54,12 +54,9 @@
                     android:id="@+id/politicCheckBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="@dimen/medium_margin"
                     style="@style/CheckBox"
-                    android:scaleX="1.5"
-                    android:scaleY="1.5"
-                    android:button="@drawable/checkbox_selector"
                     app:bindSelected="@{viewModel.politicsSelected}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/politicsText" />

@@ -34,7 +34,7 @@ class EnterSmsCodeFragment : BaseAuthFragment() {
     lateinit var viewModel: AuthViewModel
 
 
-    override fun buttonText(): String = getString(R.string.con_tinue)
+    override fun buttonText(): String = getString(R.string.continuee)
 
     override fun initViews() {
         addTextChangedListener(first_num, second_num)
