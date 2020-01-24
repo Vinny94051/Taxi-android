@@ -1,4 +1,4 @@
-package com.example.taximuslim.presentation.view.auth.fragments.daughter
+package com.example.taximuslim.presentation.view.auth.fragments.daughter.tou
 
 import android.view.View
 import com.example.taximuslim.R
@@ -11,11 +11,14 @@ class TOUTextFragment : BaseAuthFragment() {
     override fun buttonText(): String = getString(R.string.back)
 
 
+
     override fun onClick(p0: View?) {
         when (p0?.id) {
-            R.id.main_button_back -> (activity as AuthActivity).replaceFragment(
-                TOUAgreeFragment.INSTANCE, R.id.container, TOUAgreeFragment.FRAGMENT_ID
-            )
+            R.id.main_button_back -> {
+                (activity as AuthActivity).replaceFragment(
+                    TOUAgreeFragment.INSTANCE, R.id.container, TOUAgreeFragment.FRAGMENT_ID
+                )
+            }
         }
     }
 
@@ -25,6 +28,7 @@ class TOUTextFragment : BaseAuthFragment() {
 
     companion object {
         const val FRAGMENT_ID = "TERMS_OF_USE_TEXT_FRAGMENT"
-        val INSTANCE = TOUTextFragment()
+        val INSTANCE =
+            TOUTextFragment()
     }
 }

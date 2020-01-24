@@ -5,6 +5,7 @@ import android.view.View
 import com.example.taximuslim.R
 import com.example.taximuslim.presentation.view.auth.AuthActivity
 import com.example.taximuslim.presentation.view.auth.fragments.base.BaseAuthFragment
+import com.example.taximuslim.presentation.view.auth.fragments.daughter.tou.TOUAgreeFragment
 import com.example.taximuslim.utils.permissions.PermissionManager
 import kotlinx.android.synthetic.main.fragment_geo_permission_accept.*
 

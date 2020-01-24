@@ -12,7 +12,6 @@ import android.widget.EditText
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.taximuslim.R
 import com.example.taximuslim.baseUI.activivty.BaseActivity
 import com.example.taximuslim.presentation.view.design.dialogswindow.CommentDialogWindow
 import com.example.taximuslim.presentation.view.design.dialogswindow.PriceDialogWindow
@@ -34,6 +33,10 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_maps_controller.*
+import android.content.Context
+import android.view.inputmethod.InputMethodManager
+import com.example.taximuslim.R
+import kotlinx.android.synthetic.main.gradient_button.*
 
 
 //TODO Своевременный вывод price layout и alert dialog
@@ -77,14 +80,32 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             }
             R.id.main_button_order_taxi -> {
             }
-            R.id.place_location -> showPriceAlertDialog()
-            R.id.comment_text -> showCommentAlertDialog()
+            R.id.place_location -> openFloatView()
+            R.id.comment_text -> {
+            }
             R.id.burger_menu_main -> {
                 NavigationDrawerManager.showNavigationDrawer(drawer_layout)
             }
         }
     }
 
+    private fun openFloatView() {
+        replaceFragment(FloatFragment.INSTANCE, R.id.floatView, FloatFragment.ID)
+        floatView.visibility = View.VISIBLE
+        floatView.animate().translationY(0f).duration = 500
+        rootLayout.isClickable = false
+    }
+
+    fun hideFloatView() {
+        floatView.animate().translationY(2000f).duration = 500
+        rootLayout.isClickable = true
+        supportFragmentManager.beginTransaction().remove(FloatFragment.INSTANCE).commit()
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(
+            floatView.windowToken,
+            InputMethodManager.HIDE_NOT_ALWAYS
+        )
+    }
 
     private fun showCommentAlertDialog() = commentDialogWindow?.show()
 
@@ -92,17 +113,13 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        main_btn_text.text = "Заказать"
         initViews()
-        initPresenter()
-        NavigationDrawerManager.navigationDrawerStateListener(drawer_layout)
-        val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
-    }
+        initViewModel()
+        initNavigationDrawer()
+        initMap()
+        floatView.visibility = View.GONE
 
-    override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
-        if (permissionManager.checkLocationPermissions()) updateLocation()
     }
 
     override fun onStart() {
@@ -111,13 +128,40 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         user_location.clearFocus()
         place_location.clearFocus()
         comment_text.clearFocus()
+        hideFloatView()
+        setOnFocusListener(place_location)
     }
+
+
+    private fun setOnFocusListener(editText: EditText) {
+        editText.setOnFocusChangeListener { _, isOpen ->
+            if (isOpen)
+                openFloatView()
+        }
+    }
+
+
+    private fun initNavigationDrawer() =
+        NavigationDrawerManager.navigationDrawerStateListener(drawer_layout)
+
+    private fun initMap() {
+        val mapFragment = supportFragmentManager
+            .findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
+    }
+
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        mMap = googleMap
+        if (permissionManager.checkLocationPermissions()) updateLocation()
+    }
+
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_driver -> {
                 showToast("Driver activity")
-             //   controllerChanger.openMenuController("")
+                //   controllerChanger.openMenuController("")
             }
             R.id.nav_guide ->
                 controllerChanger.openMenuController(GuideFragment.FRAGMENT_ID)
@@ -213,7 +257,9 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         mMap.isMyLocationEnabled = true
     }
 
-    private fun initPresenter() {
+    var userLocation: String = ""
+
+    private fun initViewModel() {
         presenter.currentLocation.observe(this,
             Observer { location ->
                 mapManger.addMarkerAndMoveCameraToIt(
@@ -222,8 +268,11 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
                     15f,
                     R.drawable.green_marker
                 )
+                userLocation =
+                    SpannableStringBuilder(mapManger.latLngToAddress(location.toLatLng())).toString()
+
                 user_location.text =
-                    SpannableStringBuilder(mapManger.latLngToAddress(location.toLatLng()))
+                    SpannableStringBuilder(userLocation)
             })
 
         PriceDialogWindow.price.observe(this, Observer { price ->

@@ -1,0 +1,85 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/floatView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentBottom="true"
+    android:background="@android:color/white"
+    android:translationZ="20dp"
+    android:visibility="visible">
+
+    <RelativeLayout
+        android:id="@+id/lineLayout"
+        android:layout_width="match_parent"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:layout_height="@dimen/large_margin">
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="100dp"
+            android:layout_height="4dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/small_margin"
+            android:background="@color/notContrastTextColor" />
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/userLocationCard"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/lineLayout"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:backgroundTint="@color/background_tint_choose_address_edit_text"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="16dp">
+
+        <EditText
+            android:id="@+id/userLocationEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+            android:hint="Откуда"
+            android:background="@drawable/edit_text_shape"
+            android:backgroundTint="@android:color/white"
+            android:foregroundTint="@android:color/white"
+            android:inputType="textCapCharacters"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textColor="@color/notContrastTextColor"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/pointBLocationCard"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/userLocationCard"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:backgroundTint="@color/background_tint_choose_address_edit_text"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="16dp">
+
+        <EditText
+            android:id="@+id/pointBLocationEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+            android:hint="Куда"
+            android:background="@drawable/edit_text_shape"
+            android:backgroundTint="@android:color/white"
+            android:foregroundTint="@android:color/white"
+            android:inputType="textCapCharacters"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textColor="@color/notContrastTextColor"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

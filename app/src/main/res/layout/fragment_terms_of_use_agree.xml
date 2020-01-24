@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/terms_of_use_agree_back">
@@ -12,45 +11,56 @@
         android:layout_above="@id/main_button_tou_agree"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="32dp"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"
         android:background="@drawable/rectangle_4"
         android:elevation="16dp"
         android:paddingBottom="32dp">
 
         <TextView
             android:id="@+id/high"
-            android:layout_width="316dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
             android:layout_marginStart="6dp"
-            android:layout_marginTop="32dp"
             android:layout_marginEnd="6dp"
+            android:layout_marginTop="32dp"
+            android:gravity="center"
             android:lineSpacingExtra="1sp"
             android:text="@string/agree_terms_of_use_high"
-            android:textAlignment="center"
-            android:textSize="20sp"
+            android:layout_centerHorizontal="true"
             android:textAppearance="@style/AccentText"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <CheckBox
             android:id="@+id/checkBox"
-            android:layout_width="303dp"
-            android:layout_height="80dp"
+            style="@style/CheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/high"
-            android:layout_centerHorizontal="true"
             android:layout_marginStart="12dp"
             android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginBottom="32dp"
             android:layout_marginEnd="13dp"
-            android:textAppearance="@style/RegularText"
+            android:gravity="top"
+            android:paddingStart="11dp"
+            android:paddingEnd="13dp"
             android:text="@string/tou_accept"
-            android:textAlignment="textStart" />
+            android:textAppearance="@style/RegularText" />
 
 
     </RelativeLayout>
 
     <include
         android:id="@+id/main_button_tou_agree"
-        layout="@layout/button" />
+        layout="@layout/gradient_button"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="37dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="72dp" />
 
 </RelativeLayout>

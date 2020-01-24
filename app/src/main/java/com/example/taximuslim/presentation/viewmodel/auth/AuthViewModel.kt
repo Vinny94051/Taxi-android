@@ -4,8 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.taximuslim.App
 import com.example.taximuslim.baseUI.viewmodel.NetworkViewModel
-import com.example.taximuslim.data.auth.NumberSaver
-import com.example.taximuslim.data.auth.SmsCodeReceiver
 import com.example.taximuslim.data.network.dto.auth.CheckSmsCodeRequest
 import com.example.taximuslim.domain.IAuthInteractor
 import com.example.taximuslim.domain.models.PreseptModel
