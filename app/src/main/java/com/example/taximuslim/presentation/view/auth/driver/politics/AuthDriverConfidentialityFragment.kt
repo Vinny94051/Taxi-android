@@ -42,11 +42,11 @@ class AuthDriverConfidentialityFragment : Fragment() {
         }
     }
 
-
     private fun setObservers() {
         val navController = view!!.findNavController()
         viewModel.navigateToNext.observe(viewLifecycleOwner, Observer { navigate ->
             if (navigate) {
+                navController.navigate(R.id.action_driverAuthConfidentialityFragment_to_authDriverRequest)
                 viewModel.onNavigateToNext()
             }
         })
