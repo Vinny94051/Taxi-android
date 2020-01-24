@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.taximuslim.presentation.view.auth.driver.rules.AuthDriverRuleViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        tools:context=".presentation.view.auth.driver.rules.AuthDriverRuleFragment">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_marginBottom="@dimen/medium_margin"
+            app:cardCornerRadius="16dp"
+            android:elevation="16dp"
+            app:layout_constraintBottom_toTopOf="@id/mainButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/large_margin">
+
+                <TextView
+                    android:id="@+id/ruleCaptionText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="@dimen/large_margin"
+                    android:layout_marginEnd="12dp"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/AccentText"
+                    android:textSize="20sp"
+                    android:text="@={viewModel.ruleCaption}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Водитель обязан точно соблюдать все правила дорожного движения" />
+
+                <TextView
+                    android:id="@+id/ruleDescriptionText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="@dimen/large_margin"
+                    android:layout_marginEnd="12dp"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/RegularText"
+                    android:textSize="14sp"
+                    android:text="@={viewModel.ruleDescription}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ruleCaptionText"
+                    tools:text="Пророк (мир ему и благословение) говорил: «Вы лучше знаете ваши мирские дела» (Муслим). Этот хадис разъясняет нам, что если мы в жизни являемся специалистами в какой-то области, то мы должны следовать принятым нормам и советам более компетентных людей. Специалисты выработали правила дорожного движения, и они прошли практику, поэтому водители обязаны соблюдать эти правила. Если же шофёрих нарушит, то будет вынужден отвечать за это как перед правоохранительными органами, так и перед Аллахом" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <RelativeLayout
+            android:id="@+id/mainButton"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="@dimen/button_horizontal_margin"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_marginEnd="@dimen/button_horizontal_margin"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:background="@drawable/arrow_stroke_bg"
+            android:onClick="@{() -> viewModel.nextRule()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:background="@drawable/arrow_overlay" />
+
+            <TextView
+                android:id="@+id/main_btn_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/default_margin"
+                android:text="@string/next"
+                android:textColor="@color/colorThemeGreen"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="72dp"
+                android:layout_height="48dp"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/arrow_bg"
+                android:padding="4dp"
+                android:src="@drawable/arrow_forward_black_24dp" />
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

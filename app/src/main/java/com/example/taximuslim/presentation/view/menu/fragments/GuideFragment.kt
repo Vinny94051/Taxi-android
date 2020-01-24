@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taximuslim.R
 import com.example.taximuslim.baseUI.fragment.BaseFragment
 import com.example.taximuslim.presentation.view.menu.lists.guiderecycler.GuideCustomAdapter
-import com.example.taximuslim.presenter.maps.MainPresenter
-import com.example.taximuslim.presenter.menu.MenuPresenter
+import com.example.taximuslim.presentation.viewmodel.menu.MenuPresenter
 import kotlinx.android.synthetic.main.fragment_guide.*
 
 class GuideFragment : BaseFragment() {
+
     companion object {
         const val FRAGMENT_ID = "GUIDE_FRAGMENT"
         val INSTANCE = GuideFragment()

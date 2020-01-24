@@ -70,6 +70,23 @@
     </fragment>
     <fragment
         android:id="@+id/driverAuthRuleFragment"
-        android:name="com.example.taximuslim.presentation.view.auth.driver.rules.DriverAuthRuleFragment"
-        android:label="DriverAuthRuleFragment" />
+        android:name="com.example.taximuslim.presentation.view.auth.driver.rules.AuthDriverRuleFragment"
+        android:label="DriverAuthRuleFragment" >
+        <action
+            android:id="@+id/action_driverAuthRuleFragment_to_driverAuthConfidentialityFragment"
+            app:destination="@id/driverAuthConfidentialityFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/driverAuthConfidentialityFragment"
+        android:name="com.example.taximuslim.presentation.view.auth.driver.politics.AuthDriverConfidentialityFragment"
+        android:label="DriverAuthConfidentialityFragment" >
+        <action
+            android:id="@+id/action_driverAuthConfidentialityFragment_to_authDriverPublicOfferFragment"
+            app:destination="@id/authDriverPublicOfferFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/authDriverPublicOfferFragment"
+        android:name="com.example.taximuslim.presentation.view.auth.driver.publicOffer.AuthDriverPublicOfferFragment"
+        android:label="@string/public_offer"
+        tools:layout="@layout/auth_driver_public_offer_fragment" />
 </navigation>

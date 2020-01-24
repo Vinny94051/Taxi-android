@@ -112,6 +112,16 @@
     <string name="text_text">Текст</string>
     <string name="enter_message_text">Введите текст сообщения</string>
     <string name="sent_letter">Отправить письмо</string>
+    <string name="authorization">Авторизация</string>
+    <string name="auth_head_second">На указанный номер придет SMS-код для продолжения регистрации</string>
+    <string name="ru_num_code">+7</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="no_account">Нет аккаунта?</string>
+    <string name="error_message_no_account">Аккаунт не найден. Зарегистрируйтесь</string>
+    <string name="error_message_internet_exeption">Ошибка подключения. Попробуйте еще раз</string>
+    <string name="error_message_empty_number">Введите номер телефона</string>
+    <string name="error_message_invalid_number">Номер введен не верно</string>
+    <string name="skip">Пропустить</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -157,4 +167,8 @@
         — фото должно быть сделано при хорошем освщениии в хорошем качестве\n
         — не допускаются фотографии в солнцезащитных очках</string>
     <string name="your_photo">Ваша фотография</string>
+    <string name="confidentiality_politics_text">Политика конфиденциальности</string>
+    <string name="confidentiality_politics">Я ознакомлен с условиями Политики конфиденциальности и Публичной оферты, принимаю их условия и выражаю свое согласие на обработку моих персональных данных</string>
+    <string name="public_offer">Публичная офферта</string>
+    <string name="add_photo">Добавить фото</string>
 </resources>

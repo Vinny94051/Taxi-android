@@ -1,13 +1,12 @@
 package com.example.taximuslim.utils.navigator
 
 import android.content.Intent
-import com.example.taximuslim.baseUI.controller.BaseController
-import com.example.taximuslim.baseUI.fragment.BaseFragment
+import com.example.taximuslim.baseUI.activivty.BaseActivity
+import com.example.taximuslim.presentation.view.menu.MenuItemsActivity
 
-class ControllerChanger(private val activity : BaseController) {
+class ControllerChanger(private val activity : BaseActivity) {
     fun openMenuController(fragmentId : String) {
-        val intent = Intent(activity, Class.forName(
-            "com.example.taximuslim.presentation.view.menu.MenuItemsController") )
+        val intent = Intent(activity, MenuItemsActivity::class.java)
         intent.putExtra("fragmentId", fragmentId)
         activity.startActivity(intent)
     }

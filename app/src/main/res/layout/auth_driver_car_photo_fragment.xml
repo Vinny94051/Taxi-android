@@ -32,18 +32,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/large_margin"
-                android:layout_marginEnd="@dimen/default_margin"
-                android:lineSpacingExtra="2sp"
-                android:text="@string/edit"
-                android:textColor="@color/colorThemeGreen"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <androidx.cardview.widget.CardView
                 android:id="@+id/carInfoCard"
                 android:layout_width="0dp"
@@ -169,7 +157,8 @@
                 android:layout_marginStart="@dimen/default_margin"
                 android:layout_marginTop="12sp"
                 android:layout_marginEnd="@dimen/default_margin"
-                android:background="@color/colorCardBackground"
+                app:cardBackgroundColor="@color/colorCardBackground"
+                android:elevation="16dp"
                 app:cardCornerRadius="@dimen/default_card_radius"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -177,8 +166,9 @@
 
                 <ImageView
                     android:id="@+id/licenceFrontPhotoImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:scaleType="center"
                     android:src="@drawable/take_photo_placeholder" />
 
@@ -188,7 +178,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:visibility="gone"
-                    android:src="@drawable/ic_succes_laoding" />
+                    android:src="@drawable/ic_success_loading" />
 
             </androidx.cardview.widget.CardView>
 
@@ -241,7 +231,8 @@
                 android:layout_marginStart="@dimen/default_margin"
                 android:layout_marginTop="12sp"
                 android:layout_marginEnd="@dimen/default_margin"
-                android:background="@color/colorCardBackground"
+                app:cardBackgroundColor="@color/colorCardBackground"
+                android:elevation="16dp"
                 app:cardCornerRadius="@dimen/default_card_radius"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

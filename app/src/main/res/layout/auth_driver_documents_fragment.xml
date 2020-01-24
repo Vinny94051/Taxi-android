@@ -91,7 +91,8 @@
                 android:layout_marginStart="@dimen/default_margin"
                 android:layout_marginTop="12sp"
                 android:layout_marginEnd="@dimen/default_margin"
-                android:background="@color/colorCardBackground"
+                app:cardBackgroundColor="@color/colorCardBackground"
+                android:elevation="16dp"
                 app:cardCornerRadius="@dimen/default_card_radius"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -99,8 +100,9 @@
 
                 <ImageView
                     android:id="@+id/licenceFrontPhotoImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:scaleType="center"
                     android:src="@drawable/take_photo_placeholder" />
 
@@ -109,7 +111,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_succes_laoding"
+                    android:src="@drawable/ic_success_loading"
                     android:visibility="gone" />
 
             </androidx.cardview.widget.CardView>
@@ -156,7 +158,8 @@
                 android:layout_marginStart="@dimen/default_margin"
                 android:layout_marginTop="12sp"
                 android:layout_marginEnd="@dimen/default_margin"
-                android:background="@color/colorCardBackground"
+                app:cardBackgroundColor="@color/colorCardBackground"
+                android:elevation="16dp"
                 app:cardCornerRadius="@dimen/default_card_radius"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -164,8 +167,9 @@
 
                 <ImageView
                     android:id="@+id/licencePhotoBackImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:scaleType="center"
                     android:src="@drawable/take_photo_placeholder" />
 
@@ -174,7 +178,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_succes_laoding"
+                    android:src="@drawable/ic_success_loading"
                     android:visibility="gone" />
 
             </androidx.cardview.widget.CardView>

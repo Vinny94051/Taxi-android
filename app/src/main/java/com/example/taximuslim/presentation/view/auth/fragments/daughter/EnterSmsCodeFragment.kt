@@ -8,20 +8,22 @@ import kotlinx.android.synthetic.main.fragment_enter_sms_code.*
 import android.text.Editable
 import android.widget.EditText
 import androidx.lifecycle.Observer
-import com.example.taximuslim.presentation.view.auth.AuthController
+import com.example.taximuslim.presentation.view.auth.AuthActivity
 import com.example.taximuslim.presentation.view.auth.fragments.base.BaseAuthFragment
-import com.example.taximuslim.presenter.auth.AuthPresenter
+import com.example.taximuslim.presentation.viewmodel.auth.AuthViewModel
 
 
 class EnterSmsCodeFragment : BaseAuthFragment() {
 
-    private val presenter = AuthPresenter()
-    var smsCode: Int? = null
+    private val presenter = AuthViewModel()
+    private var smsCode: Int? = null
 
     companion object {
         const val FRAGMENT_ID = "ENTER_SMS_CODE_FRAGMENT"
         val INSTANCE = EnterSmsCodeFragment()
     }
+
+    override fun buttonText(): String = getString(R.string.con_tinue)
 
     override fun initViews() {
         addTextChangedListener(first_num, second_num)
@@ -34,7 +36,7 @@ class EnterSmsCodeFragment : BaseAuthFragment() {
     override fun onClick(p0: View?) {
         when (p0?.id) {
             R.id.back_btn -> {
-                (activity as AuthController)
+                (activity as AuthActivity)
                     .replaceFragment(
                         EnterNumberFragment.INSTANCE, R.id.container,
                         EnterNumberFragment.FRAGMENT_ID
@@ -42,7 +44,7 @@ class EnterSmsCodeFragment : BaseAuthFragment() {
             }
             R.id.main_button_registration -> {
                 if (isSmsCodeRight())
-                    (activity as AuthController)
+                    (activity as AuthActivity)
                         .replaceFragment(
                             GeoDataFragment.INSTANCE,
                             R.id.container,

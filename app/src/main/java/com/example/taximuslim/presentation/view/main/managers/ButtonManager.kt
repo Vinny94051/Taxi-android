@@ -3,7 +3,7 @@ package com.example.taximuslim.presentation.view.main.managers
 import android.content.Context
 import android.widget.Button
 import com.example.taximuslim.R
-import com.example.taximuslim.presentation.view.main.MapsController
+import com.example.taximuslim.presentation.view.main.MapsActivity
 import com.example.taximuslim.utils.PriceHolder
 
 class ButtonManager(private val context: Context) {
@@ -15,11 +15,11 @@ class ButtonManager(private val context: Context) {
 
     private var buttonsStates = arrayOf(false, false, false)
     private var comfortOrder: Button =
-        (context as MapsController).findViewById(R.id.comfort_order)
+        (context as MapsActivity).findViewById(R.id.comfort_order)
     private var economyOrder: Button =
-        (context as MapsController).findViewById(R.id.economy_order)
+        (context as MapsActivity).findViewById(R.id.economy_order)
     private var businessOrder: Button =
-        (context as MapsController).findViewById(R.id.business_order)
+        (context as MapsActivity).findViewById(R.id.business_order)
 
 
     fun isAtLeastOneBtnActive() = buttonsStates.contains(true)
