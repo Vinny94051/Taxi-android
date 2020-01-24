@@ -129,7 +129,7 @@
 
     <string name="driver_auth_intro">Для получени заказов необходимо \n пройти регистрацию водителя онлайн</string>
     <string name="driver_auth_document_text">Для этого Вам понадобятся 5 минут времени и следующие документы:</string>
-    <string name="driver_auth_document_list">— ваша фотография\n— фотография машины \n— свидетельство о регистрации ТС\n— водительское удостверение</string>
+    <string name="driver_auth_document_list">— ваша фотография\n— фотография машины\n— свидетельство о регистрации ТС\n— водительское удостверение</string>
     <string name="come_later">Пройти позже</string>
     <string name="car_info">Информация о машине</string>
     <string name="car_numb">Госномер</string>
@@ -168,10 +168,10 @@
         — не допускаются фотографии в солнцезащитных очках</string>
     <string name="your_photo">Ваша фотография</string>
     <string name="confidentiality_politics_text">Политика конфиденциальности</string>
-    <string name="confidentiality_politics">Я ознакомлен с условиями Политики конфиденциальности и Публичной оферты, принимаю их условия и выражаю свое согласие на обработку моих персональных данных</string>
+    <string name="confidentiality_politics">Я ознакомлен с условиями <b>Политики конфиденциальности</b> и <b>Публичной оферты</b>, принимаю их условия и выражаю свое согласие на обработку моих персональных данных</string>
     <string name="public_offer">Публичная офферта</string>
     <string name="add_photo">Добавить фото</string>
-    <string name="success_auth_driver_request">Ваша заявка успешно отправлена. Как только она будет одобрена модератором, Вы сможете брать заказы</string>
+    <string name="success_auth_driver_request">Ваша заявка успешно отправлена. Как только она будет одобрена модератором, Вы сможете брать заказы</string>
     <string name="go_to_main_screen">Перейти на главную</string>
     <string name="error_message_bad_code">Неверный код</string>
 </resources>

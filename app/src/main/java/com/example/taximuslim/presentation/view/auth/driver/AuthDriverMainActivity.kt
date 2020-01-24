@@ -14,7 +14,7 @@ class AuthDriverMainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_auth_driver_main)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
+        toolbar.setNavigationIcon(R.drawable.arrow_to_left_black)
         NavigationUI.setupActionBarWithNavController(this, this.findNavController(R.id.nav_host_fragment))
     }
 

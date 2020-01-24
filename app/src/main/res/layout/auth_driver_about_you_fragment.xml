@@ -98,7 +98,7 @@
 
             <EditText
                 android:id="@+id/yourNameEdit"
-                style="@style/EditTextStyle"
+                android:textAppearance="@style/EditTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/default_margin"
@@ -111,7 +111,7 @@
 
             <EditText
                 android:id="@+id/yourSecondNameEdit"
-                style="@style/EditTextStyle"
+                android:textAppearance="@style/EditTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="@string/input_second_name"
@@ -123,7 +123,7 @@
 
             <EditText
                 android:id="@+id/yourEmailEdit"
-                style="@style/EditTextStyle"
+                android:textAppearance="@style/EditTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="@string/input_email"
