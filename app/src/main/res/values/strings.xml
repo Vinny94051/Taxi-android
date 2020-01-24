@@ -171,4 +171,6 @@
     <string name="confidentiality_politics">Я ознакомлен с условиями Политики конфиденциальности и Публичной оферты, принимаю их условия и выражаю свое согласие на обработку моих персональных данных</string>
     <string name="public_offer">Публичная офферта</string>
     <string name="add_photo">Добавить фото</string>
+    <string name="success_auth_driver_request">Ваша заявка успешно отправлена. Как только она будет одобрена модератором, Вы сможете брать заказы</string>
+    <string name="go_to_main_screen">Перейти на главную</string>
 </resources>

@@ -13,24 +13,30 @@ import androidx.navigation.findNavController
 
 import com.example.taximuslim.R
 import com.example.taximuslim.baseUI.fragment.BaseFragment
+import com.example.taximuslim.databinding.AuthDriverCarNumbFragmentBinding
 import kotlinx.android.synthetic.main.auth_driver_car_numb_fragment.*
 
-class AuthDriverCarNumbFragment : BaseFragment() {
+class AuthDriverCarNumbFragment : Fragment() {
 
-    override fun layoutId(): Int  = R.layout.auth_driver_car_numb_fragment
 
     private lateinit var viewModel: AuthDriverCarNumbViewModel
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         viewModel = ViewModelProviders.of(this).get(AuthDriverCarNumbViewModel::class.java)
-        setObservers()
-        setListeners()
+        val binding = AuthDriverCarNumbFragmentBinding.inflate(inflater, container, false)
+        binding.viewModel = viewModel
+        return binding.root
     }
 
-    private fun setListeners(){
-        setMainButtonListener()
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        setObservers()
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,12 +46,6 @@ class AuthDriverCarNumbFragment : BaseFragment() {
         }
     }
 
-
-    private fun setMainButtonListener(){
-        mainButton.setOnClickListener {
-            viewModel.writeCarNumb()
-        }
-    }
 
     private fun setObservers(){
         viewModel.navigateToNext.observe(viewLifecycleOwner, Observer{navigate->

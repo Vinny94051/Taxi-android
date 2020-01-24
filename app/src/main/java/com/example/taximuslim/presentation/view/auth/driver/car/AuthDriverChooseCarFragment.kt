@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 
 import com.example.taximuslim.R
+import com.example.taximuslim.databinding.AuthDriverChooseCarFragmentBinding
 import kotlinx.android.synthetic.main.auth_driver_choose_car_fragment.*
 
 class AuthDriverChooseCarFragment : Fragment() {
@@ -24,23 +25,18 @@ class AuthDriverChooseCarFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val actionBar = (activity as AppCompatActivity).supportActionBar!!
-        actionBar.show()
-        return inflater.inflate(R.layout.auth_driver_choose_car_fragment, container, false)
+        (activity as AppCompatActivity).supportActionBar?.show()
+        val binding = AuthDriverChooseCarFragmentBinding.inflate(inflater, container, false)
+        viewModel = ViewModelProviders.of(this).get(AuthDriverChooseCarViewModel::class.java)
+        binding.viewModel = viewModel
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(AuthDriverChooseCarViewModel::class.java)
-        setListeners()
         setObservers()
     }
 
-    private fun setListeners(){
-        mainButton.setOnClickListener {
-            viewModel.checkAndWriteData()
-        }
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
