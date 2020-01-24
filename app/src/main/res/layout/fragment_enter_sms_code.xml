@@ -129,7 +129,7 @@
             android:layout_marginTop="2dp"
             android:layout_margin="2dp"
             android:background="@drawable/arrow_overlay"
-            android:text="@string/con_tinue"
+            android:text="@string/continuee"
             android:textAppearance="@style/start"
             android:textStyle="bold"
             tools:ignore="RtlSymmetry" />
