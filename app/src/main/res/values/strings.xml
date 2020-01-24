@@ -11,7 +11,7 @@
     <string name="sms">На указанный номер придет SMS-код для продолжения регистрации</string>
     <string name="_7">+7</string>
     <string name="enter_phone_number">Введите номер телефона</string>
-    <string name="con_tinue">Продолжить</string>
+    <string name="continuee">Продолжить</string>
     <string name="number_exeption">Неверный формат номера</string>
     <string name="enter_sms_code">Введите полученный SMS-код для продолжения регистрации</string>
     <string name="zero_hint">0</string>
@@ -122,5 +122,56 @@
     <string name="error_message_empty_number">Введите номер телефона</string>
     <string name="error_message_invalid_number">Номер введен не верно</string>
     <string name="skip">Пропустить</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="driver_auth_intro">Для получени заказов необходимо \n пройти регистрацию водителя онлайн</string>
+    <string name="driver_auth_document_text">Для этого Вам понадобятся 5 минут времени и следующие документы:</string>
+    <string name="driver_auth_document_list">— ваша фотография\n— фотография машины \n— свидетельство о регистрации ТС\n— водительское удостверение</string>
+    <string name="come_later">Пройти позже</string>
+    <string name="car_info">Информация о машине</string>
+    <string name="car_numb">Госномер</string>
+    <string name="your_car_numb">Номер вашей машины</string>
+    <string name="car_mark">Марка</string>
+    <string name="car_seria">Сария</string>
+    <string name="car_color">Цвет</string>
+    <string name="car_numb_need_for">Госномер необходим, чтобы пассажир смог найти Вашу машину</string>
+    <string name="info_about_car">Информация о машине</string>
+    <string name="edit">Редактировать</string>
+    <string name="mark_and_seria">Марка и серия</string>
+    <string name="color">Цвет</string>
+    <string name="car_photo">Фотография машины</string>
+    <string name="delete">Удалить</string>
+    <string name="take_car_photo_with_numb">Сфотографируйте машину полностью, чтобы был виден госномер</string>
+    <string name="car_sertificate">Свидетельство о регистрации ТС</string>
+    <string name="about_you">О себе</string>
+    <string name="delete_photo">Удалить фото</string>
+    <string name="name">Имя</string>
+    <string name="second_name">Фамилия</string>
+    <string name="email">Email</string>
+    <string name="input_name">Введите имя</string>
+    <string name="input_second_name">Введите фамилию</string>
+    <string name="input_email">Введите адресс электронной почты</string>
+    <string name="texi_licence_front">Лицензия такси \n(лицевая сторона)</string>
+    <string name="photo_shoud_be_correct">Фотография должна быть четкой, без следов изменений</string>
+    <string name="taxi_licence_back">Лицензия такси \n(обратная сторона)</string>
+    <string name="documents">Документы</string>
+    <string name="series_and_numb_driver_licence">Серия и номер водительского удостоверения</string>
+    <string name="driver_licence_front">Водительское удостверение \n(лицевая сторона)</string>
+    <string name="driver_licence_back">Водительское удостверение \n(обратная сторона)</string>
+    <string name="person_validation">Подтверждение личности</string>
+    <string name="validation_text">Поднесите водительские права перед собой и сделайте фото, как на примере</string>
+    <string name="validation_rules">— на фото должно быть отчетливо видно лицо и ваше водительское удостверение\n
+        — фото должно быть сделано при хорошем освщениии в хорошем качестве\n
+        — не допускаются фотографии в солнцезащитных очках</string>
+    <string name="your_photo">Ваша фотография</string>
+    <string name="confidentiality_politics_text">Политика конфиденциальности</string>
+    <string name="confidentiality_politics">Я ознакомлен с условиями Политики конфиденциальности и Публичной оферты, принимаю их условия и выражаю свое согласие на обработку моих персональных данных</string>
+    <string name="public_offer">Публичная офферта</string>
+    <string name="add_photo">Добавить фото</string>
+    <string name="success_auth_driver_request">Ваша заявка успешно отправлена. Как только она будет одобрена модератором, Вы сможете брать заказы</string>
+    <string name="go_to_main_screen">Перейти на главную</string>
     <string name="error_message_bad_code">Неверный код</string>
 </resources>

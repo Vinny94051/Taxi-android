@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/driver_auth_navigation"
+    app:startDestination="@id/authDriverFirstStepFragment">
+
+    <fragment
+        android:id="@+id/authDriverFirstStepFragment"
+        android:name="com.example.taximuslim.presentation.view.auth.driver.AuthDriverFirstStepFragment"
+        android:label="fragment_auth_driver_ferst_step"
+        tools:layout="@layout/fragment_auth_driver_ferst_step">
+        <action
+            android:id="@+id/action_authDriverFirstStepFragment_to_authDriverChooseCarFragment"
+            app:destination="@id/authDriverChooseCarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/authDriverChooseCarFragment"
+        android:name="com.example.taximuslim.presentation.view.auth.driver.car.AuthDriverChooseCarFragment"
+        android:label="@string/car_info"
+        tools:layout="@layout/auth_driver_choose_car_fragment">
+        <action
+            android:id="@+id/action_authDriverChooseCarFragment_to_authDriverCarNumbFragment"
+            app:destination="@id/authDriverCarNumbFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/authDriverCarNumbFragment"
+        android:name="com.example.taximuslim.presentation.view.auth.driver.carNumb.AuthDriverCarNumbFragment"
+        android:label="@string/your_car_numb"
+        tools:layout="@layout/auth_driver_car_numb_fragment">
+        <action
+            android:id="@+id/action_authDriverCarNumbFragment_to_authDriverCarPhoto"
+            app:destination="@id/authDriverCarPhoto" />
+    </fragment>
+    <fragment
+        android:id="@+id/authDriverCarPhoto"
+        android:name="com.example.taximuslim.presentation.view.auth.driver.carPhoto.AuthDriverCarPhoto"
+        android:label="@string/car_photo"
+        tools:layout="@layout/auth_driver_car_photo_fragment">
+        <action
+            android:id="@+id/action_authDriverCarPhoto_to_authDriverAboutYouFragment"
+            app:destination="@id/authDriverAboutYouFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/authDriverAboutYouFragment"
+        android:name="com.example.taximuslim.presentation.view.auth.driver.aboutYou.AuthDriverAboutYouFragment"
+        android:label="@string/about_you"
+        tools:layout="@layout/auth_driver_about_you_fragment" >
+        <action
+            android:id="@+id/action_authDriverAboutYouFragment_to_authDriverDocumentsFragment"
+            app:destination="@id/authDriverDocumentsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/authDriverDocumentsFragment"
+        android:name="com.example.taximuslim.presentation.view.auth.driver.documents.AuthDriverDocumentsFragment"
+        android:label="@string/documents"
+        tools:layout="@layout/auth_driver_documents_fragment" >
+        <action
+            android:id="@+id/action_authDriverDocumentsFragment_to_authDriverValidatePersonFragment"
+            app:destination="@id/authDriverValidatePersonFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/authDriverValidatePersonFragment"
+        android:name="com.example.taximuslim.presentation.view.auth.driver.validatePreson.AuthDriverValidatePersonFragment"
+        android:label="@string/person_validation"
+        tools:layout="@layout/auth_driver_validate_person_fragment" >
+        <action
+            android:id="@+id/action_authDriverValidatePersonFragment_to_driverAuthRuleFragment"
+            app:destination="@id/driverAuthRuleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/driverAuthRuleFragment"
+        android:name="com.example.taximuslim.presentation.view.auth.driver.rules.AuthDriverRuleFragment"
+        android:label="DriverAuthRuleFragment" >
+        <action
+            android:id="@+id/action_driverAuthRuleFragment_to_driverAuthConfidentialityFragment"
+            app:destination="@id/driverAuthConfidentialityFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/driverAuthConfidentialityFragment"
+        android:name="com.example.taximuslim.presentation.view.auth.driver.politics.AuthDriverConfidentialityFragment"
+        android:label="DriverAuthConfidentialityFragment" >
+        <action
+            android:id="@+id/action_driverAuthConfidentialityFragment_to_authDriverPublicOfferFragment"
+            app:destination="@id/authDriverPublicOfferFragment" />
+        <action
+            android:id="@+id/action_driverAuthConfidentialityFragment_to_authDriverRequest"
+            app:destination="@id/authDriverRequest" />
+    </fragment>
+    <fragment
+        android:id="@+id/authDriverPublicOfferFragment"
+        android:name="com.example.taximuslim.presentation.view.auth.driver.publicOffer.AuthDriverPublicOfferFragment"
+        android:label="@string/public_offer"
+        tools:layout="@layout/auth_driver_public_offer_fragment" />
+    <fragment
+        android:id="@+id/authDriverRequest"
+        android:name="com.example.taximuslim.presentation.view.auth.driver.request.AuthDriverRequest"
+        android:label="auth_driver_request_fragment"
+        tools:layout="@layout/auth_driver_request_fragment" />
+</navigation>
