@@ -11,7 +11,7 @@
     <string name="sms">На указанный номер придет SMS-код для продолжения регистрации</string>
     <string name="_7">+7</string>
     <string name="enter_phone_number">Введите номер телефона</string>
-    <string name="con_tinue">Продолжить</string>
+    <string name="continuee">Продолжить</string>
     <string name="number_exeption">Неверный формат номера</string>
     <string name="enter_sms_code">Введите полученный SMS-код для продолжения регистрации</string>
     <string name="zero_hint">0</string>
@@ -154,13 +154,13 @@
     <string name="input_name">Введите имя</string>
     <string name="input_second_name">Введите фамилию</string>
     <string name="input_email">Введите адресс электронной почты</string>
-    <string name="texi_licence_front">Лицензия такси (лицевая сторона)</string>
+    <string name="texi_licence_front">Лицензия такси \n(лицевая сторона)</string>
     <string name="photo_shoud_be_correct">Фотография должна быть четкой, без следов изменений</string>
-    <string name="taxi_licence_back">Лицензия такси (обратная сторона)</string>
+    <string name="taxi_licence_back">Лицензия такси \n(обратная сторона)</string>
     <string name="documents">Документы</string>
     <string name="series_and_numb_driver_licence">Серия и номер водительского удостоверения</string>
-    <string name="driver_licence_front">Водительское удостверение (лицевая сторона)</string>
-    <string name="driver_licence_back">Водительское удостверение (обратная сторона)</string>
+    <string name="driver_licence_front">Водительское удостверение \n(лицевая сторона)</string>
+    <string name="driver_licence_back">Водительское удостверение \n(обратная сторона)</string>
     <string name="person_validation">Подтверждение личности</string>
     <string name="validation_text">Поднесите водительские права перед собой и сделайте фото, как на примере</string>
     <string name="validation_rules">— на фото должно быть отчетливо видно лицо и ваше водительское удостверение\n

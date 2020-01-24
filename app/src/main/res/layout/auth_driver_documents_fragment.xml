@@ -38,7 +38,7 @@
                 android:layout_marginTop="@dimen/small_margin"
                 android:layout_marginStart="@dimen/default_margin"
                 android:layout_marginEnd="@dimen/default_margin"
-                app:cardCornerRadius="6dp"
+                app:cardCornerRadius="4dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/driveLicenceText">
@@ -92,7 +92,7 @@
                 android:layout_marginTop="12sp"
                 android:layout_marginEnd="@dimen/default_margin"
                 app:cardBackgroundColor="@color/colorCardBackground"
-                android:elevation="16dp"
+                app:cardElevation="12dp"
                 app:cardCornerRadius="@dimen/default_card_radius"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -159,7 +159,7 @@
                 android:layout_marginTop="12sp"
                 android:layout_marginEnd="@dimen/default_margin"
                 app:cardBackgroundColor="@color/colorCardBackground"
-                android:elevation="16dp"
+                app:cardElevation="12dp"
                 app:cardCornerRadius="@dimen/default_card_radius"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -210,7 +210,7 @@
                     android:id="@+id/mainButton"
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    layout="@layout/button" />
+                    layout="@layout/gradient_button" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -75,7 +75,8 @@
                 android:layout_marginTop="12sp"
                 android:layout_marginEnd="@dimen/default_margin"
                 app:cardBackgroundColor="@color/colorCardBackground"
-                android:elevation="16dp"
+                app:cardElevation="12dp"
+
                 app:layout_constraintDimensionRatio="1"
                 app:cardCornerRadius="@dimen/default_card_radius"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -100,8 +101,8 @@
 
             </androidx.cardview.widget.CardView>
 
-            <RelativeLayout
-                android:id="@+id/mainButton"
+            <LinearLayout
+                android:id="@+id/buttonLayout"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="@dimen/button_horizontal_margin"
@@ -109,38 +110,17 @@
                 android:layout_marginEnd="@dimen/button_horizontal_margin"
                 android:layout_marginBottom="@dimen/medium_margin"
                 android:onClick="@{() -> viewModel.onMainButtonClick()}"
-                android:background="@drawable/arrow_stroke_bg"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/yourPhotoCard">
 
-                <View
+                <include
+                    android:id="@+id/mainButton"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="2dp"
-                    android:background="@drawable/arrow_overlay" />
-
-                <TextView
-                    android:id="@+id/main_btn_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/default_margin"
-                    android:text="@string/con_tinue"
-                    android:textColor="@color/colorThemeGreen"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:layout_width="72dp"
-                    android:layout_height="48dp"
-                    android:layout_alignParentEnd="true"
-                    android:background="@drawable/arrow_bg"
-                    android:padding="4dp"
-                    android:src="@drawable/arrow_forward_black_24dp" />
-            </RelativeLayout>
+                    layout="@layout/gradient_button"/>
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

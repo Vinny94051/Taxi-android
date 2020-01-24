@@ -85,8 +85,8 @@
         app:layout_constraintStart_toEndOf="@id/carColor"
         app:layout_constraintTop_toTopOf="@id/carColor" />
 
-    <RelativeLayout
-        android:id="@+id/mainButton"
+    <LinearLayout
+        android:id="@+id/buttonLayout"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="@dimen/button_horizontal_margin"
@@ -94,35 +94,14 @@
         android:layout_marginBottom="@dimen/default_bottom_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/arrow_stroke_bg">
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <View
+        <include
+            android:id="@+id/mainButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:background="@drawable/arrow_overlay"/>
-
-        <TextView
-            android:id="@+id/main_btn_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:layout_marginStart="@dimen/default_margin"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:text="@string/con_tinue"
-            android:textColor="@color/colorThemeGreen"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:layout_width="72dp"
-            android:layout_height="48dp"
-            android:layout_alignParentEnd="true"
-            android:background="@drawable/arrow_bg"
-            android:padding="4dp"
-            android:src="@drawable/arrow_forward_black_24dp" />
-    </RelativeLayout>
+            layout="@layout/gradient_button"/>
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

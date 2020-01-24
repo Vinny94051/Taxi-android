@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 
@@ -25,6 +26,14 @@ class AuthDriverDocumentsFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(AuthDriverDocumentsViewModel::class.java)
         binding.viewModel = viewModel
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val buttonText: TextView? = view?.findViewById(R.id.main_btn_text) as TextView
+        buttonText?.let { mainButtonText ->
+            mainButtonText.text = getString(R.string.continuee)
+        }
     }
 
     override fun onStart() {

@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.fragment_authorization.*
 import javax.inject.Inject
 
 class AuthorizationFragment : BaseAuthFragment() {
-    override fun buttonText(): String = getString(R.string.con_tinue)
+    override fun buttonText(): String = getString(R.string.continuee)
 
     companion object {
         const val FRAGMENT_ID = "AUTH_FRAGMENT"

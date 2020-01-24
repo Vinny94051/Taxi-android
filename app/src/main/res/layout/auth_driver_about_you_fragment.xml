@@ -102,6 +102,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginEnd="@dimen/default_margin"
                 android:hint="@string/input_name"
                 app:layout_constraintBottom_toBottomOf="@+id/yourNameText"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -114,6 +115,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="@string/input_second_name"
+                android:layout_marginEnd="@dimen/default_margin"
                 app:layout_constraintBottom_toBottomOf="@+id/yourSecondNameText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/yourNameEdit"
@@ -125,6 +127,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="@string/input_email"
+                android:layout_marginEnd="@dimen/default_margin"
                 app:layout_constraintBottom_toBottomOf="@+id/yourEmailText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/yourNameEdit"
@@ -160,7 +163,7 @@
                 android:layout_marginTop="12sp"
                 android:layout_marginEnd="@dimen/default_margin"
                 app:cardBackgroundColor="@color/colorCardBackground"
-                android:elevation="16dp"
+                app:cardElevation="12dp"
                 app:cardCornerRadius="@dimen/default_card_radius"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -225,7 +228,7 @@
                 android:layout_marginTop="12sp"
                 android:layout_marginEnd="@dimen/default_margin"
                 app:cardBackgroundColor="@color/colorCardBackground"
-                android:elevation="16dp"
+                app:cardElevation="12dp"
                 app:cardCornerRadius="@dimen/default_card_radius"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -275,7 +278,7 @@
                 android:id="@+id/mainButton"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                layout="@layout/button" />
+                layout="@layout/gradient_button" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
