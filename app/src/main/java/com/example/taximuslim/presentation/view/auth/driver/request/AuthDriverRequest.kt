@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.lifecycle.Observer
 
 import com.example.taximuslim.R
+import com.example.taximuslim.databinding.AuthDriverRequestFragmentBinding
 
 class AuthDriverRequest : Fragment() {
 
@@ -19,7 +20,9 @@ class AuthDriverRequest : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val binding = AuthDriverRequestFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProviders.of(this).get(AuthDriverRequestViewModel::class.java)
+        binding.lifecycleOwner = viewLifecycleOwner
         return inflater.inflate(R.layout.auth_driver_request_fragment, container, false)
     }
 

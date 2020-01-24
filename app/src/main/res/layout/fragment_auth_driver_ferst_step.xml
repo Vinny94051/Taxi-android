@@ -37,8 +37,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/driver_auth_intro"
-                    android:textColor="@color/colorThemeGreen"
-                    android:textStyle="bold"
+                    android:textAppearance="@style/AccentText"
                     android:layout_marginTop="@dimen/large_margin"
                     android:layout_marginStart="@dimen/default_margin"
                     android:layout_marginEnd="@dimen/default_margin"
@@ -55,8 +54,8 @@
                     android:layout_marginTop="@dimen/medium_margin"
                     android:layout_marginStart="@dimen/default_margin"
                     android:layout_marginEnd="@dimen/default_margin"
-                    android:textColor="@color/contrastTextColor"
-                    android:textSize="14sp"
+
+                    android:textAppearance="@style/ContrastFieldText"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/intro_text"/>
@@ -69,6 +68,7 @@
                     android:layout_marginTop="@dimen/small_margin"
                     android:layout_marginStart="@dimen/default_margin"
                     android:layout_marginEnd="@dimen/default_margin"
+                    android:textAppearance="@style/SecondaryText"
                     android:textColor="@color/notContrastTextColor"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"

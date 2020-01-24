@@ -146,7 +146,7 @@
 
             <TextView
                 android:id="@+id/deleteLicenceFrontPhoto"
-                style="@style/AccentText"
+                android:textAppearance="@style/AccentText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/default_margin"
@@ -211,7 +211,7 @@
 
             <TextView
                 android:id="@+id/deleteLicenceBackPhoto"
-                style="@style/AccentText"
+                android:textAppearance="@style/AccentText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/default_margin"

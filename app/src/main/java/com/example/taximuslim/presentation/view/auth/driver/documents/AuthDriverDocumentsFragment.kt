@@ -24,6 +24,7 @@ class AuthDriverDocumentsFragment : Fragment() {
     ): View? {
         val binding = AuthDriverDocumentsFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProviders.of(this).get(AuthDriverDocumentsViewModel::class.java)
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
         return binding.root
     }

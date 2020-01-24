@@ -28,6 +28,7 @@ class AuthDriverCarNumbFragment : Fragment() {
     ): View? {
         viewModel = ViewModelProviders.of(this).get(AuthDriverCarNumbViewModel::class.java)
         val binding = AuthDriverCarNumbFragmentBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
         return binding.root
     }

@@ -28,6 +28,7 @@ class AuthDriverChooseCarFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.show()
         val binding = AuthDriverChooseCarFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProviders.of(this).get(AuthDriverChooseCarViewModel::class.java)
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
         return binding.root
     }
