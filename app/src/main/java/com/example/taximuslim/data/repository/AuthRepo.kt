@@ -4,9 +4,9 @@ import android.util.Log
 import com.example.taximuslim.App
 import com.example.taximuslim.data.network.api.AuthApi
 import com.example.taximuslim.data.network.dto.NumberRequest
+import com.example.taximuslim.data.network.dto.auth.CheckSmsCodeRequest
 import com.example.taximuslim.data.network.dto.auth.NumberRegistrationStatusResponse
 import com.example.taximuslim.data.network.dto.auth.PreseptResponse
-import com.example.taximuslim.data.repository.mapping.Mapper
 import com.example.taximuslim.domain.models.PreseptModel
 import com.example.taximuslim.domain.models.RegistrationStatus
 import retrofit2.Call
@@ -59,6 +59,24 @@ class AuthRepo @Inject constructor() {
                 if (response.isSuccessful)
                     response.body()?.let { _response ->
                         listener.invoke(Mapper.mapPresept(_response))
+                    }
+            }
+        })
+    }
+
+    fun checkSmsCode(user : CheckSmsCodeRequest, listener : (String) -> Unit){
+        api.checkSmsCode(user).enqueue(object : Callback<Any>{
+            override fun onFailure(call: Call<Any>, t: Throwable) {
+                Log.e("repo::", t.message.toString())
+            }
+
+            override fun onResponse(
+                call: Call<Any>,
+                response: Response<Any>
+            ) {
+                if(response.isSuccessful)
+                    response.body()?.let{ _response ->
+                        listener.invoke(Mapper.maToken(_response))
                     }
             }
         })

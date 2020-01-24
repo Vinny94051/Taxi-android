@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Taxi Muslim</string>
+    <string name="app_name">Taxi</string>
     <string name="auth_high">В приложении вы сможете</string>
     <string name="first_text">—Просмотреть ближайшие мечети, халяльные места и заказать к ним такси</string>
     <string name="second_text">— Устанавливать цену за такси, которую считаете сраведливой</string>
@@ -122,4 +122,5 @@
     <string name="error_message_empty_number">Введите номер телефона</string>
     <string name="error_message_invalid_number">Номер введен не верно</string>
     <string name="skip">Пропустить</string>
+    <string name="error_message_bad_code">Неверный код</string>
 </resources>

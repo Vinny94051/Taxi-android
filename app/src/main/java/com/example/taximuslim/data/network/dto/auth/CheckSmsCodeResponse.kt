@@ -4,5 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class CheckSmsCodeResponse(
     @SerializedName("status")
-    val status : String
-)
+    val token : String
+){
+    override fun toString(): String = token
+
+}

@@ -22,7 +22,7 @@
         android:layout_marginStart="2dp"
         android:background="@drawable/arrow_overlay"
         android:paddingStart="20dp"
-        android:paddingTop="10dp"
+        android:paddingTop="8dp"
         android:paddingBottom="8dp"
         android:textAppearance="@style/start"
         android:textStyle="bold"

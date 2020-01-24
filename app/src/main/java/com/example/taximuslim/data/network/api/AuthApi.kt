@@ -20,8 +20,8 @@ interface AuthApi {
 
     @POST("client/login")
      fun checkSmsCode(
-        phoneAndCode : CheckSmsCodeRequest
-    ) : CheckSmsCodeResponse
+        @Body phoneAndCode : CheckSmsCodeRequest
+    ) : Call<Any>
 
     @GET("precept")
      fun getPrecept() : Call<PreseptResponse>

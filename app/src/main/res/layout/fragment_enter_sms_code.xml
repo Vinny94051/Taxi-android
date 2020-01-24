@@ -106,6 +106,18 @@
             android:textSize="@dimen/number_sms_code_size" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/errorMessageTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/enter_code"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/red"
+        android:textSize="14sp"
+        android:visibility="gone"
+        />
+
     <include
         android:id="@+id/main_button_registration"
         layout="@layout/button" />

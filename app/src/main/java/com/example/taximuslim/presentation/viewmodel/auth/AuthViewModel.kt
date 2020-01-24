@@ -6,25 +6,13 @@ import com.example.taximuslim.App
 import com.example.taximuslim.baseUI.viewmodel.NetworkViewModel
 import com.example.taximuslim.data.auth.NumberSaver
 import com.example.taximuslim.data.auth.SmsCodeReceiver
+import com.example.taximuslim.data.network.dto.auth.CheckSmsCodeRequest
 import com.example.taximuslim.domain.IAuthInteractor
 import com.example.taximuslim.domain.models.PreseptModel
 import com.example.taximuslim.domain.models.RegistrationStatus
 import javax.inject.Inject
 
 class AuthViewModel : NetworkViewModel() {
-    val liveDataSmsCode = MutableLiveData<Int>()
-    private val numberSaver = NumberSaver()
-
-
-    fun loadSmsCode() {
-        SmsCodeReceiver.load { smsCode ->
-            liveDataSmsCode.value = smsCode
-        }
-    }
-
-    fun saveNumber(number: String) {
-        numberSaver.save(number)
-    }
 
     init {
         App.appComponent.inject(this)
@@ -47,9 +35,20 @@ class AuthViewModel : NetworkViewModel() {
     val loadPreseptLiveData: LiveData<PreseptModel>
         get() = _loadPreseptLiveData
 
-    fun loadPresept(){
+    fun loadPresept() {
         interactor.getPresept { presept ->
             _loadPreseptLiveData.value = presept
+        }
+    }
+
+
+    private val _loadTokenLiveData = MutableLiveData<String>()
+    val loadTokenLiveData: LiveData<String>
+        get() = _loadTokenLiveData
+
+    fun loadToken(user : CheckSmsCodeRequest){
+        interactor.checkSmsCode(user){ token ->
+            _loadTokenLiveData.value = token
         }
     }
 }
