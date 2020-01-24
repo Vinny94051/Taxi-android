@@ -19,7 +19,7 @@
         <TextView
             android:id="@+id/high"
             android:layout_width="316dp"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
@@ -29,7 +29,8 @@
             android:lineSpacingExtra="1sp"
             android:text="@string/agree_terms_of_use_high"
             android:textAlignment="center"
-            android:textAppearance="@style/auth_high"
+            android:textSize="20sp"
+            android:textAppearance="@style/AccentText"
             android:textStyle="bold" />
 
         <CheckBox
@@ -41,6 +42,7 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="@dimen/default_margin"
             android:layout_marginEnd="13dp"
+            android:textAppearance="@style/RegularText"
             android:text="@string/tou_accept"
             android:textAlignment="textStart" />
 

@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/background">
 
-    <ImageView
-        android:id="@+id/logo"
+    <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/rectangle_3"
-        android:layout_marginBottom="-56dp"
-        android:scaleType="centerCrop"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/logo_start_screen"
-        android:translationZ="210pt" />
+        android:layout_marginBottom="-16dp"
+        android:background="@android:color/white"
+        android:translationZ="210dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="32dp">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="112dp"
+            android:layout_height="112dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/logo_taxi" />
+    </androidx.cardview.widget.CardView>
 
     <RelativeLayout
         android:id="@+id/rectangle_3"
@@ -28,8 +36,8 @@
 
         <TextView
             android:id="@+id/high"
-            android:layout_width="262dp"
-            android:layout_height="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="32dp"
@@ -38,7 +46,8 @@
             android:gravity="center_horizontal|center_vertical"
             android:lineSpacingExtra="1sp"
             android:text="@string/auth_high"
-            android:textAppearance="@style/auth_high"
+            android:textAppearance="@style/AccentText"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
@@ -52,7 +61,7 @@
             android:gravity="center_vertical"
             android:lineSpacingExtra="4sp"
             android:text="@string/first_text"
-            android:textAppearance="@style/first_text" />
+            android:textAppearance="@style/RegularText" />
 
         <TextView
             android:id="@+id/second_text"
@@ -65,7 +74,7 @@
             android:gravity="center_vertical"
             android:lineSpacingExtra="4sp"
             android:text="@string/second_text"
-            android:textAppearance="@style/second_text" />
+            android:textAppearance="@style/RegularText" />
 
         <TextView
             android:id="@+id/third_text"
@@ -78,45 +87,20 @@
             android:gravity="center_vertical"
             android:lineSpacingExtra="4sp"
             android:text="@string/third_text"
-            android:textAppearance="@style/third_text" />
+            android:textAppearance="@style/RegularText" />
 
-        <RelativeLayout
+
+        <include
             android:id="@+id/main_button"
+            layout="@layout/gradient_button"
             android:layout_width="292dp"
             android:layout_height="48dp"
             android:layout_below="@id/third_text"
-            android:background="@drawable/arrow_stroke_bg"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="18dp"
+            android:layout_marginStart="37dp"
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="32dp"
-            android:layout_marginEnd="18dp"
-            >
-            <TextView
-                android:id="@+id/main_btn_text"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingTop="10dp"
-                android:paddingBottom="8dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginTop="2dp"
-                android:paddingStart="8dp"
-                android:layout_margin="2dp"
-                android:background="@drawable/arrow_overlay"
-                android:text="@string/start"
-                android:textAppearance="@style/start"
-                android:textStyle="bold"
-                tools:ignore="RtlSymmetry" />
-
-            <ImageView
-                android:layout_width="72dp"
-                android:layout_height="48dp"
-                android:layout_alignParentEnd="true"
-                android:background="@drawable/arrow_bg"
-                android:padding="4dp"
-                android:src="@drawable/arrow_forward_black_24dp" />
-        </RelativeLayout>
-
+            android:layout_marginEnd="37dp"
+            android:layout_marginBottom="32dp" />
     </RelativeLayout>
 
 </RelativeLayout>
+

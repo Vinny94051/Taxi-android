@@ -24,6 +24,7 @@
             android:layout_marginEnd="32dp"
             android:text="@string/add_geo_data"
             android:textAlignment="center"
+            android:textAppearance="@style/RegularText"
             android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -49,11 +50,18 @@
         android:layout_marginEnd="29dp"
         android:text="@string/geo_hint"
         android:textAlignment="center"
-        android:textAppearance="@style/sms_" />
+        android:textAppearance="@style/RegularText" />
+
 
     <include
         android:id="@+id/main_button_add_geo"
-        layout="@layout/button" />
+        layout="@layout/gradient_button"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="37dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="72dp" />
 
 </RelativeLayout>
 

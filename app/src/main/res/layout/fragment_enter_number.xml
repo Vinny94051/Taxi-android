@@ -13,16 +13,17 @@
         android:layout_centerInParent="true"
         android:layout_marginStart="@dimen/default_margin"
         android:layout_marginEnd="@dimen/default_margin"
+        android:layout_marginBottom="@dimen/big_margin"
         app:cardElevation="16dp"
         app:cardCornerRadius="@dimen/default_margin"
         android:background="@drawable/welcome"
         >
 
+
         <RelativeLayout
             android:id="@+id/welcome_frag_"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/high"
@@ -34,7 +35,8 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
                 android:text="@string/registration"
-                android:textAppearance="@style/auth_high"
+                android:textSize="20sp"
+                android:textAppearance="@style/AccentText"
                 android:textStyle="bold" />
 
             <TextView
@@ -49,7 +51,7 @@
                 android:layout_marginBottom="@dimen/default_margin"
                 android:text="@string/sms"
                 android:textAlignment="center"
-                android:textAppearance="@style/first_text" />
+                android:textAppearance="@style/RegularText" />
 
             <LinearLayout
                 android:id="@+id/number"
@@ -91,7 +93,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Уже есть аккаунт?"
-                    android:textAppearance="@style/first_text" />
+                    android:textAppearance="@style/RegularText" />
 
                 <TextView
                     android:id="@+id/enterTextView"
@@ -101,14 +103,21 @@
                     android:layout_toEndOf="@id/haveAccTextView"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:text="Войти"
-                    android:textColor="@color/colorThemeGreen"
-                    android:textStyle="bold" />
+                    android:textAppearance="@style/AccentText"
+                    android:textColor="@color/colorThemeGreen" />
             </RelativeLayout>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
     <include
         android:id="@+id/enter_button"
-        layout="@layout/button" />
+        layout="@layout/gradient_button"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="37dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="72dp"
+        />
 
 </RelativeLayout>

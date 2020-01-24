@@ -28,6 +28,7 @@
         android:textAlignment="center"
         android:paddingBottom="32dp"
         android:textColor="#424242"
+        android:textAppearance="@style/RegularText"
         android:textSize="16sp" />
 
     <include android:id="@+id/to_order_main_btn"
