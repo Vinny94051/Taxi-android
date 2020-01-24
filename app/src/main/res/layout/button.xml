@@ -26,6 +26,7 @@
         android:paddingBottom="8dp"
         android:textAppearance="@style/start"
         android:textStyle="bold"
+        tools:text="Продолжить"
         tools:ignore="RtlSymmetry" />
 
     <ImageView
