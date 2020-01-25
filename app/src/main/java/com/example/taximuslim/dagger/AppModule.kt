@@ -10,7 +10,12 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
-@Module
+@Module(
+    includes = [
+        ApiModule::class,
+        LocationModule::class
+    ]
+)
 class AppModule(private val app: Application) {
 
     @Singleton
@@ -18,11 +23,11 @@ class AppModule(private val app: Application) {
     fun provideContext(): Context = app
 
     @Provides
-    fun provideAuthRepo() : AuthRepo = AuthRepo()
+    fun provideAuthRepo(): AuthRepo = AuthRepo()
 
     @Provides
-    fun provideAuthInteractor() : IAuthInteractor = AuthInteractor()
+    fun provideAuthInteractor(): IAuthInteractor = AuthInteractor()
 
     @Provides
-    fun provideAuthViewModel() : AuthViewModel = AuthViewModel()
+    fun provideAuthViewModel(): AuthViewModel = AuthViewModel()
 }

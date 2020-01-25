@@ -98,7 +98,7 @@
                     android:src="@drawable/placeholder_light_brown" />
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/place_location"
+                    android:id="@+id/pointBEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="-6dp"
@@ -185,44 +185,128 @@
                 android:orientation="horizontal"
                 android:padding="4dp">
 
-                <Button
+                <RelativeLayout
                     android:id="@+id/economy_order"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
+                    android:layout_width="92dp"
+                    android:layout_height="40dp"
                     android:layout_marginStart="24dp"
-                    android:layout_marginEnd="4dp"
-                    android:background="@drawable/order_button_back"
-                    android:textAlignment="textStart"
-                    android:textAllCaps="false"
-                    android:textAppearance="@style/button_for_order"
-                    android:textColor="@android:color/white" />
+                    android:background="@drawable/order_button_back">
 
-                <Button
+                    <TextView
+                        android:id="@+id/firstCategoryNameTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="8dp"
+                        android:text="Эконом"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/firstCategoryPriceTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/firstCategoryNameTextView"
+                        android:paddingStart="8dp"
+                        android:text="от 200 Rub"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/checkMarkImageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginEnd="@dimen/small_margin"
+                        android:src="@drawable/ic_chekc_mark"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:id="@+id/comfort_order"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_width="92dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/small_margin"
                     android:layout_toEndOf="@id/economy_order"
-                    android:background="@drawable/order_button_back"
-                    android:drawablePadding="4dp"
-                    android:textAlignment="textStart"
-                    android:textAllCaps="false"
-                    android:textAppearance="@style/button_for_order"
-                    android:textColor="@android:color/white" />
+                    android:background="@drawable/order_button_back">
 
-                <Button
+                    <TextView
+                        android:id="@+id/secondCategoryNameTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="8dp"
+                        android:text="Комфорт"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/secondCategoryPriceTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/secondCategoryNameTextView"
+                        android:paddingStart="8dp"
+                        android:text="от 200 Rub"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/checkMarkImageViewSecond"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginEnd="@dimen/small_margin"
+                        android:src="@drawable/ic_chekc_mark"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:id="@+id/business_order"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="92dp"
+                    android:layout_height="40dp"
                     android:layout_marginStart="@dimen/small_margin"
                     android:layout_toEndOf="@id/comfort_order"
-                    android:background="@drawable/order_button_back"
-                    android:drawablePadding="4dp"
-                    android:textAlignment="textStart"
-                    android:textAllCaps="false"
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp" />
+                    android:background="@drawable/order_button_back">
+
+                    <TextView
+                        android:id="@+id/thirdCategoryNameTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="8dp"
+                        android:text="Бизнесс"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/thirdCategoryPriceTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="от 200 Rub"
+                        android:layout_below="@id/thirdCategoryNameTextView"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp"
+                        android:paddingStart="8dp"
+                        />
+
+                    <ImageView
+                        android:id="@+id/checkMarkImageViewThird"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_chekc_mark"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/small_margin"
+                        android:layout_marginTop="7dp"
+                        android:visibility="gone"
+                        />
+
+                </RelativeLayout>
+
+
             </RelativeLayout>
 
             <include

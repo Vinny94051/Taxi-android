@@ -19,6 +19,11 @@ abstract class BaseActivity : AppCompatActivity(), IBaseActivity {
         .replace(container, fragment, tag)
         .commit()
 
+    fun removeFragment(fragment: Fragment) = supportFragmentManager
+        .beginTransaction()
+        .remove(fragment)
+        .commit()
+
     fun showToast(message: String) =
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }

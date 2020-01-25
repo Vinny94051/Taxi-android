@@ -1,5 +1,6 @@
 package com.example.taximuslim.utils
 
+import android.app.Activity
 import android.location.Location
 import android.os.Build
 import android.text.Editable
@@ -46,6 +47,10 @@ fun EditText.onSubmitNext(func: () -> Unit) {
 }
 
 fun String.toEditable(): Editable = SpannableStringBuilder(this)
+
+fun Activity.showToast(message: String) {
+    //TODO
+}
 
 
 

@@ -14,7 +14,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
 
-class AuthRepo @Inject constructor() {
+class AuthRepo {
 
     init {
         App.appComponent.inject(this)
@@ -22,7 +22,6 @@ class AuthRepo @Inject constructor() {
 
     @Inject
     lateinit var api: AuthApi
-
 
     fun getNumberRegistrationStatus(
         phoneNumber: String,

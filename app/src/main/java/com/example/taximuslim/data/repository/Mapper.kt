@@ -23,3 +23,10 @@ class Mapper {
     }
 
 }
+
+interface IMapper<T1, T2> {
+
+    fun mapFromEntity(data: T1): T2
+
+    fun mapToEntity(data: T2): T1
+}

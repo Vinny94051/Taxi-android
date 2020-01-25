@@ -174,4 +174,5 @@
     <string name="success_auth_driver_request">Ваша заявка успешно отправлена. Как только она будет одобрена модератором, Вы сможете брать заказы</string>
     <string name="go_to_main_screen">Перейти на главную</string>
     <string name="error_message_bad_code">Неверный код</string>
+    <string name="make_order">Заказать</string>
 </resources>

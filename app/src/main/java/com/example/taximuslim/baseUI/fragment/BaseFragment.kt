@@ -27,9 +27,7 @@ abstract class BaseFragment : Fragment(), IBaseFragment {
         setButtonText(buttonText())
     }
 
-
     open fun buttonText(): String = ""
-
 
     override fun showToast(message: String) =
         Toast.makeText(activity, message, Toast.LENGTH_LONG).show()
@@ -43,5 +41,4 @@ abstract class BaseFragment : Fragment(), IBaseFragment {
 
     fun changeEditTextTint(editText: EditText, @ColorRes color: Int) =
         DrawableCompat.setTint(editText.background, ContextCompat.getColor(context!!, color))
-
 }
