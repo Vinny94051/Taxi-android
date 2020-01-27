@@ -8,18 +8,22 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.taximuslim.R
+import com.example.taximuslim.databinding.DriverIncomeFragmentBinding
 
 class DriverIncomeFragment : Fragment() {
 
 
-    private lateinit var viewModel: DriverIcomeViewModel
+    private lateinit var viewModel: DriverIncomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProviders.of(this).get(DriverIcomeViewModel::class.java)
-        return inflater.inflate(R.layout.driver_income_fragment, container, false)
+        viewModel = ViewModelProviders.of(this).get(DriverIncomeViewModel::class.java)
+        val binding = DriverIncomeFragmentBinding.inflate(inflater, container, false)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+        return binding.root
     }
 
 }
