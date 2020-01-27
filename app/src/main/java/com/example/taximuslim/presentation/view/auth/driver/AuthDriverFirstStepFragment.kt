@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 
 import com.example.taximuslim.R
 import com.example.taximuslim.baseUI.fragment.BaseFragment
+import kotlinx.android.synthetic.main.activity_auth_driver_main.*
 import kotlinx.android.synthetic.main.fragment_auth_driver_ferst_step.*
 
 
@@ -23,7 +24,7 @@ class AuthDriverFirstStepFragment : Fragment(){
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        (activity as AppCompatActivity).toolbar.setNavigationIcon(R.drawable.arrow_to_left_black)
         return inflater.inflate(R.layout.fragment_auth_driver_ferst_step, container, false)
     }
 

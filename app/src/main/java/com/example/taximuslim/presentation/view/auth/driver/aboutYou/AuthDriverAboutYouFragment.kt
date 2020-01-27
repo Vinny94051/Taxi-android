@@ -7,11 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 
 import com.example.taximuslim.R
 import com.example.taximuslim.databinding.AuthDriverAboutYouFragmentBinding
+import kotlinx.android.synthetic.main.activity_auth_driver_main.*
 
 class AuthDriverAboutYouFragment : Fragment() {
 
@@ -21,6 +23,7 @@ class AuthDriverAboutYouFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        (activity as AppCompatActivity).toolbar.setNavigationIcon(R.drawable.arrow_to_left_black)
         val binding = AuthDriverAboutYouFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProviders.of(this).get(AuthDriverAboutYouViewModel::class.java)
         binding.viewModel = viewModel

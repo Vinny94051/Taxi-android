@@ -177,4 +177,8 @@
     <string name="take_order">Взять заказ</string>
     <string name="help_with_order">Помощь</string>
     <string name="order_history">История заказов</string>
+    <string name="income_per_month">Мой доход за месяц</string>
+    <string name="income_per_week">Мой доход за неделю</string>
+    <string name="income_per_day">Мой доход за день</string>
+    <string name="income_per_trip">За последнюю поездку</string>
 </resources>
