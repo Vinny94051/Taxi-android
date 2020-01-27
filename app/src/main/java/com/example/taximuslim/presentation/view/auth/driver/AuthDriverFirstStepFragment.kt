@@ -39,7 +39,7 @@ class AuthDriverFirstStepFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val buttonText: TextView? = view?.findViewById(R.id.main_btn_text) as TextView
+        val buttonText: TextView? = view.findViewById(R.id.main_btn_text) as TextView
         buttonText?.let { mainButtonText ->
             mainButtonText.text = getString(R.string.start)
         }

@@ -19,9 +19,9 @@
             android:layout_width="96dp"
             android:layout_height="96dp"
             app:cardCornerRadius="48dp"
+            android:layout_marginTop="137dp"
             app:layout_constraintVertical_bias="0.4"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
@@ -35,8 +35,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
-            android:layout_marginEnd="@dimen/default_margin"
-            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/large_margin"
+            android:layout_marginStart="@dimen/large_margin"
             android:gravity="center"
             android:textColor="#4F4F4F"
             android:textAppearance="@style/ContrastFieldText"

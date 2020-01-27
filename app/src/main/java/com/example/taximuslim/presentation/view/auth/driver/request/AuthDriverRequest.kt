@@ -21,7 +21,7 @@ class AuthDriverRequest : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        (activity as AppCompatActivity).supportActionBar?.show()
+        (activity as AppCompatActivity).supportActionBar?.hide()
         val binding = AuthDriverRequestFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProviders.of(this).get(AuthDriverRequestViewModel::class.java)
         binding.lifecycleOwner = viewLifecycleOwner
@@ -29,7 +29,7 @@ class AuthDriverRequest : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val buttonText: TextView? = view?.findViewById(R.id.main_btn_text) as TextView
+        val buttonText: TextView? = view.findViewById(R.id.main_btn_text) as TextView
         buttonText?.let { mainButtonText ->
             mainButtonText.text = getString(R.string.go_to_main_screen)
         }

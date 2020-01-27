@@ -5,7 +5,7 @@ import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 
 @BindingAdapter("bindSelected")
-fun CheckBox.setSelcted(data: Boolean) {
+fun CheckBox.setSelected(data: Boolean) {
     isSelected = data
 }
 

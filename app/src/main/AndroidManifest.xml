@@ -20,8 +20,15 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
         tools:targetApi="m">
+        <activity android:name=".presentation.view.driver.driverOrderHistory.DriverOrderHistoryActivity"></activity>
         <activity android:name=".presentation.view.driverMainScreen.DriverMainScreen"></activity>
-        <activity android:name=".presentation.view.auth.driver.AuthDriverMainActivity"></activity>
+        <activity android:name=".presentation.view.auth.driver.AuthDriverMainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -37,20 +44,8 @@
         <activity
             android:name=".presentation.view.main.MapsActivity"
             android:label="@string/title_activity_maps_controller"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".presentation.view.auth.AuthActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name=".presentation.view.auth.AuthActivity"></activity>
         <activity android:name=".presentation.view.splashscreen.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
