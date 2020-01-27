@@ -6,14 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.ColorRes
+import androidx.annotation.LayoutRes
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.Fragment
 import com.example.taximuslim.R
+import com.example.taximuslim.utils.showToast
 
-abstract class BaseFragment : Fragment(), IBaseFragment {
+abstract class BaseFragment : Fragment() {
+
+    open fun buttonText(): String = ""
+
+    @LayoutRes
+    abstract fun layoutId(): Int
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,14 +30,11 @@ abstract class BaseFragment : Fragment(), IBaseFragment {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if(buttonText() != "")
-        setButtonText(buttonText())
+        if (buttonText() != "")
+            setButtonText(buttonText())
     }
 
-    open fun buttonText(): String = ""
-
-    override fun showToast(message: String) =
-        Toast.makeText(activity, message, Toast.LENGTH_LONG).show()
+    fun showToast(message: String) = activity?.showToast(message)
 
     private fun setButtonText(text: String) {
         val buttonText: TextView? = view?.findViewById(R.id.main_btn_text) as TextView

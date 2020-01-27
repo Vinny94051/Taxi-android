@@ -10,6 +10,7 @@ import android.text.Spanned
 import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import com.google.android.gms.maps.model.LatLng
 
 
@@ -48,9 +49,9 @@ fun EditText.onSubmitNext(func: () -> Unit) {
 
 fun String.toEditable(): Editable = SpannableStringBuilder(this)
 
-fun Activity.showToast(message: String) {
-    //TODO
-}
+fun Activity.showToast(message: String) =
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+
 
 
 

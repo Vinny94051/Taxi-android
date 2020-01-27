@@ -7,6 +7,7 @@ import com.example.taximuslim.data.network.dto.auth.PreseptResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 import javax.inject.Singleton
 
@@ -24,4 +25,6 @@ interface AuthApi {
 
     @GET("precept")
      fun getPrecept() : Call<PreseptResponse>
+
+
 }

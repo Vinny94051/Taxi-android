@@ -16,7 +16,7 @@
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".presentation.view.main.MapsActivity" />
+            tools:context=".presentation.view.clientorder.MapsActivity" />
 
         <ImageButton
             android:id="@+id/burger_menu_main"
@@ -111,7 +111,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/your_price_layout"
+                android:id="@+id/tripPriceLayout"
                 android:layout_width="292dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/place_location_bottom_layout"
@@ -130,10 +130,10 @@
                     android:src="@drawable/cost_icon" />
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/your_price"
+                    android:id="@+id/tripPriceEditText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="10dp"
                     android:layout_marginBottom="-6dp"
                     android:hint="@string/describe_your_price"
                     android:imeOptions="actionDone"
@@ -143,16 +143,15 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/comment_layout"
+                android:id="@+id/commentLayout"
                 android:layout_width="292dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/your_price_layout"
+                android:layout_below="@id/tripPriceLayout"
                 android:layout_centerHorizontal="true"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="28dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
                 android:orientation="horizontal"
-                android:scrollbarSize="14sp"
                 android:visibility="gone">
 
                 <ImageView
@@ -162,17 +161,14 @@
                     android:layout_marginEnd="8dp"
                     android:src="@drawable/comment_1_icon" />
 
-                <TextView
-                    android:id="@+id/comment_text"
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/commentEditText"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginBottom="-6dp"
+                    android:textAppearance="@style/RegularText"
                     android:singleLine="true"
-                    android:text="@string/сomment_to_driver"
-                    android:textColor="@color/colorThemeGreen"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
+                    android:layout_marginStart="10dp"
+                    android:hint="@string/сomment_to_driver"
                     tools:ignore="SmallSp" />
             </LinearLayout>
 
@@ -180,7 +176,7 @@
                 android:id="@+id/order_kind_buttons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/comment_layout"
+                android:layout_below="@id/commentLayout"
                 android:layout_marginTop="@dimen/default_margin"
                 android:orientation="horizontal"
                 android:padding="4dp">

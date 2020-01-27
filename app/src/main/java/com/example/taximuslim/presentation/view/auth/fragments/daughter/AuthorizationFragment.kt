@@ -5,7 +5,7 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.example.taximuslim.App
 import com.example.taximuslim.R
-import com.example.taximuslim.domain.models.RegistrationStatus
+import com.example.taximuslim.domain.auth.models.RegistrationStatus
 import com.example.taximuslim.presentation.view.auth.AuthActivity
 import com.example.taximuslim.presentation.view.auth.fragments.base.BaseAuthFragment
 import com.example.taximuslim.presentation.viewmodel.auth.AuthViewModel

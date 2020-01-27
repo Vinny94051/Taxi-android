@@ -5,6 +5,8 @@ import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import com.example.taximuslim.presentation.view.clientorder.managers.ButtonManager
+import com.example.taximuslim.presentation.view.design.dialogswindow.PriceAlert
 
 class ViewManager(var activity: Context) {
 
@@ -31,7 +33,21 @@ class ViewManager(var activity: Context) {
             view.visibility = View.VISIBLE
     }
 
+    fun showPriceAlert(alert: PriceAlert?, buttonManager: ButtonManager) {
+        if(buttonManager.isAtLeastOneBtnActive())
+            alert?.show()
+    }
+
     fun showAlert(alert: AlertDialog?) = alert?.show()
+
+    fun removeFocusFromEditTexts(vararg editTexts: EditText){
+        for (editText in editTexts){
+            editText.isFocusableInTouchMode = false
+            editText.isFocusable = false
+            editText.isFocusableInTouchMode = true
+            editText.isFocusable = true
+        }
+    }
 
     fun setOnFocusListener(editText: EditText, foo: () -> Unit) {
         editText.setOnFocusChangeListener { _, isOpen ->

@@ -37,7 +37,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".presentation.view.main.MapsActivity"
+            android:name=".presentation.view.clientorder.MapsActivity"
             android:label="@string/title_activity_maps_controller"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>

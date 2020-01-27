@@ -2,6 +2,7 @@ package com.example.taximuslim.dagger
 
 import com.example.taximuslim.data.network.RetrofitService
 import com.example.taximuslim.data.network.api.AuthApi
+import com.example.taximuslim.data.network.api.OrderAPi
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -21,5 +22,10 @@ object ApiModule {
     @Singleton
     @Provides
     fun provideAuthApi(retrofit: RetrofitService) : AuthApi = retrofit.getAuthApi()
+
+    @JvmStatic
+    @Singleton
+    @Provides
+    fun provideOrderApi(retrofit: RetrofitService) : OrderAPi = retrofit.getOrderApi()
 
 }

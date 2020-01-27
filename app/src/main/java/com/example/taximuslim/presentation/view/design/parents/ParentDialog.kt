@@ -11,13 +11,18 @@ open class ParentDialog(context: Context) : AlertDialog(context), View.OnClickLi
 
     var thisWindow: Window? = null
 
+    var closeListener: ((Boolean) -> Unit)? = null
+    fun setOnCloseListener(listener: ((Boolean) -> Unit)) {
+        closeListener = listener
+    }
+
     fun setLayout() =
         thisWindow?.setLayout(
             WindowManager.LayoutParams.WRAP_CONTENT,
             WindowManager.LayoutParams.WRAP_CONTENT
         )
 
-    fun initViews(okBtn : View, cancelBtn: View) {
+    fun initButtons(okBtn: View, cancelBtn: View) {
         okBtn.setOnClickListener(this)
         cancelBtn.setOnClickListener(this)
     }

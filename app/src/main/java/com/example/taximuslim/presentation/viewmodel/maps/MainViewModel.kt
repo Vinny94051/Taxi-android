@@ -6,7 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import com.example.taximuslim.App
 import com.example.taximuslim.baseUI.viewmodel.BaseViewModel
 import com.example.taximuslim.data.recycle.places.PlacesModelForRecycleViewHorizontal
-import com.example.taximuslim.presentation.view.main.list.PlacesModel
+import com.example.taximuslim.domain.order.IOrderInteractor
+import com.example.taximuslim.presentation.view.clientorder.list.PlacesModel
 import com.example.taximuslim.utils.location.IUserLocationProvider
 import javax.inject.Inject
 
@@ -18,6 +19,9 @@ class MainViewModel : BaseViewModel() {
 
     @Inject
     lateinit var userLocationProvider: IUserLocationProvider
+
+    @Inject
+    lateinit var interactor: IOrderInteractor
 
 
     private val _currentLocation = MutableLiveData<Location>()

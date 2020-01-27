@@ -7,8 +7,6 @@ import dagger.Module
 
 @Module
 interface LocationModule {
-
     @Binds
     fun bindMyLocationProvider(userLocationProvider: UserLocationProvider) :IUserLocationProvider
-
 }
