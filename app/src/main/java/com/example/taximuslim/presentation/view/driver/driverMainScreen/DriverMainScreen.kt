@@ -1,4 +1,4 @@
-package com.example.taximuslim.presentation.view.driverMainScreen
+package com.example.taximuslim.presentation.view.driver.driverMainScreen
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

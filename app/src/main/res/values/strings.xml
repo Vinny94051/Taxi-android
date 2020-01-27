@@ -176,4 +176,5 @@
     <string name="error_message_bad_code">Неверный код</string>
     <string name="take_order">Взять заказ</string>
     <string name="help_with_order">Помощь</string>
+    <string name="order_history">История заказов</string>
 </resources>

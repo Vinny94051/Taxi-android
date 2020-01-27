@@ -20,14 +20,18 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
         tools:targetApi="m">
-        <activity android:name=".presentation.view.driver.driverOrderHistory.DriverOrderHistoryActivity"></activity>
-        <activity android:name=".presentation.view.driverMainScreen.DriverMainScreen"></activity>
-        <activity android:name=".presentation.view.auth.driver.AuthDriverMainActivity">
+        <activity
+            android:name=".presentation.view.driver.driverOrderHistory.DriverOrderHistoryActivity"
+            android:label="@string/order_history" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name="com.example.taximuslim.presentation.view.driver.driverMainScreen.DriverMainScreen"></activity>
+        <activity android:name=".presentation.view.auth.driver.AuthDriverMainActivity">
+
         </activity>
 
         <meta-data

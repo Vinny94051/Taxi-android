@@ -16,7 +16,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="@dimen/default_margin"
         app:cardCornerRadius="16dp"
-        tools:context=".presentation.view.driverMainScreen.DriverMainScreen">
+        tools:context=".presentation.view.driver.driverMainScreen.DriverMainScreen">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout

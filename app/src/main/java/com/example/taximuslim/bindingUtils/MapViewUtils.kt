@@ -11,7 +11,7 @@ import com.google.android.gms.maps.model.PolylineOptions
 @BindingAdapter("path")
 fun MapView.setPath(path: PathModel) {
     this.getMapAsync {map ->
-        val polyLine = map.addPolyline(PolylineOptions().also{it.ad
+        val polyLine = map.addPolyline(PolylineOptions().also{
         })
     }
 }
