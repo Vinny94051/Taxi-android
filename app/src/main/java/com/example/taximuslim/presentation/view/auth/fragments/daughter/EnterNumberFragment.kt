@@ -14,7 +14,6 @@ class EnterNumberFragment : BaseAuthFragment() {
         val INSTANCE =
             EnterNumberFragment()
 
-        const val COUNTRY_CODE = "+7"
     }
 
     override fun layoutId() = R.layout.fragment_enter_number
@@ -27,24 +26,22 @@ class EnterNumberFragment : BaseAuthFragment() {
 
     override fun onClick(p0: View?) {
         when (p0?.id) {
-            R.id.enter_button -> {
-                if (NumberValidator.isValidNumber(enter_number.text.toString())) {
-                    saveNumber()
-                    (activity as AuthActivity)
-                        .replaceFragment(
-                            EnterSmsCodeFragment.INSTANCE,
-                            R.id.container,
-                            EnterSmsCodeFragment.FRAGMENT_ID
-                        )
-                } else showToast(getString(R.string.number_exeption))
-            }
+            R.id.enter_button -> enterButtonAction()
         }
     }
 
-    //TODO пока без кода страны отправлять
-    private fun saveNumber() {
-        (activity as AuthActivity).userNumber = (/*COUNTRY_CODE + */  enter_number.text.toString())
+    private fun enterButtonAction() {
+        if (NumberValidator.isValidNumber(enter_number.text.toString())) {
+            (activity as AuthActivity).saveNumber(enter_number)
+            (activity as AuthActivity)
+                .replaceFragment(
+                    EnterSmsCodeFragment.INSTANCE,
+                    R.id.container,
+                    EnterSmsCodeFragment.FRAGMENT_ID
+                )
+        } else showToast(getString(R.string.number_exeption))
     }
+
 
 
 }

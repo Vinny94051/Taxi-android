@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shareInterpolator="@android:anim/accelerate_interpolator">
+    <translate
+        android:fromYDelta="-5%" android:toYDelta="0%"
+        android:duration="350" />
+
+    <alpha
+        android:fromAlpha="@integer/google_play_services_version"
+        android:toAlpha="@integer/google_play_services_version"
+        android:duration="400"
+        />
+</set>

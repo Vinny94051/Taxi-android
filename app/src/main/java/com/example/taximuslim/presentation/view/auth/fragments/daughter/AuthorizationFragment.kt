@@ -2,10 +2,11 @@ package com.example.taximuslim.presentation.view.auth.fragments.daughter
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.example.taximuslim.App
 import com.example.taximuslim.R
-import com.example.taximuslim.domain.models.RegistrationStatus
+import com.example.taximuslim.domain.auth.models.RegistrationStatus
 import com.example.taximuslim.presentation.view.auth.AuthActivity
 import com.example.taximuslim.presentation.view.auth.fragments.base.BaseAuthFragment
 import com.example.taximuslim.presentation.viewmodel.auth.AuthViewModel
@@ -17,13 +18,11 @@ class AuthorizationFragment : BaseAuthFragment() {
 
     companion object {
         const val FRAGMENT_ID = "AUTH_FRAGMENT"
-        val INSTANCE = AuthorizationFragment()
+        fun newInstance() = AuthorizationFragment()
+
         const val INVALID_NUMBER = "invalid number"
         const val EMPTY_NUMBER = "empty number"
     }
-
-    override fun layoutId() = R.layout.fragment_authorization
-
 
     init {
         App.appComponent.inject(this)
@@ -32,11 +31,22 @@ class AuthorizationFragment : BaseAuthFragment() {
     @Inject
     lateinit var viewModel: AuthViewModel
 
+    override fun layoutId() = R.layout.fragment_authorization
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initViewModel()
+    }
+
+    override fun initViews() {
+        button.setOnClickListener(this)
+        registrationTextView.setOnClickListener(this)
+    }
 
     override fun onClick(p0: View?) {
         when (p0?.id) {
             R.id.button -> {
-                when(val number = getAndValidatePhoneNumber()){
+                when (val number = getAndValidatePhoneNumber()) {
                     EMPTY_NUMBER -> showErrorView(getString(R.string.error_message_empty_number))
                     INVALID_NUMBER -> showErrorView(getString(R.string.error_message_invalid_number))
                     else -> loadNumberStatus(number)
@@ -52,10 +62,6 @@ class AuthorizationFragment : BaseAuthFragment() {
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initViewModel()
-    }
 
     private fun getAndValidatePhoneNumber(): String =
         when {
@@ -70,21 +76,31 @@ class AuthorizationFragment : BaseAuthFragment() {
     }
 
     private fun initViewModel() {
-        viewModel.loadRegistrationNumberStatus.observe(this, Observer { registrationStatus ->
-            registrationStatus?.let { status ->
-                when (status) {
-                    RegistrationStatus.ENTRY -> {
-                        showToast("1")
-                    }
-                    RegistrationStatus.REGISTRATION -> {
-                        showErrorView(getString(R.string.error_message_no_account))
-                    }
-                    RegistrationStatus.ERROR -> {
-                        showErrorView(getString(R.string.error_message_internet_exeption))
+        viewModel.loadRegistrationNumberStatus.observe(
+            this as LifecycleOwner,
+            Observer { registrationStatus ->
+                registrationStatus?.let { status ->
+                    when (status) {
+
+                        RegistrationStatus.ENTRY -> {
+                            (activity as AuthActivity).apply {
+                                saveNumber(phoneNumberEditText)
+                                replaceFragment(
+                                    EnterSmsCodeFragment.INSTANCE,
+                                    R.id.container,
+                                    EnterSmsCodeFragment.FRAGMENT_ID
+                                )
+                            }
+                        }
+                        RegistrationStatus.REGISTRATION -> {
+                            showErrorView(getString(R.string.error_message_no_account))
+                        }
+                        RegistrationStatus.ERROR -> {
+                            showErrorView(getString(R.string.error_message_internet_exeption))
+                        }
                     }
                 }
-            }
-        })
+            })
     }
 
     private fun showErrorView(errorMessage: String) {
@@ -115,8 +131,4 @@ class AuthorizationFragment : BaseAuthFragment() {
         }
 
 
-    override fun initViews() {
-        button.setOnClickListener(this)
-        registrationTextView.setOnClickListener(this)
-    }
 }

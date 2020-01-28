@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import com.example.taximuslim.App
 import com.example.taximuslim.baseUI.viewmodel.NetworkViewModel
 import com.example.taximuslim.data.network.dto.auth.CheckSmsCodeRequest
-import com.example.taximuslim.domain.IAuthInteractor
-import com.example.taximuslim.domain.models.PreseptModel
-import com.example.taximuslim.domain.models.RegistrationStatus
+import com.example.taximuslim.domain.auth.IAuthInteractor
+import com.example.taximuslim.domain.auth.models.PreseptModel
+import com.example.taximuslim.domain.auth.models.RegistrationStatus
 import javax.inject.Inject
 
 class AuthViewModel : NetworkViewModel() {

@@ -8,6 +8,7 @@ import com.example.taximuslim.dagger.AppModule
 import com.example.taximuslim.dagger.DaggerAppComponent
 
 class App : Application() {
+
     init {
         instance = this
         appComponent = initDagger(this)
@@ -17,7 +18,6 @@ class App : Application() {
         private var instance: App? = null
         lateinit var appComponent: AppComponent
         fun getApplicationContext(): Context = instance!!.applicationContext
-
     }
 
     private fun initDagger(app: Application): AppComponent {

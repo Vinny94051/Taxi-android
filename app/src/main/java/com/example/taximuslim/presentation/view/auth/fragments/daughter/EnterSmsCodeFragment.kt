@@ -7,6 +7,7 @@ import com.example.taximuslim.R
 import kotlinx.android.synthetic.main.fragment_enter_sms_code.*
 import android.text.Editable
 import android.widget.EditText
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.example.taximuslim.App
 import com.example.taximuslim.data.network.dto.auth.CheckSmsCodeRequest
@@ -68,7 +69,7 @@ class EnterSmsCodeFragment : BaseAuthFragment() {
     }
 
     private fun initViewModel() {
-        viewModel.loadTokenLiveData.observe(this, Observer { token ->
+        viewModel.loadTokenLiveData.observe(this as LifecycleOwner, Observer { token ->
 
             when (token) {
                 "{status=no code}" -> showErrorView(getString(R.string.error_message_bad_code))

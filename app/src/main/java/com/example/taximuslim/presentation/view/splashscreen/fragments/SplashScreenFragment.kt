@@ -8,10 +8,9 @@ import com.bumptech.glide.Glide
 import com.example.taximuslim.R
 
 import com.example.taximuslim.baseUI.fragment.BaseFragment
-import com.example.taximuslim.presentation.view.main.MapsActivity
+import com.example.taximuslim.presentation.view.clientorder.MapsActivity
 import com.example.taximuslim.presentation.viewmodel.auth.AuthViewModel
 import kotlinx.android.synthetic.main.fragment_splash_screen.*
-import kotlin.random.Random
 
 class SplashScreenFragment : BaseFragment(), View.OnClickListener {
 

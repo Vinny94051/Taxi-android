@@ -6,286 +6,347 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <fragment
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".presentation.view.main.MapsActivity" />
-
-    <ImageButton
-        android:id="@+id/burger_menu_main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/burger_menu_btn"
-        android:paddingStart="16dp"
-        android:paddingTop="8dp"
-        android:paddingEnd="16dp"
-        android:paddingBottom="8dp"
-        android:src="@drawable/ic_menu_black_24dp"
-        android:translationZ="25dp" />
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_list"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_above="@id/create_order_view"
-        android:layout_marginBottom="12dp" />
-
     <RelativeLayout
-        android:id="@+id/create_order_view"
+        android:id="@+id/rootLayout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/fragment_main_back">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:id="@+id/user_location_top_layout"
-            android:layout_width="292dp"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="@dimen/default_margin"
-            android:layout_marginEnd="28dp"
-            android:orientation="horizontal">
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".presentation.view.clientorder.MapsActivity" />
 
-            <ImageView
-                android:id="@+id/placeholder_img"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/placeholder_green" />
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/user_location"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="-6dp"
-                android:hint="@string/current_location"
-                android:imeOptions="actionNext"
-                android:singleLine="true"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/place_location_bottom_layout"
-            android:layout_width="292dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/user_location_top_layout"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="28dp"
-            android:orientation="horizontal"
-            android:scrollbarSize="14sp">
-
-            <ImageView
-                android:id="@+id/placeholder_img_2"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/placeholder_light_brown" />
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/place_location"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="-6dp"
-                android:hint="@string/where"
-                android:imeOptions="actionNext"
-                android:singleLine="true"
-                android:textSize="14sp"
-                tools:ignore="SmallSp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/your_price_layout"
-            android:layout_width="292dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/place_location_bottom_layout"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="28dp"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <ImageView
-                android:id="@+id/cost_img"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/cost_icon" />
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/your_price"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="6dp"
-                android:layout_marginBottom="-6dp"
-                android:hint="@string/describe_your_price"
-                android:imeOptions="actionDone"
-                android:singleLine="true"
-                android:textSize="14sp"
-                tools:ignore="SmallSp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/comment_layout"
-            android:layout_width="292dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/your_price_layout"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="28dp"
-            android:orientation="horizontal"
-            android:scrollbarSize="14sp">
-
-            <ImageView
-                android:id="@+id/comment_img"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/comment_1_icon" />
-
-            <TextView
-                android:id="@+id/comment_text"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="-6dp"
-                android:singleLine="true"
-                android:text="@string/сomment_to_driver"
-                android:textColor="@color/colorThemeGreen"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                tools:ignore="SmallSp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/order_kind_buttons"
+        <ImageButton
+            android:id="@+id/burger_menu_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/comment_layout"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="12dp"
-            android:orientation="horizontal"
-            android:padding="4dp">
+            android:layout_marginTop="32dp"
+            android:background="@drawable/burger_menu_btn"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp"
+            android:src="@drawable/ic_menu_black_24dp"
+            android:translationZ="25dp" />
 
-            <Button
-                android:id="@+id/economy_order"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="4dp"
-                android:background="@drawable/order_button_back"
-                android:drawablePadding="4dp"
-                android:paddingStart="8dp"
-                android:paddingTop="3dp"
-                android:paddingEnd="8dp"
-                android:paddingBottom="4dp"
-                android:textAlignment="textStart"
-                android:textAllCaps="false"
-                android:textAppearance="@style/button_for_order"
-                android:textColor="@android:color/white" />
 
-            <Button
-                android:id="@+id/comfort_order"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="4dp"
-                android:background="@drawable/order_button_back"
-                android:drawablePadding="4dp"
-                android:paddingStart="8dp"
-                android:paddingTop="3dp"
-                android:paddingEnd="8dp"
-                android:paddingBottom="4dp"
-                android:textAlignment="textStart"
-                android:textAllCaps="false"
-                android:textAppearance="@style/button_for_order"
-                android:textColor="@android:color/white" />
-
-            <Button
-                android:id="@+id/business_order"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="28dp"
-                android:background="@drawable/order_button_back"
-                android:drawablePadding="4dp"
-                android:paddingStart="8dp"
-                android:paddingTop="3dp"
-                android:paddingEnd="8dp"
-                android:paddingBottom="4dp"
-                android:textAlignment="textStart"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:textSize="12sp" />
-        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_list"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_above="@id/create_order_view"
+            android:layout_marginBottom="12dp" />
 
         <RelativeLayout
-            android:id="@+id/main_button_order_taxi"
-            android:layout_width="292dp"
-            android:layout_height="48dp"
-            android:layout_below="@id/order_kind_buttons"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="24dp"
+            android:id="@+id/create_order_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_marginTop="12dp"
-            android:layout_marginEnd="28dp"
-            android:layout_marginBottom="18dp"
-            android:background="@drawable/arrow_stroke_bg">
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/fragment_main_back">
 
-            <TextView
-                android:id="@+id/main_btn_text"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="2dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/arrow_overlay"
-                android:paddingStart="8dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="8dp"
-                android:text="@string/order_taxi"
-                android:textAppearance="@style/start"
-                android:textStyle="bold"
-                tools:ignore="RtlSymmetry" />
+            <LinearLayout
+                android:id="@+id/user_location_top_layout"
+                android:layout_width="292dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginEnd="28dp"
+                android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="72dp"
+                <ImageView
+                    android:id="@+id/placeholder_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/placeholder_green" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/user_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="-6dp"
+                    android:hint="@string/current_location"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true"
+                    android:textAppearance="@style/RegularText"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/place_location_bottom_layout"
+                android:layout_width="292dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/user_location_top_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginEnd="28dp"
+                android:orientation="horizontal"
+                android:scrollbarSize="14sp">
+
+                <ImageView
+                    android:id="@+id/placeholder_img_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/placeholder_light_brown" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/pointBEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="-6dp"
+                    android:hint="@string/where"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true"
+                    android:textAppearance="@style/RegularText"
+                    android:textSize="14sp"
+                    tools:ignore="SmallSp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tripPriceLayout"
+                android:layout_width="292dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/place_location_bottom_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="28dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/cost_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/cost_icon" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/tripPriceEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="-6dp"
+                    android:hint="@string/describe_your_price"
+                    android:imeOptions="actionDone"
+                    android:singleLine="true"
+                    android:textSize="14sp"
+                    tools:ignore="SmallSp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/commentLayout"
+                android:layout_width="292dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tripPriceLayout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/comment_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/comment_1_icon" />
+
+                <EditText
+                    android:id="@+id/commentEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textAppearance="@style/RegularText"
+                    android:singleLine="true"
+                    android:layout_marginStart="10dp"
+                    android:hint="@string/сomment_to_driver"
+                    tools:ignore="SmallSp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/order_kind_buttons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/commentLayout"
+                android:layout_marginTop="@dimen/default_margin"
+                android:orientation="horizontal"
+                android:padding="4dp">
+
+                <RelativeLayout
+                    android:id="@+id/economy_order"
+                    android:layout_width="92dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="24dp"
+                    android:background="@drawable/order_button_back">
+
+                    <TextView
+                        android:id="@+id/firstCategoryNameTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="8dp"
+                        android:text="Эконом"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/firstCategoryPriceTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/firstCategoryNameTextView"
+                        android:paddingStart="8dp"
+                        android:text="от 200 Rub"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/checkMarkImageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginEnd="@dimen/small_margin"
+                        android:src="@drawable/ic_chekc_mark"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/comfort_order"
+                    android:layout_width="92dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/small_margin"
+                    android:layout_toEndOf="@id/economy_order"
+                    android:background="@drawable/order_button_back">
+
+                    <TextView
+                        android:id="@+id/secondCategoryNameTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="8dp"
+                        android:text="Комфорт"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/secondCategoryPriceTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/secondCategoryNameTextView"
+                        android:paddingStart="8dp"
+                        android:text="от 200 Rub"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/checkMarkImageViewSecond"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginEnd="@dimen/small_margin"
+                        android:src="@drawable/ic_chekc_mark"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/business_order"
+                    android:layout_width="92dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/small_margin"
+                    android:layout_toEndOf="@id/comfort_order"
+                    android:background="@drawable/order_button_back">
+
+                    <TextView
+                        android:id="@+id/thirdCategoryNameTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="8dp"
+                        android:text="Бизнесс"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/thirdCategoryPriceTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="от 200 Rub"
+                        android:layout_below="@id/thirdCategoryNameTextView"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp"
+                        android:paddingStart="8dp"
+                        />
+
+                    <ImageView
+                        android:id="@+id/checkMarkImageViewThird"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_chekc_mark"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/small_margin"
+                        android:layout_marginTop="7dp"
+                        android:visibility="gone"
+                        />
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+            <include
+                android:id="@+id/main_button_order_taxi"
+                layout="@layout/gradient_button"
+                android:layout_width="292dp"
                 android:layout_height="48dp"
-                android:layout_alignParentEnd="true"
-                android:background="@drawable/arrow_bg"
-                android:padding="4dp"
-                android:src="@drawable/arrow_forward_black_24dp" />
+                android:layout_below="@id/order_kind_buttons"
+                android:layout_alignParentBottom="false"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="@dimen/default_margin" />
+
         </RelativeLayout>
+
+        <androidx.drawerlayout.widget.DrawerLayout
+            android:id="@+id/drawer_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="false"
+            android:translationZ="22dp"
+            android:visibility="gone"
+            tools:openDrawer="start">
+
+            <com.google.android.material.navigation.NavigationView
+                android:id="@+id/nav_view"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:fitsSystemWindows="true"
+                app:headerLayout="@layout/nav_header_navigation_drawer"
+                app:menu="@menu/activity_navigation_drawer_drawer" />
+        </androidx.drawerlayout.widget.DrawerLayout>
     </RelativeLayout>
 
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawer_layout"
-        android:translationZ="22dp"
+    <RelativeLayout
+        android:id="@+id/floatView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="false"
-        android:visibility="gone"
-        tools:openDrawer="start">
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="32dp"
+        android:translationZ="20dp"
+        android:visibility="gone">
 
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/nav_view"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:fitsSystemWindows="true"
-            app:headerLayout="@layout/nav_header_navigation_drawer"
-            app:menu="@menu/activity_navigation_drawer_drawer" />
-    </androidx.drawerlayout.widget.DrawerLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

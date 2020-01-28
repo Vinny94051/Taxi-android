@@ -2,6 +2,8 @@ package com.example.taximuslim.dagger
 
 import com.example.taximuslim.data.network.RetrofitService
 import com.example.taximuslim.data.network.api.AuthApi
+import com.example.taximuslim.data.network.api.OrderAPi
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -14,14 +16,16 @@ object ApiModule {
     @JvmStatic
     @Singleton
     @Provides
-    fun provideRetrofitService() : Retrofit = Retrofit.Builder()
-        .baseUrl(RetrofitService.BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
+    fun provideRetrofitService() : RetrofitService = RetrofitService()
 
     @JvmStatic
     @Singleton
     @Provides
-    fun provideAuthApi(retrofit: Retrofit) : AuthApi =
-        retrofit.create(AuthApi::class.java)
+    fun provideAuthApi(retrofit: RetrofitService) : AuthApi = retrofit.getAuthApi()
+
+    @JvmStatic
+    @Singleton
+    @Provides
+    fun provideOrderApi(retrofit: RetrofitService) : OrderAPi = retrofit.getOrderApi()
+
 }

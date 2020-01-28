@@ -10,27 +10,34 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
-        android:scaleType="fitXY"
-        />
+        android:scaleType="fitXY" />
 
     <TextView
         android:id="@+id/wish_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/to_order_main_btn"
+        android:layout_centerHorizontal="true"
         android:layout_marginStart="@dimen/default_margin"
         android:layout_marginEnd="@dimen/default_margin"
         android:background="@drawable/rectangle_4"
         android:paddingStart="12dp"
         android:paddingTop="32dp"
-        android:layout_centerHorizontal="true"
         android:paddingEnd="12dp"
-        android:textAlignment="center"
         android:paddingBottom="32dp"
-        android:textColor="#424242"
+        android:textAlignment="center"
         android:textAppearance="@style/RegularText"
+        android:textColor="#424242"
+        android:layout_marginBottom="@dimen/big_margin"
         android:textSize="16sp" />
 
-    <include android:id="@+id/to_order_main_btn"
-        layout="@layout/button"/>
+    <include
+        android:id="@+id/to_order_main_btn"
+        layout="@layout/gradient_button"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="37dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="72dp" />
 </RelativeLayout>
