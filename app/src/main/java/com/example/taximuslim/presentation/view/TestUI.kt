@@ -8,6 +8,6 @@ class TestUI : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.driver_profile_fragment)
+        setContentView(R.layout.driver_order_item)
     }
 }

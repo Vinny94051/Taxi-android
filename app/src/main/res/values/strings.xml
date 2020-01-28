@@ -183,7 +183,7 @@
     <string name="income_per_trip">За последнюю поездку</string>
     <string name="common_information">Общая информация</string>
     <string name="cash_balance">Остаток денежных средств</string>
-    <string name="replenish_balance">Пополнить баланс</string>
+    <string name="replenish_balance">Пополнить счёт</string>
     <string name="info_about_car_and_driver">Информация о машине и водителе</string>
     <string name="change">Изменить</string>
 </resources>

@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="220dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="@dimen/default_margin"
+        android:translationX="-16dp"
         app:cardCornerRadius="16dp"
         tools:context=".presentation.view.driver.driverMainScreen.DriverMainScreen">
 
@@ -22,15 +22,25 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <com.google.android.material.internal.BaselineLayout
+                android:id="@+id/start"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/default_margin"/>
+
             <TextView
                 android:id="@+id/driverName"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/medium_margin"
                 android:layout_marginTop="@dimen/default_margin"
                 android:textAppearance="@style/ContrastFieldText"
                 android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:maxLines="1"
+                android:ellipsize="end"
+                app:layout_constraintEnd_toStartOf="@+id/routeDistance"
+                app:layout_constraintStart_toStartOf="@id/start"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Нурсултан" />
 
@@ -79,13 +89,14 @@
 
             <TextView
                 android:id="@+id/startLocationText"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:fontFamily="@font/roboto"
-                android:textAppearance="@style/ContrastFieldText"
                 android:text="@{order.startAddress}"
+                android:textAppearance="@style/ContrastFieldText"
                 app:layout_constraintBottom_toBottomOf="@id/startLocationIcon"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/startLocationIcon"
                 app:layout_constraintTop_toTopOf="@id/startLocationIcon"
                 tools:text="пл. Александра Невского, 2" />
@@ -101,26 +112,31 @@
 
             <TextView
                 android:id="@+id/finalLocationText"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:fontFamily="@font/roboto"
                 android:textAppearance="@style/ContrastFieldText"
                 android:text="@{order.endAddress}"
+                android:maxLines="1"
+                android:ellipsize="end"
                 app:layout_constraintBottom_toBottomOf="@id/finalLocationIcon"
                 app:layout_constraintStart_toEndOf="@id/finalLocationIcon"
                 app:layout_constraintTop_toTopOf="@id/finalLocationIcon"
                 tools:text="Багрицкого, 5" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text=""
                 android:layout_marginStart="12dp"
                 android:fontFamily="@font/roboto_medium"
-                android:textSize="16sp"
+                android:text=""
                 android:textAppearance="@style/SecondaryText"
+                android:textSize="16sp"
+                android:maxLines="1"
+                android:ellipsize="none"
                 app:layout_constraintBottom_toBottomOf="@+id/finalLocationText"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/finalLocationText"
                 app:layout_constraintTop_toTopOf="@+id/finalLocationText"
                 tools:text="13 минут" />
@@ -136,13 +152,16 @@
 
             <TextView
                 android:id="@+id/commentText"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:fontFamily="@font/roboto"
-                android:textAppearance="@style/ContrastFieldText"
                 android:text="@{order.comment}"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textAppearance="@style/ContrastFieldText"
                 app:layout_constraintBottom_toBottomOf="@id/commentIcon"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/commentIcon"
                 app:layout_constraintTop_toTopOf="@id/commentIcon"
                 tools:text="Добавить детское кресло для ребенк...." />
@@ -157,16 +176,16 @@
                 android:layout_marginEnd="@dimen/large_margin"
                 android:layout_marginStart="@dimen/large_margin"
                 android:layout_marginBottom="@dimen/default_margin"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@id/start"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:background="@drawable/arrow_stroke_bg"
-                android:foreground="?attr/selectableItemBackground"
-                android:padding="1dp">
+                android:foreground="?attr/selectableItemBackground">
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:layout_margin="1dp"
                     android:background="@drawable/arrow_overlay"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

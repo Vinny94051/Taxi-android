@@ -18,7 +18,8 @@
             android:layout_width="0dp"
             android:layout_height="168dp"
             android:layout_marginTop="@dimen/large_margin"
-            android:layout_marginEnd="@dimen/default_margin"
+            android:translationX="-16dp"
+            app:cardCornerRadius="@dimen/default_margin"
             android:background="@drawable/right_radius_white_shape"
             app:cardElevation="@dimen/default_margin"
             app:layout_constraintTop_toTopOf="parent"
@@ -29,6 +30,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <com.google.android.material.internal.BaselineLayout
+                    android:id="@+id/start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="16dp"/>
+
                 <TextView
                     android:id="@+id/incomePerMonthText"
                     android:layout_width="wrap_content"
@@ -37,7 +45,7 @@
                     android:layout_marginTop="@dimen/medium_margin"
                     android:layout_marginStart="@dimen/medium_margin"
                     android:textAppearance="@style/ContrastFieldText"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/start"
                     app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -45,7 +53,6 @@
                     android:id="@+id/incomePerMonth"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/income_per_month"
                     android:textAppearance="@style/ContrastFieldText"
                     android:layout_marginEnd="@dimen/large_margin"
                     app:price="@{viewModel.incomePerMonth}"
@@ -68,7 +75,6 @@
                     android:id="@+id/incomePerWeek"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/income_per_month"
                     android:textAppearance="@style/ContrastFieldText"
                     android:fontFamily="@font/roboto"
                     app:price="@{viewModel.incomePerWeek}"
@@ -91,7 +97,6 @@
                     android:id="@+id/incomePerDay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/income_per_month"
                     android:textAppearance="@style/ContrastFieldText"
                     android:fontFamily="@font/roboto"
                     app:price="@{viewModel.incomePerDay}"
@@ -114,7 +119,6 @@
                     android:id="@+id/incomePerTrip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/income_per_month"
                     android:textAppearance="@style/ContrastFieldText"
                     android:fontFamily="@font/roboto"
                     app:price="@{viewModel.incomePerTrip}"
