@@ -8,6 +8,8 @@ import com.example.taximuslim.domain.auth.IAuthInteractor
 import com.example.taximuslim.domain.order.IOrderInteractor
 import com.example.taximuslim.domain.order.OrderInteractor
 import com.example.taximuslim.presentation.viewmodel.auth.AuthViewModel
+import com.example.taximuslim.utils.mapfunc.FetchAddressIntentService
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -36,5 +38,9 @@ class AppModule(private val app: Application) {
     fun provideAuthViewModel(): AuthViewModel = AuthViewModel()
 
     @Provides
-    fun provideOrderInteractor() : IOrderInteractor = OrderInteractor()
+    fun provideOrderInteractor(): IOrderInteractor = OrderInteractor()
+
+    @Provides
+    fun providesFetchAddressIntentSrviece(): FetchAddressIntentService =
+        FetchAddressIntentService(app)
 }

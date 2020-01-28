@@ -23,7 +23,6 @@ class PriceAlert(context: Context) : ParentDialog(context) {
                 closeListener?.invoke(true)
                 priceLiveData.value = setPrice.text
                 dismiss()
-                //TODO баг если ничего не ввести в алерт а цена проставлена уже она стрирается
             }
         }
     }

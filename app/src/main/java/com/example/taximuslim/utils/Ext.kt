@@ -53,6 +53,13 @@ fun Activity.showToast(message: String) =
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
 
+fun LatLng.toLocation(): Location {
+    val location = Location("")
+    location.latitude = this.latitude
+    location.longitude = this.longitude
+    return location
+}
+
 
 
 
