@@ -12,6 +12,7 @@
     <string name="_7">+7</string>
     <string name="enter_phone_number">Введите номер телефона</string>
     <string name="continuee">Продолжить</string>
+    <string name="logout">Выйти из аккаунта</string>
     <string name="number_exeption">Неверный формат номера</string>
     <string name="enter_sms_code">Введите полученный SMS-код для продолжения регистрации</string>
     <string name="zero_hint">0</string>
@@ -186,4 +187,16 @@
     <string name="replenish_balance">Пополнить счёт</string>
     <string name="info_about_car_and_driver">Информация о машине и водителе</string>
     <string name="change">Изменить</string>
+    <string name="number_for_support">Номер для связи</string>
+    <string name="to_whom">Кому</string>
+    <string name="your_email">Ваш email</string>
+    <string name="theme">Тема</string>
+    <string name="text">Текст</string>
+    <string name="send_mail">Отправить письмо</string>
+    <string name="change_name">Изменить имя</string>
+    <string name="change_numb">Изменить номер</string>
+    <string name="logout_text">Вы уверены, что хотите выйти из аккаунта?</string>
+    <string name="reject">Отмена</string>
+    <string name="yes">Да</string>
+    <string name="name_changing">Изменение имени</string>
 </resources>

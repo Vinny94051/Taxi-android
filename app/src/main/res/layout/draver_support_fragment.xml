@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.view.driver.support.DriverSupportFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/callCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_margin"
+        android:translationX="-16dp"
+        app:cardElevation="12dp"
+        app:cardCornerRadius="@dimen/default_margin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.internal.BaselineLayout
+                android:id="@+id/start"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/default_margin"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/supportNumbText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:text="@string/number_for_support"
+                android:textAppearance="@style/ContrastFieldText"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="@id/start"/>
+
+            <TextView
+                android:id="@+id/supportNumb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:layout_marginEnd="@dimen/medium_margin"
+                tools:text="+749597556983"
+                android:textAppearance="@style/ContrastFieldText"
+                android:fontFamily="@font/roboto"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/callButton"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginBottom="@dimen/medium_margin"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginEnd="@dimen/medium_margin"
+                android:background="@drawable/arrow_stroke_bg"
+                android:foreground="?attr/selectableItemBackground"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/start"
+                app:layout_constraintTop_toBottomOf="@id/supportNumbText">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="1dp"
+                    android:background="@drawable/arrow_overlay"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/callUsText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="20dp"
+                    android:textAppearance="@style/AccentText"
+                    android:textSize="20sp"
+                    android:text="@string/call_us"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="RtlSymmetry" />
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="0dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/arrow_bg"
+                    android:scaleType="center"
+                    android:src="@drawable/arrow_to_right"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/emailCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:translationX="-16dp"
+        app:cardElevation="12dp"
+        app:cardCornerRadius="@dimen/default_margin"
+        android:layout_marginTop="@dimen/medium_margin"
+        app:layout_constraintTop_toBottomOf="@id/callCard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.internal.BaselineLayout
+                android:id="@+id/emailStart"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/default_margin"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/emailToText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/ContrastFieldText"
+                android:text="@string/to_whom"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:layout_marginStart="@dimen/medium_margin"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="@id/emailStart"/>
+
+            <TextView
+                android:id="@+id/emailFromText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/ContrastFieldText"
+                android:text="@string/your_email"
+                android:layout_marginTop="@dimen/medium_margin"
+                app:layout_constraintTop_toBottomOf="@id/emailToText"
+                app:layout_constraintStart_toStartOf="@id/emailToText"/>
+
+            <TextView
+                android:id="@+id/emailThemeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/ContrastFieldText"
+                android:text="@string/theme"
+                android:layout_marginTop="@dimen/medium_margin"
+                app:layout_constraintTop_toBottomOf="@id/emailFromText"
+                app:layout_constraintStart_toStartOf="@id/emailFromText"/>
+
+            <TextView
+                android:id="@+id/emailText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/ContrastFieldText"
+                android:text="@string/text"
+                android:layout_marginTop="@dimen/medium_margin"
+                app:layout_constraintTop_toBottomOf="@id/emailThemeText"
+                app:layout_constraintStart_toStartOf="@id/emailThemeText"/>
+
+            <TextView
+                android:id="@+id/supportEmailText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:layout_marginStart="2dp"
+                android:textAppearance="@style/ContrastFieldText"
+                android:fontFamily="@font/roboto"
+                android:text="pravilny_put@mail.ru"
+                app:layout_constraintEnd_toEndOf="@+id/editYourEmail"
+                app:layout_constraintStart_toStartOf="@+id/editYourEmail"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editYourEmail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="@dimen/medium_margin"
+                android:hint="example@mail.ru"
+                android:ems="10"
+                android:textAppearance="@style/ContrastFieldText"
+                android:fontFamily="@font/roboto"
+                android:inputType="textEmailAddress"
+                app:layout_constraintBottom_toBottomOf="@+id/emailFromText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/emailFromText"
+                app:layout_constraintTop_toTopOf="@+id/emailFromText" />
+
+            <EditText
+                android:id="@+id/editTheme"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Тема сообщения"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textAppearance="@style/ContrastFieldText"
+                android:fontFamily="@font/roboto"
+                app:layout_constraintBottom_toBottomOf="@+id/emailThemeText"
+                app:layout_constraintEnd_toEndOf="@+id/editYourEmail"
+                app:layout_constraintStart_toStartOf="@+id/editYourEmail"
+                app:layout_constraintTop_toTopOf="@+id/emailThemeText" />
+
+            <EditText
+                android:id="@+id/editEmailText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Введите текст сообщения"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textAppearance="@style/ContrastFieldText"
+                android:fontFamily="@font/roboto"
+                app:layout_constraintBottom_toBottomOf="@+id/emailText"
+                app:layout_constraintEnd_toEndOf="@+id/editTheme"
+                app:layout_constraintStart_toStartOf="@+id/editTheme"
+                app:layout_constraintTop_toTopOf="@+id/emailText"
+                tools:ignore="TextFields" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/emailButton"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="@dimen/large_margin"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_marginEnd="@dimen/medium_margin"
+                android:layout_marginBottom="@dimen/large_margin"
+                android:background="@drawable/arrow_stroke_bg"
+                android:foreground="?attr/selectableItemBackground"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/emailStart"
+                app:layout_constraintTop_toBottomOf="@+id/editEmailText">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="1dp"
+                    android:background="@drawable/arrow_overlay"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/sendEmailText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="20dp"
+                    android:text="@string/send_mail"
+                    android:textAppearance="@style/AccentText"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="RtlSymmetry" />
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="0dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/arrow_bg"
+                    android:scaleType="center"
+                    android:src="@drawable/arrow_to_right"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
