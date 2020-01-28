@@ -11,7 +11,7 @@ class TestUI : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.driver_settings_fragment)
+        setContentView(R.layout.change_numb_fragment)
         val alert = InputNameAlert(this){
             Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
         }
