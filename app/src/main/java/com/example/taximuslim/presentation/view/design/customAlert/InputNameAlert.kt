@@ -13,7 +13,7 @@ class InputNameAlert(context: Context, private val listener: (name: String?) -> 
         setContentView(R.layout.input_name_alert)
         setCancelable(false)
         setListeners()
-        window.clearFlags(
+        window?.clearFlags(
             WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
                     or WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM
         )

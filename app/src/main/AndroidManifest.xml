@@ -57,14 +57,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.view.auth.AuthActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity android:name=".presentation.view.auth.AuthActivity"
+            android:windowSoftInputMode="adjustPan" >
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+
         </activity>
-            android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".presentation.view.auth.AuthActivity" />
         <activity android:name=".presentation.view.splashscreen.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

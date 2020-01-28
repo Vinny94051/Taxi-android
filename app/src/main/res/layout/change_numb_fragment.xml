@@ -10,6 +10,7 @@
         android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scaleType="centerCrop"
         android:src="@drawable/change_numb_bg"/>
 
     <androidx.cardview.widget.CardView
