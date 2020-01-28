@@ -16,21 +16,14 @@ class PriceAlert(context: Context) : ParentDialog(context) {
     override fun onClick(btn: View?) {
         when (btn?.id) {
             R.id.cancel_btn -> {
-                setPrice.text?.isNotEmpty()?.let {
-                    if (it) {
-                        closeListener?.invoke(true)
-                        dismiss()
-                    } else Toast.makeText(context, "Введите вашу цену", Toast.LENGTH_SHORT).show()
-                }
+                closeListener?.invoke(true)
+                dismiss()
             }
             R.id.ok_btn -> {
-                setPrice.text?.isNotEmpty()?.let {
-                    if (it) {
-                        closeListener?.invoke(true)
-                        priceLiveData.value = setPrice.text
-                        dismiss()
-                    } else Toast.makeText(context, "Введите вашу цену", Toast.LENGTH_SHORT).show()
-                }
+                closeListener?.invoke(true)
+                priceLiveData.value = setPrice.text
+                dismiss()
+                //TODO баг если ничего не ввести в алерт а цена проставлена уже она стрирается
             }
         }
     }

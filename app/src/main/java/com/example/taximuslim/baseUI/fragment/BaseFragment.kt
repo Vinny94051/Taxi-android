@@ -45,4 +45,8 @@ abstract class BaseFragment : Fragment() {
 
     fun changeEditTextTint(editText: EditText, @ColorRes color: Int) =
         DrawableCompat.setTint(editText.background, ContextCompat.getColor(context!!, color))
+
+    fun changeViewTint(view : View, @ColorRes color : Int) =
+        DrawableCompat.setTint(view.background, ContextCompat.getColor(context!!, color))
+
 }

@@ -4,7 +4,7 @@ import android.util.Log
 import com.example.taximuslim.App
 import com.example.taximuslim.data.network.api.OrderAPi
 import com.example.taximuslim.data.network.dto.order.TariffsResponse
-import com.example.taximuslim.data.network.dto.order.TrafficRequest
+import com.example.taximuslim.data.network.dto.order.TariffRequest
 import com.example.taximuslim.domain.order.models.TariffModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,7 +22,7 @@ class OrderRepo {
 
     fun getTarrifs(
         token: String,
-        tariffRequest: TrafficRequest,
+        tariffRequest: TariffRequest,
         listener: ((TariffModel) -> Unit)
     ) {
         api.getTariffs(token, tariffRequest).enqueue(object : Callback<TariffsResponse> {

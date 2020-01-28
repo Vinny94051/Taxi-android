@@ -2,6 +2,7 @@ package com.example.taximuslim.presentation.view.clientorder
 
 import android.app.Activity
 import android.content.pm.PackageManager
+import android.location.Location
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.view.MenuItem
@@ -29,7 +30,10 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_maps_controller.*
 import com.example.taximuslim.R
+import com.example.taximuslim.data.network.dto.order.TariffRequest
+import com.example.taximuslim.domain.order.models.TariffModel
 import com.example.taximuslim.presentation.view.clientorder.managers.ButtonManager
+import com.example.taximuslim.utils.prefference.getAuthHeader
 import com.example.taximuslim.utils.view.ViewManager
 import kotlinx.android.synthetic.main.gradient_button.*
 
@@ -83,7 +87,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             R.id.economy_order -> {
                 if (checkPointBEditText()) {
                     btnManager.checkEconomyBtnState()
-                    btnManager.setPriceInPriceAlert(200)
+                    btnManager.setPriceInPriceAlert(PriceHolder.economy)
                     showPriceAlertIfAlLeastOnButtonActive()
                     showPriceAndCommentEditTexts()
                 }
@@ -91,7 +95,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             R.id.comfort_order -> {
                 if (checkPointBEditText()) {
                     btnManager.checkComfortBtnState()
-                    btnManager.setPriceInPriceAlert(500)
+                    btnManager.setPriceInPriceAlert(PriceHolder.comfort)
                     showPriceAlertIfAlLeastOnButtonActive()
                     showPriceAndCommentEditTexts()
                 }
@@ -99,7 +103,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             R.id.business_order -> {
                 if (checkPointBEditText()) {
                     btnManager.checkBusinessBtnState()
-                    btnManager.setPriceInPriceAlert(1000)
+                    btnManager.setPriceInPriceAlert(PriceHolder.business)
                     showPriceAlertIfAlLeastOnButtonActive()
                     showPriceAndCommentEditTexts()
                 }
@@ -197,11 +201,11 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         priceAlert = PriceAlert(this as Activity)
         commentAlert = CommentAlert(this as Activity)
         commentAlert?.setOnCloseListener { _ ->
-            viewManager.removeFocusFromEditTexts(tripPriceEditText,commentEditText)
+            viewManager.removeFocusFromEditTexts(tripPriceEditText, commentEditText)
         }
 
         priceAlert?.setOnCloseListener { _ ->
-            viewManager.removeFocusFromEditTexts(tripPriceEditText,commentEditText)
+            viewManager.removeFocusFromEditTexts(tripPriceEditText, commentEditText)
         }
     }
 
@@ -211,18 +215,21 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
     }
 
     var userLocation: String = ""
-    var pointBLocation : String = ""
+    var pointBLocation: String = ""
 
     private fun initViewModel() {
         viewModel.currentLocation.observe(this,
-            Observer { location ->
+            Observer { location: Location ->
                 mapManger.addMarkerAndMoveCameraToIt(
                     mMap, location.toLatLng(),
                     15f, R.drawable.green_marker
                 )
 
-                userLocation =
-                    SpannableStringBuilder(mapManger.latLngToAddress(location.toLatLng())).toString()
+                mapManger.getCountry(location.toLatLng())?.let {
+                    loadTarrifs(it)
+                }
+                userLocation = mapManger.latLngToAddress(location.toLatLng())
+
                 user_location.text = SpannableStringBuilder(userLocation)
             })
 
@@ -242,6 +249,20 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             pointBEditText.text = address.toEditable()
             pointBLocation = address
         })
+
+        viewModel.tarriffsLiveData.observe(this, Observer { tariffs ->
+            val economyText  = "от " + tariffs.economy + " Rub"
+            PriceHolder.economy = tariffs.economy
+            firstCategoryPriceTextView.text = economyText
+
+            val comfortText = "от " + tariffs.comfort + " Rub"
+            PriceHolder.comfort = tariffs.comfort
+            secondCategoryPriceTextView.text = comfortText
+
+            val businessText = "от " + tariffs.business + " Rub"
+            PriceHolder.business = tariffs.business
+            thirdCategoryPriceTextView.text = businessText
+        })
     }
 
     private fun showPriceAlertIfAlLeastOnButtonActive() =
@@ -255,10 +276,10 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
 
     private fun showPriceAndCommentEditTexts() {
         viewManager.showViews(tripPriceLayout, commentLayout)
-        viewManager.setOnFocusListener(tripPriceEditText){
+        viewManager.setOnFocusListener(tripPriceEditText) {
             viewManager.showPriceAlert(priceAlert, btnManager)
         }
-        viewManager.setOnFocusListener(commentEditText){
+        viewManager.setOnFocusListener(commentEditText) {
             viewManager.showAlert(commentAlert)
         }
     }
@@ -268,6 +289,10 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recycler_list.adapter = adapter
         viewModel.loadPlaces()
+    }
+
+    private fun loadTarrifs(location: TariffRequest) {
+        viewModel.loadTariffs(getAuthHeader(this), location)
     }
 
     override fun onBackPressed() {
