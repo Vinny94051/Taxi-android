@@ -54,7 +54,7 @@
                         android:layout_marginStart="12dp"
                         android:layout_marginTop="12dp"
                         android:lineSpacingExtra="4sp"
-                        android:text="@string/mark_and_seria"
+                        android:text="@string/mark_and_series"
                         android:textColor="@color/contrastTextColor"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -152,7 +152,7 @@
                 android:layout_width="0dp"
                 android:layout_height="152dp"
                 android:layout_marginStart="@dimen/default_margin"
-                android:layout_marginTop="12sp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="@dimen/default_margin"
                 app:cardBackgroundColor="@color/colorCardBackground"
                 app:cardElevation="12dp"
@@ -163,9 +163,8 @@
 
                 <ImageView
                     android:id="@+id/licenceFrontPhotoImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:scaleType="center"
                     android:src="@drawable/take_photo_placeholder" />
 

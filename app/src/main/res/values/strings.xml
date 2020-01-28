@@ -140,7 +140,7 @@
     <string name="car_numb_need_for">Госномер необходим, чтобы пассажир смог найти Вашу машину</string>
     <string name="info_about_car">Информация о машине</string>
     <string name="edit">Редактировать</string>
-    <string name="mark_and_seria">Марка и серия</string>
+    <string name="mark_and_series">Марка и серия</string>
     <string name="color">Цвет</string>
     <string name="car_photo">Фотография машины</string>
     <string name="delete">Удалить</string>
@@ -149,18 +149,18 @@
     <string name="about_you">О себе</string>
     <string name="delete_photo">Удалить фото</string>
     <string name="name">Имя</string>
-    <string name="second_name">Фамилия</string>
+    <string name="surname">Фамилия</string>
     <string name="email">Email</string>
     <string name="input_name">Введите имя</string>
     <string name="input_second_name">Введите фамилию</string>
     <string name="input_email">Введите адресс электронной почты</string>
-    <string name="texi_licence_front">Лицензия такси \n(лицевая сторона)</string>
+    <string name="taxi_licence_front">Лицензия такси (лицевая сторона)</string>
     <string name="photo_shoud_be_correct">Фотография должна быть четкой, без следов изменений</string>
-    <string name="taxi_licence_back">Лицензия такси \n(обратная сторона)</string>
+    <string name="taxi_licence_back">Лицензия такси (обратная сторона)</string>
     <string name="documents">Документы</string>
     <string name="series_and_numb_driver_licence">Серия и номер водительского удостоверения</string>
-    <string name="driver_licence_front">Водительское удостверение \n(лицевая сторона)</string>
-    <string name="driver_licence_back">Водительское удостверение \n(обратная сторона)</string>
+    <string name="driver_licence_front">Водительское удостверение (лицевая сторона)</string>
+    <string name="driver_licence_back">Водительское удостверение (обратная сторона)</string>
     <string name="person_validation">Подтверждение личности</string>
     <string name="validation_text">Поднесите водительские права перед собой и сделайте фото, как на примере</string>
     <string name="validation_rules">— на фото должно быть отчетливо видно лицо и ваше водительское удостверение\n
@@ -181,4 +181,9 @@
     <string name="income_per_week">Мой доход за неделю</string>
     <string name="income_per_day">Мой доход за день</string>
     <string name="income_per_trip">За последнюю поездку</string>
+    <string name="common_information">Общая информация</string>
+    <string name="cash_balance">Остаток денежных средств</string>
+    <string name="replenish_balance">Пополнить баланс</string>
+    <string name="info_about_car_and_driver">Информация о машине и водителе</string>
+    <string name="change">Изменить</string>
 </resources>

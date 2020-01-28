@@ -20,18 +20,16 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
         tools:targetApi="m">
-        <activity
-            android:name=".presentation.view.driver.driverOrderHistory.DriverOrderHistoryActivity"
-            android:label="@string/order_history" >
-
-        </activity>
-        <activity android:name="com.example.taximuslim.presentation.view.driver.driverMainScreen.DriverMainScreen"></activity>
-        <activity android:name=".presentation.view.auth.driver.AuthDriverMainActivity">
+        <activity android:name=".presentation.view.TestUI">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".presentation.view.driver.driverMainScreen.DriverMainScreen" />
+        <activity android:name=".presentation.view.auth.driver.AuthDriverMainActivity">
+
         </activity>
 
         <meta-data
@@ -48,8 +46,8 @@
         <activity
             android:name=".presentation.view.main.MapsActivity"
             android:label="@string/title_activity_maps_controller"
-            android:windowSoftInputMode="adjustPan"></activity>
-        <activity android:name=".presentation.view.auth.AuthActivity"></activity>
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".presentation.view.auth.AuthActivity" />
         <activity android:name=".presentation.view.splashscreen.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

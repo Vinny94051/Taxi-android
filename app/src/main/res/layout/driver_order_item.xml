@@ -46,6 +46,7 @@
                 android:textAppearance="@style/ContrastFieldText"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
+                app:price="@{order.price}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="830 Rub" />
@@ -61,6 +62,7 @@
                 android:textAppearance="@style/ContrastFieldText"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
+                app:distance="@{order.distance}"
                 app:layout_constraintBottom_toBottomOf="@id/routeCost"
                 app:layout_constraintEnd_toStartOf="@id/routeCost"
                 app:layout_constraintTop_toTopOf="@id/routeCost"
@@ -82,6 +84,7 @@
                 android:layout_marginStart="12dp"
                 android:fontFamily="@font/roboto"
                 android:textAppearance="@style/ContrastFieldText"
+                android:text="@{order.startAddress}"
                 app:layout_constraintBottom_toBottomOf="@id/startLocationIcon"
                 app:layout_constraintStart_toEndOf="@id/startLocationIcon"
                 app:layout_constraintTop_toTopOf="@id/startLocationIcon"
@@ -103,10 +106,24 @@
                 android:layout_marginStart="12dp"
                 android:fontFamily="@font/roboto"
                 android:textAppearance="@style/ContrastFieldText"
+                android:text="@{order.endAddress}"
                 app:layout_constraintBottom_toBottomOf="@id/finalLocationIcon"
                 app:layout_constraintStart_toEndOf="@id/finalLocationIcon"
                 app:layout_constraintTop_toTopOf="@id/finalLocationIcon"
                 tools:text="Багрицкого, 5" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_marginStart="12dp"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="16sp"
+                android:textAppearance="@style/SecondaryText"
+                app:layout_constraintBottom_toBottomOf="@+id/finalLocationText"
+                app:layout_constraintStart_toEndOf="@+id/finalLocationText"
+                app:layout_constraintTop_toTopOf="@+id/finalLocationText"
+                tools:text="13 минут" />
 
             <ImageView
                 android:id="@+id/commentIcon"
@@ -124,6 +141,7 @@
                 android:layout_marginStart="12dp"
                 android:fontFamily="@font/roboto"
                 android:textAppearance="@style/ContrastFieldText"
+                android:text="@{order.comment}"
                 app:layout_constraintBottom_toBottomOf="@id/commentIcon"
                 app:layout_constraintStart_toEndOf="@id/commentIcon"
                 app:layout_constraintTop_toTopOf="@id/commentIcon"

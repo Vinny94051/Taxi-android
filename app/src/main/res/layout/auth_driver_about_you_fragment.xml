@@ -82,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/large_margin"
-                android:text="@string/second_name"
+                android:text="@string/surname"
                 app:layout_constraintStart_toStartOf="@+id/yourNameText"
                 app:layout_constraintTop_toBottomOf="@+id/yourNameText" />
 
@@ -140,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/default_margin"
                 android:layout_marginTop="@dimen/large_margin"
-                android:text="@string/texi_licence_front"
+                android:text="@string/taxi_licence_front"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/yourEmailText" />
 
@@ -160,7 +160,7 @@
                 android:layout_width="0dp"
                 android:layout_height="152dp"
                 android:layout_marginStart="@dimen/default_margin"
-                android:layout_marginTop="12sp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="@dimen/default_margin"
                 app:cardBackgroundColor="@color/colorCardBackground"
                 app:cardElevation="12dp"
@@ -171,11 +171,9 @@
 
                 <ImageView
                     android:id="@+id/licenceFrontPhotoImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:scaleType="center"
-                    android:src="@drawable/take_photo_placeholder" />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="center" />
 
                 <ImageView
                     android:id="@+id/licenceFrontPhotoCorrect"
@@ -225,7 +223,7 @@
                 android:layout_width="0dp"
                 android:layout_height="152dp"
                 android:layout_marginStart="@dimen/default_margin"
-                android:layout_marginTop="12sp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="@dimen/default_margin"
                 app:cardBackgroundColor="@color/colorCardBackground"
                 app:cardElevation="12dp"

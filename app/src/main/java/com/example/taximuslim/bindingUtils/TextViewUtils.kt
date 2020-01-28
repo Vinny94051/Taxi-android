@@ -9,3 +9,15 @@ import androidx.databinding.BindingAdapter
 fun TextView.setPrice(price: String) {
     this.text = "${price}RUB"
 }
+
+@SuppressLint("SetTextI18n")
+@BindingAdapter("time")
+fun TextView.setTime(time: String) {
+    this.text = "$time минут"
+}
+
+@SuppressLint("SetTextI18n")
+@BindingAdapter("distance")
+fun TextView.setDistance(distance: String) {
+    this.text = "$distance км"
+}
