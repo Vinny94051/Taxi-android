@@ -27,7 +27,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.view.driver.driverMainScreen.DriverMainScreen" />
+        <activity android:name=".presentation.view.driver.driverMainScreen.DriverMainScreen" >
+
+        </activity>
         <activity android:name=".presentation.view.auth.driver.AuthDriverMainActivity">
 
         </activity>
