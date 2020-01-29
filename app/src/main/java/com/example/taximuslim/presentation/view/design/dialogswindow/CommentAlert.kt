@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.view.View
 import android.view.Window
+import android.view.WindowManager
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.MutableLiveData
 import com.example.taximuslim.R
@@ -26,9 +27,14 @@ class CommentAlert(context: Context) : ParentDialog(context) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.comment_dialog_window)
-        thisWindow = this.window
-        setLayout()
+        setCancelable(false)
+        window?.clearFlags(
+            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                    or WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM
+        )
+        window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
     }
+
 
     override fun onStart() {
         super.onStart()

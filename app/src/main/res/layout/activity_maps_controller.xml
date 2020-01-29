@@ -120,15 +120,14 @@
                     android:id="@+id/cost_img"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="12dp"
+                    android:layout_marginStart="-3dp"
                     android:src="@drawable/cost_icon" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/tripPriceEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
+                    android:layout_marginStart="12dp"
                     android:hint="@string/describe_your_price"
                     android:imeOptions="actionDone"
                     android:singleLine="true"
@@ -141,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tripPriceLayout"
                 android:layout_centerHorizontal="true"
-                android:layout_marginStart="25dp"
+                android:layout_marginStart="18dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="20dp"
                 android:orientation="horizontal"
@@ -151,7 +150,7 @@
                     android:id="@+id/comment_img"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="4dp"
+                    android:layout_marginStart="0dp"
                     android:layout_marginEnd="8dp"
                     android:src="@drawable/comment_1_icon" />
 
@@ -159,7 +158,7 @@
                     android:id="@+id/commentEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="2dp"
                     android:hint="@string/сomment_to_driver"
                     android:singleLine="true"
                     android:textAppearance="@style/RegularText" />
@@ -312,12 +311,13 @@
             <include
                 android:id="@+id/main_button_order_taxi"
                 layout="@layout/gradient_button"
-                android:layout_width="292dp"
+                android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_below="@id/order_kind_buttons"
                 android:layout_alignParentBottom="false"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="@dimen/medium_margin"
+                android:layout_marginEnd="28dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="@dimen/default_margin" />
 
