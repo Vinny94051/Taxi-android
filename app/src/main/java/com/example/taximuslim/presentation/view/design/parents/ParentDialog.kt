@@ -18,7 +18,7 @@ open class ParentDialog(context: Context) : AlertDialog(context), View.OnClickLi
 
     fun setLayout() =
         thisWindow?.setLayout(
-            WindowManager.LayoutParams.WRAP_CONTENT,
+            WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.WRAP_CONTENT
         )
 

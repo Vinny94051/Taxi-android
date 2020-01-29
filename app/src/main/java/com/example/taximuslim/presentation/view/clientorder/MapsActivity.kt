@@ -31,10 +31,10 @@ import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_maps_controller.*
 import com.example.taximuslim.R
 import com.example.taximuslim.data.network.dto.order.TariffRequest
-import com.example.taximuslim.domain.order.models.TariffModel
 import com.example.taximuslim.presentation.view.clientorder.managers.ButtonManager
 import com.example.taximuslim.utils.prefference.getAuthHeader
 import com.example.taximuslim.utils.view.ViewManager
+import com.google.android.gms.maps.model.LatLng
 import kotlinx.android.synthetic.main.gradient_button.*
 
 
@@ -216,6 +216,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
 
     var userLocation: String = ""
     var pointBLocation: String = ""
+    var locationPrediction = LatLng(0.0, 0.0)
 
     private fun initViewModel() {
         viewModel.currentLocation.observe(this,
@@ -224,6 +225,8 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
                     mMap, location.toLatLng(),
                     15f, R.drawable.green_marker
                 )
+
+                locationPrediction = location.toLatLng()
 
                 mapManger.getCountry(location.toLatLng())?.let {
                     loadTarrifs(it)
@@ -234,7 +237,8 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             })
 
         PriceAlert.priceLiveData.observe(this, Observer { price ->
-            tripPriceEditText.text = price
+            if (price.isNotEmpty())
+                tripPriceEditText.text = price
         })
 
         CommentAlert.toDriverCommentLiveData.observe(this, Observer { comment ->
@@ -251,7 +255,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         })
 
         viewModel.tarriffsLiveData.observe(this, Observer { tariffs ->
-            val economyText  = "от " + tariffs.economy + " Rub"
+            val economyText = "от " + tariffs.economy + " Rub"
             PriceHolder.economy = tariffs.economy
             firstCategoryPriceTextView.text = economyText
 
@@ -270,7 +274,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
 
 
     fun addMarkerOnPointB(address: String) =
-        mapManger.getLocationFromAddress(this, address)?.let { location ->
+        mapManger.getLocationFromAddress(address)?.let { location ->
             mapManger.addMarkerAndMoveCameraToIt(mMap, location, 15f, R.drawable.green_marker)
         }
 

@@ -18,6 +18,7 @@ class App : Application() {
         private var instance: App? = null
         lateinit var appComponent: AppComponent
         fun getApplicationContext(): Context = instance!!.applicationContext
+        const val API_KEY = "AIzaSyDcrOph1sg1RemEd-XkUavOdr1O5uf6WLg"
     }
 
     private fun initDagger(app: Application): AppComponent {

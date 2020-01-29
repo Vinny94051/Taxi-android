@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_marginStart="28dp"
+    android:layout_marginTop="@dimen/small_margin"
+    android:layout_marginEnd="20dp"
+    android:layout_marginBottom="@dimen/small_margin"
+    android:foreground="?attr/selectableItemBackgroundBorderless">
+
+    <TextView
+        android:id="@+id/primaryTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ул. Некрасова, 16"
+        android:textAppearance="@style/RegularText"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/secondaryTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/primaryTextView"
+        android:text="Минск, Беларусь"
+        android:textAppearance="@style/RegularText"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:text="9,3 km" />
+
+
+</RelativeLayout>
