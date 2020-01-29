@@ -8,8 +8,8 @@
 
     <RelativeLayout
         android:id="@+id/rootLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <fragment
             android:id="@+id/map"
@@ -20,14 +20,11 @@
 
         <ImageButton
             android:id="@+id/burger_menu_main"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="68dp"
+            android:layout_height="40dp"
             android:layout_marginTop="32dp"
             android:background="@drawable/burger_menu_btn"
-            android:paddingStart="16dp"
-            android:paddingTop="8dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="8dp"
+            android:paddingEnd="12dp"
             android:src="@drawable/ic_menu_black_24dp"
             android:translationZ="25dp" />
 
@@ -39,23 +36,25 @@
             android:layout_above="@id/create_order_view"
             android:layout_marginBottom="12dp" />
 
+
         <RelativeLayout
             android:id="@+id/create_order_view"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/fragment_main_back">
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/fragment_main_back"
+            android:elevation="@dimen/default_margin">
 
             <LinearLayout
                 android:id="@+id/user_location_top_layout"
-                android:layout_width="292dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginStart="29dp"
-                android:layout_marginTop="19dp"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginTop="18dp"
                 android:layout_marginEnd="28dp"
                 android:orientation="horizontal">
 
@@ -63,30 +62,28 @@
                     android:id="@+id/placeholder_img"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="10dp"
                     android:src="@drawable/placeholder_green" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/user_location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="-6dp"
                     android:hint="@string/current_location"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
-                    android:textAppearance="@style/RegularText"
-                    android:textSize="12sp" />
+                    android:textAppearance="@style/RegularText" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/place_location_bottom_layout"
-                android:layout_width="292dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/user_location_top_layout"
                 android:layout_centerHorizontal="true"
-                android:layout_marginStart="29dp"
-                android:layout_marginTop="@dimen/default_margin"
-                android:layout_marginEnd="28dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="30dp"
                 android:orientation="horizontal"
                 android:scrollbarSize="14sp">
 
@@ -94,31 +91,28 @@
                     android:id="@+id/placeholder_img_2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="10dp"
                     android:src="@drawable/placeholder_light_brown" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/pointBEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="-6dp"
                     android:hint="@string/where"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
-                    android:textAppearance="@style/RegularText"
-                    android:textSize="14sp"
-                    tools:ignore="SmallSp" />
+                    android:textAppearance="@style/RegularText" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/tripPriceLayout"
-                android:layout_width="292dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/place_location_bottom_layout"
                 android:layout_centerHorizontal="true"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="27dp"
                 android:layout_marginTop="12dp"
-                android:layout_marginEnd="28dp"
+                android:layout_marginEnd="18dp"
                 android:orientation="horizontal"
                 android:visibility="gone">
 
@@ -126,15 +120,15 @@
                     android:id="@+id/cost_img"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="12dp"
                     android:src="@drawable/cost_icon" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/tripPriceEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginBottom="-6dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
                     android:hint="@string/describe_your_price"
                     android:imeOptions="actionDone"
                     android:singleLine="true"
@@ -144,13 +138,13 @@
 
             <LinearLayout
                 android:id="@+id/commentLayout"
-                android:layout_width="292dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tripPriceLayout"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="25dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="30dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="20dp"
                 android:orientation="horizontal"
                 android:visibility="gone">
 
@@ -158,35 +152,39 @@
                     android:id="@+id/comment_img"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_marginStart="4dp"
                     android:layout_marginEnd="8dp"
                     android:src="@drawable/comment_1_icon" />
 
-                <EditText
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/commentEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textAppearance="@style/RegularText"
-                    android:singleLine="true"
-                    android:layout_marginStart="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:hint="@string/сomment_to_driver"
+                    android:singleLine="true"
+                    android:textAppearance="@style/RegularText"
                     tools:ignore="SmallSp" />
             </LinearLayout>
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/order_kind_buttons"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/commentLayout"
                 android:layout_marginTop="@dimen/default_margin"
-                android:orientation="horizontal"
-                android:padding="4dp">
+                android:orientation="horizontal">
 
                 <RelativeLayout
                     android:id="@+id/economy_order"
-                    android:layout_width="92dp"
-                    android:layout_height="40dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/order_button_back"
+                    android:paddingTop="4dp"
+                    android:layout_weight="1"
+                    android:paddingBottom="4dp"
                     android:layout_marginStart="24dp"
-                    android:background="@drawable/order_button_back">
+                    app:layout_constraintStart_toStartOf="parent">
 
                     <TextView
                         android:id="@+id/firstCategoryNameTextView"
@@ -222,11 +220,15 @@
 
                 <RelativeLayout
                     android:id="@+id/comfort_order"
-                    android:layout_width="92dp"
-                    android:layout_height="40dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginStart="@dimen/small_margin"
-                    android:layout_toEndOf="@id/economy_order"
-                    android:background="@drawable/order_button_back">
+                    android:background="@drawable/order_button_back"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    app:layout_constraintStart_toEndOf="@id/economy_order">
 
                     <TextView
                         android:id="@+id/secondCategoryNameTextView"
@@ -262,11 +264,17 @@
 
                 <RelativeLayout
                     android:id="@+id/business_order"
-                    android:layout_width="92dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="@dimen/small_margin"
-                    android:layout_toEndOf="@id/comfort_order"
-                    android:background="@drawable/order_button_back">
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="24dp"
+                    android:background="@drawable/order_button_back"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/comfort_order">
 
                     <TextView
                         android:id="@+id/thirdCategoryNameTextView"
@@ -282,28 +290,26 @@
                         android:id="@+id/thirdCategoryPriceTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="от 200 Rub"
                         android:layout_below="@id/thirdCategoryNameTextView"
-                        android:textColor="@android:color/white"
-                        android:textSize="14sp"
                         android:paddingStart="8dp"
-                        />
+                        android:text="от 200 Rub"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp" />
 
                     <ImageView
                         android:id="@+id/checkMarkImageViewThird"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_chekc_mark"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="@dimen/small_margin"
                         android:layout_marginTop="7dp"
-                        android:visibility="gone"
-                        />
+                        android:layout_marginEnd="@dimen/small_margin"
+                        android:src="@drawable/ic_chekc_mark"
+                        android:visibility="gone" />
 
                 </RelativeLayout>
 
 
-            </RelativeLayout>
+            </LinearLayout>
 
             <include
                 android:id="@+id/main_button_order_taxi"
@@ -312,6 +318,7 @@
                 android:layout_height="48dp"
                 android:layout_below="@id/order_kind_buttons"
                 android:layout_alignParentBottom="false"
+                android:layout_centerHorizontal="true"
                 android:layout_marginStart="@dimen/medium_margin"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="@dimen/default_margin" />

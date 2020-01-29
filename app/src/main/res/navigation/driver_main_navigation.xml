@@ -1,5 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/driver_main_navigation">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/driver_main_navigation"
+    app:startDestination="@id/driverIncomeFragment">
 
+    <fragment
+        android:id="@+id/driverIncomeFragment"
+        android:name="com.example.taximuslim.presentation.view.driver.driverIncome.DriverIncomeFragment"
+        android:label="DriverIncomeFragment" />
+    <fragment
+        android:id="@+id/driverSupportFragment"
+        android:name="com.example.taximuslim.presentation.view.driver.support.DriverSupportFragment"
+        android:label="draver_support_fragment"
+        tools:layout="@layout/draver_support_fragment" />
+    <fragment
+        android:id="@+id/driverOrderHistoryFragment"
+        android:name="com.example.taximuslim.presentation.view.driver.driverOrderHistory.DriverOrderHistoryFragment"
+        android:label="DriverOrderHistoryFragment" />
+    <fragment
+        android:id="@+id/driverProfileFragment"
+        android:name="com.example.taximuslim.presentation.view.driver.profile.DriverProfileFragment"
+        android:label="driver_profile_fragment"
+        tools:layout="@layout/driver_profile_fragment" />
+    <fragment
+        android:id="@+id/driverSettingsFragment"
+        android:name="com.example.taximuslim.presentation.view.driver.settings.DriverSettingsFragment"
+        android:label="driver_settings_fragment"
+        tools:layout="@layout/driver_settings_fragment" >
+        <action
+            android:id="@+id/action_driverSettingsFragment_to_changeNumbFragment"
+            app:destination="@id/changeNumbFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/changeNumbFragment"
+        android:name="com.example.taximuslim.presentation.view.driver.settings.changeNumber.ChangeNumbFragment"
+        android:label="change_numb_fragment"
+        tools:layout="@layout/change_numb_fragment" >
+        <action
+            android:id="@+id/action_changeNumbFragment_to_validateChangeNumbCodeFragment"
+            app:destination="@id/validateChangeNumbCodeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/validateChangeNumbCodeFragment"
+        android:name="com.example.taximuslim.presentation.view.driver.settings.changeNumber.validateCode.ValidateChangeNumbCodeFragment"
+        android:label="validate_change_numb_code_fragment"
+        tools:layout="@layout/validate_change_numb_code_fragment" />
 </navigation>
