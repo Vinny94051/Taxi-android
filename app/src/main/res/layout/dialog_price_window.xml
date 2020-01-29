@@ -1,94 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="328dp"
-    android:layout_height="222dp"
-    android:layout_centerHorizontal="true"
-    >
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true">
 
     <TextView
         android:id="@+id/dialog_head"
-        android:layout_marginTop="24dp"
         android:layout_width="wrap_content"
-        android:textAlignment="center"
-        android:layout_marginStart="37dp"
-        android:layout_marginEnd="37dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
         android:text="@string/suggest_price"
-        android:textColor="@android:color/black"
-        android:textStyle="bold" />
+        android:textAlignment="center"
+        android:textAppearance="@style/ContrastFieldText" />
 
     <TextView
         android:id="@+id/dialog_head2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
         android:layout_below="@+id/dialog_head"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        />
+        android:textColor="#424242" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/setPrice"
         android:layout_width="100dp"
         android:layout_height="32dp"
-        android:inputType="number"
-        android:maxLength="5"
-        android:textAlignment="center"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="114dp"
-        android:layout_marginStart="114dp"
         android:layout_below="@id/dialog_head2"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
         android:background="@drawable/background_set_price"
-        />
+        android:inputType="number"
+        android:maxLength="5"
+        android:textAlignment="center" />
 
     <TextView
         android:id="@+id/hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_below="@id/setPrice"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
-        android:layout_below="@id/setPrice"
-        android:textColor="@android:color/darker_gray"
         android:textAlignment="center"
-        />
+        android:textColor="#424242" />
 
-    <LinearLayout
-        android:id="@+id/buttons"
-        android:layout_below="@id/hint"
+
+    <TextView
+        android:id="@+id/cancel_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_below="@id/hint"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="@dimen/default_margin"
         android:layout_marginBottom="24dp"
-        android:orientation="horizontal">
-
-       <TextView
-           android:id="@+id/cancel_btn"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="@string/cancel"
-           android:textStyle="bold"
-           android:layout_marginEnd="93dp"
-           android:textColor="@android:color/black"
-           />
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:text="@string/cancel"
+        android:textAppearance="@style/ContrastFieldText"
+        android:textSize="16sp" />
 
 
-        <TextView
-            android:id="@+id/ok_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/done"
-            android:textStyle="bold"
-            android:textColor="@color/colorThemeGreen"
-            />
-    </LinearLayout>
-
-
+    <TextView
+        android:id="@+id/ok_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/hint"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginEnd="70dp"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:text="@string/done"
+        android:textAppearance="@style/AccentText"
+        android:textColor="@color/colorThemeGreen"
+        android:textSize="16sp" />
 
 
 </RelativeLayout>
