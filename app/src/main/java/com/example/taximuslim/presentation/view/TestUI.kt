@@ -11,7 +11,7 @@ class TestUI : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.change_numb_fragment)
+        setContentView(R.layout.validate_change_numb_code_fragment)
         val alert = InputNameAlert(this){
             Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
         }
