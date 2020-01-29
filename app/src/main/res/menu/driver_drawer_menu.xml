@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id=""
-        android:icon=""
-        android:title=""/>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/driverIncomeFragment"
+            android:title="@string/my_income" />
 
-    <item
-        android:id=""
-        android:icon=""
-        android:title=""/>
+        <item
+            android:id="@+id/driverOrderHistoryFragment"
+            android:title="@string/order_history" />
 
-    <item
-        android:id=""
-        android:icon=""
-        android:title=""/>
+        <item
+            android:id="@+id/driverProfileFragment"
+            android:title="@string/my_profile" />
 
-    <item
-        android:id=""
-        android:icon=""
-        android:title=""/>
+        <item
+            android:id="@+id/driverSettingsFragment"
+            android:title="@string/settings" />
 
-    <item
-        android:id=""
-        android:icon=""
-        android:title=""/>
+        <item
+            android:id="@+id/driverSupportFragment"
+            android:title="@string/support_service" />
 
-    <item
-        android:id=""
-        android:icon=""
-        android:title=""/>
-    
+            <item
+                android:id="@+id/tempId"
+                android:title="@string/online_registration"/>
+
+            <item
+                android:id="@+id/tempId2"
+                android:title="@string/become_passenger"/>
+
+    </group>
 
 </menu>

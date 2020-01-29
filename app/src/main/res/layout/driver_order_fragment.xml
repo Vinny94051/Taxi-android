@@ -14,7 +14,7 @@
         android:background="@drawable/burger_menu_btn"
         android:paddingEnd="12dp"
         android:src="@drawable/ic_menu_black_24dp"
-        android:translationZ="25dp"
+        android:translationZ="1000dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 

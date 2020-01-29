@@ -11,8 +11,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 
 import com.example.taximuslim.R
+import com.example.taximuslim.databinding.ValidateChangeNumbCodeFragmentBinding
+import kotlinx.android.synthetic.main.activity_auth_driver_main.*
 import kotlinx.android.synthetic.main.validate_change_numb_code_fragment.*
 
 class ValidateChangeNumbCodeFragment : Fragment() {
@@ -23,8 +26,13 @@ class ValidateChangeNumbCodeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        (activity as AppCompatActivity).toolbar.setNavigationIcon(R.drawable.arrow_to_left_black)
+        (activity as AppCompatActivity).supportActionBar?.show()
         viewModel = ViewModelProviders.of(this).get(ValidateChangeNumbCodeViewModel::class.java)
-        return inflater.inflate(R.layout.validate_change_numb_code_fragment, container, false)
+        val binding =ValidateChangeNumbCodeFragmentBinding.inflate(inflater, container, false)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
