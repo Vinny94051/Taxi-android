@@ -13,14 +13,21 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_logo"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
-        tools:targetApi="m"
-        >
+        tools:targetApi="m">
+        <activity android:name=".presentation.view.TestUI">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".presentation.view.driver.driverMainScreen.DriverMainScreen" />
         <activity android:name=".presentation.view.auth.driver.AuthDriverMainActivity">
 
         </activity>
@@ -33,7 +40,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <service
-            android:name="com.example.taximuslim.utils.mapfunc.FetchAddressIntentService"
+            android:name=".utils.mapfunc.FetchAddressIntentService"
             android:exported="false" />
 
         <activity
@@ -50,11 +57,13 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.view.auth.AuthActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity android:name=".presentation.view.auth.AuthActivity"
+            android:windowSoftInputMode="adjustPan" >
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+
         </activity>
         <activity android:name=".presentation.view.splashscreen.SplashScreenActivity">
             <intent-filter>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="order"
+            type="com.example.taximuslim.domain.models.driver.DriverOrderHistoryModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="284dp"
+        android:layout_marginTop="12dp"
+        android:translationX="-16dp"
+        app:cardCornerRadius="16dp"
+        tools:context=".presentation.view.driver.driverMainScreen.DriverMainScreen">
+
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.internal.BaselineLayout
+                android:id="@+id/start"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/default_margin"/>
+
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/mapView"
+                android:layout_width="0dp"
+                android:layout_height="96dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/orderDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_marginBottom="12dp"
+                android:textAppearance="@style/ContrastFieldText"
+                android:textSize="16sp"
+                android:text="@{order.date}"
+                app:layout_constraintStart_toStartOf="@id/start"
+                app:layout_constraintBottom_toTopOf="@id/startLocationIcon"
+                tools:text="08 сентября 15:30" />
+
+            <TextView
+                android:id="@+id/routeCost"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_marginEnd="@dimen/large_margin"
+                android:paddingStart="@dimen/default_margin"
+                android:paddingEnd="@dimen/default_margin"
+                android:textAppearance="@style/ContrastFieldText"
+                android:textColor="@color/contrastTextColor"
+                android:textSize="16sp"
+                android:text="@{order.price}"
+                app:layout_constraintBottom_toBottomOf="@+id/orderDate"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/orderDate"
+                tools:text="830 Rub" />
+
+            <ImageView
+                android:id="@+id/startLocationIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginBottom="12dp"
+                android:src="@drawable/placeholder_green"
+                app:layout_constraintStart_toStartOf="@id/orderDate"
+                app:layout_constraintBottom_toTopOf="@+id/finalLocationIcon" />
+
+            <TextView
+                android:id="@+id/startLocationText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:fontFamily="@font/roboto"
+                android:textAppearance="@style/ContrastFieldText"
+                android:text="@{order.startAddress}"
+                app:layout_constraintBottom_toBottomOf="@id/startLocationIcon"
+                app:layout_constraintStart_toEndOf="@id/startLocationIcon"
+                app:layout_constraintTop_toTopOf="@id/startLocationIcon"
+                tools:text="пл. Александра Невского, 2" />
+
+            <ImageView
+                android:id="@+id/finalLocationIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginBottom="18dp"
+                android:src="@drawable/placeholder_light_brown"
+                app:layout_constraintStart_toStartOf="@id/startLocationIcon"
+                app:layout_constraintBottom_toTopOf="@+id/helpWithOrder" />
+
+            <TextView
+                android:id="@+id/finalLocationText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:fontFamily="@font/roboto"
+                android:textAppearance="@style/ContrastFieldText"
+                android:text="@{order.endAddress}"
+                app:layout_constraintBottom_toBottomOf="@id/finalLocationIcon"
+                app:layout_constraintStart_toEndOf="@id/finalLocationIcon"
+                app:layout_constraintTop_toTopOf="@id/finalLocationIcon"
+                tools:text="Багрицкого, 5" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/helpWithOrder"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginEnd="@dimen/large_margin"
+                android:layout_marginStart="@dimen/large_margin"
+                android:layout_marginBottom="@dimen/default_margin"
+                app:layout_constraintStart_toStartOf="@id/start"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/arrow_stroke_bg"
+                android:foreground="?attr/selectableItemBackground">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="1dp"
+                    android:background="@drawable/arrow_overlay"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/main_btn_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="20dp"
+                    android:textAppearance="@style/AccentText"
+                    android:textSize="20sp"
+                    android:text="@string/help_with_order"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="RtlSymmetry" />
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="0dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/arrow_bg"
+                    android:scaleType="center"
+                    android:src="@drawable/arrow_to_right"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

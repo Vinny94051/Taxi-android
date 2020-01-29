@@ -13,6 +13,7 @@ import androidx.navigation.findNavController
 
 import com.example.taximuslim.R
 import com.example.taximuslim.databinding.AuthDriverValidatePersonFragmentBinding
+import kotlinx.android.synthetic.main.activity_auth_driver_main.*
 
 class AuthDriverValidatePersonFragment : Fragment() {
 
@@ -23,6 +24,7 @@ class AuthDriverValidatePersonFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         (activity as AppCompatActivity).supportActionBar?.show()
+        (activity as AppCompatActivity).toolbar.setNavigationIcon(R.drawable.arrow_to_left_black)
         val binding = AuthDriverValidatePersonFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProviders.of(this).get(AuthDriverValidatePersonViewModel::class.java)
         binding.viewModel = viewModel
@@ -31,7 +33,7 @@ class AuthDriverValidatePersonFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val buttonText: TextView? = view?.findViewById(R.id.main_btn_text) as TextView
+        val buttonText: TextView? = view.findViewById(R.id.main_btn_text) as TextView
         buttonText?.let { mainButtonText ->
             mainButtonText.text = getString(R.string.continuee)
         }

@@ -15,6 +15,7 @@ import androidx.navigation.ui.NavigationUI
 
 import com.example.taximuslim.R
 import com.example.taximuslim.databinding.AuthDriverChooseCarFragmentBinding
+import kotlinx.android.synthetic.main.activity_auth_driver_main.*
 import kotlinx.android.synthetic.main.auth_driver_choose_car_fragment.*
 
 class AuthDriverChooseCarFragment : Fragment() {
@@ -26,6 +27,7 @@ class AuthDriverChooseCarFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         (activity as AppCompatActivity).supportActionBar?.show()
+        (activity as AppCompatActivity).toolbar.setNavigationIcon(R.drawable.arrow_to_left_black)
         val binding = AuthDriverChooseCarFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProviders.of(this).get(AuthDriverChooseCarViewModel::class.java)
         binding.lifecycleOwner = viewLifecycleOwner
@@ -41,7 +43,7 @@ class AuthDriverChooseCarFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val buttonText: TextView? = view?.findViewById(R.id.main_btn_text) as TextView
+        val buttonText: TextView? = view.findViewById(R.id.main_btn_text) as TextView
         buttonText?.let { mainButtonText ->
             mainButtonText.text = getString(R.string.continuee)
         }

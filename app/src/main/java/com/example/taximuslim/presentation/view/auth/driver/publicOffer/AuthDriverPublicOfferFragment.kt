@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 
 import com.example.taximuslim.R
+import kotlinx.android.synthetic.main.activity_auth_driver_main.*
 import kotlinx.android.synthetic.main.auth_driver_public_offer_fragment.*
 
 class AuthDriverPublicOfferFragment : Fragment() {
@@ -25,6 +26,7 @@ class AuthDriverPublicOfferFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         (activity as AppCompatActivity).supportActionBar!!.show()
+        (activity as AppCompatActivity).toolbar.setNavigationIcon(R.drawable.arrow_to_left_black)
         viewModel = ViewModelProviders.of(this).get(AuthDriverPublicOfferViewModel::class.java)
         return inflater.inflate(R.layout.auth_driver_public_offer_fragment, container, false)
     }

@@ -14,6 +14,7 @@ import androidx.navigation.findNavController
 import com.example.taximuslim.R
 import com.example.taximuslim.baseUI.fragment.BaseFragment
 import com.example.taximuslim.databinding.AuthDriverCarNumbFragmentBinding
+import kotlinx.android.synthetic.main.activity_auth_driver_main.*
 import kotlinx.android.synthetic.main.auth_driver_car_numb_fragment.*
 
 class AuthDriverCarNumbFragment : Fragment() {
@@ -26,6 +27,7 @@ class AuthDriverCarNumbFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        (activity as AppCompatActivity).toolbar.setNavigationIcon(R.drawable.arrow_to_left_black)
         viewModel = ViewModelProviders.of(this).get(AuthDriverCarNumbViewModel::class.java)
         val binding = AuthDriverCarNumbFragmentBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner

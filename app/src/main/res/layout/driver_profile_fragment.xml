@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.view.driver.profile.DriverProfileFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/commonInformationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/large_margin"
+            android:text="@string/common_information"
+            android:textAppearance="@style/ContrastFieldText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="0dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="12dp"
+            android:translationX="-16dp"
+            app:cardCornerRadius="@dimen/default_margin"
+            app:cardElevation="@dimen/default_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/commonInformationText">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.internal.BaselineLayout
+                    android:id="@+id/startBase"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="@dimen/default_margin"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/medium_margin"
+                    android:layout_marginTop="@dimen/medium_margin"
+                    android:text="@string/cash_balance"
+                    android:textAppearance="@style/ContrastFieldText"
+                    app:layout_constraintStart_toStartOf="@id/startBase"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/medium_margin"
+                    android:layout_marginEnd="@dimen/medium_margin"
+                    android:textAppearance="@style/ContrastFieldText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="1360 rub" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/takeOrder"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="@dimen/medium_margin"
+                    android:layout_marginEnd="@dimen/medium_margin"
+                    android:layout_marginBottom="@dimen/medium_margin"
+                    android:background="@drawable/arrow_stroke_bg"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/startBase">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="1dp"
+                        android:background="@drawable/arrow_overlay"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/main_btn_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="20dp"
+                        android:text="@string/replenish_balance"
+                        android:textAppearance="@style/AccentText"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="RtlSymmetry" />
+
+                    <ImageView
+                        android:layout_width="72dp"
+                        android:layout_height="0dp"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/arrow_bg"
+                        android:scaleType="center"
+                        android:src="@drawable/arrow_to_right"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/large_margin"
+            android:text="@string/info_about_car_and_driver"
+            android:textAppearance="@style/ContrastFieldText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+        <TextView
+            android:id="@+id/infoAboutCarAndDriverText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/large_margin"
+            android:layout_marginEnd="@dimen/medium_margin"
+            android:text="@string/change"
+            android:textAppearance="@style/AccentText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:translationX="-16dp"
+            app:cardCornerRadius="@dimen/default_margin"
+            app:cardElevation="@dimen/default_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/infoAboutCarAndDriverText">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.internal.BaselineLayout
+                    android:id="@+id/start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <com.google.android.material.internal.BaselineLayout
+                    android:id="@+id/center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/start" />
+
+
+                <TextView
+                    android:id="@+id/markAndSeriesText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/medium_margin"
+                    android:layout_marginTop="@dimen/medium_margin"
+                    android:text="@string/mark_and_series"
+                    android:textAppearance="@style/ContrastFieldText"
+                    app:layout_constraintStart_toStartOf="@id/start"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/markAndSeries"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin"
+                    android:layout_marginTop="@dimen/medium_margin"
+                    android:layout_marginEnd="@dimen/medium_margin"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textAppearance="@style/RegularText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/center"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@string/mark_and_series" />
+
+                <TextView
+                    android:id="@+id/colorText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:text="@string/color"
+                    android:textAppearance="@style/ContrastFieldText"
+                    app:layout_constraintStart_toStartOf="@id/markAndSeriesText"
+                    app:layout_constraintTop_toBottomOf="@id/markAndSeriesText" />
+
+                <TextView
+                    android:id="@+id/color"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:layout_marginEnd="@dimen/medium_margin"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textAppearance="@style/RegularText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/center"
+                    app:layout_constraintTop_toBottomOf="@+id/markAndSeries"
+                    tools:text="@string/mark_and_series" />
+
+                <TextView
+                    android:id="@+id/carNumbText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:text="@string/car_numb"
+                    android:textAppearance="@style/ContrastFieldText"
+                    app:layout_constraintStart_toStartOf="@id/colorText"
+                    app:layout_constraintTop_toBottomOf="@id/colorText" />
+
+                <TextView
+                    android:id="@+id/curNumb"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:layout_marginEnd="@dimen/medium_margin"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textAppearance="@style/RegularText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/center"
+                    app:layout_constraintTop_toBottomOf="@+id/color"
+                    tools:text="@string/mark_and_series" />
+
+
+                <TextView
+                    android:id="@+id/carPhotoText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/medium_margin"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:text="@string/car_photo"
+                    android:textAppearance="@style/ContrastFieldText"
+                    app:layout_constraintStart_toStartOf="@id/start"
+                    app:layout_constraintTop_toBottomOf="@id/carNumbText" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/carPhotoCard"
+                    android:layout_width="0dp"
+                    android:layout_height="152dp"
+                    android:layout_marginStart="@dimen/medium_margin"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="@dimen/medium_margin"
+                    app:cardBackgroundColor="@color/colorCardBackground"
+                    app:cardCornerRadius="@dimen/default_card_radius"
+                    app:cardElevation="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/start"
+                    app:layout_constraintTop_toBottomOf="@id/carPhotoText">
+
+                    <ImageView
+                        android:id="@+id/carPhotoImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="center"
+                        android:src="@drawable/take_photo_placeholder"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/carLicenceText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/medium_margin"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/car_sertificate"
+                    android:textAppearance="@style/ContrastFieldText"
+                    app:layout_constraintStart_toStartOf="@id/start"
+                    app:layout_constraintTop_toBottomOf="@id/carPhotoCard" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/carLicenceCard"
+                    android:layout_width="0dp"
+                    android:layout_height="152dp"
+                    android:layout_marginStart="@dimen/medium_margin"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="@dimen/medium_margin"
+                    app:cardBackgroundColor="@color/colorCardBackground"
+                    app:cardCornerRadius="@dimen/default_card_radius"
+                    app:cardElevation="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/start"
+                    app:layout_constraintTop_toBottomOf="@id/carLicenceText">
+
+                    <ImageView
+                        android:id="@+id/carLicenceImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="center"
+                        android:src="@drawable/take_photo_placeholder"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/driverNameText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/medium_margin"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:text="@string/name"
+                    android:textAppearance="@style/ContrastFieldText"
+                    app:layout_constraintStart_toStartOf="@id/start"
+                    app:layout_constraintTop_toBottomOf="@id/carLicenceCard" />
+
+                <TextView
+                    android:id="@+id/driverName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:layout_marginEnd="@dimen/medium_margin"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textAppearance="@style/RegularText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/center"
+                    app:layout_constraintTop_toBottomOf="@id/carLicenceCard"
+                    tools:text="Богдан" />
+
+                <TextView
+                    android:id="@+id/driverSurnameText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:text="@string/surname"
+                    android:textAppearance="@style/ContrastFieldText"
+                    app:layout_constraintStart_toStartOf="@id/driverNameText"
+                    app:layout_constraintTop_toBottomOf="@id/driverNameText" />
+
+                <TextView
+                    android:id="@+id/driverSurname"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:layout_marginEnd="@dimen/medium_margin"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textAppearance="@style/RegularText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/center"
+                    app:layout_constraintTop_toBottomOf="@id/driverName"
+                    tools:text="Бабадgdfgdfgdfgdfgdgfdgdfжанов" />
+
+                <TextView
+                    android:id="@+id/driverEmailText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:text="@string/email"
+                    android:textAppearance="@style/ContrastFieldText"
+                    app:layout_constraintStart_toStartOf="@id/driverSurnameText"
+                    app:layout_constraintTop_toBottomOf="@id/driverSurnameText" />
+
+                <TextView
+                    android:id="@+id/driverEmail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:layout_marginEnd="@dimen/medium_margin"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textAppearance="@style/RegularText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/center"
+                    app:layout_constraintTop_toBottomOf="@id/driverSurnameText"
+                    tools:text="bogdan@gmail.com" />
+
+                <TextView
+                    android:id="@+id/taxiLicenceTextFront"
+                    style="@style/ContrastFieldText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/medium_margin"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:text="@string/taxi_licence_front"
+                    app:layout_constraintStart_toStartOf="@id/start"
+                    app:layout_constraintTop_toBottomOf="@+id/driverEmailText" />
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/licencePhotoFrontCard"
+                    android:layout_width="0dp"
+                    android:layout_height="152dp"
+                    android:layout_marginStart="@dimen/medium_margin"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="@dimen/medium_margin"
+                    app:cardBackgroundColor="@color/colorCardBackground"
+                    app:cardCornerRadius="@dimen/default_card_radius"
+                    app:cardElevation="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/start"
+                    app:layout_constraintTop_toBottomOf="@id/taxiLicenceTextFront">
+
+                    <ImageView
+                        android:id="@+id/licenceFrontPhotoImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="center"
+                        android:src="@drawable/take_photo_placeholder"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/taxiLicenceTextBack"
+                    style="@style/ContrastFieldText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/medium_margin"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/taxi_licence_back"
+                    app:layout_constraintStart_toStartOf="@id/start"
+                    app:layout_constraintTop_toBottomOf="@+id/licencePhotoFrontCard" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/licencePhotoBackCard"
+                    android:layout_width="0dp"
+                    android:layout_height="152dp"
+                    android:layout_marginStart="@dimen/medium_margin"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="@dimen/medium_margin"
+                    app:cardBackgroundColor="@color/colorCardBackground"
+                    app:cardCornerRadius="@dimen/default_card_radius"
+                    app:cardElevation="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/start"
+                    app:layout_constraintTop_toBottomOf="@id/taxiLicenceTextBack">
+
+                    <ImageView
+                        android:id="@+id/licencePhotoBackImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="center"
+                        android:src="@drawable/take_photo_placeholder"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/seriesAndNumbText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/medium_margin"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="@dimen/default_margin"
+                    android:text="@string/series_and_numb_driver_licence"
+                    android:textAppearance="@style/ContrastFieldText"
+                    app:layout_constraintEnd_toEndOf="@id/center"
+                    app:layout_constraintStart_toStartOf="@id/start"
+                    app:layout_constraintTop_toBottomOf="@id/licencePhotoBackCard" />
+
+                <TextView
+                    android:id="@+id/seriesAndNumb"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="@dimen/medium_margin"
+                    android:textAppearance="@style/RegularText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/center"
+                    app:layout_constraintTop_toBottomOf="@id/licencePhotoBackCard"
+                    tools:text="BM1237654" />
+
+                <TextView
+                    android:id="@+id/driveLicenceTextFront"
+                    style="@style/ContrastFieldText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/medium_margin"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="@dimen/medium_margin"
+                    android:text="@string/driver_licence_front"
+                    app:layout_constraintStart_toStartOf="@id/start"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/seriesAndNumbText" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/driveLicenceFrontCard"
+                    android:layout_width="0dp"
+                    android:layout_height="152dp"
+                    android:layout_marginStart="@dimen/medium_margin"
+                    android:layout_marginTop="12sp"
+                    android:layout_marginEnd="@dimen/medium_margin"
+                    app:cardBackgroundColor="@color/colorCardBackground"
+                    app:cardCornerRadius="@dimen/default_card_radius"
+                    app:cardElevation="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/start"
+                    app:layout_constraintTop_toBottomOf="@id/driveLicenceTextFront">
+
+                    <ImageView
+                        android:id="@+id/driveLicenceFrontPhotoImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="center"
+                        android:src="@drawable/take_photo_placeholder"/>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/driveLicenceTextBack"
+                    style="@style/ContrastFieldText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/medium_margin"
+                    android:layout_marginEnd="@dimen/medium_margin"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/driver_licence_back"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/start"
+                    app:layout_constraintTop_toBottomOf="@+id/driveLicenceFrontCard" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/driveLicencePhotoBackCard"
+                    android:layout_width="0dp"
+                    android:layout_height="152dp"
+                    android:layout_marginStart="@dimen/medium_margin"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="@dimen/medium_margin"
+                    app:cardBackgroundColor="@color/colorCardBackground"
+                    app:cardElevation="12dp"
+                    app:cardCornerRadius="@dimen/default_card_radius"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/start"
+                    app:layout_constraintTop_toBottomOf="@id/driveLicenceTextBack">
+
+                    <ImageView
+                        android:id="@+id/driveLicencePhotoBackImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="center"
+                        android:src="@drawable/take_photo_placeholder"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/yourPhotoText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/your_photo"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:layout_marginStart="@dimen/medium_margin"
+                    android:textAppearance="@style/ContrastFieldText"
+                    app:layout_constraintStart_toStartOf="@id/start"
+                    app:layout_constraintTop_toBottomOf="@id/driveLicencePhotoBackCard" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/yourPhotoCard"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="@dimen/medium_margin"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="@dimen/medium_margin"
+                    android:layout_marginBottom="@dimen/medium_margin"
+                    app:cardBackgroundColor="@color/colorCardBackground"
+                    app:cardElevation="12dp"
+                    app:cardCornerRadius="@dimen/default_card_radius"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/start"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/yourPhotoText">
+
+                    <ImageView
+                        android:id="@+id/yourPhotoImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="center"
+                        android:src="@drawable/take_photo_placeholder"/>
+
+                </androidx.cardview.widget.CardView>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

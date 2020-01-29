@@ -9,7 +9,7 @@
         android:id="@+id/authDriverFirstStepFragment"
         android:name="com.example.taximuslim.presentation.view.auth.driver.AuthDriverFirstStepFragment"
         android:label="fragment_auth_driver_ferst_step"
-        tools:layout="@layout/fragment_auth_driver_ferst_step">
+        tools:layout="@layout/fragment_auth_driver_first_step">
         <action
             android:id="@+id/action_authDriverFirstStepFragment_to_authDriverChooseCarFragment"
             app:destination="@id/authDriverChooseCarFragment" />
