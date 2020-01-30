@@ -1,14 +1,14 @@
 package com.example.taximuslim.presentation.view.driver.driverMainScreen
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.onNavDestinationSelected
 import com.example.taximuslim.R
 import kotlinx.android.synthetic.main.activity_driver_main_screen.*
-import kotlinx.android.synthetic.main.activity_driver_main_screen.toolbar
 
 class DriverMainScreen : AppCompatActivity() {
 
@@ -34,6 +34,20 @@ class DriverMainScreen : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.nav_host_fragment)
         return navController.navigateUp()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        setListeners()
+    }
+
+    private fun setListeners() {
+        burgerButton.setOnClickListener {
+            if (!drawerLayout.isDrawerOpen(GravityCompat.START))
+                drawerLayout.openDrawer(GravityCompat.START)
+            else
+                drawerLayout.closeDrawer(GravityCompat.START)
+        }
     }
 
 

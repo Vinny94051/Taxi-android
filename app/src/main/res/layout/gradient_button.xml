@@ -1,7 +1,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/enter_button"
     android:layout_width="292dp"
     android:layout_height="48dp"
-    android:foreground="?attr/selectableItemBackground"
     android:background="@drawable/arrow_stroke_bg"
     android:layout_alignParentBottom="true"
     android:layout_centerHorizontal="true"

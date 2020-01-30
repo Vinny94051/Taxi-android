@@ -27,9 +27,6 @@ class DriverSettingsFragment : ObservableFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        (activity as AppCompatActivity).toolbar.setNavigationIcon(R.drawable.arrow_to_left_black)
-        (activity as AppCompatActivity).supportActionBar?.show()
-        (activity as AppCompatActivity).drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         viewModel = ViewModelProviders.of(this).get(DriverSettingsViewModel::class.java)
         val binding = DriverSettingsFragmentBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
@@ -67,4 +64,10 @@ class DriverSettingsFragment : ObservableFragment() {
         }
     }
 
+    override fun setUIState() {
+        (activity as AppCompatActivity).toolbar.setNavigationIcon(R.drawable.arrow_to_left_black)
+        (activity as AppCompatActivity).supportActionBar?.show()
+        (activity as AppCompatActivity).drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        (activity as AppCompatActivity).burgerButton.visibility = View.GONE
+    }
 }

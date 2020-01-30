@@ -32,5 +32,7 @@ class DriverSettingsViewModel : ViewModel() {
         _changeNameNavigate.value = false
     }
 
-
+    fun onLogoutClick(){
+        _changeNameNavigate.value = false
+    }
 }

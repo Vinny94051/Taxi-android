@@ -87,8 +87,7 @@
                     app:layout_constraintTop_toBottomOf="@id/nameText"
                     tools:text="+749597556983" />
 
-                <include
-                    layout="@layout/gradient_button"
+                <LinearLayout
                     android:id="@+id/mainButton"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
@@ -96,10 +95,18 @@
                     android:layout_marginEnd="@dimen/medium_margin"
                     android:layout_marginStart="@dimen/medium_margin"
                     android:layout_marginBottom="@dimen/medium_margin"
+                    android:onClick="@{() -> viewModel.onLogoutClick()}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/start"
-                    app:layout_constraintTop_toBottomOf="@+id/changeNumbText" />
+                    app:layout_constraintTop_toBottomOf="@+id/changeNumbText">
+                    <include
+                        layout="@layout/gradient_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
