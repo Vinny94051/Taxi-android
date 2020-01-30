@@ -91,4 +91,15 @@
         android:layout_height="match_parent"
         android:layout_below="@id/pointBLocationCard"
         />
+
+    <ProgressBar
+        android:id="@+id/mainProgressbar"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/pointBLocationCard"
+        android:visibility="gone"/>
 </RelativeLayout>

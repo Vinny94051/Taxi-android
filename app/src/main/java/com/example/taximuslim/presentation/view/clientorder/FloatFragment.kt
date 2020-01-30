@@ -1,10 +1,13 @@
 package com.example.taximuslim.presentation.view.clientorder
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
+import android.util.Log
 import android.view.View
+import android.widget.EditText
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taximuslim.App
@@ -17,7 +20,14 @@ import com.example.taximuslim.utils.toEditable
 import com.example.taximuslim.utils.view.ViewManager
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.net.PlacesClient
+import com.google.android.material.snackbar.Snackbar
+import com.jakewharton.rxbinding2.widget.RxTextView
+import com.jakewharton.rxbinding2.widget.textChanges
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.plugins.RxJavaPlugins
 import kotlinx.android.synthetic.main.fragment_choose_address.*
+import java.util.concurrent.TimeUnit
 
 class FloatFragment : BaseFragment(), View.OnClickListener {
 
@@ -25,18 +35,13 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
         const val ID = "FLOAT_FRAGMENT"
         fun newInstance() = FloatFragment()
 
-        const val DELAY: Long = 1250
     }
 
     lateinit var owner: MapsActivity
     private lateinit var viewManager: ViewManager
     private lateinit var placePredictions: PlacePredictions
     private var adapter = PredictionAdapter()
-    private val handler = Handler()
-    private var lastEditText: Long = 0
 
-
-    private var address: String = ""
 
     override fun layoutId(): Int = R.layout.fragment_choose_address
 
@@ -83,35 +88,51 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
         lineLayout.setOnClickListener(this)
         initList()
         pointBLocationEditText.onSubmitNext { closeFragment() }
+        
+        setEditTextDebounce(userLocationEditText, 0)
+        setEditTextDebounce(pointBLocationEditText, 1)
 
-        userLocationEditText.addTextChangedListener { address ->
-            addressInputAction(address)
-        }
-        pointBLocationEditText.addTextChangedListener { address ->
-            owner.viewModel.pointBLiveData.value = address.toString()
-            addressInputAction(address)
-        }
+
 
         setEditTextsTintListeners()
     }
 
-    private fun addressInputAction(address : Editable?){
-        if (address != null) {
-            if (address.isNotEmpty()) {
-                lastEditText = System.currentTimeMillis()
-                this@FloatFragment.address = address.toString()
-                handler.postDelayed(inputFinishChecker, DELAY)
-            }
+    private fun setEditTextDebounce(editText: EditText, action: Int) = editText
+        .textChanges()
+        .skip(1)
+        .map { address -> address.toString() }
+        .doOnNext {
+            mainProgressbar.visibility = View.VISIBLE
+            recyclerPredict.visibility = View.GONE
         }
-    }
+        .debounce(300, TimeUnit.MILLISECONDS)
+        .observeOn(AndroidSchedulers.mainThread())
+        .doOnEach {
+            mainProgressbar.visibility = View.GONE
+            recyclerPredict.visibility = View.VISIBLE
+        }
+        .doOnError {
+            Snackbar.make(
+                pointBLocationCard,
+                "Error while searching",
+                Snackbar.LENGTH_SHORT
+            ).show()
+        }
+        .retry()
+        .subscribe({ address ->
+            searchAction(address, action)
+        }, {
+            Log.e("FloatFragment", it.toString())
+        })
 
-    private val inputFinishChecker: Runnable = Runnable {
-        if (System.currentTimeMillis() > (lastEditText + DELAY - 500)) {
-            placePredictions.newInstance(
-                (activity as MapsActivity).locationPrediction,
-                address
-            )
+    private fun searchAction(address: String, action: Int) {
+        when (action) {
+            1 -> owner.viewModel.pointBLiveData.value = address
         }
+        placePredictions.newInstance(
+            (activity as MapsActivity).locationPrediction,
+            address
+        )
     }
 
     private fun initList() {
@@ -122,7 +143,7 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
             adapter.submitList(predictions)
         }
 
-        adapter.setOnItemClickListener {address ->
+        adapter.setOnItemClickListener { address ->
             pointBLocationEditText.text = address.toEditable()
             closeFragment()
         }

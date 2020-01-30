@@ -3,8 +3,8 @@ package com.example.taximuslim.utils.mapfunc
 import android.content.Context
 import android.location.Address
 import android.location.Geocoder
+import android.util.Log
 import com.example.taximuslim.data.network.dto.order.TariffRequest
-import com.example.taximuslim.domain.order.models.TariffModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
@@ -79,24 +79,16 @@ class FetchAddressIntentService(private val context: Context) {
     }
 
     fun getLocationFromAddress(strAddress: String): LatLng? {
-        val coder = Geocoder(context)
-        val address: List<Address>?
-        var p1: LatLng? = null
-
-        try {
-            address = coder.getFromLocationName(strAddress, 5)
-            if (address == null) {
+        val address: MutableList<Address> =
+            try {
+                Geocoder(context).getFromLocationName(strAddress, 1)
+                    ?: return null
+            } catch (ex: IOException) {
+                Log.e("GetLocationFromAddress:", "IOE")
+                ex.printStackTrace()
                 return null
             }
-            val location = address[0]
-            location.latitude
-            location.longitude
-
-            p1 = LatLng(location.latitude, location.longitude)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        return p1
+        return LatLng(address[0].latitude, address[0].longitude)
     }
 
 }
