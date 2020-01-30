@@ -52,15 +52,14 @@ class PriceAlert(context: Context) : ParentDialog(context) {
         showKeyboardFrom()
         priceForHint = PriceHolder.price
         setTexts()
-
-
     }
 
 
     private fun setTexts() {
         hint.text = context.getString(R.string.hint_dialog).plus("\n")
             .plus(context.getString(R.string.second_hint_dialog))
-        dialog_head2.text = "Минимальная цена ".plus(priceForHint.toString())
+        dialog_head2.text = "Минимальная цена "
+        greenPriceTextView.text = priceForHint.toString().plus( " Rub*")
     }
 
 }
