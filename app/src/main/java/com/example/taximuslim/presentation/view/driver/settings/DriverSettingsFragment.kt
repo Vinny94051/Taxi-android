@@ -40,16 +40,21 @@ class DriverSettingsFragment : ObservableFragment() {
     override fun setObservers() {
         viewModel.changeNameNavigate.observe(viewLifecycleOwner, Observer {navigate ->
             navigate?.let{
-                InputNameAlert(context!!){
+                if (navigate) {
+                    InputNameAlert(context!!) {
 
-                }.show()
-                 viewModel.onChangeNameNavigate()
+                    }.show()
+                    viewModel.onChangeNameNavigate()
+                }
             }
         })
         viewModel.changeNumbNavigate.observe(viewLifecycleOwner, Observer {navigate ->
             navigate?.let{
-                view?.findNavController()?.navigate(R.id.action_driverSettingsFragment_to_changeNumbFragment)
-                viewModel.onChangeNumbNavigate()
+                if (navigate) {
+                    view?.findNavController()
+                        ?.navigate(R.id.action_driverSettingsFragment_to_changeNumbFragment)
+                    viewModel.onChangeNumbNavigate()
+                }
             }
         })
     }

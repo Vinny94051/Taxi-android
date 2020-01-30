@@ -23,7 +23,7 @@ class ChangeNumbFragment : ObservableFragment() {
         savedInstanceState: Bundle?
     ): View? {
         (activity as AppCompatActivity).toolbar.setNavigationIcon(R.drawable.arrow_to_left_black)
-        (activity as AppCompatActivity).supportActionBar?.show()
+        (activity as AppCompatActivity).supportActionBar?.hide()
         viewModel = ViewModelProviders.of(this).get(ChangeNumbViewModel::class.java)
         val binding = ChangeNumbFragmentBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
@@ -32,9 +32,14 @@ class ChangeNumbFragment : ObservableFragment() {
     }
 
     override fun setObservers() {
-        viewModel.navigate.observe(viewLifecycleOwner, Observer {
-            view?.findNavController()
-                ?.navigate(R.id.action_changeNumbFragment_to_validateChangeNumbCodeFragment)
+        viewModel.navigate.observe(viewLifecycleOwner, Observer {navigate ->
+            navigate?.let{
+                if (navigate){
+                    view?.findNavController()
+                        ?.navigate(R.id.action_changeNumbFragment_to_validateChangeNumbCodeFragment)
+                    viewModel.onNavigate()
+                }
+            }
         })
     }
 

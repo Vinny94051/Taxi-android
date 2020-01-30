@@ -10,7 +10,7 @@ class ChangeNumbViewModel : ViewModel() {
         get() = _navigate
 
     fun onNavigate(){
-        _navigate.value = true
+        _navigate.value = false
     }
 
     fun onMainButtonClick(){

@@ -46,7 +46,7 @@
     <fragment
         android:id="@+id/validateChangeNumbCodeFragment"
         android:name="com.example.taximuslim.presentation.view.driver.settings.changeNumber.validateCode.ValidateChangeNumbCodeFragment"
-        android:label="validate_change_numb_code_fragment"
+        android:label="@string/numb_changing"
         tools:layout="@layout/validate_change_numb_code_fragment" />
     <fragment
         android:id="@+id/driverOrderFragment"
