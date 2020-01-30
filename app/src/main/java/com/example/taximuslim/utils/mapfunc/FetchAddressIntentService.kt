@@ -54,9 +54,7 @@ class FetchAddressIntentService(private val context: Context) {
             city = city.removeRange(0, 1)
         }
         city = city.removeRange(0, 2)
-
-
-        var town: String = ""
+        var town = ""
         i = 0
         while (city[i] != ',') {
             town += city[i]
@@ -80,7 +78,7 @@ class FetchAddressIntentService(private val context: Context) {
         mMap.animateCamera(CameraUpdateFactory.zoomTo(zoom))
     }
 
-    fun getLocationFromAddress(context: Context, strAddress: String): LatLng? {
+    fun getLocationFromAddress(strAddress: String): LatLng? {
         val coder = Geocoder(context)
         val address: List<Address>?
         var p1: LatLng? = null

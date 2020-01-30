@@ -26,9 +26,13 @@ class MainViewModel : BaseViewModel() {
     lateinit var interactor: IOrderInteractor
 
 
-    private val _currentLocation = MutableLiveData<Location>()
+    private var _currentLocation = MutableLiveData<Location>()
     val currentLocation: LiveData<Location>
         get() = _currentLocation
+
+    fun setLocation(location : Location){
+        _currentLocation.value = location
+    }
 
     fun loadLocation() =
         userLocationProvider.getLocation { location ->

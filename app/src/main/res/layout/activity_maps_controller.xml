@@ -132,8 +132,7 @@
                     android:hint="@string/describe_your_price"
                     android:imeOptions="actionDone"
                     android:singleLine="true"
-                    android:textSize="14sp"
-                    tools:ignore="SmallSp" />
+                    android:textAppearance="@style/RegularText" />
             </LinearLayout>
 
             <LinearLayout
@@ -163,9 +162,8 @@
                     android:layout_marginStart="8dp"
                     android:hint="@string/сomment_to_driver"
                     android:singleLine="true"
-                    android:textAppearance="@style/RegularText"
-                    tools:ignore="SmallSp" />
-            </LinearLayout>
+                    android:textAppearance="@style/RegularText" />
+          </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/order_kind_buttons"
@@ -179,11 +177,11 @@
                     android:id="@+id/economy_order"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_weight="1"
                     android:background="@drawable/order_button_back"
                     android:paddingTop="4dp"
-                    android:layout_weight="1"
                     android:paddingBottom="4dp"
-                    android:layout_marginStart="24dp"
                     app:layout_constraintStart_toStartOf="parent">
 
                     <TextView
@@ -208,10 +206,10 @@
 
                     <ImageView
                         android:id="@+id/checkMarkImageView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginTop="7dp"
+                        android:layout_marginTop="4dp"
                         android:layout_marginEnd="@dimen/small_margin"
                         android:src="@drawable/ic_chekc_mark"
                         android:visibility="gone" />
@@ -221,10 +219,10 @@
                 <RelativeLayout
                     android:id="@+id/comfort_order"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_marginStart="@dimen/small_margin"
+                    android:layout_weight="1"
                     android:background="@drawable/order_button_back"
                     android:paddingTop="4dp"
                     android:paddingBottom="4dp"
@@ -252,10 +250,10 @@
 
                     <ImageView
                         android:id="@+id/checkMarkImageViewSecond"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginTop="7dp"
+                        android:layout_marginTop="4dp"
                         android:layout_marginEnd="@dimen/small_margin"
                         android:src="@drawable/ic_chekc_mark"
                         android:visibility="gone" />
@@ -265,11 +263,11 @@
                 <RelativeLayout
                     android:id="@+id/business_order"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="24dp"
+                    android:layout_weight="1"
                     android:background="@drawable/order_button_back"
                     android:paddingTop="4dp"
                     android:paddingBottom="4dp"
@@ -298,10 +296,10 @@
 
                     <ImageView
                         android:id="@+id/checkMarkImageViewThird"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginTop="7dp"
+                        android:layout_marginTop="4dp"
                         android:layout_marginEnd="@dimen/small_margin"
                         android:src="@drawable/ic_chekc_mark"
                         android:visibility="gone" />
