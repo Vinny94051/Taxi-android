@@ -1,14 +1,10 @@
 package com.example.taximuslim.presentation.view.clientorder
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import android.os.Handler
-import android.text.Editable
 import android.util.Log
 import android.view.View
 import android.widget.EditText
-import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taximuslim.App
 import com.example.taximuslim.R
@@ -21,11 +17,8 @@ import com.example.taximuslim.utils.view.ViewManager
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.material.snackbar.Snackbar
-import com.jakewharton.rxbinding2.widget.RxTextView
 import com.jakewharton.rxbinding2.widget.textChanges
-import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.plugins.RxJavaPlugins
 import kotlinx.android.synthetic.main.fragment_choose_address.*
 import java.util.concurrent.TimeUnit
 
@@ -87,13 +80,10 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
     private fun initViews() {
         lineLayout.setOnClickListener(this)
         initList()
+        setOnPredictionsListener()
         pointBLocationEditText.onSubmitNext { closeFragment() }
-        
         setEditTextDebounce(userLocationEditText, 0)
         setEditTextDebounce(pointBLocationEditText, 1)
-
-
-
         setEditTextsTintListeners()
     }
 
@@ -121,8 +111,8 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
         .retry()
         .subscribe({ address ->
             searchAction(address, action)
-        }, {
-            Log.e("FloatFragment", it.toString())
+        }, { exception ->
+            Log.e("FloatFragment", exception.toString())
         })
 
     private fun searchAction(address: String, action: Int) {
@@ -139,15 +129,16 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
         recyclerPredict.layoutManager = LinearLayoutManager(context)
         recyclerPredict.adapter = adapter
 
-        placePredictions.setOnPredictionsListener { predictions ->
-            adapter.submitList(predictions)
-        }
-
         adapter.setOnItemClickListener { address ->
             pointBLocationEditText.text = address.toEditable()
             closeFragment()
         }
     }
+
+    private fun setOnPredictionsListener() =
+        placePredictions.setOnPredictionsListener { predictions ->
+            adapter.submitList(predictions)
+        }
 
     private fun setGreenTint(view: View) {
         changeViewTint(view, R.color.colorThemeGreen)

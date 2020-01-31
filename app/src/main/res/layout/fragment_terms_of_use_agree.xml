@@ -10,9 +10,9 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/main_button_tou_agree"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="32dp"
         android:layout_marginStart="@dimen/default_margin"
         android:layout_marginEnd="@dimen/default_margin"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/rectangle_4"
         android:elevation="16dp"
         android:paddingBottom="32dp">
@@ -23,16 +23,15 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="6dp"
-            android:layout_marginEnd="6dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="32dp"
-            android:gravity="center"
+            android:layout_marginEnd="12dp"
+            android:textAlignment="center"
             android:lineSpacingExtra="1sp"
             android:text="@string/agree_terms_of_use_high"
-            android:layout_centerHorizontal="true"
             android:textAppearance="@style/AccentText"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="20sp" />
 
         <CheckBox
             android:id="@+id/checkBox"
@@ -42,8 +41,8 @@
             android:layout_below="@id/high"
             android:layout_marginStart="12dp"
             android:layout_marginTop="@dimen/default_margin"
-            android:layout_marginBottom="32dp"
             android:layout_marginEnd="13dp"
+            android:layout_marginBottom="32dp"
             android:gravity="top"
             android:paddingStart="11dp"
             android:paddingEnd="13dp"

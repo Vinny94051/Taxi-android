@@ -62,7 +62,7 @@
                     android:id="@+id/placeholder_img"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginEnd="6dp"
                     android:src="@drawable/placeholder_green" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -91,7 +91,7 @@
                     android:id="@+id/placeholder_img_2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginEnd="5dp"
                     android:src="@drawable/placeholder_light_brown" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -120,7 +120,6 @@
                     android:id="@+id/cost_img"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="-3dp"
                     android:src="@drawable/cost_icon" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -140,7 +139,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tripPriceLayout"
                 android:layout_centerHorizontal="true"
-                android:layout_marginStart="18dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="20dp"
                 android:orientation="horizontal"
@@ -150,15 +149,13 @@
                     android:id="@+id/comment_img"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="0dp"
                     android:layout_marginEnd="8dp"
-                    android:src="@drawable/comment_1_icon" />
+                    android:src="@drawable/chat_element" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/commentEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
                     android:hint="@string/сomment_to_driver"
                     android:singleLine="true"
                     android:textAppearance="@style/RegularText" />
