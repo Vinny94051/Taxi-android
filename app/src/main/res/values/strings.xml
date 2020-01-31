@@ -203,4 +203,7 @@
     <string name="numb_changing">Изменение номера</string>
     <string name="change_numb_instruction">На указанный номер придет SMS-код для продолжения регистрации</string>
     <string name="enter_phone_numb">Введите номер телефона</string>
+    <string name="payment_kind">Способ оплаты</string>
+    <string name="cash">Наличными</string>
+    <string name="bank">Сбербанк онлайн</string>
 </resources>

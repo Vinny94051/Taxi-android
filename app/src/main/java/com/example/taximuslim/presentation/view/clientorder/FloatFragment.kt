@@ -10,9 +10,11 @@ import com.example.taximuslim.App
 import com.example.taximuslim.R
 import com.example.taximuslim.baseUI.fragment.BaseFragment
 import com.example.taximuslim.presentation.view.clientorder.list.prediction.PredictionAdapter
+import com.example.taximuslim.utils.mapfunc.FetchAddressIntentService
 import com.example.taximuslim.utils.mapfunc.PlacePredictions
 import com.example.taximuslim.utils.onSubmitNext
 import com.example.taximuslim.utils.toEditable
+import com.example.taximuslim.utils.toLocation
 import com.example.taximuslim.utils.view.ViewManager
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.net.PlacesClient
@@ -21,8 +23,13 @@ import com.jakewharton.rxbinding2.widget.textChanges
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_choose_address.*
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 class FloatFragment : BaseFragment(), View.OnClickListener {
+
+    init {
+        App.appComponent.inject(this)
+    }
 
     companion object {
         const val ID = "FLOAT_FRAGMENT"
@@ -30,7 +37,10 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
 
     }
 
-    lateinit var owner: MapsActivity
+    @Inject
+    lateinit var addressServiece: FetchAddressIntentService
+
+    private lateinit var owner: MapsActivity
     private lateinit var viewManager: ViewManager
     private lateinit var placePredictions: PlacePredictions
     private var adapter = PredictionAdapter()
@@ -61,7 +71,7 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
 
     override fun onClick(view: View?) {
         when (view?.id) {
-            R.id.lineLayout -> closeFragment()
+            R.id.lineLayout -> closeFragment(1)
         }
     }
 
@@ -81,7 +91,11 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
         lineLayout.setOnClickListener(this)
         initList()
         setOnPredictionsListener()
-        pointBLocationEditText.onSubmitNext { closeFragment() }
+        pointBLocationEditText.onSubmitNext {
+            if (pointBLocationEditText.isFocused)
+                closeFragment(1)
+            else closeFragment(2)
+        }
         setEditTextDebounce(userLocationEditText, 0)
         setEditTextDebounce(pointBLocationEditText, 1)
         setEditTextsTintListeners()
@@ -130,8 +144,19 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
         recyclerPredict.adapter = adapter
 
         adapter.setOnItemClickListener { address ->
-            pointBLocationEditText.text = address.toEditable()
-            closeFragment()
+            if (pointBLocationEditText.isFocused) {
+                pointBLocationEditText.text = address.toEditable()
+                closeFragment(1)
+            } else if (userLocationEditText.isFocused) {
+                setUserLocation(address)
+                closeFragment(2)
+            }
+        }
+    }
+
+    private fun setUserLocation(address: String) {
+        addressServiece.getLocationFromAddress(address)?.toLocation()?.let { userLoc ->
+            owner.viewModel.setLocation(userLoc)
         }
     }
 
@@ -165,9 +190,16 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
         return Places.createClient(context)
     }
 
-    private fun closeFragment() {
+    private fun closeFragment(markerNumber: Int) {
         owner.hideFloatView()
-        owner.addMarkerOnPointB(pointBLocationEditText.text.toString())
+        when (markerNumber) {
+            1 -> {
+                FetchAddressIntentService.markerPointBLocation?.remove()
+                FetchAddressIntentService.markerPointBLocation =
+                    owner.addMarkerOnPointB(pointBLocationEditText.text.toString())
+            }
+            2 -> setUserLocation(userLocationEditText.text.toString())
+        }
     }
 
 }

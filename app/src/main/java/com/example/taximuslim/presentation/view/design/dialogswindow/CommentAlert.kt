@@ -27,12 +27,8 @@ class CommentAlert(context: Context) : ParentDialog(context) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.comment_dialog_window)
-        setCancelable(false)
-        window?.clearFlags(
-            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-                    or WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM
-        )
-        window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
+        thisWindow = this.window
+        setLayout()
     }
 
 
@@ -63,6 +59,4 @@ class CommentAlert(context: Context) : ParentDialog(context) {
             toDriverCommentLiveData.value = comment
         }
     }
-
-
 }

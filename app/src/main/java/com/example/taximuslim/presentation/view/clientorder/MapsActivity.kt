@@ -221,10 +221,12 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
     private fun initViewModel() {
         viewModel.currentLocation.observe(this,
             Observer { location: Location ->
-                mapManger.addMarkerAndMoveCameraToIt(
-                    mMap, location.toLatLng(),
-                    15f, R.drawable.green_marker
-                )
+                FetchAddressIntentService.markerUserLocation?.remove()
+                FetchAddressIntentService.markerUserLocation =
+                    mapManger.addUserLocationMarkerAndMoveCameraToIt(
+                        mMap, location.toLatLng(),
+                        15f, R.drawable.green_marker
+                    )
 
                 locationPrediction = location.toLatLng()
 
@@ -275,11 +277,16 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
 
     fun addMarkerOnPointB(address: String) =
         mapManger.getLocationFromAddress(address)?.let { location ->
-            mapManger.addMarkerAndMoveCameraToIt(mMap, location, 15f, R.drawable.green_marker)
+            mapManger.addUserLocationMarkerAndMoveCameraToIt(
+                mMap,
+                location,
+                15f,
+                R.drawable.green_marker
+            )
         }
 
     private fun showPriceAndCommentEditTexts() {
-        viewManager.showViews(tripPriceLayout, commentLayout)
+        viewManager.showViews(tripPriceLayout, commentLayout, paymentKinTextView, paymentKindRadioGroup)
         viewManager.setOnFocusListener(tripPriceEditText) {
             viewManager.showPriceAlert(priceAlert, btnManager)
         }

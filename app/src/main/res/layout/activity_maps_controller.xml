@@ -159,7 +159,7 @@
                     android:hint="@string/сomment_to_driver"
                     android:singleLine="true"
                     android:textAppearance="@style/RegularText" />
-          </LinearLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/order_kind_buttons"
@@ -305,18 +305,58 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/paymentKinTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/order_kind_buttons"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginBottom="6dp"
+                android:text="@string/payment_kind"
+                android:textAppearance="@style/ContrastFieldText"
+                android:visibility="gone" />
+
+            <RadioGroup
+                android:id="@+id/paymentKindRadioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/paymentKinTextView"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                    <RadioButton
+                        android:id="@+id/cashRadioBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorThemeGreen"
+                        android:text="@string/cash"
+                        android:textAppearance="@style/RegularText" />
+
+                    <RadioButton
+                        android:id="@+id/bankRadioBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="23dp"
+                        android:buttonTint="@color/colorThemeGreen"
+                        android:text="@string/bank"
+                        android:textAppearance="@style/RegularText" />
+            </RadioGroup>
+
             <include
                 android:id="@+id/main_button_order_taxi"
                 layout="@layout/gradient_button"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_below="@id/order_kind_buttons"
+                android:layout_below="@id/paymentKindRadioGroup"
                 android:layout_alignParentBottom="false"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="@dimen/medium_margin"
-                android:layout_marginEnd="28dp"
                 android:layout_marginTop="12dp"
-                android:layout_marginBottom="@dimen/default_margin" />
+                android:layout_marginEnd="28dp"
+                android:layout_marginBottom="@dimen/default_margin"
+                android:visibility="visible" />
 
         </RelativeLayout>
 
