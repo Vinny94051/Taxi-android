@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 
 
 fun String.makeStringBold(): Spanned = Html.fromHtml("<b>".plus(this).plus("</b>"))
@@ -60,6 +61,12 @@ fun LatLng.toLocation(): Location {
     return location
 }
 
+fun Marker?.isNotEmpty(): Boolean {
+    if (this == null)
+        return false
+
+    return true
+}
 
 
 

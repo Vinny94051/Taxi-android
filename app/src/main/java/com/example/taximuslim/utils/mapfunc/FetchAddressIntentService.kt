@@ -5,14 +5,13 @@ import android.location.Address
 import android.location.Geocoder
 import android.util.Log
 import com.example.taximuslim.data.network.dto.order.TariffRequest
+import com.google.android.gms.maps.CameraUpdate
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import java.io.IOException
 import java.util.*
+import javax.inject.Inject
 
 class FetchAddressIntentService(private val context: Context) {
 
@@ -97,5 +96,16 @@ class FetchAddressIntentService(private val context: Context) {
             }
         return LatLng(address[0].latitude, address[0].longitude)
     }
+
+
+    fun createCameraUpdateObject(): CameraUpdate =
+        CameraUpdateFactory.newLatLngBounds(
+            LatLngBounds
+                .builder()
+                .include(markerUserLocation?.position)
+                .include(markerPointBLocation?.position)
+                .build(), 600
+        )
+
 
 }

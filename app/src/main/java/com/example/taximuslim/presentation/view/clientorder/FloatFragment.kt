@@ -200,6 +200,7 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
             }
             2 -> setUserLocation(userLocationEditText.text.toString())
         }
+        owner.moveCameraToTwoMarkers()
     }
 
 }

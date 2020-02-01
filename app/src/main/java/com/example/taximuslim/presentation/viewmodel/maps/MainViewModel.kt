@@ -7,6 +7,7 @@ import com.example.taximuslim.App
 import com.example.taximuslim.baseUI.viewmodel.BaseViewModel
 import com.example.taximuslim.data.network.dto.order.TariffRequest
 import com.example.taximuslim.data.recycle.places.PlacesModelForRecycleViewHorizontal
+import com.example.taximuslim.domain.models.google.Route
 import com.example.taximuslim.domain.order.IOrderInteractor
 import com.example.taximuslim.domain.order.models.TariffModel
 import com.example.taximuslim.presentation.view.clientorder.list.PlacesModel
@@ -30,7 +31,7 @@ class MainViewModel : BaseViewModel() {
     val currentLocation: LiveData<Location>
         get() = _currentLocation
 
-    fun setLocation(location : Location){
+    fun setLocation(location: Location) {
         _currentLocation.value = location
     }
 
@@ -62,6 +63,16 @@ class MainViewModel : BaseViewModel() {
     fun loadTariffs(token: String, location: TariffRequest) {
         interactor.getTariffies(token, location) { tariffs ->
             _tariffsLiveData.value = tariffs
+        }
+    }
+
+    private val _directionsLiveData = MutableLiveData<Route>()
+    val directionsLiveData: LiveData<Route>
+        get() = _directionsLiveData
+
+    fun loadRoutes(start: String, end: String) {
+        interactor.getDirections(start, end) { route ->
+            _directionsLiveData.value = route
         }
     }
 

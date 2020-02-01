@@ -2,6 +2,7 @@ package com.example.taximuslim.presentation.view.clientorder
 
 import android.app.Activity
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.location.Location
 import android.os.Bundle
 import android.text.SpannableStringBuilder
@@ -31,10 +32,12 @@ import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_maps_controller.*
 import com.example.taximuslim.R
 import com.example.taximuslim.data.network.dto.order.TariffRequest
+import com.example.taximuslim.domain.order.models.TariffModel
 import com.example.taximuslim.presentation.view.clientorder.managers.ButtonManager
 import com.example.taximuslim.utils.prefference.getAuthHeader
 import com.example.taximuslim.utils.view.ViewManager
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.PolylineOptions
 import kotlinx.android.synthetic.main.gradient_button.*
 
 
@@ -120,6 +123,8 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        mMap.uiSettings.isCompassEnabled = false
+        mMap.setPadding(0, 0, 0, 750)
         if (permissionManager.checkLocationPermissions()) updateLocation()
     }
 
@@ -211,7 +216,6 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
 
     private fun updateLocation() {
         viewModel.loadLocation()
-        mMap.isMyLocationEnabled = true
     }
 
     var userLocation: String = ""
@@ -221,21 +225,11 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
     private fun initViewModel() {
         viewModel.currentLocation.observe(this,
             Observer { location: Location ->
-                FetchAddressIntentService.markerUserLocation?.remove()
-                FetchAddressIntentService.markerUserLocation =
-                    mapManger.addUserLocationMarkerAndMoveCameraToIt(
-                        mMap, location.toLatLng(),
-                        15f, R.drawable.green_marker
-                    )
-
+                setUserMarker(location)
+                moveCameraToTwoMarkers()
                 locationPrediction = location.toLatLng()
-
-                mapManger.getCountry(location.toLatLng())?.let {
-                    loadTarrifs(it)
-                }
-                userLocation = mapManger.latLngToAddress(location.toLatLng())
-
-                user_location.text = SpannableStringBuilder(userLocation)
+                loadTarrifsByCountry(location)
+                setUserLocationText(location)
             })
 
         PriceAlert.priceLiveData.observe(this, Observer { price ->
@@ -247,28 +241,73 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             commentEditText.text = comment
         })
 
-        viewModel.placesForMapsView.observe(this, Observer { places ->
-            adapter.replaceAll(places)
-        })
+        viewModel.apply {
+            placesForMapsView.observe(this@MapsActivity, Observer { places ->
+                adapter.replaceAll(places)
+            })
 
-        viewModel.pointBLiveData.observe(this, Observer { address ->
-            pointBEditText.text = address.toEditable()
-            pointBLocation = address
-        })
+            pointBLiveData.observe(this@MapsActivity, Observer { address ->
+                pointBEditText.text = address.toEditable()
+                pointBLocation = address
+                moveCameraToTwoMarkers()
+                viewModel.loadRoutes(userLocation, address)
+            })
 
-        viewModel.tarriffsLiveData.observe(this, Observer { tariffs ->
-            val economyText = "от " + tariffs.economy + " Rub"
-            PriceHolder.economy = tariffs.economy
-            firstCategoryPriceTextView.text = economyText
+            tarriffsLiveData.observe(this@MapsActivity, Observer { tariffs ->
+                setTarrifs(tariffs)
 
-            val comfortText = "от " + tariffs.comfort + " Rub"
-            PriceHolder.comfort = tariffs.comfort
-            secondCategoryPriceTextView.text = comfortText
+                directionsLiveData.observe(this@MapsActivity, Observer {route ->
+                    val options = PolylineOptions()
+                    options.color(Color.RED)
+                    options.width(5f)
+                    for(point in route.steps) options.add(point)
+                    mMap.addPolyline(options)
+                })
+            })
 
-            val businessText = "от " + tariffs.business + " Rub"
-            PriceHolder.business = tariffs.business
-            thirdCategoryPriceTextView.text = businessText
-        })
+
+        }
+    }
+
+    private fun setTarrifs(tariffs: TariffModel) {
+        val economyText = "от " + tariffs.economy + " Rub"
+        PriceHolder.economy = tariffs.economy
+        firstCategoryPriceTextView.text = economyText
+
+        val comfortText = "от " + tariffs.comfort + " Rub"
+        PriceHolder.comfort = tariffs.comfort
+        secondCategoryPriceTextView.text = comfortText
+
+        val businessText = "от " + tariffs.business + " Rub"
+        PriceHolder.business = tariffs.business
+        thirdCategoryPriceTextView.text = businessText
+    }
+
+    private fun setUserLocationText(location: Location) {
+        userLocation = mapManger.latLngToAddress(location.toLatLng())
+        user_location.text = SpannableStringBuilder(userLocation)
+    }
+
+    private fun loadTarrifsByCountry(location: Location) {
+        mapManger.getCountry(location.toLatLng())?.let { tarrifs ->
+            loadTarrifs(tarrifs)
+        }
+    }
+
+    private fun setUserMarker(location: Location) {
+        FetchAddressIntentService.markerUserLocation?.remove()
+        FetchAddressIntentService.markerUserLocation =
+            mapManger.addUserLocationMarkerAndMoveCameraToIt(
+                mMap, location.toLatLng(),
+                15f, R.drawable.green_marker
+            )
+    }
+
+    fun moveCameraToTwoMarkers() {
+        if (FetchAddressIntentService.markerPointBLocation.isNotEmpty()
+            && FetchAddressIntentService.markerUserLocation.isNotEmpty()
+        )
+            mMap.animateCamera(mapManger.createCameraUpdateObject())
     }
 
     private fun showPriceAlertIfAlLeastOnButtonActive() =
@@ -286,7 +325,12 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         }
 
     private fun showPriceAndCommentEditTexts() {
-        viewManager.showViews(tripPriceLayout, commentLayout, paymentKinTextView, paymentKindRadioGroup)
+        viewManager.showViews(
+            tripPriceLayout,
+            commentLayout,
+            paymentKinTextView,
+            paymentKindRadioGroup
+        )
         viewManager.setOnFocusListener(tripPriceEditText) {
             viewManager.showPriceAlert(priceAlert, btnManager)
         }
