@@ -18,7 +18,7 @@ class AuthDriverMainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.arrow_to_left_black)
 
-        saveVerToken(this, "JPfsB8ZKFtN5BQ9ZvokfWTqDo8vARMJF_1580062800")
+        saveVerToken(this, "OxQirGFFkv9Y5pxEQD5GgfVDq5B7YwsR_1577160638")
 
         toolbar.setNavigationIcon(R.drawable.arrow_to_left_black)
         NavigationUI.setupActionBarWithNavController(this, this.findNavController(R.id.nav_host_fragment))

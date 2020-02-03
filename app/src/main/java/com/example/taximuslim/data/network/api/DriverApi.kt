@@ -34,9 +34,15 @@ interface DriverApi {
     ): StatusResponse
 
     @GET("driver/view-car")
-    suspend fun fetchInfoABoutCar(
+    suspend fun fetchInfoAboutCar(
         @Header("Authorization") token: String
     ): CarInfo
+
+    @POST("driver/update-car-number")
+    suspend fun sendCarNumb(
+        @Header("Authorization") token: String,
+        @Body body: DriverCarNumbRequest
+    ): StatusResponse
 
     @POST("driver/update-image")
     suspend fun uploadDriverImage(
