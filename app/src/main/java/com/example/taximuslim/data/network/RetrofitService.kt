@@ -1,9 +1,9 @@
 package com.example.taximuslim.data.network
 
 import com.example.taximuslim.data.network.api.AuthApi
+import com.example.taximuslim.data.network.api.DriverApi
 import com.example.taximuslim.data.network.api.GoogleMapApi
 import com.example.taximuslim.data.network.api.OrderAPi
-import io.reactivex.internal.schedulers.RxThreadFactory
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -32,6 +32,8 @@ class RetrofitService {
     fun getAuthApi(): AuthApi = getRetrofit().create(AuthApi::class.java)
 
     fun getOrderApi() : OrderAPi = getRetrofit().create(OrderAPi::class.java)
+
+    fun getDriverApi(): DriverApi = getRetrofit().create(DriverApi::class.java)
 
     fun getGoogleMapApi() : GoogleMapApi = getRetrofitForGoogleApi().create(GoogleMapApi::class.java)
 

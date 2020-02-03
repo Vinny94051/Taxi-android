@@ -2,6 +2,11 @@ package com.example.taximuslim.data.network.api
 
 import com.example.taximuslim.data.network.remote.request.driver.*
 import com.example.taximuslim.data.network.remote.response.driver.*
+import com.example.taximuslim.domain.models.driver.auth.CarInfo
+import com.example.taximuslim.domain.models.driver.auth.DriverProfile
+import com.example.taximuslim.domain.models.driver.auth.DriverRule
+import com.example.taximuslim.domain.models.driver.auth.LicenceNumb
+import com.example.taximuslim.domain.models.driver.order.OrderHistory
 import retrofit2.http.*
 
 interface DriverApi {
@@ -14,7 +19,7 @@ interface DriverApi {
     @GET("car-model/view")
     suspend fun fetchCarModels(
         @Header("Authorization") token: String,
-        @Query("id_car") modelId: Int
+        @Query("id_car") markId: Int
     ): List<CarModelsResponse>
 
     @GET("car-color")
@@ -31,7 +36,7 @@ interface DriverApi {
     @GET("driver/view-car")
     suspend fun fetchInfoABoutCar(
         @Header("Authorization") token: String
-    ): CarInfoResponse
+    ): CarInfo
 
     @POST("driver/update-image")
     suspend fun uploadDriverImage(
@@ -54,7 +59,7 @@ interface DriverApi {
     @GET("driver/view-profile")
     suspend fun fetchDriverProfile(
         @Header("Authorization") token: String
-    ): DriverProfileResponse
+    ): DriverProfile
 
     @POST("driver/update-document")
     suspend fun postLicenceNumb(
@@ -65,17 +70,17 @@ interface DriverApi {
     @GET("driver/view-document")
     suspend fun fetchLicenceNumb(
         @Header("Authorization") token: String
-    ): LicenceNumbResponse
+    ): LicenceNumb
 
     @GET("rule-driver")
     suspend fun fetchDriverRulesList(
         @Header("Authorization") token: String
-    ): List<DriverRuleResponse>
+    ): List<DriverRule>
 
     @GET("trip")
     suspend fun fetchOrderHistoryList(
         @Header("Authorization") token: String
-    ): List<OrderHistoryResponse>
+    ): List<OrderHistory>
 
 //    @GET("earnings")
 //    suspend fun fetchDriverIncome(

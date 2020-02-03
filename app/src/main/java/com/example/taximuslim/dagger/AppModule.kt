@@ -5,6 +5,8 @@ import android.content.Context
 import com.example.taximuslim.data.repository.auth.AuthRepo
 import com.example.taximuslim.domain.auth.AuthInteractor
 import com.example.taximuslim.domain.auth.IAuthInteractor
+import com.example.taximuslim.domain.auth.driver.CarInfoInteractor
+import com.example.taximuslim.domain.auth.driver.CarInfoInteractorImpl
 import com.example.taximuslim.domain.order.IOrderInteractor
 import com.example.taximuslim.domain.order.OrderInteractor
 import com.example.taximuslim.presentation.viewmodel.auth.AuthViewModel
@@ -42,5 +44,9 @@ class AppModule(private val app: Application) {
     @Provides
     fun providesFetchAddressIntentService(): FetchAddressIntentService =
         FetchAddressIntentService(app)
+
+    @Provides
+    fun provideDriverInfoInteractor(): CarInfoInteractor =
+        CarInfoInteractorImpl()
 
 }

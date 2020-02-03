@@ -1,13 +1,13 @@
-package com.example.taximuslim.data.network.remote.response.driver
+package com.example.taximuslim.domain.models.driver.order
 
 import com.example.taximuslim.domain.models.driver.auth.Request
 
-data class OrderHistoryResponse(
+data class OrderHistory(
     val auto: String,
     val comment: String,
     val date: String,
     val distance: Double,
-    val end_adress: String,
+    val endAddress: String,
     val end_lat: Double,
     val end_lgn: Double,
     val id: Int,
@@ -20,7 +20,7 @@ data class OrderHistoryResponse(
     val price: String,
     val reply_client: String,
     val request: List<Request>,
-    val start_adress: String,
+    val startAddress: String,
     val start_lat: Double,
     val start_lgn: Double,
     val status: Int,

@@ -211,4 +211,6 @@
     <string name="support_service">Служба поддержки</string>
     <string name="online_registration">Онлайн-регистрация</string>
     <string name="become_passenger">Стать пассажиром</string>
+    <string name="car_class">Ваша машина подходит к классу «%1$s»</string>
+    <string name="fill_all_fields">Заполните все поля.</string>
 </resources>

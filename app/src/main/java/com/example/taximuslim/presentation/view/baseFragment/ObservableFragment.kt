@@ -7,8 +7,8 @@ abstract class ObservableFragment: Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        setObservers()
         setUIState()
+        setObservers()
     }
 
     override fun onStart() {

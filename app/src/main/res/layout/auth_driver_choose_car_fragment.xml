@@ -27,7 +27,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/carSeria"
+            android:id="@+id/carSeries"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/car_seria"
@@ -46,7 +46,7 @@
             android:textAppearance="@style/ContrastFieldText"
             android:layout_marginTop="@dimen/medium_margin"
             android:layout_marginStart="@dimen/default_margin"
-            app:layout_constraintTop_toBottomOf="@id/carSeria"
+            app:layout_constraintTop_toBottomOf="@id/carSeries"
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatSpinner
@@ -56,6 +56,7 @@
             android:layout_marginStart="@dimen/large_margin"
             android:layout_marginEnd="@dimen/default_margin"
             android:textSize="14sp"
+            app:list="@{viewModel.carMarks}"
             android:textColor="@color/notContrastTextColor"
             app:layout_constraintBottom_toBottomOf="@+id/carMark"
             app:layout_constraintEnd_toEndOf="parent"
@@ -71,24 +72,25 @@
             app:layout_constraintTop_toBottomOf="@id/markSpinner"/>
 
         <androidx.appcompat.widget.AppCompatSpinner
-            android:id="@+id/seriaSpinner"
+            android:id="@+id/seriesSpinner"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/default_margin"
             android:textSize="14sp"
+            app:list="@{viewModel.carModels}"
             android:textColor="@color/notContrastTextColor"
-            app:layout_constraintBottom_toBottomOf="@+id/carSeria"
+            app:layout_constraintBottom_toBottomOf="@+id/carSeries"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/markSpinner"
-            app:layout_constraintTop_toTopOf="@id/carSeria" />
+            app:layout_constraintTop_toTopOf="@id/carSeries" />
 
         <View
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:background="#808080"
-            app:layout_constraintEnd_toEndOf="@id/seriaSpinner"
-            app:layout_constraintStart_toStartOf="@id/seriaSpinner"
-            app:layout_constraintTop_toBottomOf="@id/seriaSpinner"/>
+            app:layout_constraintEnd_toEndOf="@id/seriesSpinner"
+            app:layout_constraintStart_toStartOf="@id/seriesSpinner"
+            app:layout_constraintTop_toBottomOf="@id/seriesSpinner"/>
 
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/colorSpinner"
@@ -96,6 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/default_margin"
             android:textSize="14sp"
+            app:list="@{viewModel.carColors}"
             android:textColor="@color/notContrastTextColor"
             app:layout_constraintBottom_toBottomOf="@+id/carColor"
             app:layout_constraintEnd_toEndOf="parent"
@@ -103,12 +106,26 @@
             app:layout_constraintTop_toTopOf="@id/carColor" />
 
         <View
+            android:id="@+id/view"
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:background="#808080"
             app:layout_constraintEnd_toEndOf="@id/colorSpinner"
             app:layout_constraintStart_toStartOf="@id/colorSpinner"
-            app:layout_constraintTop_toBottomOf="@id/colorSpinner"/>
+            app:layout_constraintTop_toBottomOf="@id/colorSpinner" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/large_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_marginStart="@dimen/default_margin"
+            android:textAppearance="@style/SecondaryText"
+            android:fontFamily="@font/roboto_medium"
+            app:car_class="@{viewModel.selectedModel.tariff}"
+            app:layout_constraintTop_toBottomOf="@id/view"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="184dp" />
 
         <LinearLayout
             android:id="@+id/buttonLayout"
@@ -117,7 +134,7 @@
             android:layout_marginStart="@dimen/button_horizontal_margin"
             android:layout_marginEnd="@dimen/button_horizontal_margin"
             android:layout_marginBottom="@dimen/default_bottom_margin"
-            android:onClick="@{() -> viewModel.checkAndWriteData()}"
+            android:onClick="@{() -> viewModel.onMainButtonClick()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
