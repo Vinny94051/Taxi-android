@@ -8,14 +8,14 @@ class PlacesModelForRecycleViewHorizontal constructor(var img: Int, var text: St
     /**
      * Load data by server
      * */
-     fun load(listener: (ArrayList<PlacesModelForRecycleViewHorizontal>) -> Unit) {
+    fun load(listener: (ArrayList<PlacesModelForRecycleViewHorizontal>) -> Unit) {
         //getData and invoke listener
         val data = arrayListOf(
             PlacesModelForRecycleViewHorizontal(R.drawable.mecheti, "Мечети"),
-            PlacesModelForRecycleViewHorizontal(R.drawable.moleln_rooms,"Молельные комнаты"),
-            PlacesModelForRecycleViewHorizontal(R.drawable.culture, "Культура"),
-            PlacesModelForRecycleViewHorizontal(R.drawable.shops, "Магазины"),
-            PlacesModelForRecycleViewHorizontal(R.drawable.cafe_and_restouronts, "Кафе и рестораны")
+            PlacesModelForRecycleViewHorizontal(R.drawable.mecheti, "Молельные комнаты"),
+            PlacesModelForRecycleViewHorizontal(R.drawable.mecheti, "Культура"),
+            PlacesModelForRecycleViewHorizontal(R.drawable.mecheti, "Магазины"),
+            PlacesModelForRecycleViewHorizontal(R.drawable.mecheti, "Кафе и рестораны")
         )
         listener.invoke(data)
     }

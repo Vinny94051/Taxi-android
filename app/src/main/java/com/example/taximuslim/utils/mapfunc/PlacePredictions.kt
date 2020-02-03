@@ -42,7 +42,7 @@ class PlacePredictions(var placesClient: PlacesClient, var currentUserLocation: 
                             prediction.getPrimaryText(null).toString(),
                             prediction.getSecondaryText(null).toString(),
                             distanceCalculator
-                                .calculateDistance(
+                                .calculateDistanceBetweenTwoAddresses(
                                     currentUserLocation,
                                     prediction.getFullText(null).toString()
                                 )

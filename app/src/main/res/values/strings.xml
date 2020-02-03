@@ -71,7 +71,7 @@
     <string name="cancel">Отмена</string>
     <string name="done">Готово</string>
     <string name="сomment_to_driver">Комментарий водителю</string>
-    <string name="add_your_comment">Добавьте ваш комментарий</string>
+    <string name="add_your_comment">Добавьте Ваш комментарий</string>
     <string name="your_comment_hint">Ваш комментарий</string>
     <string name="title_activity_navigation_drawer_controller">NavigationDrawerController</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -202,6 +202,9 @@
     <string name="numb_changing">Изменение номера</string>
     <string name="change_numb_instruction">На указанный номер придет SMS-код для продолжения регистрации</string>
     <string name="enter_phone_numb">Введите номер телефона</string>
+    <string name="payment_kind">Способ оплаты</string>
+    <string name="cash">Наличными</string>
+    <string name="bank">Сбербанк онлайн</string>
     <string name="my_income">Мои доходы</string>
     <string name="order_history">История заказов</string>
     <string name="my_profile">Мой профиль</string>

@@ -3,20 +3,23 @@ package com.example.taximuslim.utils.mapfunc
 import android.content.Context
 import android.location.Address
 import android.location.Geocoder
+import android.util.Log
 import com.example.taximuslim.data.network.dto.order.TariffRequest
-import com.example.taximuslim.domain.order.models.TariffModel
+import com.google.android.gms.maps.CameraUpdate
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import java.io.IOException
 import java.util.*
+import javax.inject.Inject
 
 class FetchAddressIntentService(private val context: Context) {
 
     companion object {
         private const val UNKNOWN_ADDRESS = "Cannot define your address."
+
+        var markerUserLocation: Marker? = null
+        var markerPointBLocation: Marker? = null
     }
 
     fun latLngToAddress(location: LatLng): String {
@@ -63,40 +66,46 @@ class FetchAddressIntentService(private val context: Context) {
         return town
     }
 
-    fun addMarkerAndMoveCameraToIt(
+    fun addUserLocationMarkerAndMoveCameraToIt(
         mMap: GoogleMap,
         location: LatLng,
         zoom: Float,
         markerIconId: Int
-    ) {
-        mMap.addMarker(
+    ): Marker {
+        val marker = mMap.addMarker(
             MarkerOptions()
                 .position(location)
                 .icon(BitmapDescriptorFactory.fromResource(markerIconId))
         )
         mMap.moveCamera(CameraUpdateFactory.newLatLng(location))
         mMap.animateCamera(CameraUpdateFactory.zoomTo(zoom))
+
+        return marker
     }
+
 
     fun getLocationFromAddress(strAddress: String): LatLng? {
-        val coder = Geocoder(context)
-        val address: List<Address>?
-        var p1: LatLng? = null
-
-        try {
-            address = coder.getFromLocationName(strAddress, 5)
-            if (address == null) {
+        val address: MutableList<Address> =
+            try {
+                Geocoder(context).getFromLocationName(strAddress, 1)
+                    ?: return null
+            } catch (ex: IOException) {
+                Log.e("GetLocationFromAddress:", "IOE")
+                ex.printStackTrace()
                 return null
             }
-            val location = address[0]
-            location.latitude
-            location.longitude
-
-            p1 = LatLng(location.latitude, location.longitude)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        return p1
+        return LatLng(address[0].latitude, address[0].longitude)
     }
+
+
+    fun createCameraUpdateObject(): CameraUpdate =
+        CameraUpdateFactory.newLatLngBounds(
+            LatLngBounds
+                .builder()
+                .include(markerUserLocation?.position)
+                .include(markerPointBLocation?.position)
+                .build(), 600
+        )
+
 
 }

@@ -33,8 +33,7 @@
             android:id="@+id/recycler_list"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_above="@id/create_order_view"
-            android:layout_marginBottom="12dp" />
+            android:layout_above="@id/create_order_view" />
 
 
         <RelativeLayout
@@ -62,7 +61,7 @@
                     android:id="@+id/placeholder_img"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginEnd="6dp"
                     android:src="@drawable/placeholder_green" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -91,7 +90,7 @@
                     android:id="@+id/placeholder_img_2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginEnd="5dp"
                     android:src="@drawable/placeholder_light_brown" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -120,15 +119,13 @@
                     android:id="@+id/cost_img"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="12dp"
                     android:src="@drawable/cost_icon" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/tripPriceEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
+                    android:layout_marginStart="12dp"
                     android:hint="@string/describe_your_price"
                     android:imeOptions="actionDone"
                     android:singleLine="true"
@@ -141,7 +138,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tripPriceLayout"
                 android:layout_centerHorizontal="true"
-                android:layout_marginStart="25dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="20dp"
                 android:orientation="horizontal"
@@ -151,19 +148,17 @@
                     android:id="@+id/comment_img"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="4dp"
                     android:layout_marginEnd="8dp"
-                    android:src="@drawable/comment_1_icon" />
+                    android:src="@drawable/chat_element" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/commentEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
                     android:hint="@string/сomment_to_driver"
                     android:singleLine="true"
                     android:textAppearance="@style/RegularText" />
-          </LinearLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/order_kind_buttons"
@@ -309,17 +304,58 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/paymentKinTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/order_kind_buttons"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginBottom="6dp"
+                android:text="@string/payment_kind"
+                android:textAppearance="@style/ContrastFieldText"
+                android:visibility="gone" />
+
+            <RadioGroup
+                android:id="@+id/paymentKindRadioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/paymentKinTextView"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                    <RadioButton
+                        android:id="@+id/cashRadioBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorThemeGreen"
+                        android:text="@string/cash"
+                        android:textAppearance="@style/RegularText" />
+
+                    <RadioButton
+                        android:id="@+id/bankRadioBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="23dp"
+                        android:buttonTint="@color/colorThemeGreen"
+                        android:text="@string/bank"
+                        android:textAppearance="@style/RegularText" />
+            </RadioGroup>
+
             <include
                 android:id="@+id/main_button_order_taxi"
                 layout="@layout/gradient_button"
-                android:layout_width="292dp"
+                android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_below="@id/order_kind_buttons"
+                android:layout_below="@id/paymentKindRadioGroup"
                 android:layout_alignParentBottom="false"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="@dimen/medium_margin"
                 android:layout_marginTop="12dp"
-                android:layout_marginBottom="@dimen/default_margin" />
+                android:layout_marginEnd="28dp"
+                android:layout_marginBottom="@dimen/default_margin"
+                android:visibility="visible" />
 
         </RelativeLayout>
 

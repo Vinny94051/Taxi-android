@@ -1,62 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="328dp"
-    android:layout_height="222dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_centerHorizontal="true"
-    >
+    android:elevation="32dp"
+    android:background="@drawable/background_alert">
 
     <TextView
         android:id="@+id/dialog_head_comment"
-        android:layout_marginTop="24dp"
         android:layout_width="wrap_content"
-        android:textAlignment="center"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
         android:text="@string/add_your_comment"
-        android:textColor="@android:color/black"
-        android:textStyle="bold" />
+        android:textAlignment="center"
+        android:textAppearance="@style/AlertTextField" />
 
     <EditText
         android:id="@+id/commentEditText"
-        android:layout_width="280dp"
-        android:layout_height="103dp"
-        android:layout_marginTop="@dimen/default_margin"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="104dp"
         android:layout_below="@id/dialog_head_comment"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/background_set_price"
-        android:hint="@string/your_comment_hint"
-        android:textSize="14sp"
         android:gravity="start"
+        android:hint="@string/your_comment_hint"
         android:padding="8dp"
-        />
+        android:textAppearance="@style/RegularText" />
 
 
-        <TextView
-            android:id="@+id/cancel_btn_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/cancel"
-            android:textStyle="bold"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="70dp"
-            android:layout_marginTop="@dimen/default_margin"
-            android:layout_below="@id/commentEditText"
-            android:textColor="@android:color/black"
-            />
+    <TextView
+        android:id="@+id/cancel_btn_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/commentEditText"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="@dimen/default_margin"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:text="@string/cancel"
+        android:textAppearance="@style/AlertTextField"
+        android:textSize="16sp" />
 
 
-        <TextView
-            android:id="@+id/ok_btn_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/done"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="70dp"
-            android:layout_marginTop="@dimen/default_margin"
-            android:layout_below="@id/commentEditText"
-            android:textStyle="bold"
-            android:textColor="@color/colorThemeGreen"
-            />
+    <TextView
+        android:id="@+id/ok_btn_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/commentEditText"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="24dp"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:text="@string/done"
+        android:textAppearance="@style/AccentText"
+        android:textSize="16sp" />
 
 </RelativeLayout>

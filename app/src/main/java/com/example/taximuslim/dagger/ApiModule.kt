@@ -2,12 +2,10 @@ package com.example.taximuslim.dagger
 
 import com.example.taximuslim.data.network.RetrofitService
 import com.example.taximuslim.data.network.api.AuthApi
+import com.example.taximuslim.data.network.api.GoogleMapApi
 import com.example.taximuslim.data.network.api.OrderAPi
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -28,4 +26,8 @@ object ApiModule {
     @Provides
     fun provideOrderApi(retrofit: RetrofitService) : OrderAPi = retrofit.getOrderApi()
 
+    @JvmStatic
+    @Singleton
+    @Provides
+    fun provideGoogleMapApi(retrofit: RetrofitService) : GoogleMapApi = retrofit.getGoogleMapApi()
 }

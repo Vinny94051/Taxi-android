@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.view.View
 import android.view.Window
+import android.view.WindowManager
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.MutableLiveData
 import com.example.taximuslim.R
@@ -29,6 +30,7 @@ class CommentAlert(context: Context) : ParentDialog(context) {
         thisWindow = this.window
         setLayout()
     }
+
 
     override fun onStart() {
         super.onStart()
@@ -57,6 +59,4 @@ class CommentAlert(context: Context) : ParentDialog(context) {
             toDriverCommentLiveData.value = comment
         }
     }
-
-
 }

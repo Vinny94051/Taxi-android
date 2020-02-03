@@ -2,41 +2,49 @@ package com.example.taximuslim.presentation.view.clientorder
 
 import android.content.Context
 import android.os.Bundle
-import android.os.Handler
-import android.text.Editable
+import android.util.Log
 import android.view.View
-import androidx.core.widget.addTextChangedListener
+import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taximuslim.App
 import com.example.taximuslim.R
 import com.example.taximuslim.baseUI.fragment.BaseFragment
 import com.example.taximuslim.presentation.view.clientorder.list.prediction.PredictionAdapter
+import com.example.taximuslim.utils.mapfunc.FetchAddressIntentService
 import com.example.taximuslim.utils.mapfunc.PlacePredictions
 import com.example.taximuslim.utils.onSubmitNext
 import com.example.taximuslim.utils.toEditable
+import com.example.taximuslim.utils.toLocation
 import com.example.taximuslim.utils.view.ViewManager
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.net.PlacesClient
+import com.google.android.material.snackbar.Snackbar
+import com.jakewharton.rxbinding2.widget.textChanges
+import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_choose_address.*
+import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 class FloatFragment : BaseFragment(), View.OnClickListener {
+
+    init {
+        App.appComponent.inject(this)
+    }
 
     companion object {
         const val ID = "FLOAT_FRAGMENT"
         fun newInstance() = FloatFragment()
 
-        const val DELAY: Long = 1250
     }
 
-    lateinit var owner: MapsActivity
+    @Inject
+    lateinit var addressServiece: FetchAddressIntentService
+
+    private lateinit var owner: MapsActivity
     private lateinit var viewManager: ViewManager
     private lateinit var placePredictions: PlacePredictions
     private var adapter = PredictionAdapter()
-    private val handler = Handler()
-    private var lastEditText: Long = 0
 
-
-    private var address: String = ""
 
     override fun layoutId(): Int = R.layout.fragment_choose_address
 
@@ -63,7 +71,7 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
 
     override fun onClick(view: View?) {
         when (view?.id) {
-            R.id.lineLayout -> closeFragment()
+            R.id.lineLayout -> closeFragment(1)
         }
     }
 
@@ -82,51 +90,80 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
     private fun initViews() {
         lineLayout.setOnClickListener(this)
         initList()
-        pointBLocationEditText.onSubmitNext { closeFragment() }
-
-        userLocationEditText.addTextChangedListener { address ->
-            addressInputAction(address)
+        setOnPredictionsListener()
+        pointBLocationEditText.onSubmitNext {
+            if (pointBLocationEditText.isFocused)
+                closeFragment(1)
+            else closeFragment(2)
         }
-        pointBLocationEditText.addTextChangedListener { address ->
-            owner.viewModel.pointBLiveData.value = address.toString()
-            addressInputAction(address)
-        }
-
+        setEditTextDebounce(userLocationEditText, 0)
+        setEditTextDebounce(pointBLocationEditText, 1)
         setEditTextsTintListeners()
     }
 
-    private fun addressInputAction(address : Editable?){
-        if (address != null) {
-            if (address.isNotEmpty()) {
-                lastEditText = System.currentTimeMillis()
-                this@FloatFragment.address = address.toString()
-                handler.postDelayed(inputFinishChecker, DELAY)
-            }
+    private fun setEditTextDebounce(editText: EditText, action: Int) = editText
+        .textChanges()
+        .skip(1)
+        .map { address -> address.toString() }
+        .doOnNext {
+            mainProgressbar.visibility = View.VISIBLE
+            recyclerPredict.visibility = View.GONE
         }
-    }
+        .debounce(300, TimeUnit.MILLISECONDS)
+        .observeOn(AndroidSchedulers.mainThread())
+        .doOnEach {
+            mainProgressbar.visibility = View.GONE
+            recyclerPredict.visibility = View.VISIBLE
+        }
+        .doOnError {
+            Snackbar.make(
+                pointBLocationCard,
+                "Error while searching",
+                Snackbar.LENGTH_SHORT
+            ).show()
+        }
+        .retry()
+        .subscribe({ address ->
+            searchAction(address, action)
+        }, { exception ->
+            Log.e("FloatFragment", exception.toString())
+        })
 
-    private val inputFinishChecker: Runnable = Runnable {
-        if (System.currentTimeMillis() > (lastEditText + DELAY - 500)) {
-            placePredictions.newInstance(
-                (activity as MapsActivity).locationPrediction,
-                address
-            )
+    private fun searchAction(address: String, action: Int) {
+        when (action) {
+            1 -> owner.viewModel.pointBLiveData.value = address
         }
+        placePredictions.newInstance(
+            (activity as MapsActivity).locationPrediction,
+            address
+        )
     }
 
     private fun initList() {
         recyclerPredict.layoutManager = LinearLayoutManager(context)
         recyclerPredict.adapter = adapter
 
+        adapter.setOnItemClickListener { address ->
+            if (pointBLocationEditText.isFocused) {
+                pointBLocationEditText.text = address.toEditable()
+                closeFragment(1)
+            } else if (userLocationEditText.isFocused) {
+                setUserLocation(address)
+                closeFragment(2)
+            }
+        }
+    }
+
+    private fun setUserLocation(address: String) {
+        addressServiece.getLocationFromAddress(address)?.toLocation()?.let { userLoc ->
+            owner.viewModel.setLocation(userLoc)
+        }
+    }
+
+    private fun setOnPredictionsListener() =
         placePredictions.setOnPredictionsListener { predictions ->
             adapter.submitList(predictions)
         }
-
-        adapter.setOnItemClickListener {address ->
-            pointBLocationEditText.text = address.toEditable()
-            closeFragment()
-        }
-    }
 
     private fun setGreenTint(view: View) {
         changeViewTint(view, R.color.colorThemeGreen)
@@ -153,9 +190,17 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
         return Places.createClient(context)
     }
 
-    private fun closeFragment() {
+    private fun closeFragment(markerNumber: Int) {
         owner.hideFloatView()
-        owner.addMarkerOnPointB(pointBLocationEditText.text.toString())
+        when (markerNumber) {
+            1 -> {
+                FetchAddressIntentService.markerPointBLocation?.remove()
+                FetchAddressIntentService.markerPointBLocation =
+                    owner.addMarkerOnPointB(pointBLocationEditText.text.toString())
+            }
+            2 -> setUserLocation(userLocationEditText.text.toString())
+        }
+        owner.moveCameraToTwoMarkers()
     }
 
 }
