@@ -3,8 +3,8 @@ package com.example.taximuslim.bindingUtils
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.databinding.BindingAdapter
-import com.example.taximuslim.data.network.remote.response.driver.CarMark
-import com.example.taximuslim.data.network.remote.response.driver.CarModel
+import com.example.taximuslim.domain.models.driver.auth.CarMark
+import com.example.taximuslim.domain.models.driver.auth.CarModel
 import com.example.taximuslim.domain.models.driver.auth.CarColor
 
 @BindingAdapter("list")

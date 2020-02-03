@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.taximuslim.App
 import com.example.taximuslim.data.network.remote.request.driver.MarkModelColorRequest
-import com.example.taximuslim.data.network.remote.response.driver.CarMark
-import com.example.taximuslim.data.network.remote.response.driver.CarModel
+import com.example.taximuslim.domain.models.driver.auth.CarMark
+import com.example.taximuslim.domain.models.driver.auth.CarModel
 import com.example.taximuslim.domain.auth.driver.DriverAuthInteractor
 import com.example.taximuslim.domain.models.driver.auth.CarColor
 import kotlinx.coroutines.Dispatchers

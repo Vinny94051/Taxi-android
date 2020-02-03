@@ -5,8 +5,8 @@ import com.example.taximuslim.App
 import com.example.taximuslim.data.network.api.DriverApi
 import com.example.taximuslim.data.network.remote.request.driver.DriverCarNumbRequest
 import com.example.taximuslim.data.network.remote.request.driver.MarkModelColorRequest
-import com.example.taximuslim.data.network.remote.response.driver.CarMark
-import com.example.taximuslim.data.network.remote.response.driver.CarModel
+import com.example.taximuslim.domain.models.driver.auth.CarMark
+import com.example.taximuslim.domain.models.driver.auth.CarModel
 import com.example.taximuslim.domain.models.driver.auth.CarColor
 import com.example.taximuslim.utils.prefference.getAuthHeader
 import javax.inject.Inject

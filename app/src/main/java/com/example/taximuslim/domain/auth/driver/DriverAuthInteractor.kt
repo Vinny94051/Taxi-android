@@ -1,8 +1,8 @@
 package com.example.taximuslim.domain.auth.driver
 
 import com.example.taximuslim.data.network.remote.request.driver.MarkModelColorRequest
-import com.example.taximuslim.data.network.remote.response.driver.CarMark
-import com.example.taximuslim.data.network.remote.response.driver.CarModel
+import com.example.taximuslim.domain.models.driver.auth.CarMark
+import com.example.taximuslim.domain.models.driver.auth.CarModel
 import com.example.taximuslim.domain.models.driver.auth.CarColor
 
 interface DriverAuthInteractor {
