@@ -77,6 +77,7 @@ class FetchAddressIntentService(private val context: Context) {
                 .position(location)
                 .icon(BitmapDescriptorFactory.fromResource(markerIconId))
         )
+
         mMap.moveCamera(CameraUpdateFactory.newLatLng(location))
         mMap.animateCamera(CameraUpdateFactory.zoomTo(zoom))
 
@@ -104,7 +105,7 @@ class FetchAddressIntentService(private val context: Context) {
                 .builder()
                 .include(markerUserLocation?.position)
                 .include(markerPointBLocation?.position)
-                .build(),0
+                .build(), 0
         )
 
 

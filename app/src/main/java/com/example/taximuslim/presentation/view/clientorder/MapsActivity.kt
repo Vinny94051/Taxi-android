@@ -26,9 +26,6 @@ import com.example.taximuslim.utils.*
 import com.example.taximuslim.utils.navigator.ControllerChanger
 import com.example.taximuslim.utils.permissions.PermissionConstants
 import com.example.taximuslim.utils.permissions.PermissionManager
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_maps_controller.*
 import com.example.taximuslim.R
@@ -38,6 +35,7 @@ import com.example.taximuslim.presentation.view.clientorder.managers.ButtonManag
 import com.example.taximuslim.utils.mapfunc.PolyManager
 import com.example.taximuslim.utils.prefference.getAuthHeader
 import com.example.taximuslim.utils.view.ViewManager
+import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
@@ -47,13 +45,13 @@ import kotlinx.android.synthetic.main.fragment_start.view.*
 import kotlinx.android.synthetic.main.gradient_button.*
 
 
-//TODO Своевременный вывод priceLiveData layout и alert dialog
 class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
     NavigationView.OnNavigationItemSelectedListener {
 
     companion object {
         const val EDIT_TEXT_TOP = "top"
         const val EDIT_TEXT_BOTTOM = "bottom"
+        private const val MAP_ZOOM = 17f
     }
 
 
@@ -132,9 +130,17 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         mMap.uiSettings.isCompassEnabled = false
-        mMap.setPadding(0, rootLayout.height / 6, 0, rootLayout.height / 2)
         if (permissionManager.checkLocationPermissions()) updateLocation()
         polyManager = PolyManager(mMap)
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(MAP_ZOOM))
+        mMap.setOnCameraChangeListener {
+            Log.e("camera change listener:", it.toString())
+            countScreenCenter()
+           val location = mapManger.latLngToAddress(it.target)
+            locationTextView.text = location
+
+
+        }
     }
 
 
@@ -232,6 +238,9 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
     private fun initViewModel() {
         viewModel.currentLocation.observe(this,
             Observer { location: Location ->
+                val point = countPaddings()
+                mMap.setPadding(0,0,0,point.y)
+                Log.e("y:",point.y.toString())
                 setUserMarker(location)
                 moveCameraToTwoMarkers()
                 locationPrediction = location.toLatLng()
@@ -305,10 +314,25 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
     private fun setUserMarker(location: Location) {
         FetchAddressIntentService.markerUserLocation?.remove()
         FetchAddressIntentService.markerUserLocation =
-            mapManger.addUserLocationMarkerAndMoveCameraToIt(
-                mMap, location.toLatLng(),
-                15f, R.drawable.green_marker
+            mMap.addMarker(
+                MarkerOptions()
+                    .position(location.toLatLng())
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_marker))
             )
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(location.toLatLng()))
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(MAP_ZOOM))
+        mMap.setPadding(
+            rootLayout.width / 18,
+            0,
+            rootLayout.width / 18,
+            rootLayout.height / 2 * 1.5.toInt()
+        )
+
+        val projection = mMap.projection
+        val currentPoint = projection.toScreenLocation(location.toLatLng())
+        val nessesaryPoint = countScreenCenter()
+
     }
 
     fun moveCameraToTwoMarkers() {
@@ -316,12 +340,6 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             && FetchAddressIntentService.markerUserLocation.isNotEmpty()
         ) {
             mMap.animateCamera(mapManger.createCameraUpdateObject())
-            mMap.setPadding(
-                rootLayout.width / 18,
-                0,
-                rootLayout.width / 18,
-                rootLayout.height / 2 * 1.5.toInt()
-            )
         }
     }
 
@@ -334,7 +352,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             mapManger.addUserLocationMarkerAndMoveCameraToIt(
                 mMap,
                 location,
-                15f,
+                MAP_ZOOM,
                 R.drawable.green_marker
             )
         }
@@ -371,12 +389,24 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             hideFloatView()
     }
 
-    private fun countScreenCenter() {
+    private fun countPaddings() : Point{
+        val centerY =
+             (resources.getDimension(R.dimen.dp12) + resources.getDimension(R.dimen.small_margin)
+                    + createOrderView.height + recyclerList.height).toInt()
+
+
+        val centerX = rootLayout.width / 2
+        return Point(centerX,  centerY)
+    }
+
+    private fun countScreenCenter(): Point {
         val centerY =
             rootLayout.height - (rootLayout.height - (resources.getDimension(R.dimen.dp12) * 2 + createOrderView.height + recyclerList.height).toInt()) / 2
         val centerX = rootLayout.width / 2
         val projection = mMap.projection
-        val a = projection.fromScreenLocation(Point(centerX, rootLayout.height - centerY))
+        val point = Point(centerX, rootLayout.height - centerY)
+        val a = projection.fromScreenLocation(point)
         Log.e("center location:", a.toString())
+        return point
     }
 }
