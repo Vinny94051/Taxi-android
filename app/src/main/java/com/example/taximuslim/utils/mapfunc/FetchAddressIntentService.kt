@@ -104,7 +104,7 @@ class FetchAddressIntentService(private val context: Context) {
                 .builder()
                 .include(markerUserLocation?.position)
                 .include(markerPointBLocation?.position)
-                .build(), 600
+                .build(),0
         )
 
 

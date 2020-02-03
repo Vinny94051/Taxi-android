@@ -45,6 +45,8 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
     private lateinit var placePredictions: PlacePredictions
     private var adapter = PredictionAdapter()
 
+    var closeListener : ((String) -> Unit)? = null
+
 
     override fun layoutId(): Int = R.layout.fragment_choose_address
 
@@ -190,6 +192,10 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
         return Places.createClient(context)
     }
 
+    fun setOnCloseListener(listener : ((String) -> Unit)){
+        closeListener = listener
+    }
+
     private fun closeFragment(markerNumber: Int) {
         owner.hideFloatView()
         when (markerNumber) {
@@ -201,6 +207,7 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
             2 -> setUserLocation(userLocationEditText.text.toString())
         }
         owner.moveCameraToTwoMarkers()
+        closeListener?.invoke(pointBLocationEditText.text.toString())
     }
 
 }

@@ -26,18 +26,19 @@
             android:background="@drawable/burger_menu_btn"
             android:paddingEnd="12dp"
             android:src="@drawable/ic_menu_black_24dp"
-            android:translationZ="25dp" />
+            android:translationZ="25dp"
+            tools:ignore="RtlSymmetry" />
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_list"
+            android:id="@+id/recyclerList"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_above="@id/create_order_view" />
+            android:layout_above="@id/createOrderView" />
 
 
         <RelativeLayout
-            android:id="@+id/create_order_view"
+            android:id="@+id/createOrderView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

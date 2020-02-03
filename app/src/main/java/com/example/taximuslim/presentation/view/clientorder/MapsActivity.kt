@@ -2,10 +2,11 @@ package com.example.taximuslim.presentation.view.clientorder
 
 import android.app.Activity
 import android.content.pm.PackageManager
-import android.graphics.Color
+import android.graphics.Point
 import android.location.Location
 import android.os.Bundle
 import android.text.SpannableStringBuilder
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.lifecycle.Observer
@@ -34,10 +35,15 @@ import com.example.taximuslim.R
 import com.example.taximuslim.data.network.dto.order.TariffRequest
 import com.example.taximuslim.domain.order.models.TariffModel
 import com.example.taximuslim.presentation.view.clientorder.managers.ButtonManager
+import com.example.taximuslim.utils.mapfunc.PolyManager
 import com.example.taximuslim.utils.prefference.getAuthHeader
 import com.example.taximuslim.utils.view.ViewManager
+import com.google.android.gms.maps.model.BitmapDescriptor
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.PolylineOptions
+import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.android.synthetic.main.auth_driver_public_offer_fragment.view.*
+import kotlinx.android.synthetic.main.fragment_start.view.*
 import kotlinx.android.synthetic.main.gradient_button.*
 
 
@@ -62,6 +68,13 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
     private val adapter = MapsCustomAdapter()
     private val controllerChanger = ControllerChanger(this)
     private val viewManager = ViewManager(this)
+    private lateinit var polyManager: PolyManager
+    var userLocation: String = ""
+    var pointBLocation: String = ""
+    var locationPrediction = LatLng(0.0, 0.0)
+    private var userLocationLatLng = LatLng(0.0, 0.0)
+    private var pointBLatLng = LatLng(0.0, 0.0)
+    private lateinit var floatFragmentInstance: FloatFragment
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -111,12 +124,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
                     showPriceAndCommentEditTexts()
                 }
             }
-            R.id.main_button_order_taxi -> {
-            }
-            R.id.pointBEditText -> {
-            }
-            R.id.commentEditText -> {
-            }
+            R.id.main_button_order_taxi -> { }
             R.id.burger_menu_main -> NavigationDrawerManager.showNavigationDrawer(drawer_layout)
         }
     }
@@ -124,8 +132,9 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         mMap.uiSettings.isCompassEnabled = false
-        mMap.setPadding(0, 0, 0, 750)
+        mMap.setPadding(0, rootLayout.height / 6, 0, rootLayout.height / 2)
         if (permissionManager.checkLocationPermissions()) updateLocation()
+        polyManager = PolyManager(mMap)
     }
 
 
@@ -168,11 +177,14 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         return false
     }
 
+
     private fun openFloatView(forFocusEditTextId: String) {
         this@MapsActivity.forFocusEditTextId = forFocusEditTextId
-        replaceFragment(FloatFragment.newInstance(), R.id.floatView, FloatFragment.ID)
+        floatFragmentInstance = FloatFragment.newInstance()
+        replaceFragment(floatFragmentInstance, R.id.floatView, FloatFragment.ID)
         viewManager.animViewUpToBottomAnim(floatView, 0f, 500)
         rootLayout.isClickable = false
+        setOnFloatFragmentCloseListener()
     }
 
     fun hideFloatView() {
@@ -199,12 +211,12 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         comfort_order.setOnClickListener(this)
         business_order.setOnClickListener(this)
         main_button_order_taxi.setOnClickListener(this)
-        pointBEditText.setOnClickListener(this)
-        commentEditText.setOnClickListener(this)
         burger_menu_main.setOnClickListener(this)
         nav_view.setNavigationItemSelectedListener(this)
         priceAlert = PriceAlert(this as Activity)
-        commentAlert = CommentAlert(this as Activity)
+        commentAlert = CommentAlert(
+            this as Activity
+        )
         commentAlert?.setOnCloseListener { _ ->
             viewManager.removeFocusFromEditTexts(tripPriceEditText, commentEditText)
         }
@@ -214,13 +226,8 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         }
     }
 
-    private fun updateLocation() {
-        viewModel.loadLocation()
-    }
+    private fun updateLocation() = viewModel.loadLocation()
 
-    var userLocation: String = ""
-    var pointBLocation: String = ""
-    var locationPrediction = LatLng(0.0, 0.0)
 
     private fun initViewModel() {
         viewModel.currentLocation.observe(this,
@@ -250,22 +257,22 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
                 pointBEditText.text = address.toEditable()
                 pointBLocation = address
                 moveCameraToTwoMarkers()
-                viewModel.loadRoutes(userLocation, address)
             })
 
             tarriffsLiveData.observe(this@MapsActivity, Observer { tariffs ->
                 setTarrifs(tariffs)
-
-                directionsLiveData.observe(this@MapsActivity, Observer {route ->
-                    val options = PolylineOptions()
-                    options.color(Color.RED)
-                    options.width(5f)
-                    for(point in route.steps) options.add(point)
-                    mMap.addPolyline(options)
-                })
             })
 
+            directionsLiveData.observe(this@MapsActivity, Observer { route ->
+                polyManager.drawRoute(route, userLocationLatLng, pointBLatLng)
+            })
+        }
+    }
 
+    private fun setOnFloatFragmentCloseListener() {
+        floatFragmentInstance.setOnCloseListener { pointB ->
+            viewModel.loadRoutes(userLocation, pointB)
+            pointBLatLng = mapManger.getLocationFromAddress(pointB)!!
         }
     }
 
@@ -284,6 +291,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
     }
 
     private fun setUserLocationText(location: Location) {
+        userLocationLatLng = location.toLatLng()
         userLocation = mapManger.latLngToAddress(location.toLatLng())
         user_location.text = SpannableStringBuilder(userLocation)
     }
@@ -306,8 +314,15 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
     fun moveCameraToTwoMarkers() {
         if (FetchAddressIntentService.markerPointBLocation.isNotEmpty()
             && FetchAddressIntentService.markerUserLocation.isNotEmpty()
-        )
+        ) {
             mMap.animateCamera(mapManger.createCameraUpdateObject())
+            mMap.setPadding(
+                rootLayout.width / 18,
+                0,
+                rootLayout.width / 18,
+                rootLayout.height / 2 * 1.5.toInt()
+            )
+        }
     }
 
     private fun showPriceAlertIfAlLeastOnButtonActive() =
@@ -340,9 +355,9 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
     }
 
     private fun initList() {
-        recycler_list.layoutManager =
+        recyclerList.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        recycler_list.adapter = adapter
+        recyclerList.adapter = adapter
         viewModel.loadPlaces()
     }
 
@@ -356,4 +371,12 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             hideFloatView()
     }
 
+    private fun countScreenCenter() {
+        val centerY =
+            rootLayout.height - (rootLayout.height - (resources.getDimension(R.dimen.dp12) * 2 + createOrderView.height + recyclerList.height).toInt()) / 2
+        val centerX = rootLayout.width / 2
+        val projection = mMap.projection
+        val a = projection.fromScreenLocation(Point(centerX, rootLayout.height - centerY))
+        Log.e("center location:", a.toString())
+    }
 }
