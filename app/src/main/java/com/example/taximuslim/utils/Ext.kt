@@ -1,18 +1,24 @@
 package com.example.taximuslim.utils
 
 import android.app.Activity
+import android.database.Observable
 import android.location.Location
 import android.os.Build
 import android.text.Editable
 import android.text.Html
 import android.text.SpannableStringBuilder
 import android.text.Spanned
+import android.view.Window
+import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
+import io.reactivex.subjects.ReplaySubject
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 
 fun String.makeStringBold(): Spanned = Html.fromHtml("<b>".plus(this).plus("</b>"))
@@ -67,6 +73,15 @@ fun Marker?.isNotEmpty(): Boolean {
 
     return true
 }
+
+fun Activity.hideActionBar() {
+    this.requestWindowFeature(Window.FEATURE_NO_TITLE)
+    this.window.setFlags(
+        WindowManager.LayoutParams.FLAG_FULLSCREEN,
+        WindowManager.LayoutParams.FLAG_FULLSCREEN
+    )
+}
+
 
 
 

@@ -11,6 +11,7 @@ import com.example.taximuslim.presentation.view.clientorder.FloatFragment
 import com.example.taximuslim.presentation.viewmodel.auth.AuthViewModel
 import com.example.taximuslim.presentation.viewmodel.maps.MainViewModel
 import com.example.taximuslim.utils.mapfunc.DistanceCalculator
+import com.example.taximuslim.utils.mapfunc.PolyManager
 import dagger.Component
 import javax.inject.Singleton
 
@@ -33,5 +34,6 @@ interface AppComponent {
     fun inject(floatFragment: FloatFragment)
     fun inject(googleRepo: GoogleRepo)
     fun inject(mapperDirections: MapperDirections)
+    fun inject(polyManager: PolyManager)
 
 }

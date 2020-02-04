@@ -10,7 +10,7 @@ import com.example.taximuslim.App
 import com.example.taximuslim.R
 import com.example.taximuslim.baseUI.fragment.BaseFragment
 import com.example.taximuslim.presentation.view.clientorder.list.prediction.PredictionAdapter
-import com.example.taximuslim.utils.mapfunc.FetchAddressIntentService
+import com.example.taximuslim.utils.mapfunc.MapManager
 import com.example.taximuslim.utils.mapfunc.PlacePredictions
 import com.example.taximuslim.utils.onSubmitNext
 import com.example.taximuslim.utils.toEditable
@@ -38,7 +38,7 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
     }
 
     @Inject
-    lateinit var addressServiece: FetchAddressIntentService
+    lateinit var addressServiece: MapManager
 
     private lateinit var owner: MapsActivity
     private lateinit var viewManager: ViewManager
@@ -199,14 +199,9 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
     private fun closeFragment(markerNumber: Int) {
         owner.hideFloatView()
         when (markerNumber) {
-            1 -> {
-                FetchAddressIntentService.markerPointBLocation?.remove()
-                FetchAddressIntentService.markerPointBLocation =
-                    owner.addMarkerOnPointB(pointBLocationEditText.text.toString())
-            }
+            1 -> { }
             2 -> setUserLocation(userLocationEditText.text.toString())
         }
-        owner.moveCameraToTwoMarkers()
         closeListener?.invoke(pointBLocationEditText.text.toString())
     }
 

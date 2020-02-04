@@ -9,7 +9,7 @@ import com.example.taximuslim.domain.order.IOrderInteractor
 import com.example.taximuslim.domain.order.OrderInteractor
 import com.example.taximuslim.presentation.viewmodel.auth.AuthViewModel
 import com.example.taximuslim.utils.mapfunc.DecodePoly
-import com.example.taximuslim.utils.mapfunc.FetchAddressIntentService
+import com.example.taximuslim.utils.mapfunc.MapManager
 import com.example.taximuslim.utils.mapfunc.IDecodePoly
 import dagger.Module
 import dagger.Provides
@@ -42,8 +42,8 @@ class AppModule(private val app: Application) {
     fun provideOrderInteractor(): IOrderInteractor = OrderInteractor()
 
     @Provides
-    fun providesFetchAddressIntentService(): FetchAddressIntentService =
-        FetchAddressIntentService(app)
+    fun providesFetchAddressIntentService(): MapManager =
+        MapManager(app)
 
     @Provides
     fun providesDecodePoly() : IDecodePoly = DecodePoly()

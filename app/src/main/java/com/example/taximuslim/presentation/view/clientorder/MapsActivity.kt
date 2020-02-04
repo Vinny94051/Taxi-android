@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taximuslim.baseUI.activivty.BaseActivity
 import com.example.taximuslim.presentation.view.design.dialogswindow.CommentAlert
 import com.example.taximuslim.presentation.view.design.dialogswindow.PriceAlert
-import com.example.taximuslim.utils.mapfunc.FetchAddressIntentService
+import com.example.taximuslim.utils.mapfunc.MapManager
 import com.example.taximuslim.presentation.view.menu.fragments.GuideFragment
 import com.example.taximuslim.presentation.view.menu.fragments.HelpFragment
 import com.example.taximuslim.presentation.view.clientorder.list.MapsCustomAdapter
@@ -36,12 +36,7 @@ import com.example.taximuslim.utils.mapfunc.PolyManager
 import com.example.taximuslim.utils.prefference.getAuthHeader
 import com.example.taximuslim.utils.view.ViewManager
 import com.google.android.gms.maps.*
-import com.google.android.gms.maps.model.BitmapDescriptor
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
-import kotlinx.android.synthetic.main.auth_driver_public_offer_fragment.view.*
-import kotlinx.android.synthetic.main.fragment_start.view.*
 import kotlinx.android.synthetic.main.gradient_button.*
 
 
@@ -62,7 +57,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
     private val permissionManager = PermissionManager(this)
     private var priceAlert: PriceAlert? = null
     private var commentAlert: CommentAlert? = null
-    private val mapManger = FetchAddressIntentService(this)
+    private val mapManger = MapManager(this)
     private val adapter = MapsCustomAdapter()
     private val controllerChanger = ControllerChanger(this)
     private val viewManager = ViewManager(this)
@@ -76,6 +71,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        hideActionBar()
         super.onCreate(savedInstanceState)
         main_btn_text.text = getString(R.string.make_order)
         initViews()
@@ -122,8 +118,10 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
                     showPriceAndCommentEditTexts()
                 }
             }
-            R.id.main_button_order_taxi -> { }
+            R.id.main_button_order_taxi -> {
+            }
             R.id.burger_menu_main -> NavigationDrawerManager.showNavigationDrawer(drawer_layout)
+            R.id.myLocationBtn -> updateLocation()
         }
     }
 
@@ -133,13 +131,15 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         if (permissionManager.checkLocationPermissions()) updateLocation()
         polyManager = PolyManager(mMap)
         mMap.animateCamera(CameraUpdateFactory.zoomTo(MAP_ZOOM))
-        mMap.setOnCameraChangeListener {
-            Log.e("camera change listener:", it.toString())
+
+        mMap.setOnCameraChangeListener { cameraPosition ->
+            Log.e("camera change listener:", cameraPosition.toString())
             countScreenCenter()
-           val location = mapManger.latLngToAddress(it.target)
-            locationTextView.text = location
-
-
+            if (cameraPosition.target != LatLng(0.0, 0.0)) {
+                val location = mapManger.latLngToAddress(cameraPosition.target)
+                locationTextView.text = location
+                user_location.text = location.toEditable()
+            }
         }
     }
 
@@ -185,7 +185,9 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
 
 
     private fun openFloatView(forFocusEditTextId: String) {
+        viewManager.showViews(floatView)
         this@MapsActivity.forFocusEditTextId = forFocusEditTextId
+        userLocation = user_location.text.toString()
         floatFragmentInstance = FloatFragment.newInstance()
         replaceFragment(floatFragmentInstance, R.id.floatView, FloatFragment.ID)
         viewManager.animViewUpToBottomAnim(floatView, 0f, 500)
@@ -198,6 +200,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         rootLayout.isClickable = true
         removeFragment(FloatFragment.newInstance())
         viewManager.hideKeyBoard(floatView)
+        viewManager.hideViews(floatView)
     }
 
     private fun initNavigationDrawer() =
@@ -219,6 +222,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         main_button_order_taxi.setOnClickListener(this)
         burger_menu_main.setOnClickListener(this)
         nav_view.setNavigationItemSelectedListener(this)
+        myLocationBtn.setOnClickListener(this)
         priceAlert = PriceAlert(this as Activity)
         commentAlert = CommentAlert(
             this as Activity
@@ -238,11 +242,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
     private fun initViewModel() {
         viewModel.currentLocation.observe(this,
             Observer { location: Location ->
-                val point = countPaddings()
-                mMap.setPadding(0,0,0,point.y)
-                Log.e("y:",point.y.toString())
                 setUserMarker(location)
-                moveCameraToTwoMarkers()
                 locationPrediction = location.toLatLng()
                 loadTarrifsByCountry(location)
                 setUserLocationText(location)
@@ -265,7 +265,6 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             pointBLiveData.observe(this@MapsActivity, Observer { address ->
                 pointBEditText.text = address.toEditable()
                 pointBLocation = address
-                moveCameraToTwoMarkers()
             })
 
             tarriffsLiveData.observe(this@MapsActivity, Observer { tariffs ->
@@ -273,15 +272,22 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             })
 
             directionsLiveData.observe(this@MapsActivity, Observer { route ->
+                userLocationLatLng = mapManger.getLocationFromAddress(user_location.text.toString()) ?: LatLng(0.0,0.0)
+                viewManager.hideViews(locationTextView,userLocationMarker)
+                mMap.setOnCameraChangeListener(null)
                 polyManager.drawRoute(route, userLocationLatLng, pointBLatLng)
             })
         }
     }
 
+
+
     private fun setOnFloatFragmentCloseListener() {
         floatFragmentInstance.setOnCloseListener { pointB ->
-            viewModel.loadRoutes(userLocation, pointB)
-            pointBLatLng = mapManger.getLocationFromAddress(pointB)!!
+            if (pointB.isNotEmpty()) {
+                viewModel.loadRoutes(userLocation, pointB)
+                pointBLatLng = mapManger.getLocationFromAddress(pointB)!!
+            }
         }
     }
 
@@ -305,6 +311,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         user_location.text = SpannableStringBuilder(userLocation)
     }
 
+
     private fun loadTarrifsByCountry(location: Location) {
         mapManger.getCountry(location.toLatLng())?.let { tarrifs ->
             loadTarrifs(tarrifs)
@@ -312,50 +319,14 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
     }
 
     private fun setUserMarker(location: Location) {
-        FetchAddressIntentService.markerUserLocation?.remove()
-        FetchAddressIntentService.markerUserLocation =
-            mMap.addMarker(
-                MarkerOptions()
-                    .position(location.toLatLng())
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_marker))
-            )
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(location.toLatLng()))
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(MAP_ZOOM))
-        mMap.setPadding(
-            rootLayout.width / 18,
-            0,
-            rootLayout.width / 18,
-            rootLayout.height / 2 * 1.5.toInt()
-        )
-
-        val projection = mMap.projection
-        val currentPoint = projection.toScreenLocation(location.toLatLng())
-        val nessesaryPoint = countScreenCenter()
-
+        mapManger.moveCameraToLocation(mMap, location.toLatLng(), MAP_ZOOM)
+        mapManger.setPaddings(mMap, rootLayout)
     }
 
-    fun moveCameraToTwoMarkers() {
-        if (FetchAddressIntentService.markerPointBLocation.isNotEmpty()
-            && FetchAddressIntentService.markerUserLocation.isNotEmpty()
-        ) {
-            mMap.animateCamera(mapManger.createCameraUpdateObject())
-        }
-    }
 
     private fun showPriceAlertIfAlLeastOnButtonActive() =
         viewManager.showPriceAlert(PriceAlert(this), btnManager)
 
-
-    fun addMarkerOnPointB(address: String) =
-        mapManger.getLocationFromAddress(address)?.let { location ->
-            mapManger.addUserLocationMarkerAndMoveCameraToIt(
-                mMap,
-                location,
-                MAP_ZOOM,
-                R.drawable.green_marker
-            )
-        }
 
     private fun showPriceAndCommentEditTexts() {
         viewManager.showViews(
@@ -389,14 +360,14 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             hideFloatView()
     }
 
-    private fun countPaddings() : Point{
+    private fun countPaddings(): Point {
         val centerY =
-             (resources.getDimension(R.dimen.dp12) + resources.getDimension(R.dimen.small_margin)
+            (resources.getDimension(R.dimen.dp12) + resources.getDimension(R.dimen.small_margin)
                     + createOrderView.height + recyclerList.height).toInt()
 
 
         val centerX = rootLayout.width / 2
-        return Point(centerX,  centerY)
+        return Point(centerX, centerY)
     }
 
     private fun countScreenCenter(): Point {

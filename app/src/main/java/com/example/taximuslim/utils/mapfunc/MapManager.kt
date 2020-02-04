@@ -4,21 +4,22 @@ import android.content.Context
 import android.location.Address
 import android.location.Geocoder
 import android.util.Log
+import android.view.View
 import com.example.taximuslim.data.network.dto.order.TariffRequest
+import com.example.taximuslim.utils.isNotEmpty
 import com.google.android.gms.maps.CameraUpdate
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.*
 import java.io.IOException
 import java.util.*
-import javax.inject.Inject
 
-class FetchAddressIntentService(private val context: Context) {
+class MapManager(private val context: Context) {
 
     companion object {
         private const val UNKNOWN_ADDRESS = "Cannot define your address."
 
-        var markerUserLocation: Marker? = null
+        var markerPointALocation: Marker? = null
         var markerPointBLocation: Marker? = null
     }
 
@@ -66,22 +67,32 @@ class FetchAddressIntentService(private val context: Context) {
         return town
     }
 
-    fun addUserLocationMarkerAndMoveCameraToIt(
+    fun addMarker(
         mMap: GoogleMap,
         location: LatLng,
-        zoom: Float,
         markerIconId: Int
-    ): Marker {
-        val marker = mMap.addMarker(
+    ): Marker =
+        mMap.addMarker(
             MarkerOptions()
                 .position(location)
                 .icon(BitmapDescriptorFactory.fromResource(markerIconId))
         )
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(location))
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(zoom))
 
-        return marker
+    fun moveCameraToLocation(mMap: GoogleMap, location: LatLng, zoom: Float) {
+        mMap.apply {
+            moveCamera(CameraUpdateFactory.newLatLng(location))
+            animateCamera(CameraUpdateFactory.zoomTo(zoom))
+        }
+    }
+
+    fun setPaddings(mMap: GoogleMap, root: View) {
+        mMap.setPadding(
+            root.width / 18,
+            0,
+            root.width / 18,
+            root.height / 2 * 1.5.toInt()
+        )
     }
 
 
@@ -99,14 +110,24 @@ class FetchAddressIntentService(private val context: Context) {
     }
 
 
-    fun createCameraUpdateObject(): CameraUpdate =
+    fun moveCameraToTwoMarkers(mMap : GoogleMap) {
+        if (markerPointBLocation.isNotEmpty()
+            && markerPointALocation.isNotEmpty()
+        ) {
+            mMap.animateCamera(createCameraUpdateObject())
+        }
+    }
+
+    private fun createCameraUpdateObject(): CameraUpdate =
         CameraUpdateFactory.newLatLngBounds(
             LatLngBounds
                 .builder()
-                .include(markerUserLocation?.position)
+                .include(markerPointALocation?.position)
                 .include(markerPointBLocation?.position)
-                .build(), 0
+                .build(), 200
         )
+
+
 
 
 }

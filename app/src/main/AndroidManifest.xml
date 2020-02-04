@@ -38,7 +38,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <service
-            android:name=".utils.mapfunc.FetchAddressIntentService"
+            android:name=".utils.mapfunc.MapManager"
             android:exported="false" />
 
         <activity

@@ -3,14 +3,7 @@ package com.example.taximuslim.utils.mapfunc
 import android.location.Location
 import com.example.taximuslim.App
 import com.example.taximuslim.utils.toLocation
-import com.google.android.gms.maps.model.LatLng
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import javax.inject.Inject
-import kotlin.math.acos
-import kotlin.math.cos
-import kotlin.math.sin
 
 class DistanceCalculator {
 
@@ -19,7 +12,7 @@ class DistanceCalculator {
     }
 
     @Inject
-    lateinit var addressIntentService: FetchAddressIntentService
+    lateinit var addressIntentService: MapManager
 
     private fun createLocationFromAddress(address: String): Location? =
         addressIntentService.getLocationFromAddress(address)?.toLocation()
