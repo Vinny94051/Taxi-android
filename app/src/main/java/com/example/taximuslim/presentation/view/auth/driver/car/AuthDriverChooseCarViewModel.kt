@@ -91,13 +91,17 @@ class AuthDriverChooseCarViewModel : ViewModel() {
     fun setDefaultValues() {
         viewModelScope.launch(Dispatchers.Main) {
             if (_carColors.value == null) {
-                _carColors.value = interactor.fetchCarColors()
-                _carMarks.value = interactor.fetchCarMarks()
-                _carModels.value = interactor.fetchCarModels(carMarks.value!![0].id)
+                try {
+                    _carColors.value = interactor.fetchCarColors()
+                    _carMarks.value = interactor.fetchCarMarks()
+                    _carModels.value = interactor.fetchCarModels(carMarks.value!![0].id)
 
-                selectedColor = carColors.value?.get(0)
-                selectedMark = carMarks.value?.get(0)
-                _selectedModel.value = carModels.value?.get(0)
+                    selectedColor = carColors.value?.get(0)
+                    selectedMark = carMarks.value?.get(0)
+                    _selectedModel.value = carModels.value?.get(0)
+                }catch (e: Exception){
+
+                }
             } else {
                 //TODO для сохранения состояния
             }

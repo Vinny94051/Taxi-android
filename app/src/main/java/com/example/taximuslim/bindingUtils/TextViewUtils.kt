@@ -1,9 +1,11 @@
 package com.example.taximuslim.bindingUtils
 
 import android.annotation.SuppressLint
+import android.view.View
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.example.taximuslim.R
+import com.example.taximuslim.presentation.view.auth.driver.LoadingImageStatus
 
 @SuppressLint("SetTextI18n")
 @BindingAdapter("price")
@@ -29,5 +31,15 @@ fun TextView.setCarClass(carClass: String?) {
     carClass?.let{
         this.text = this.context.getString(R.string.car_class, carClass)
     }
-
 }
+
+@SuppressLint("SetTextI18n")
+@BindingAdapter("delete_status")
+fun TextView.setDeleteTrigger(status: LoadingImageStatus) {
+    if (status == LoadingImageStatus.COMPLETE){
+        visibility = View.VISIBLE
+    }else{
+        visibility = View.GONE
+    }
+}
+

@@ -143,11 +143,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/medium_margin"
                 android:layout_marginEnd="@dimen/default_margin"
-                android:lineSpacingExtra="2sp"
-                android:visibility="gone"
                 android:text="@string/delete"
+                android:onClick="@{() -> viewModel.onDeleteCarImageClick()}"
+                app:delete_status="@{viewModel.carImageStatus}"
                 android:textColor="@color/colorThemeGreen"
-                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/carInfoCard" />
 
@@ -161,6 +160,7 @@
                 app:cardBackgroundColor="@color/colorCardBackground"
                 app:cardElevation="12dp"
                 app:cardCornerRadius="@dimen/default_card_radius"
+                android:onClick="@{() -> viewModel.onTakeCarPhotoClick()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/carPhotoText">
@@ -170,15 +170,30 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="center"
+                    app:image="@{viewModel.carImage}"
                     android:src="@drawable/take_photo_placeholder" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/transparent_black"
+                    app:loading_status="@{viewModel.carImageStatus}"/>
 
                 <ImageView
                     android:id="@+id/licenceFrontPhotoCorrect"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    app:loading_status="@{viewModel.carImageStatus}"
+                    android:src="@drawable/ic_success_loading" />
+
+                <ProgressBar
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:visibility="gone"
-                    android:src="@drawable/ic_success_loading" />
+                    app:loading_status="@{viewModel.carImageStatus}"
+                    android:theme="@style/WhiteAccent"/>
 
             </androidx.cardview.widget.CardView>
 
@@ -210,11 +225,12 @@
                 android:id="@+id/deleteLicencePhotoText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 android:layout_marginTop="@dimen/large_margin"
                 android:layout_marginEnd="@dimen/default_margin"
                 android:lineSpacingExtra="2sp"
                 android:text="@string/delete"
+                android:onClick="@{() -> viewModel.onDeleteCertificateClick()}"
+                app:delete_status="@{viewModel.certificateImageStatus}"
                 android:textColor="@color/colorThemeGreen"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -229,25 +245,42 @@
                 android:layout_marginEnd="@dimen/default_margin"
                 app:cardBackgroundColor="@color/colorCardBackground"
                 app:cardElevation="12dp"
+                android:onClick="@{() -> viewModel.onTakeCertificateClick()}"
                 app:cardCornerRadius="@dimen/default_card_radius"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/carLicenceText">
+
 
                 <ImageView
                     android:id="@+id/carLicenceImage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="center"
+                    app:image="@{viewModel.certificateImage}"
                     android:src="@drawable/take_photo_placeholder" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/transparent_black"
+                    app:loading_status="@{viewModel.certificateImageStatus}"/>
 
                 <ImageView
                     android:id="@+id/licencePhotoCorrect"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    app:loading_status="@{viewModel.certificateImageStatus}"
+                    android:src="@drawable/ic_error_loading" />
+
+                <ProgressBar
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:visibility="gone"
-                    android:src="@drawable/ic_error_loading" />
+                    app:loading_status="@{viewModel.certificateImageStatus}"
+                    android:theme="@style/WhiteAccent"/>
 
             </androidx.cardview.widget.CardView>
 
@@ -270,7 +303,7 @@
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_marginTop="@dimen/large_margin"
-                android:onClick="@{() -> viewModel.checkDataAndGoNext()}"
+                android:onClick="@{() -> viewModel.onMainButtonClick()}"
                 android:layout_marginStart="@dimen/button_horizontal_margin"
                 android:layout_marginEnd="@dimen/button_horizontal_margin"
                 android:layout_marginBottom="@dimen/default_bottom_margin"
