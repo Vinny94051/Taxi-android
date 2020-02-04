@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import androidx.lifecycle.Observer
@@ -23,8 +24,6 @@ import kotlinx.android.synthetic.main.activity_auth_driver_main.*
 class AuthDriverCarPhoto : ObservableFragment() {
 
     companion object {
-        private const val CAMERA_PERMISSION_CODE = 1
-        private const val STORAGE_PERMISSION_CODE = 2
         private const val CAR_IMAGE_REQUEST = 3
         private const val CERTIFICATE_IMAGE_REQUEST = 4
     }
@@ -63,6 +62,8 @@ class AuthDriverCarPhoto : ObservableFragment() {
         viewModel.navigateToNext.observe(viewLifecycleOwner, Observer { navigate ->
             if (navigate) {
                 val navController = binding.root.findNavController()
+                driverModel.carImage = viewModel.carImage.value
+                driverModel.carCertificateImage = viewModel.certificateImage.value
                 navController.navigate(
                     AuthDriverCarPhotoDirections
                         .actionAuthDriverCarPhotoToAuthDriverAboutYouFragment(driverModel)
@@ -83,7 +84,12 @@ class AuthDriverCarPhoto : ObservableFragment() {
                 ImagePicker.with(this)
                     .start(CERTIFICATE_IMAGE_REQUEST)
             }
-
+        })
+        viewModel.showToast.observe(viewLifecycleOwner, Observer{
+            if (it == true){
+                Toast.makeText(context, getString(R.string.load_all_data), Toast.LENGTH_SHORT).show()
+                viewModel.showToast.value = false
+            }
         })
     }
 

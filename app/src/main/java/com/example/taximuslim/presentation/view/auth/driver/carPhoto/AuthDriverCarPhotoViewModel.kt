@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.taximuslim.App
+import com.example.taximuslim.data.network.remote.request.driver.DeleteDriverImageRequest
 import com.example.taximuslim.data.network.remote.request.driver.UploadDriverImageRequest
 import com.example.taximuslim.domain.auth.driver.DriverAuthInteractor
 import com.example.taximuslim.domain.auth.driver.DriverAuthInteractorImpl
@@ -43,7 +44,7 @@ class AuthDriverCarPhotoViewModel : ViewModel() {
                 val filePath = carImage.value?.path ?: ""
                 val base64 = filePath.toBase64()
                 val request = UploadDriverImageRequest(
-                    "car", "registration_certificate", base64
+                    "car", "car_photo", base64
                 )
                 interactor.uploadDriverImage(request)
                 carImageStatus.value = LoadingImageStatus.COMPLETE
@@ -60,7 +61,7 @@ class AuthDriverCarPhotoViewModel : ViewModel() {
                 val filePath = certificateImage.value?.path ?: ""
                 val base64 = filePath.toBase64()
                 val request = UploadDriverImageRequest(
-                    "car", "car_photo", base64
+                    "car", "registration_certificate", base64
                 )
                 interactor.uploadDriverImage(request)
                 certificateImageStatus.value = LoadingImageStatus.COMPLETE
@@ -71,13 +72,34 @@ class AuthDriverCarPhotoViewModel : ViewModel() {
     }
 
     fun onDeleteCarImageClick() {
-        carImage.value = null
-        carImageStatus.value = LoadingImageStatus.NULL
+        viewModelScope.launch(Dispatchers.Main) {
+            try {
+                val request = DeleteDriverImageRequest(
+                    "car", "car_photo"
+                )
+                interactor.deleteDriverImage(request)
+                carImage.value = null
+                carImageStatus.value = LoadingImageStatus.NULL
+            }catch (e: Exception){
+
+            }
+        }
+
     }
 
     fun onDeleteCertificateClick() {
-        certificateImage.value = null
-        certificateImageStatus.value = LoadingImageStatus.NULL
+        viewModelScope.launch(Dispatchers.Main) {
+            try {
+                val request = DeleteDriverImageRequest(
+                    "car", "registration_certificate"
+                )
+                interactor.deleteDriverImage(request)
+                certificateImage.value = null
+                certificateImageStatus.value = LoadingImageStatus.NULL
+            }catch (e: Exception){
+
+            }
+        }
     }
 
     fun onTakeCarPhotoClick() {
@@ -97,7 +119,7 @@ class AuthDriverCarPhotoViewModel : ViewModel() {
     }
 
 
-    private val _navigateToNext = MutableLiveData<Boolean>()
+    private val _navigateToNext = MutableLiveData<Boolean>(false)
     val navigateToNext: LiveData<Boolean>
         get() = _navigateToNext
 
@@ -105,8 +127,15 @@ class AuthDriverCarPhotoViewModel : ViewModel() {
         _navigateToNext.value = false
     }
 
+    val showToast = MutableLiveData<Boolean>(false)
+
     fun onMainButtonClick() {
-        //TODO(CHECKDATA)
-        _navigateToNext.value = true
+        if ((carImageStatus.value == LoadingImageStatus.COMPLETE)
+            && (certificateImageStatus.value == LoadingImageStatus.COMPLETE)){
+            _navigateToNext.value = true
+        }else{
+            showToast.value = true
+        }
+
     }
 }

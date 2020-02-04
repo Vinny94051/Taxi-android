@@ -5,6 +5,6 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class CarMark(
-    val id: Int,
-    val name: String
+    val id: Int = 0,
+    val name: String = ""
 ): Parcelable
