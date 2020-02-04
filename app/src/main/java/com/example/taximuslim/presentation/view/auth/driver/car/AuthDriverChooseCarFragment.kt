@@ -16,6 +16,7 @@ import androidx.navigation.findNavController
 
 import com.example.taximuslim.R
 import com.example.taximuslim.databinding.AuthDriverChooseCarFragmentBinding
+import com.example.taximuslim.domain.models.driver.auth.DriverMainModel
 import com.example.taximuslim.presentation.view.baseFragment.ObservableFragment
 import kotlinx.android.synthetic.main.activity_auth_driver_main.*
 import kotlinx.android.synthetic.main.auth_driver_choose_car_fragment.*
@@ -23,6 +24,7 @@ import kotlinx.android.synthetic.main.auth_driver_choose_car_fragment.*
 class AuthDriverChooseCarFragment : ObservableFragment() {
 
     private lateinit var viewModel: AuthDriverChooseCarViewModel
+    private lateinit var driverModel: DriverMainModel
 
 
     override fun onCreateView(
@@ -35,6 +37,10 @@ class AuthDriverChooseCarFragment : ObservableFragment() {
         viewModel = ViewModelProviders.of(this).get(AuthDriverChooseCarViewModel::class.java)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
+
+        driverModel = AuthDriverChooseCarFragmentArgs.fromBundle(arguments!!)
+            .driverModel
+
         return binding.root
     }
 
@@ -50,7 +56,8 @@ class AuthDriverChooseCarFragment : ObservableFragment() {
         viewModel.navigateToNext.observe(viewLifecycleOwner, Observer { correct ->
             if (correct){
                 val navController =view!!.findNavController()
-                navController.navigate(R.id.action_authDriverChooseCarFragment_to_authDriverCarNumbFragment)
+                navController.navigate(AuthDriverChooseCarFragmentDirections
+                    .actionAuthDriverChooseCarFragmentToAuthDriverCarNumbFragment(driverModel))
                 viewModel.onNavigate()
             }
         })

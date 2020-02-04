@@ -12,10 +12,12 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.example.taximuslim.R
 import com.example.taximuslim.databinding.AuthDriverConfidentialityFragmentBinding
+import com.example.taximuslim.domain.models.driver.auth.DriverMainModel
 
 class AuthDriverConfidentialityFragment : Fragment() {
 
     private lateinit var viewModel: AuthDriverConfidentialityViewModel
+    private lateinit var driverModel: DriverMainModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,6 +28,8 @@ class AuthDriverConfidentialityFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(AuthDriverConfidentialityViewModel::class.java)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+
         return binding.root
     }
 

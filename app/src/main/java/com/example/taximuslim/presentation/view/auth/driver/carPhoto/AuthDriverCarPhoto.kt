@@ -15,12 +15,14 @@ import androidx.navigation.findNavController
 
 import com.example.taximuslim.R
 import com.example.taximuslim.databinding.AuthDriverCarPhotoFragmentBinding
+import com.example.taximuslim.domain.models.driver.auth.DriverMainModel
 import kotlinx.android.synthetic.main.activity_auth_driver_main.*
 
 class AuthDriverCarPhoto : Fragment() {
 
     private lateinit var viewModel: AuthDriverCarPhotoViewModel
     private lateinit var binding: AuthDriverCarPhotoFragmentBinding
+    private lateinit var driverModel: DriverMainModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +33,9 @@ class AuthDriverCarPhoto : Fragment() {
         viewModel = ViewModelProviders.of(this).get(AuthDriverCarPhotoViewModel::class.java)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
+
+        driverModel = AuthDriverCarPhotoArgs.fromBundle(arguments!!).driverModel
+
         return  binding.root
     }
 
@@ -51,7 +56,8 @@ class AuthDriverCarPhoto : Fragment() {
         viewModel.navigateToNext.observe(viewLifecycleOwner, Observer {navigate ->
             if (navigate) {
                 val navController = binding.root.findNavController()
-                navController.navigate(R.id.action_authDriverCarPhoto_to_authDriverAboutYouFragment)
+                navController.navigate(AuthDriverCarPhotoDirections
+                    .actionAuthDriverCarPhotoToAuthDriverAboutYouFragment(driverModel))
                 viewModel.onNavigate()
             }
         })

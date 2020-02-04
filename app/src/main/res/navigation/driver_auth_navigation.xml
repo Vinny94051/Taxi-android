@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_authDriverChooseCarFragment_to_authDriverCarNumbFragment"
             app:destination="@id/authDriverCarNumbFragment" />
+        <argument
+            android:name="driverModel"
+            app:argType="com.example.taximuslim.domain.models.driver.auth.DriverMainModel" />
     </fragment>
     <fragment
         android:id="@+id/authDriverCarNumbFragment"
@@ -31,6 +34,9 @@
         <action
             android:id="@+id/action_authDriverCarNumbFragment_to_authDriverCarPhoto"
             app:destination="@id/authDriverCarPhoto" />
+        <argument
+            android:name="driverModel"
+            app:argType="com.example.taximuslim.domain.models.driver.auth.DriverMainModel" />
     </fragment>
     <fragment
         android:id="@+id/authDriverCarPhoto"
@@ -40,6 +46,9 @@
         <action
             android:id="@+id/action_authDriverCarPhoto_to_authDriverAboutYouFragment"
             app:destination="@id/authDriverAboutYouFragment" />
+        <argument
+            android:name="driverModel"
+            app:argType="com.example.taximuslim.domain.models.driver.auth.DriverMainModel" />
     </fragment>
     <fragment
         android:id="@+id/authDriverAboutYouFragment"
@@ -49,6 +58,9 @@
         <action
             android:id="@+id/action_authDriverAboutYouFragment_to_authDriverDocumentsFragment"
             app:destination="@id/authDriverDocumentsFragment" />
+        <argument
+            android:name="driverModel"
+            app:argType="com.example.taximuslim.domain.models.driver.auth.DriverMainModel" />
     </fragment>
     <fragment
         android:id="@+id/authDriverDocumentsFragment"
@@ -58,6 +70,9 @@
         <action
             android:id="@+id/action_authDriverDocumentsFragment_to_authDriverValidatePersonFragment"
             app:destination="@id/authDriverValidatePersonFragment" />
+        <argument
+            android:name="driverModel"
+            app:argType="com.example.taximuslim.domain.models.driver.auth.DriverMainModel" />
     </fragment>
     <fragment
         android:id="@+id/authDriverValidatePersonFragment"
@@ -67,6 +82,9 @@
         <action
             android:id="@+id/action_authDriverValidatePersonFragment_to_driverAuthRuleFragment"
             app:destination="@id/driverAuthRuleFragment" />
+        <argument
+            android:name="driverModel"
+            app:argType="com.example.taximuslim.domain.models.driver.auth.DriverMainModel" />
     </fragment>
     <fragment
         android:id="@+id/driverAuthRuleFragment"

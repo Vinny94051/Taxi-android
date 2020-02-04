@@ -13,11 +13,13 @@ import androidx.navigation.findNavController
 
 import com.example.taximuslim.R
 import com.example.taximuslim.databinding.AuthDriverAboutYouFragmentBinding
+import com.example.taximuslim.domain.models.driver.auth.DriverMainModel
 import kotlinx.android.synthetic.main.activity_auth_driver_main.*
 
 class AuthDriverAboutYouFragment : Fragment() {
 
     private lateinit var viewModel: AuthDriverAboutYouViewModel
+    private lateinit var driverModel: DriverMainModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +29,10 @@ class AuthDriverAboutYouFragment : Fragment() {
         val binding = AuthDriverAboutYouFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProviders.of(this).get(AuthDriverAboutYouViewModel::class.java)
         binding.viewModel = viewModel
+
+        driverModel = AuthDriverAboutYouFragmentArgs.fromBundle(arguments!!)
+            .driverModel
+
         return binding.root
     }
 
@@ -47,7 +53,8 @@ class AuthDriverAboutYouFragment : Fragment() {
         viewModel.navigate.observe(viewLifecycleOwner, Observer{navigate ->
             if (navigate){
                 val navController = view!!.findNavController()
-                navController.navigate(R.id.action_authDriverAboutYouFragment_to_authDriverDocumentsFragment)
+                navController.navigate(AuthDriverAboutYouFragmentDirections
+                    .actionAuthDriverAboutYouFragmentToAuthDriverDocumentsFragment(driverModel))
                 viewModel.onNavigate()
             }
         })

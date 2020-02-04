@@ -13,11 +13,13 @@ import androidx.navigation.findNavController
 
 import com.example.taximuslim.R
 import com.example.taximuslim.databinding.AuthDriverValidatePersonFragmentBinding
+import com.example.taximuslim.domain.models.driver.auth.DriverMainModel
 import kotlinx.android.synthetic.main.activity_auth_driver_main.*
 
 class AuthDriverValidatePersonFragment : Fragment() {
 
     private lateinit var viewModel: AuthDriverValidatePersonViewModel
+    private lateinit var driverModel: DriverMainModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +30,10 @@ class AuthDriverValidatePersonFragment : Fragment() {
         val binding = AuthDriverValidatePersonFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProviders.of(this).get(AuthDriverValidatePersonViewModel::class.java)
         binding.viewModel = viewModel
+
+        driverModel = AuthDriverValidatePersonFragmentArgs.fromBundle(arguments!!)
+            .driverModel
+
         return binding.root
     }
 

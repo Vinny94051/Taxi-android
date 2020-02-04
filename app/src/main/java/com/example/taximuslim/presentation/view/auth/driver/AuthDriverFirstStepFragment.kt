@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 
 import com.example.taximuslim.R
+import com.example.taximuslim.domain.models.driver.auth.DriverMainModel
 import kotlinx.android.synthetic.main.activity_auth_driver_main.*
 import kotlinx.android.synthetic.main.fragment_auth_driver_first_step.*
 
@@ -45,7 +46,8 @@ class AuthDriverFirstStepFragment : Fragment(){
     private fun setOnNextButtonListener(){
         mainButton.setOnClickListener{
             Navigation.findNavController(it)
-                .navigate(R.id.action_authDriverFirstStepFragment_to_authDriverChooseCarFragment)
+                .navigate(AuthDriverFirstStepFragmentDirections.actionAuthDriverFirstStepFragmentToAuthDriverChooseCarFragment(DriverMainModel()))
+//                .navigate(R.id.action_authDriverFirstStepFragment_to_authDriverChooseCarFragment)
         }
     }
 }

@@ -13,6 +13,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.example.taximuslim.R
 import com.example.taximuslim.databinding.AuthDriverCarNumbFragmentBinding
+import com.example.taximuslim.domain.models.driver.auth.DriverMainModel
+import com.example.taximuslim.presentation.view.auth.driver.carPhoto.AuthDriverCarPhotoArgs
 import com.example.taximuslim.presentation.view.baseFragment.ObservableFragment
 import kotlinx.android.synthetic.main.activity_auth_driver_main.*
 import kotlinx.android.synthetic.main.auth_driver_car_numb_fragment.*
@@ -21,6 +23,7 @@ class AuthDriverCarNumbFragment : ObservableFragment() {
 
 
     private lateinit var viewModel: AuthDriverCarNumbViewModel
+    private lateinit var driverModel: DriverMainModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,6 +35,10 @@ class AuthDriverCarNumbFragment : ObservableFragment() {
         val binding = AuthDriverCarNumbFragmentBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
+
+        driverModel = AuthDriverCarNumbFragmentArgs.fromBundle(arguments!!)
+            .driverModel
+
         return binding.root
     }
 
@@ -53,7 +60,8 @@ class AuthDriverCarNumbFragment : ObservableFragment() {
         viewModel.navigateToNext.observe(viewLifecycleOwner, Observer { navigate ->
             if (navigate) {
                 val navController = view!!.findNavController()
-                navController.navigate(R.id.action_authDriverCarNumbFragment_to_authDriverCarPhoto)
+                navController.navigate(AuthDriverCarNumbFragmentDirections
+                    .actionAuthDriverCarNumbFragmentToAuthDriverCarPhoto(driverModel))
                 viewModel.onNavigate()
             }
         })
