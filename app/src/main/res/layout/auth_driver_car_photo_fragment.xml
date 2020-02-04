@@ -7,6 +7,9 @@
         <variable
             name="viewModel"
             type="com.example.taximuslim.presentation.view.auth.driver.carPhoto.AuthDriverCarPhotoViewModel" />
+        <variable
+            name="driverModel"
+            type="com.example.taximuslim.domain.models.driver.auth.DriverMainModel" />
     </data>
 
     <ScrollView
@@ -91,32 +94,33 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/small_margin"
-                        android:layout_marginTop="12dp"
-                        android:textColor="@color/contrastTextColor"
-                        android:textSize="14sp"
+                        android:text="@{driverModel.carMark.name + driverModel.carModel.name}"
+                        android:textAppearance="@style/SecondaryText"
+                        app:layout_constraintBottom_toBottomOf="@+id/carMarkSeriesText"
                         app:layout_constraintStart_toEndOf="@id/carMarkSeriesText"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="@+id/carMarkSeriesText" />
 
                     <TextView
                         android:id="@+id/carColor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/small_margin"
-                        android:layout_marginTop="@dimen/small_margin"
-                        android:textSize="14sp"
+                        android:text="@{driverModel.carColor.name}"
+                        android:textAppearance="@style/SecondaryText"
+                        app:layout_constraintBottom_toBottomOf="@+id/carColorText"
                         app:layout_constraintStart_toEndOf="@id/carColorText"
-                        app:layout_constraintTop_toBottomOf="@id/carMarkSeries" />
+                        app:layout_constraintTop_toTopOf="@+id/carColorText" />
 
                     <TextView
                         android:id="@+id/carNumb"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/small_margin"
-                        android:layout_marginTop="@dimen/small_margin"
-                        android:textColor="@color/contrastTextColor"
-                        android:textSize="14sp"
+                        android:text="@{driverModel.carNumb}"
+                        android:textAppearance="@style/SecondaryText"
+                        app:layout_constraintBottom_toBottomOf="@+id/carNumbText"
                         app:layout_constraintStart_toEndOf="@id/carNumbText"
-                        app:layout_constraintTop_toBottomOf="@id/carColor" />
+                        app:layout_constraintTop_toTopOf="@+id/carNumbText" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

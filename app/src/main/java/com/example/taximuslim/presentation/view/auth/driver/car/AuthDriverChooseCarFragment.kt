@@ -55,6 +55,9 @@ class AuthDriverChooseCarFragment : ObservableFragment() {
     override fun setObservers(){
         viewModel.navigateToNext.observe(viewLifecycleOwner, Observer { correct ->
             if (correct){
+                driverModel.carMark = viewModel.selectedMark
+                driverModel.carColor = viewModel.selectedColor
+                driverModel.carModel = viewModel.selectedModel.value
                 val navController =view!!.findNavController()
                 navController.navigate(AuthDriverChooseCarFragmentDirections
                     .actionAuthDriverChooseCarFragmentToAuthDriverCarNumbFragment(driverModel))

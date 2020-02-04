@@ -59,6 +59,7 @@ class AuthDriverCarNumbFragment : ObservableFragment() {
     override fun setObservers() {
         viewModel.navigateToNext.observe(viewLifecycleOwner, Observer { navigate ->
             if (navigate) {
+                driverModel.carNumb = viewModel.carNumb.value ?: ""
                 val navController = view!!.findNavController()
                 navController.navigate(AuthDriverCarNumbFragmentDirections
                     .actionAuthDriverCarNumbFragmentToAuthDriverCarPhoto(driverModel))

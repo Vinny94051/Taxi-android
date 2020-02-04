@@ -31,10 +31,13 @@ class AuthDriverCarPhoto : Fragment() {
         (activity as AppCompatActivity).toolbar.setNavigationIcon(R.drawable.arrow_to_left_black)
         binding = AuthDriverCarPhotoFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProviders.of(this).get(AuthDriverCarPhotoViewModel::class.java)
+        driverModel = AuthDriverCarPhotoArgs.fromBundle(arguments!!).driverModel
+
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
+        binding.driverModel = driverModel
 
-        driverModel = AuthDriverCarPhotoArgs.fromBundle(arguments!!).driverModel
+
 
         return  binding.root
     }
