@@ -1,5 +1,5 @@
 package com.example.taximuslim.data.network.remote.request.driver
 
-data class PostLicenceNumbRequest(
+data class UpdateDriverLicenceRequest(
     val number: String
 )

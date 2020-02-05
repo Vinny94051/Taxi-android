@@ -68,9 +68,9 @@ interface DriverApi {
     ): DriverProfile
 
     @POST("driver/update-document")
-    suspend fun postLicenceNumb(
+    suspend fun updateDriverLicence(
         @Header("Authorization") token: String,
-        @Body body: PostLicenceNumbRequest
+        @Body body: UpdateDriverLicenceRequest
     ): StatusResponse
 
     @GET("driver/view-document")

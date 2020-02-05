@@ -3,10 +3,7 @@ package com.example.taximuslim.data.repository.auth.driver
 import android.content.Context
 import com.example.taximuslim.App
 import com.example.taximuslim.data.network.api.DriverApi
-import com.example.taximuslim.data.network.remote.request.driver.DeleteDriverImageRequest
-import com.example.taximuslim.data.network.remote.request.driver.DriverCarNumbRequest
-import com.example.taximuslim.data.network.remote.request.driver.MarkModelColorRequest
-import com.example.taximuslim.data.network.remote.request.driver.UploadDriverImageRequest
+import com.example.taximuslim.data.network.remote.request.driver.*
 import com.example.taximuslim.domain.models.driver.auth.CarMark
 import com.example.taximuslim.domain.models.driver.auth.CarModel
 import com.example.taximuslim.domain.models.driver.auth.CarColor
@@ -58,11 +55,21 @@ class DriverAuthRepository {
 
     suspend fun uploadDriverImage(request: UploadDriverImageRequest): Boolean{
         val token = getAuthHeader(context)
-        return (api.uploadDriverImage(token, request).status == "yed")
+        return (api.uploadDriverImage(token, request).status == "yes")
     }
 
     suspend fun deleteDriverImage(request: DeleteDriverImageRequest): Boolean{
         val token = getAuthHeader(context)
         return (api.deleteDriverImage(token, request).status == "yes")
+    }
+
+    suspend fun updateProfile(request: UpdateProfileRequest): Boolean{
+        val token = getAuthHeader(context)
+        return (api.updateProfile(token, request).status == "yes")
+    }
+
+    suspend fun updateDriverLicence(request: UpdateDriverLicenceRequest): Boolean{
+        val token = getAuthHeader(context)
+        return (api.updateDriverLicence(token, request).status == "yes")
     }
 }

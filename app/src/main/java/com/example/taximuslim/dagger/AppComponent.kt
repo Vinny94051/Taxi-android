@@ -9,6 +9,7 @@ import com.example.taximuslim.presentation.view.auth.driver.aboutYou.AuthDriverA
 import com.example.taximuslim.presentation.view.auth.driver.car.AuthDriverChooseCarViewModel
 import com.example.taximuslim.presentation.view.auth.driver.carNumb.AuthDriverCarNumbViewModel
 import com.example.taximuslim.presentation.view.auth.driver.carPhoto.AuthDriverCarPhotoViewModel
+import com.example.taximuslim.presentation.view.auth.driver.documents.AuthDriverDocumentsViewModel
 import com.example.taximuslim.presentation.view.auth.fragments.daughter.AuthorizationFragment
 import com.example.taximuslim.presentation.view.auth.fragments.daughter.EnterSmsCodeFragment
 import com.example.taximuslim.presentation.view.clientorder.FloatFragment
@@ -41,4 +42,6 @@ interface AppComponent {
     fun inject(authDriverCarNumbViewModel: AuthDriverCarNumbViewModel)
     fun inject(authDriverCarPhotoViewModel: AuthDriverCarPhotoViewModel)
     fun inject(authDriverAboutYouViewModel: AuthDriverAboutYouViewModel)
+    fun inject(authDriverDocumentsViewModel: AuthDriverDocumentsViewModel)
+
 }

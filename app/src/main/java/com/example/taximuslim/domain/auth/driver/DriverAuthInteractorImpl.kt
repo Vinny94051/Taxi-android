@@ -1,8 +1,6 @@
 package com.example.taximuslim.domain.auth.driver
 
-import com.example.taximuslim.data.network.remote.request.driver.DeleteDriverImageRequest
-import com.example.taximuslim.data.network.remote.request.driver.MarkModelColorRequest
-import com.example.taximuslim.data.network.remote.request.driver.UploadDriverImageRequest
+import com.example.taximuslim.data.network.remote.request.driver.*
 import com.example.taximuslim.domain.models.driver.auth.CarMark
 import com.example.taximuslim.domain.models.driver.auth.CarModel
 import com.example.taximuslim.data.repository.auth.driver.DriverAuthRepository
@@ -40,5 +38,13 @@ class DriverAuthInteractorImpl : DriverAuthInteractor {
 
     override suspend fun deleteDriverImage(request: DeleteDriverImageRequest): Boolean {
         return repository.deleteDriverImage(request)
+    }
+
+    override suspend fun updateProfile(request: UpdateProfileRequest): Boolean {
+        return repository.updateProfile(request)
+    }
+
+    override suspend fun updateDriverLicence(request: UpdateDriverLicenceRequest): Boolean {
+        return repository.updateDriverLicence(request)
     }
 }

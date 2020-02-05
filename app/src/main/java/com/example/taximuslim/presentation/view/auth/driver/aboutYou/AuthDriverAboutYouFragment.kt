@@ -93,7 +93,11 @@ class AuthDriverAboutYouFragment : Fragment() {
             }
         })
         viewModel.error.observe(viewLifecycleOwner, Observer{
-            Toast.makeText(context, getString(R.string.fill_all_fields), Toast.LENGTH_SHORT).show()
+            if (it){
+                Toast.makeText(context, getString(R.string.fill_all_fields), Toast.LENGTH_SHORT).show()
+                viewModel.error.value = false
+            }
+
         })
     }
 

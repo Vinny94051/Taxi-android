@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.taximuslim.App
 import com.example.taximuslim.data.network.remote.request.driver.DeleteDriverImageRequest
+import com.example.taximuslim.data.network.remote.request.driver.UpdateProfileRequest
 import com.example.taximuslim.data.network.remote.request.driver.UploadDriverImageRequest
 import com.example.taximuslim.domain.auth.driver.DriverAuthInteractor
 import com.example.taximuslim.presentation.view.auth.driver.LoadingStatus
@@ -195,7 +196,7 @@ class AuthDriverAboutYouViewModel : ViewModel() {
             (emailStatus.value.isComplete()) && (profileImageStatus.value.isComplete()) &&
             (taxiLicenceFrontStatus.value.isComplete()) && (taxiLicenceBackStatus.value.isComplete())
         ) {
-            _navigate.value = true
+            updateProfile()
         }else{
             error.value = true
             if (profileName.value?.isBlank() == true){
@@ -209,6 +210,22 @@ class AuthDriverAboutYouViewModel : ViewModel() {
             }
         }
 
+    }
+
+    private fun updateProfile(){
+        viewModelScope.launch(Dispatchers.Main) {
+            try {
+                val request = UpdateProfileRequest(
+                    profileName.value!!,
+                    profileSurname.value!!,
+                    profileEmail.value!!
+                )
+
+                _navigate.value =  interactor.updateProfile(request)
+            }catch (e: Exception){
+
+            }
+        }
     }
 
     fun onNavigate() {
