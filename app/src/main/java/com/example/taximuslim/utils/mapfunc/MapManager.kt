@@ -30,7 +30,7 @@ class MapManager(private val context: Context) {
             val addresses: List<Address> =
                 geocoder.getFromLocation(location.latitude, location.longitude, 1)
             address = addresses[0].getAddressLine(0)
-        } catch (ex: IOException) {
+        } catch (ex: Exception) {
             ex.printStackTrace()
         }
         return address

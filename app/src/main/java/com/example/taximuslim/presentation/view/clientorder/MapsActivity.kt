@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.lifecycle.Observer
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taximuslim.baseUI.activivty.BaseActivity
 import com.example.taximuslim.presentation.view.design.dialogswindow.CommentAlert
@@ -261,9 +262,6 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         })
 
         viewModel.apply {
-            placesForMapsView.observe(this@MapsActivity, Observer { places ->
-                adapter.replaceAll(places)
-            })
 
             pointBLiveData.observe(this@MapsActivity, Observer { address ->
                 pointBEditText.text = address.toEditable()
@@ -279,6 +277,10 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
                 viewManager.hideViews(locationTextView,userLocationMarker)
                 mMap.setOnCameraChangeListener(null)
                 polyManager.drawRoute(route, userLocationLatLng, pointBLatLng)
+            })
+
+            guideCategoriesLiveData.observe(this@MapsActivity, Observer { places ->
+                adapter.replaceAll(places)
             })
         }
     }
@@ -351,7 +353,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         recyclerList.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recyclerList.adapter = adapter
-        viewModel.loadPlaces()
+        viewModel.loadGuideCategories()
     }
 
     private fun loadTarrifs(location: TariffRequest) {

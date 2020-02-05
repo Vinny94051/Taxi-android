@@ -2,6 +2,7 @@ package com.example.taximuslim.dagger
 
 import android.app.Application
 import android.content.Context
+import com.example.taximuslim.data.network.dto.Token
 import com.example.taximuslim.data.repository.auth.AuthRepo
 import com.example.taximuslim.domain.auth.AuthInteractor
 import com.example.taximuslim.domain.auth.IAuthInteractor
@@ -11,6 +12,7 @@ import com.example.taximuslim.presentation.viewmodel.auth.AuthViewModel
 import com.example.taximuslim.utils.mapfunc.DecodePoly
 import com.example.taximuslim.utils.mapfunc.MapManager
 import com.example.taximuslim.utils.mapfunc.IDecodePoly
+import com.example.taximuslim.utils.prefference.getAuthHeader
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -47,5 +49,9 @@ class AppModule(private val app: Application) {
 
     @Provides
     fun providesDecodePoly() : IDecodePoly = DecodePoly()
+
+    @Provides
+    fun provideToken() : Token = Token(getAuthHeader(app))
+
 
 }

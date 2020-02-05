@@ -10,7 +10,9 @@
         android:id="@+id/back_img"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:src="@drawable/mecheti" />
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        />
 
     <TextView
         android:id="@+id/text_head"
@@ -19,10 +21,9 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="@dimen/small_margin"
         android:layout_marginBottom="4dp"
-        android:text="Мечети"
         android:textAppearance="@style/RegularText"
         android:textColor="@android:color/white"
-        android:textSize="16sp"
+        android:textSize="6sp"
         android:translationZ="210dp" />
 
 </RelativeLayout>

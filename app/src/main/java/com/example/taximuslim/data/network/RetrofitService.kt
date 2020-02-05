@@ -2,6 +2,7 @@ package com.example.taximuslim.data.network
 
 import com.example.taximuslim.data.network.api.AuthApi
 import com.example.taximuslim.data.network.api.GoogleMapApi
+import com.example.taximuslim.data.network.api.GuideApi
 import com.example.taximuslim.data.network.api.OrderAPi
 import io.reactivex.internal.schedulers.RxThreadFactory
 import retrofit2.Retrofit
@@ -35,5 +36,6 @@ class RetrofitService {
 
     fun getGoogleMapApi() : GoogleMapApi = getRetrofitForGoogleApi().create(GoogleMapApi::class.java)
 
+    fun getGuideApi() : GuideApi = getRetrofit().create(GuideApi::class.java)
 
 }
