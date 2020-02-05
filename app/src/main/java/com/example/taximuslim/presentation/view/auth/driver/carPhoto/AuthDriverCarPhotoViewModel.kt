@@ -9,8 +9,7 @@ import com.example.taximuslim.App
 import com.example.taximuslim.data.network.remote.request.driver.DeleteDriverImageRequest
 import com.example.taximuslim.data.network.remote.request.driver.UploadDriverImageRequest
 import com.example.taximuslim.domain.auth.driver.DriverAuthInteractor
-import com.example.taximuslim.domain.auth.driver.DriverAuthInteractorImpl
-import com.example.taximuslim.presentation.view.auth.driver.LoadingImageStatus
+import com.example.taximuslim.presentation.view.auth.driver.LoadingStatus
 import com.example.taximuslim.utils.image.toBase64
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -27,8 +26,8 @@ class AuthDriverCarPhotoViewModel : ViewModel() {
     lateinit var interactor: DriverAuthInteractor
 
 
-    val carImageStatus = MutableLiveData<LoadingImageStatus>(LoadingImageStatus.NULL)
-    val certificateImageStatus = MutableLiveData<LoadingImageStatus>(LoadingImageStatus.NULL)
+    val carImageStatus = MutableLiveData<LoadingStatus>(LoadingStatus.NULL)
+    val certificateImageStatus = MutableLiveData<LoadingStatus>(LoadingStatus.NULL)
 
     val carImage = MutableLiveData<Uri>()
     val certificateImage = MutableLiveData<Uri>()
@@ -40,16 +39,16 @@ class AuthDriverCarPhotoViewModel : ViewModel() {
     fun uploadCarImage() {
         viewModelScope.launch(Dispatchers.Main) {
             try {
-                carImageStatus.value = LoadingImageStatus.LOADING
+                carImageStatus.value = LoadingStatus.LOADING
                 val filePath = carImage.value?.path ?: ""
                 val base64 = filePath.toBase64()
                 val request = UploadDriverImageRequest(
                     "car", "car_photo", base64
                 )
                 interactor.uploadDriverImage(request)
-                carImageStatus.value = LoadingImageStatus.COMPLETE
+                carImageStatus.value = LoadingStatus.COMPLETE
             } catch (e: Exception) {
-                carImageStatus.value = LoadingImageStatus.ERROR
+                carImageStatus.value = LoadingStatus.ERROR
             }
         }
     }
@@ -57,16 +56,16 @@ class AuthDriverCarPhotoViewModel : ViewModel() {
     fun uploadCertificateImage() {
         viewModelScope.launch(Dispatchers.Main) {
             try {
-                certificateImageStatus.value = LoadingImageStatus.LOADING
+                certificateImageStatus.value = LoadingStatus.LOADING
                 val filePath = certificateImage.value?.path ?: ""
                 val base64 = filePath.toBase64()
                 val request = UploadDriverImageRequest(
                     "car", "registration_certificate", base64
                 )
                 interactor.uploadDriverImage(request)
-                certificateImageStatus.value = LoadingImageStatus.COMPLETE
+                certificateImageStatus.value = LoadingStatus.COMPLETE
             } catch (e: Exception) {
-                certificateImageStatus.value = LoadingImageStatus.ERROR
+                certificateImageStatus.value = LoadingStatus.ERROR
             }
         }
     }
@@ -79,7 +78,7 @@ class AuthDriverCarPhotoViewModel : ViewModel() {
                 )
                 interactor.deleteDriverImage(request)
                 carImage.value = null
-                carImageStatus.value = LoadingImageStatus.NULL
+                carImageStatus.value = LoadingStatus.NULL
             }catch (e: Exception){
 
             }
@@ -95,7 +94,7 @@ class AuthDriverCarPhotoViewModel : ViewModel() {
                 )
                 interactor.deleteDriverImage(request)
                 certificateImage.value = null
-                certificateImageStatus.value = LoadingImageStatus.NULL
+                certificateImageStatus.value = LoadingStatus.NULL
             }catch (e: Exception){
 
             }
@@ -103,16 +102,16 @@ class AuthDriverCarPhotoViewModel : ViewModel() {
     }
 
     fun onTakeCarPhotoClick() {
-        if ((carImageStatus.value == LoadingImageStatus.ERROR)
-            || (carImageStatus.value == LoadingImageStatus.NULL)
+        if ((carImageStatus.value == LoadingStatus.ERROR)
+            || (carImageStatus.value == LoadingStatus.NULL)
         ) {
             takeCarPhoto.value = true
         }
     }
 
     fun onTakeCertificateClick() {
-        if ((certificateImageStatus.value == LoadingImageStatus.ERROR)
-            || (certificateImageStatus.value == LoadingImageStatus.NULL)
+        if ((certificateImageStatus.value == LoadingStatus.ERROR)
+            || (certificateImageStatus.value == LoadingStatus.NULL)
         ) {
             takeCertificatePhoto.value = true
         }
@@ -130,8 +129,8 @@ class AuthDriverCarPhotoViewModel : ViewModel() {
     val showToast = MutableLiveData<Boolean>(false)
 
     fun onMainButtonClick() {
-        if ((carImageStatus.value == LoadingImageStatus.COMPLETE)
-            && (certificateImageStatus.value == LoadingImageStatus.COMPLETE)){
+        if ((carImageStatus.value == LoadingStatus.COMPLETE)
+            && (certificateImageStatus.value == LoadingStatus.COMPLETE)){
             _navigateToNext.value = true
         }else{
             showToast.value = true

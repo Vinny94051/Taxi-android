@@ -5,6 +5,7 @@ import com.example.taximuslim.data.repository.auth.driver.DriverAuthRepository
 import com.example.taximuslim.data.repository.google.GoogleRepo
 import com.example.taximuslim.data.repository.order.OrderRepo
 import com.example.taximuslim.domain.auth.IAuthInteractor
+import com.example.taximuslim.presentation.view.auth.driver.aboutYou.AuthDriverAboutYouViewModel
 import com.example.taximuslim.presentation.view.auth.driver.car.AuthDriverChooseCarViewModel
 import com.example.taximuslim.presentation.view.auth.driver.carNumb.AuthDriverCarNumbViewModel
 import com.example.taximuslim.presentation.view.auth.driver.carPhoto.AuthDriverCarPhotoViewModel
@@ -39,5 +40,5 @@ interface AppComponent {
     fun inject(authDriverChooseCarViewModel: AuthDriverChooseCarViewModel)
     fun inject(authDriverCarNumbViewModel: AuthDriverCarNumbViewModel)
     fun inject(authDriverCarPhotoViewModel: AuthDriverCarPhotoViewModel)
-
+    fun inject(authDriverAboutYouViewModel: AuthDriverAboutYouViewModel)
 }

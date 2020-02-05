@@ -16,7 +16,6 @@ import androidx.navigation.findNavController
 import com.example.taximuslim.R
 import com.example.taximuslim.databinding.AuthDriverCarPhotoFragmentBinding
 import com.example.taximuslim.domain.models.driver.auth.DriverMainModel
-import com.example.taximuslim.presentation.view.auth.driver.LoadingImageStatus
 import com.example.taximuslim.presentation.view.baseFragment.ObservableFragment
 import com.github.dhaval2404.imagepicker.ImagePicker
 import kotlinx.android.synthetic.main.activity_auth_driver_main.*

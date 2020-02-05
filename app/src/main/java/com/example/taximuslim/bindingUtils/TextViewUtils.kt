@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.example.taximuslim.R
-import com.example.taximuslim.presentation.view.auth.driver.LoadingImageStatus
+import com.example.taximuslim.presentation.view.auth.driver.LoadingStatus
 
 @SuppressLint("SetTextI18n")
 @BindingAdapter("price")
@@ -35,11 +35,21 @@ fun TextView.setCarClass(carClass: String?) {
 
 @SuppressLint("SetTextI18n")
 @BindingAdapter("delete_status")
-fun TextView.setDeleteTrigger(status: LoadingImageStatus) {
-    if (status == LoadingImageStatus.COMPLETE){
-        visibility = View.VISIBLE
+fun TextView.setDeleteTrigger(status: LoadingStatus) {
+    visibility = if (status == LoadingStatus.COMPLETE){
+        View.VISIBLE
     }else{
-        visibility = View.GONE
+        View.GONE
+    }
+}
+
+@SuppressLint("SetTextI18n")
+@BindingAdapter("take_status")
+fun TextView.setTakeTrigger(status: LoadingStatus) {
+    visibility = if ((status == LoadingStatus.ERROR) || (status == LoadingStatus.NULL)){
+        View.VISIBLE
+    }else{
+        View.GONE
     }
 }
 
