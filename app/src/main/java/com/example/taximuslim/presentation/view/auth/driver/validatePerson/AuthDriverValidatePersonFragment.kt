@@ -40,7 +40,7 @@ class AuthDriverValidatePersonFragment : ObservableFragment() {
         val binding = AuthDriverValidatePersonFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProviders.of(this).get(AuthDriverValidatePersonViewModel::class.java)
         binding.viewModel = viewModel
-
+        binding.lifecycleOwner = viewLifecycleOwner
         driverModel = AuthDriverValidatePersonFragmentArgs.fromBundle(arguments!!)
             .driverModel
         viewModel.initViewModel(driverModel)

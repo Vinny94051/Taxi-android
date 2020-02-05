@@ -45,8 +45,9 @@ class AuthDriverCarPhotoViewModel : ViewModel() {
                 val request = UploadDriverImageRequest(
                     "car", "car_photo", base64
                 )
-                interactor.uploadDriverImage(request)
-                carImageStatus.value = LoadingStatus.COMPLETE
+                val response = interactor.uploadDriverImage(request)
+                carImageStatus.value = if (response) LoadingStatus.COMPLETE
+                else LoadingStatus.ERROR
             } catch (e: Exception) {
                 carImageStatus.value = LoadingStatus.ERROR
             }
@@ -62,8 +63,9 @@ class AuthDriverCarPhotoViewModel : ViewModel() {
                 val request = UploadDriverImageRequest(
                     "car", "registration_certificate", base64
                 )
-                interactor.uploadDriverImage(request)
-                certificateImageStatus.value = LoadingStatus.COMPLETE
+                val response = interactor.uploadDriverImage(request)
+                certificateImageStatus.value = if (response) LoadingStatus.COMPLETE
+                    else LoadingStatus.ERROR
             } catch (e: Exception) {
                 certificateImageStatus.value = LoadingStatus.ERROR
             }
@@ -79,7 +81,7 @@ class AuthDriverCarPhotoViewModel : ViewModel() {
                 interactor.deleteDriverImage(request)
                 carImage.value = null
                 carImageStatus.value = LoadingStatus.NULL
-            }catch (e: Exception){
+            } catch (e: Exception) {
 
             }
         }
@@ -95,7 +97,7 @@ class AuthDriverCarPhotoViewModel : ViewModel() {
                 interactor.deleteDriverImage(request)
                 certificateImage.value = null
                 certificateImageStatus.value = LoadingStatus.NULL
-            }catch (e: Exception){
+            } catch (e: Exception) {
 
             }
         }
@@ -130,9 +132,10 @@ class AuthDriverCarPhotoViewModel : ViewModel() {
 
     fun onMainButtonClick() {
         if ((carImageStatus.value == LoadingStatus.COMPLETE)
-            && (certificateImageStatus.value == LoadingStatus.COMPLETE)){
+            && (certificateImageStatus.value == LoadingStatus.COMPLETE)
+        ) {
             _navigateToNext.value = true
-        }else{
+        } else {
             showToast.value = true
         }
 

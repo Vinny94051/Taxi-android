@@ -55,8 +55,9 @@ class AuthDriverValidatePersonViewModel : ViewModel() {
                 val request = UploadDriverImageRequest(
                     "profile", "icon", base64
                 )
-                interactor.uploadDriverImage(request)
-                profileImageStatus.value = LoadingStatus.COMPLETE
+                val response = interactor.uploadDriverImage(request)
+                profileImageStatus.value =if (response) LoadingStatus.COMPLETE
+                else LoadingStatus.ERROR
             } catch (e: Exception) {
                 profileImageStatus.value = LoadingStatus.ERROR
             }

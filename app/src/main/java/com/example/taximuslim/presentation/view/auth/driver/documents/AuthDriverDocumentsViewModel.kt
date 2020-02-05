@@ -72,8 +72,9 @@ class AuthDriverDocumentsViewModel : ViewModel() {
                 val request = UploadDriverImageRequest(
                     "document", "font", base64
                 )
-                interactor.uploadDriverImage(request)
-                driverLicenceFrontStatus.value = LoadingStatus.COMPLETE
+                val response = interactor.uploadDriverImage(request)
+                driverLicenceFrontStatus.value = if (response) LoadingStatus.COMPLETE
+                else LoadingStatus.ERROR
             } catch (e: Exception) {
                 driverLicenceFrontStatus.value = LoadingStatus.ERROR
             }
@@ -89,8 +90,9 @@ class AuthDriverDocumentsViewModel : ViewModel() {
                 val request = UploadDriverImageRequest(
                     "document", "back", base64
                 )
-                interactor.uploadDriverImage(request)
-                driverLicenceBackStatus.value = LoadingStatus.COMPLETE
+                val response = interactor.uploadDriverImage(request)
+                driverLicenceBackStatus.value = if (response) LoadingStatus.COMPLETE
+                else LoadingStatus.ERROR
             } catch (e: Exception) {
                 driverLicenceBackStatus.value = LoadingStatus.ERROR
             }

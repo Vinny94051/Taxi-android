@@ -5,7 +5,7 @@ import android.graphics.BitmapFactory
 import android.util.Base64
 import java.io.ByteArrayOutputStream
 
-fun String.toBase64(): String = "data:jpeg;base64," + byteArrayToBase64(bitmapToByteArray(this))
+fun String.toBase64(): String = byteArrayToBase64(bitmapToByteArray(this))
 
 private fun bitmapToByteArray(imagePath: String): ByteArray {
     val byteArrayOutputStream = ByteArrayOutputStream()

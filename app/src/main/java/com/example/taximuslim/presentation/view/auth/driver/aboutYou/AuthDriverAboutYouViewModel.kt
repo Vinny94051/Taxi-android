@@ -97,8 +97,9 @@ class AuthDriverAboutYouViewModel : ViewModel() {
                 val request = UploadDriverImageRequest(
                     "profile", "icon", base64
                 )
-                interactor.uploadDriverImage(request)
-                profileImageStatus.value = LoadingStatus.COMPLETE
+                val response = interactor.uploadDriverImage(request)
+                profileImageStatus.value = if (response) LoadingStatus.COMPLETE
+                else LoadingStatus.ERROR
             } catch (e: Exception) {
                 profileImageStatus.value = LoadingStatus.ERROR
             }
@@ -114,8 +115,9 @@ class AuthDriverAboutYouViewModel : ViewModel() {
                 val request = UploadDriverImageRequest(
                     "profile", "license_font", base64
                 )
-                interactor.uploadDriverImage(request)
-                taxiLicenceFrontStatus.value = LoadingStatus.COMPLETE
+                val response = interactor.uploadDriverImage(request)
+                taxiLicenceFrontStatus.value = if (response) LoadingStatus.COMPLETE
+                else LoadingStatus.ERROR
             } catch (e: Exception) {
                 taxiLicenceFrontStatus.value = LoadingStatus.ERROR
             }
@@ -131,8 +133,9 @@ class AuthDriverAboutYouViewModel : ViewModel() {
                 val request = UploadDriverImageRequest(
                     "profile", "license_back", base64
                 )
-                interactor.uploadDriverImage(request)
-                taxiLicenceBackStatus.value = LoadingStatus.COMPLETE
+                val response = interactor.uploadDriverImage(request)
+                taxiLicenceBackStatus.value = if (response) LoadingStatus.COMPLETE
+                else LoadingStatus.ERROR
             } catch (e: Exception) {
                 taxiLicenceBackStatus.value = LoadingStatus.ERROR
             }
@@ -197,22 +200,22 @@ class AuthDriverAboutYouViewModel : ViewModel() {
             (taxiLicenceFrontStatus.value.isComplete()) && (taxiLicenceBackStatus.value.isComplete())
         ) {
             updateProfile()
-        }else{
+        } else {
             error.value = true
-            if (profileName.value?.isBlank() == true){
+            if (profileName.value?.isBlank() == true) {
                 nameStatus.value = LoadingStatus.ERROR
             }
-            if (profileSurname.value?.isBlank() == true){
+            if (profileSurname.value?.isBlank() == true) {
                 surnameStatus.value = LoadingStatus.ERROR
             }
-            if (profileEmail.value?.isBlank() == true){
+            if (profileEmail.value?.isBlank() == true) {
                 emailStatus.value = LoadingStatus.ERROR
             }
         }
 
     }
 
-    private fun updateProfile(){
+    private fun updateProfile() {
         viewModelScope.launch(Dispatchers.Main) {
             try {
                 val request = UpdateProfileRequest(
@@ -221,8 +224,8 @@ class AuthDriverAboutYouViewModel : ViewModel() {
                     profileEmail.value!!
                 )
 
-                _navigate.value =  interactor.updateProfile(request)
-            }catch (e: Exception){
+                _navigate.value = interactor.updateProfile(request)
+            } catch (e: Exception) {
 
             }
         }
