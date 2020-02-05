@@ -6,14 +6,14 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.taximuslim.presentation.view.auth.driver.validatePreson.AuthDriverValidatePersonViewModel" />
+            type="com.example.taximuslim.presentation.view.auth.driver.validatePerson.AuthDriverValidatePersonViewModel" />
     </data>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/transparent"
-        tools:context=".presentation.view.auth.driver.validatePreson.AuthDriverValidatePersonFragment">
+        tools:context=".presentation.view.auth.driver.validatePerson.AuthDriverValidatePersonFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -63,6 +63,8 @@
                 android:text="@string/delete"
                 android:layout_marginTop="@dimen/default_margin"
                 android:layout_marginEnd="@dimen/default_margin"
+                android:onClick="@{() -> viewModel.onDeletePhoto()}"
+                app:delete_status="@{viewModel.profileImageStatus}"
                 android:textAppearance="@style/AccentText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/validationRulesText" />
@@ -76,7 +78,7 @@
                 android:layout_marginEnd="@dimen/default_margin"
                 app:cardBackgroundColor="@color/colorCardBackground"
                 app:cardElevation="12dp"
-
+                android:onClick="@{() -> viewModel.onTakePhotoClick()}"
                 app:layout_constraintDimensionRatio="1"
                 app:cardCornerRadius="@dimen/default_card_radius"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -88,15 +90,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="center"
-                    android:src="@drawable/take_photo_placeholder" />
+                    app:image="@{viewModel.profileImage}"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/transparent_black"
+                    app:loading_status="@{viewModel.profileImageStatus}"/>
 
                 <ImageView
                     android:id="@+id/yourPhotoCorrect"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    app:loading_status="@{viewModel.profileImageStatus}" />
+
+                <ProgressBar
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:visibility="gone"
-                    android:src="@drawable/ic_success_loading" />
+                    app:loading_status="@{viewModel.profileImageStatus}"
+                    android:theme="@style/WhiteAccent"/>
 
             </androidx.cardview.widget.CardView>
 

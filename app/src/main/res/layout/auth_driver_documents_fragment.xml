@@ -108,8 +108,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="center"
-                    app:image="@{viewModel.driverLicenceFront}"
-                    android:src="@drawable/take_photo_placeholder" />
+                    app:image="@{viewModel.driverLicenceFront}"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -191,7 +190,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="center"
-                    android:src="@drawable/take_photo_placeholder"
                     app:image="@{viewModel.driverLicenceBack}"/>
 
                 <View

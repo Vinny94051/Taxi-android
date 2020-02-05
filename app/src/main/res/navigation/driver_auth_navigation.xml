@@ -76,7 +76,7 @@
     </fragment>
     <fragment
         android:id="@+id/authDriverValidatePersonFragment"
-        android:name="com.example.taximuslim.presentation.view.auth.driver.validatePreson.AuthDriverValidatePersonFragment"
+        android:name="com.example.taximuslim.presentation.view.auth.driver.validatePerson.AuthDriverValidatePersonFragment"
         android:label="@string/person_validation"
         tools:layout="@layout/auth_driver_validate_person_fragment" >
         <action

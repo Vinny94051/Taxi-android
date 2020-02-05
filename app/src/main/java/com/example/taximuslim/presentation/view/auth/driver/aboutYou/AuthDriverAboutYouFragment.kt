@@ -66,6 +66,12 @@ class AuthDriverAboutYouFragment : Fragment() {
         viewModel.navigate.observe(viewLifecycleOwner, Observer{navigate ->
             if (navigate){
                 val navController = view!!.findNavController()
+                driverModel.profileImage = viewModel.profileImage.value!!
+                driverModel.profileName = viewModel.profileName.value!!
+                driverModel.profileSurname= viewModel.profileSurname.value!!
+                driverModel.profileEmail = viewModel.profileEmail.value!!
+                driverModel.taxiLicenceFront = viewModel.taxiLicenceFront.value!!
+                driverModel.driverLicenceBack = viewModel.taxiLicenceBack.value!!
                 navController.navigate(AuthDriverAboutYouFragmentDirections
                     .actionAuthDriverAboutYouFragmentToAuthDriverDocumentsFragment(driverModel))
                 viewModel.onNavigate()
