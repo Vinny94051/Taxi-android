@@ -21,6 +21,7 @@ import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.material.snackbar.Snackbar
 import com.jakewharton.rxbinding2.widget.textChanges
 import io.reactivex.android.schedulers.AndroidSchedulers
+import kotlinx.android.synthetic.main.activity_maps_controller.*
 import kotlinx.android.synthetic.main.fragment_choose_address.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -54,21 +55,17 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
         super.onAttach(context)
         owner = context as MapsActivity
         viewManager = ViewManager(context)
-        placePredictions =
-            PlacePredictions(initPlaces(context), (activity as MapsActivity).userLocation)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initViews()
-
-    }
 
     override fun onResume() {
         super.onResume()
         requestFocus()
         userLocationEditText.text = (activity as MapsActivity).userLocation.toEditable()
         pointBLocationEditText.text = (activity as MapsActivity).pointBLocation.toEditable()
+        placePredictions =
+            PlacePredictions(initPlaces(owner), (activity as MapsActivity).userLocation)
+        initViews()
     }
 
     override fun onClick(view: View?) {
@@ -111,7 +108,7 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
             mainProgressbar.visibility = View.VISIBLE
             recyclerPredict.visibility = View.GONE
         }
-        .debounce(300, TimeUnit.MILLISECONDS)
+        .debounce(600, TimeUnit.MILLISECONDS)
         .observeOn(AndroidSchedulers.mainThread())
         .doOnEach {
             mainProgressbar.visibility = View.GONE
@@ -204,5 +201,7 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
         }
         closeListener?.invoke(pointBLocationEditText.text.toString())
     }
+
+
 
 }

@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.graphics.Point
 import android.location.Location
 import android.os.Bundle
+import android.text.Editable
 import android.text.SpannableStringBuilder
 import android.util.Log
 import android.view.MenuItem
@@ -37,6 +38,7 @@ import com.example.taximuslim.utils.prefference.getAuthHeader
 import com.example.taximuslim.utils.view.ViewManager
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
+import kotlinx.android.synthetic.main.driver_profile_fragment.view.*
 import kotlinx.android.synthetic.main.gradient_button.*
 
 
@@ -97,7 +99,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             R.id.economy_order -> {
                 if (checkPointBEditText()) {
                     btnManager.checkEconomyBtnState()
-                    btnManager.setPriceInPriceAlert(PriceHolder.economy)
+                    btnManager.setPriceInPriceAlert(PriceHolder.economy,getCurrentPrice())
                     showPriceAlertIfAlLeastOnButtonActive()
                     showPriceAndCommentEditTexts()
                 }
@@ -105,7 +107,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             R.id.comfort_order -> {
                 if (checkPointBEditText()) {
                     btnManager.checkComfortBtnState()
-                    btnManager.setPriceInPriceAlert(PriceHolder.comfort)
+                    btnManager.setPriceInPriceAlert(PriceHolder.comfort, getCurrentPrice())
                     showPriceAlertIfAlLeastOnButtonActive()
                     showPriceAndCommentEditTexts()
                 }
@@ -113,7 +115,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             R.id.business_order -> {
                 if (checkPointBEditText()) {
                     btnManager.checkBusinessBtnState()
-                    btnManager.setPriceInPriceAlert(PriceHolder.business)
+                    btnManager.setPriceInPriceAlert(PriceHolder.business, getCurrentPrice())
                     showPriceAlertIfAlLeastOnButtonActive()
                     showPriceAndCommentEditTexts()
                 }
@@ -185,17 +187,18 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
 
 
     private fun openFloatView(forFocusEditTextId: String) {
-        viewManager.showViews(floatView)
         this@MapsActivity.forFocusEditTextId = forFocusEditTextId
         userLocation = user_location.text.toString()
         floatFragmentInstance = FloatFragment.newInstance()
         replaceFragment(floatFragmentInstance, R.id.floatView, FloatFragment.ID)
+        viewManager.showViews(shadow, floatView)
         viewManager.animViewUpToBottomAnim(floatView, 0f, 500)
         rootLayout.isClickable = false
         setOnFloatFragmentCloseListener()
     }
 
     fun hideFloatView() {
+        viewManager.hideViews(shadow)
         viewManager.animViewUpToBottomAnim(floatView, 2500f, 500)
         rootLayout.isClickable = true
         removeFragment(FloatFragment.newInstance())
@@ -325,7 +328,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
 
 
     private fun showPriceAlertIfAlLeastOnButtonActive() =
-        viewManager.showPriceAlert(PriceAlert(this), btnManager)
+        viewManager.showPriceAlert(PriceAlert(this), btnManager, getCurrentPrice())
 
 
     private fun showPriceAndCommentEditTexts() {
@@ -336,9 +339,10 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             paymentKindRadioGroup
         )
         viewManager.setOnFocusListener(tripPriceEditText) {
-            viewManager.showPriceAlert(priceAlert, btnManager)
+            viewManager.showPriceAlert(priceAlert, btnManager, getCurrentPrice())
         }
         viewManager.setOnFocusListener(commentEditText) {
+            CommentHolder.comment = commentEditText.text ?: "".toEditable()
             viewManager.showAlert(commentAlert)
         }
     }
@@ -360,16 +364,6 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             hideFloatView()
     }
 
-    private fun countPaddings(): Point {
-        val centerY =
-            (resources.getDimension(R.dimen.dp12) + resources.getDimension(R.dimen.small_margin)
-                    + createOrderView.height + recyclerList.height).toInt()
-
-
-        val centerX = rootLayout.width / 2
-        return Point(centerX, centerY)
-    }
-
     private fun countScreenCenter(): Point {
         val centerY =
             rootLayout.height - (rootLayout.height - (resources.getDimension(R.dimen.dp12) * 2 + createOrderView.height + recyclerList.height).toInt()) / 2
@@ -380,4 +374,8 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         Log.e("center location:", a.toString())
         return point
     }
+
+    private fun getCurrentPrice() : Editable =
+         tripPriceEditText.text ?: "".toEditable()
+
 }

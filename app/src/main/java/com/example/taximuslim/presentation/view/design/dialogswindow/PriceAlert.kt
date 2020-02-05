@@ -8,9 +8,13 @@ import android.view.Window
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.example.taximuslim.R
+import com.example.taximuslim.presentation.view.clientorder.MapsActivity
 import com.example.taximuslim.presentation.view.design.parents.ParentDialog
 import com.example.taximuslim.utils.PriceHolder
+import com.example.taximuslim.utils.toEditable
+import kotlinx.android.synthetic.main.activity_maps_controller.*
 import kotlinx.android.synthetic.main.dialog_price_window.*
+import java.lang.NumberFormatException
 
 class PriceAlert(context: Context) : ParentDialog(context) {
     override fun onClick(btn: View?) {
@@ -20,9 +24,11 @@ class PriceAlert(context: Context) : ParentDialog(context) {
                 dismiss()
             }
             R.id.ok_btn -> {
-                closeListener?.invoke(true)
-                priceLiveData.value = setPrice.text
-                dismiss()
+                if (checkValue()) {
+                    closeListener?.invoke(true)
+                    priceLiveData.value = setPrice.text
+                    dismiss()
+                }
             }
         }
     }
@@ -45,6 +51,8 @@ class PriceAlert(context: Context) : ParentDialog(context) {
         thisWindow = this.window
         setLayout()
         initButtons(ok_btn, cancel_btn)
+
+
     }
 
     override fun onStart() {
@@ -59,7 +67,20 @@ class PriceAlert(context: Context) : ParentDialog(context) {
         hint.text = context.getString(R.string.hint_dialog).plus("\n")
             .plus(context.getString(R.string.second_hint_dialog))
         dialog_head2.text = "Минимальная цена "
-        greenPriceTextView.text = priceForHint.toString().plus( " Rub*")
+        greenPriceTextView.text = priceForHint.toString().plus(" Rub*")
+        setPrice.text = PriceHolder.currentPrice
+    }
+
+    private fun checkValue(): Boolean {
+        try {
+            if (setPrice.text.toString().toInt() < priceForHint ?: 10)
+                return false
+
+            return true
+        }catch (ex : NumberFormatException){
+            ex.printStackTrace()
+        }
+        return false
     }
 
 }

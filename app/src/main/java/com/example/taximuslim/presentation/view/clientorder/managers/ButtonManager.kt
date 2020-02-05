@@ -1,6 +1,7 @@
 package com.example.taximuslim.presentation.view.clientorder.managers
 
 import android.content.Context
+import android.text.Editable
 import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
@@ -23,24 +24,24 @@ class ButtonManager(private val context: Context) {
     private var businessOrder: RelativeLayout =
         (context as MapsActivity).findViewById(R.id.business_order)
 
-    private var comfortImageView : ImageView =
+    private var comfortImageView: ImageView =
         (context as MapsActivity).findViewById(R.id.checkMarkImageViewSecond)
 
-    private var ecoImageView : ImageView =
+    private var ecoImageView: ImageView =
         (context as MapsActivity).findViewById(R.id.checkMarkImageView)
 
-    private var businessImageView : ImageView =
+    private var businessImageView: ImageView =
         (context as MapsActivity).findViewById(R.id.checkMarkImageViewThird)
 
     fun isAtLeastOneBtnActive() = buttonsStates.contains(true)
 
 
+    fun setPriceInPriceAlert(price: Int, currentPrice: Editable) {
+        PriceHolder.price = price
+        PriceHolder.currentPrice = currentPrice
+    }
 
-
-    fun setPriceInPriceAlert(price : Int) {PriceHolder.price = price}
-
-    fun checkEconomyBtnState()
-    {
+    fun checkEconomyBtnState() {
         if (!checkButtonState(ECONOMY_BUTTON_NUMBER)) {
             setDefaultState(comfortOrder, comfortImageView)
             buttonsStates[COMFORT_BUTTON_NUMBER] = false
@@ -83,12 +84,12 @@ class ButtonManager(private val context: Context) {
         }
     }
 
-    private fun setActivateState(button: RelativeLayout, checkMark : ImageView) {
+    private fun setActivateState(button: RelativeLayout, checkMark: ImageView) {
         button.background = context.resources.getDrawable(R.drawable.order_button_back_activate)
         checkMark.visibility = View.VISIBLE
     }
 
-    private fun setDefaultState(button: RelativeLayout, checkMark : ImageView) {
+    private fun setDefaultState(button: RelativeLayout, checkMark: ImageView) {
         button.background = context.resources.getDrawable(R.drawable.order_button_back)
         checkMark.visibility = View.GONE
     }

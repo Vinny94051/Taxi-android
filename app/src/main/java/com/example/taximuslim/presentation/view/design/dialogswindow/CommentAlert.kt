@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.taximuslim.R
 import com.example.taximuslim.presentation.view.design.parents.ParentDialog
 import com.example.taximuslim.presentation.viewmodel.maps.MainViewModel
+import com.example.taximuslim.utils.CommentHolder
 import kotlinx.android.synthetic.main.comment_dialog_window.*
 
 class CommentAlert(context: Context) : ParentDialog(context) {
@@ -37,6 +38,7 @@ class CommentAlert(context: Context) : ParentDialog(context) {
         showKeyboardFrom()
         initButtons(ok_btn_1, cancel_btn_1)
         initCommentInput()
+        commentEditText.requestFocus()
     }
 
     override fun onClick(btn: View?) {
@@ -58,5 +60,6 @@ class CommentAlert(context: Context) : ParentDialog(context) {
         commentEditText.addTextChangedListener { comment ->
             toDriverCommentLiveData.value = comment
         }
+        commentEditText.text = CommentHolder.comment
     }
 }
