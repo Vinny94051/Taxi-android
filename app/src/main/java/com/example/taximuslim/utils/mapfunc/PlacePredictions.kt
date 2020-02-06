@@ -1,7 +1,7 @@
 package com.example.taximuslim.utils.mapfunc
 
 import android.util.Log
-import com.example.taximuslim.presentation.view.clientorder.list.prediction.PredictionModel
+import com.example.taximuslim.presentation.view.adapter.prediction.PredictionModel
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.libraries.places.api.model.AutocompleteSessionToken
 import com.google.android.libraries.places.api.model.RectangularBounds

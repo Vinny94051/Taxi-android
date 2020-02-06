@@ -52,6 +52,7 @@
         android:layout_marginTop="12dp"
         android:background="@drawable/background_set_price"
         android:inputType="number"
+        android:textSize="14sp"
         android:maxLength="5"
         android:textAlignment="center" />
 
@@ -75,10 +76,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/hint"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginTop="12dp"
         android:layout_marginBottom="24dp"
         android:foreground="?attr/selectableItemBackgroundBorderless"
         android:text="@string/cancel"
+        android:padding="4dp"
         android:textAppearance="@style/AlertTextField"
         android:textSize="16sp" />
 
@@ -89,8 +91,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/hint"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="70dp"
+        android:padding="4dp"
         android:foreground="?attr/selectableItemBackgroundBorderless"
         android:text="@string/done"
         android:textAppearance="@style/AccentText"

@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/shadow"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/transparent_black"
+        android:translationZ="15dp"
+        android:visibility="gone" />
 
     <RelativeLayout
         android:id="@+id/rootLayout"
@@ -16,7 +23,7 @@
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".presentation.view.clientorder.MapsActivity" />
+            tools:context=".presentation.view.mainscreen.MapsActivity" />
 
         <ImageButton
             android:id="@+id/burger_menu_main"
@@ -26,24 +33,74 @@
             android:background="@drawable/burger_menu_btn"
             android:paddingEnd="12dp"
             android:src="@drawable/ic_menu_black_24dp"
-            android:translationZ="25dp" />
+            android:translationZ="25dp"
+            tools:ignore="RtlSymmetry" />
+
+        <RelativeLayout
+            android:id="@+id/halfScreenLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/recyclerList">
+
+            <TextView
+                android:id="@+id/orderTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Заказ"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="36dp"
+                android:textAppearance="@style/AccentText"
+                android:textColor="@color/alert_black"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:id="@+id/locationTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/userLocationMarker"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/small_margin"
+                android:text="Some location"
+                android:textAppearance="@style/RegularText"
+                android:textColor="@color/alert_black" />
+
+            <ImageView
+                android:id="@+id/userLocationMarker"
+                android:layout_width="24dp"
+                android:layout_height="36dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/green_marker" />
+
+            <ImageView
+                android:id="@+id/myLocationBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:layout_marginBottom="24dp"
+                android:foreground="?attr/selectableItemBackground"
+                android:src="@drawable/ic_user_location" />
+        </RelativeLayout>
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_list"
+            android:id="@+id/recyclerList"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_above="@id/create_order_view" />
+            android:layout_above="@id/createOrderView" />
 
 
         <RelativeLayout
-            android:id="@+id/create_order_view"
+            android:id="@+id/createOrderView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/fragment_main_back"
             android:elevation="@dimen/default_margin">
 
@@ -81,7 +138,7 @@
                 android:layout_below="@id/user_location_top_layout"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="30dp"
                 android:orientation="horizontal"
                 android:scrollbarSize="14sp">
@@ -110,7 +167,7 @@
                 android:layout_below="@id/place_location_bottom_layout"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="27dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="18dp"
                 android:orientation="horizontal"
                 android:visibility="gone">
@@ -139,7 +196,7 @@
                 android:layout_below="@id/tripPriceLayout"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="20dp"
                 android:orientation="horizontal"
                 android:visibility="gone">
@@ -325,22 +382,22 @@
                 android:orientation="horizontal"
                 android:visibility="gone">
 
-                    <RadioButton
-                        android:id="@+id/cashRadioBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/colorThemeGreen"
-                        android:text="@string/cash"
-                        android:textAppearance="@style/RegularText" />
+                <RadioButton
+                    android:id="@+id/cashRadioBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/colorThemeGreen"
+                    android:text="@string/cash"
+                    android:textAppearance="@style/RegularText" />
 
-                    <RadioButton
-                        android:id="@+id/bankRadioBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="23dp"
-                        android:buttonTint="@color/colorThemeGreen"
-                        android:text="@string/bank"
-                        android:textAppearance="@style/RegularText" />
+                <RadioButton
+                    android:id="@+id/bankRadioBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="23dp"
+                    android:buttonTint="@color/colorThemeGreen"
+                    android:text="@string/bank"
+                    android:textAppearance="@style/RegularText" />
             </RadioGroup>
 
             <include
@@ -379,6 +436,7 @@
         </androidx.drawerlayout.widget.DrawerLayout>
     </RelativeLayout>
 
+
     <RelativeLayout
         android:id="@+id/floatView"
         android:layout_width="match_parent"
@@ -386,6 +444,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginTop="32dp"
         android:translationZ="20dp"
+        android:background="@drawable/background_float_fragment"
         android:visibility="gone">
 
     </RelativeLayout>

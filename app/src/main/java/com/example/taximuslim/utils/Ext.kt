@@ -1,34 +1,27 @@
 package com.example.taximuslim.utils
 
 import android.app.Activity
+import android.content.res.Resources
+import android.database.Observable
 import android.location.Location
 import android.os.Build
 import android.text.Editable
 import android.text.Html
 import android.text.SpannableStringBuilder
 import android.text.Spanned
+import android.view.Window
+import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
+import io.reactivex.subjects.ReplaySubject
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 
-fun String.makeStringBold(): Spanned = Html.fromHtml("<b>".plus(this).plus("</b>"))
-fun String.createString(str: String): Spanned =
-    Html.fromHtml("<b>".plus(this).plus("</b>").plus("\n").plus(str))
-
-fun getSpannedText(text: String): Spanned =
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        Html.fromHtml(text, Html.FROM_HTML_MODE_COMPACT)
-    } else {
-        Html.fromHtml(text)
-    }
-
-fun Button.setSpannedText(text: Spanned) {
-    this.text = text
-}
 
 fun Location.toLatLng(): LatLng = LatLng(this.latitude, this.longitude)
 
@@ -67,6 +60,22 @@ fun Marker?.isNotEmpty(): Boolean {
 
     return true
 }
+
+fun Activity.hideActionBar() {
+    this.requestWindowFeature(Window.FEATURE_NO_TITLE)
+    this.window.setFlags(
+        WindowManager.LayoutParams.FLAG_FULLSCREEN,
+        WindowManager.LayoutParams.FLAG_FULLSCREEN
+    )
+}
+
+
+fun EditText.cursorToEnd() = this.setSelection(this.text.toString().length)
+
+fun Int.toDp() = (this * Resources.getSystem().displayMetrics.density).toInt()
+
+fun Int.toPx() = (this / Resources.getSystem().displayMetrics.density).toInt()
+
 
 
 

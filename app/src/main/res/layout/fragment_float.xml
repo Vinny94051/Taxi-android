@@ -1,0 +1,137 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/floatView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentBottom="true"
+    android:background="@drawable/background_float_fragment"
+    android:visibility="visible">
+
+    <RelativeLayout
+        android:id="@+id/lineLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/large_margin"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:background="@drawable/background_float_fragment"
+        >
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="72dp"
+            android:layout_height="4dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/small_margin"
+            android:background="@drawable/background_line" />
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/userLocationCard"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/lineLayout"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:backgroundTint="@color/background_tint_choose_address_edit_text"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="16dp">
+
+        <RelativeLayout
+            android:id="@+id/rootUserLoc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="1dp"
+            android:background="@drawable/edit_text_shape">
+
+            <ImageView
+                android:id="@+id/searchIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="13dp"
+                android:paddingTop="6dp"
+                android:src="@drawable/ic_magnifier"
+                android:translationZ="90dp" />
+
+            <EditText
+                android:id="@+id/userLocationEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_toEndOf="@id/searchIcon"
+                android:backgroundTint="@android:color/white"
+                android:hint="Откуда"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingEnd="12dp"
+                android:textAppearance="@style/RegularText"
+                android:textColor="#808080" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/pointBLocationCard"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/userLocationCard"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:backgroundTint="@color/background_tint_choose_address_edit_text"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="16dp">
+
+        <RelativeLayout
+            android:id="@+id/rootPointBLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="1dp"
+            android:background="@drawable/edit_text_shape">
+
+            <ImageView
+                android:id="@+id/placeholderIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="13dp"
+                android:src="@drawable/placeholder_light_brown"
+                android:translationZ="90dp" />
+
+            <EditText
+                android:id="@+id/pointBLocationEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_toEndOf="@id/placeholderIcon"
+                android:backgroundTint="@android:color/white"
+                android:gravity="center_vertical"
+                android:hint="Куда"
+                android:inputType="text"
+                android:imeOptions="actionSearch"
+                android:maxLines="1"
+                android:paddingEnd="12dp"
+                android:textAppearance="@style/RegularText"
+                android:textColor="#808080" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerPredict"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/pointBLocationCard" />
+
+    <ProgressBar
+        android:id="@+id/mainProgressbar"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_below="@id/pointBLocationCard"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/default_margin"
+        android:indeterminate="true"
+        android:visibility="gone" />
+</RelativeLayout>

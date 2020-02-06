@@ -2,11 +2,13 @@ package com.example.taximuslim.utils.view
 
 import android.app.AlertDialog
 import android.content.Context
+import android.text.Editable
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import com.example.taximuslim.presentation.view.clientorder.managers.ButtonManager
+import com.example.taximuslim.presentation.view.mainscreen.managers.ButtonManager
 import com.example.taximuslim.presentation.view.design.dialogswindow.PriceAlert
+import com.example.taximuslim.utils.PriceHolder
 
 class ViewManager(var activity: Context) {
 
@@ -33,7 +35,8 @@ class ViewManager(var activity: Context) {
             view.visibility = View.VISIBLE
     }
 
-    fun showPriceAlert(alert: PriceAlert?, buttonManager: ButtonManager) {
+    fun showPriceAlert(alert: PriceAlert?, buttonManager: ButtonManager, price : Editable) {
+        PriceHolder.currentPrice = price
         if(buttonManager.isAtLeastOneBtnActive())
             alert?.show()
     }

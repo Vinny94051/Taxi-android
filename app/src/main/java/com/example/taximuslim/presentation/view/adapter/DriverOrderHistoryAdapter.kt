@@ -11,7 +11,8 @@ import com.example.taximuslim.databinding.DriverOrderItemBinding
 import com.example.taximuslim.domain.models.driver.DriverOrderHistoryModel
 import com.example.taximuslim.domain.models.driver.DriverOrderModel
 
-class DriverOrderHistoryAdapter: ListAdapter<DriverOrderHistoryModel,DriverOrderHistoryAdapter.ViewHolder>(Companion){
+class DriverOrderHistoryAdapter :
+    ListAdapter<DriverOrderHistoryModel, DriverOrderHistoryAdapter.ViewHolder>(Companion) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
@@ -22,23 +23,23 @@ class DriverOrderHistoryAdapter: ListAdapter<DriverOrderHistoryModel,DriverOrder
         holder.bind(order)
     }
 
-    class ViewHolder(private val binding: DriverOrderHistoryItemBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(order: DriverOrderHistoryModel){
+    class ViewHolder(private val binding: DriverOrderHistoryItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(order: DriverOrderHistoryModel) {
             binding.order = order
         }
 
-        companion object{
-            fun from(parent: ViewGroup): ViewHolder{
+        companion object {
+            fun from(parent: ViewGroup): ViewHolder {
                 val inflater = LayoutInflater.from(parent.context)
-                val binding
-                        = DriverOrderHistoryItemBinding.inflate(inflater, parent, false)
+                val binding = DriverOrderHistoryItemBinding.inflate(inflater, parent, false)
                 return ViewHolder(binding)
             }
         }
 
     }
 
-    companion object: DiffUtil.ItemCallback<DriverOrderHistoryModel>(){
+    companion object : DiffUtil.ItemCallback<DriverOrderHistoryModel>() {
         override fun areItemsTheSame(
             oldItem: DriverOrderHistoryModel,
             newItem: DriverOrderHistoryModel
@@ -50,7 +51,7 @@ class DriverOrderHistoryAdapter: ListAdapter<DriverOrderHistoryModel,DriverOrder
             oldItem: DriverOrderHistoryModel,
             newItem: DriverOrderHistoryModel
         ): Boolean {
-           return newItem == oldItem
+            return newItem == oldItem
         }
     }
 }

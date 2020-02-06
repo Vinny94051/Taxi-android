@@ -3,6 +3,7 @@ package com.example.taximuslim.data.network
 import com.example.taximuslim.data.network.api.AuthApi
 import com.example.taximuslim.data.network.api.DriverApi
 import com.example.taximuslim.data.network.api.GoogleMapApi
+import com.example.taximuslim.data.network.api.GuideApi
 import com.example.taximuslim.data.network.api.OrderAPi
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -37,5 +38,6 @@ class RetrofitService {
 
     fun getGoogleMapApi() : GoogleMapApi = getRetrofitForGoogleApi().create(GoogleMapApi::class.java)
 
+    fun getGuideApi() : GuideApi = getRetrofit().create(GuideApi::class.java)
 
 }
