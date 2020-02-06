@@ -17,11 +17,10 @@ class OrderInteractor : IOrderInteractor {
     private val guideRepo = GuideRepo()
 
     override fun getTariffies(
-        token: String,
         location: TariffRequest,
         listener: ((TariffModel) -> Unit)
     ) {
-        orderRepo.getTarrifs(token, location) { tarrifs ->
+        orderRepo.getTarrifs( location) { tarrifs ->
             listener.invoke(tarrifs)
         }
     }

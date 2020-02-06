@@ -11,7 +11,6 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.lifecycle.Observer
-import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taximuslim.baseUI.activivty.BaseActivity
 import com.example.taximuslim.presentation.view.design.dialogswindow.CommentAlert
@@ -19,7 +18,7 @@ import com.example.taximuslim.presentation.view.design.dialogswindow.PriceAlert
 import com.example.taximuslim.utils.mapfunc.MapManager
 import com.example.taximuslim.presentation.view.menu.fragments.GuideFragment
 import com.example.taximuslim.presentation.view.menu.fragments.HelpFragment
-import com.example.taximuslim.presentation.view.clientorder.list.MapsCustomAdapter
+import com.example.taximuslim.presentation.view.clientorder.list.PreceptAdapter
 import com.example.taximuslim.presentation.view.clientorder.managers.NavigationDrawerManager
 import com.example.taximuslim.presentation.view.menu.fragments.HistoryFragment
 import com.example.taximuslim.presentation.view.menu.fragments.SettingsFragment
@@ -35,11 +34,9 @@ import com.example.taximuslim.data.network.dto.order.TariffRequest
 import com.example.taximuslim.domain.order.models.TariffModel
 import com.example.taximuslim.presentation.view.clientorder.managers.ButtonManager
 import com.example.taximuslim.utils.mapfunc.PolyManager
-import com.example.taximuslim.utils.prefference.getAuthHeader
 import com.example.taximuslim.utils.view.ViewManager
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
-import kotlinx.android.synthetic.main.driver_profile_fragment.view.*
 import kotlinx.android.synthetic.main.gradient_button.*
 
 
@@ -61,7 +58,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
     private var priceAlert: PriceAlert? = null
     private var commentAlert: CommentAlert? = null
     private val mapManger = MapManager(this)
-    private val adapter = MapsCustomAdapter()
+    private val adapter = PreceptAdapter()
     private val controllerChanger = ControllerChanger(this)
     private val viewManager = ViewManager(this)
     private lateinit var polyManager: PolyManager
@@ -280,7 +277,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             })
 
             guideCategoriesLiveData.observe(this@MapsActivity, Observer { places ->
-                adapter.replaceAll(places)
+                adapter.submitList(places)
             })
         }
     }
@@ -356,9 +353,8 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         viewModel.loadGuideCategories()
     }
 
-    private fun loadTarrifs(location: TariffRequest) {
-        viewModel.loadTariffs(getAuthHeader(this), location)
-    }
+    private fun loadTarrifs(location: TariffRequest) = viewModel.loadTariffs(location)
+
 
     override fun onBackPressed() {
         super.onBackPressed()

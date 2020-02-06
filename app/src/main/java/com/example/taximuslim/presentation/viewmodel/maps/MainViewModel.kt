@@ -49,8 +49,8 @@ class MainViewModel : BaseViewModel() {
     val tarriffsLiveData: LiveData<TariffModel>
         get() = _tariffsLiveData
 
-    fun loadTariffs(token: String, location: TariffRequest) {
-        interactor.getTariffies(token, location) { tariffs ->
+    fun loadTariffs( location: TariffRequest) {
+        interactor.getTariffies( location) { tariffs ->
             _tariffsLiveData.value = tariffs
         }
     }

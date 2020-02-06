@@ -22,8 +22,6 @@ class GoogleRepo {
     @Inject
     lateinit var api: GoogleMapApi
 
-    private val job = Job()
-    private val uiScope = CoroutineScope(Dispatchers.Main + job)
 
 
     fun getDirections(start: String, end: String, listener: ((Route) -> Unit)) {

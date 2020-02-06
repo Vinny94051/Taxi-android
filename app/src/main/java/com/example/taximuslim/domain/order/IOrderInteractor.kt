@@ -8,7 +8,7 @@ import com.example.taximuslim.domain.models.guide.UserPlaceByLocationModel
 import com.example.taximuslim.domain.order.models.TariffModel
 
 interface IOrderInteractor {
-    fun getTariffies(token: String, location: TariffRequest, listener: ((TariffModel) -> Unit))
+    fun getTariffies(location: TariffRequest, listener: ((TariffModel) -> Unit))
     fun getDirections(start : String, end : String, listener : ((Route) -> Unit) )
     suspend fun getCategories(listener: ((List<GuideCategoryModel>) -> Unit))
     suspend fun getPlaceByLocation(

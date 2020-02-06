@@ -1,7 +1,6 @@
 package com.example.taximuslim.presentation.view.clientorder
 
 import android.content.Context
-import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.EditText
@@ -10,6 +9,7 @@ import com.example.taximuslim.App
 import com.example.taximuslim.R
 import com.example.taximuslim.baseUI.fragment.BaseFragment
 import com.example.taximuslim.presentation.view.clientorder.list.prediction.PredictionAdapter
+import com.example.taximuslim.utils.cursorToEnd
 import com.example.taximuslim.utils.mapfunc.MapManager
 import com.example.taximuslim.utils.mapfunc.PlacePredictions
 import com.example.taximuslim.utils.onSubmitNext
@@ -21,7 +21,6 @@ import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.material.snackbar.Snackbar
 import com.jakewharton.rxbinding2.widget.textChanges
 import io.reactivex.android.schedulers.AndroidSchedulers
-import kotlinx.android.synthetic.main.activity_maps_controller.*
 import kotlinx.android.synthetic.main.fragment_choose_address.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -46,7 +45,7 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
     private lateinit var placePredictions: PlacePredictions
     private var adapter = PredictionAdapter()
 
-    var closeListener : ((String) -> Unit)? = null
+    var closeListener: ((String) -> Unit)? = null
 
 
     override fun layoutId(): Int = R.layout.fragment_choose_address
@@ -91,10 +90,12 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
         initList()
         setOnPredictionsListener()
         pointBLocationEditText.onSubmitNext {
-            if (pointBLocationEditText.isFocused)
-                closeFragment(1)
-            else closeFragment(2)
+            searchAction(pointBLocationEditText.text.toString(), 2)
         }
+
+        userLocationEditText.cursorToEnd()
+        pointBLocationEditText.cursorToEnd()
+
         setEditTextDebounce(userLocationEditText, 0)
         setEditTextDebounce(pointBLocationEditText, 1)
         setEditTextsTintListeners()
@@ -108,7 +109,7 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
             mainProgressbar.visibility = View.VISIBLE
             recyclerPredict.visibility = View.GONE
         }
-        .debounce(600, TimeUnit.MILLISECONDS)
+        .debounce(900, TimeUnit.MILLISECONDS)
         .observeOn(AndroidSchedulers.mainThread())
         .doOnEach {
             mainProgressbar.visibility = View.GONE
@@ -189,19 +190,19 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
         return Places.createClient(context)
     }
 
-    fun setOnCloseListener(listener : ((String) -> Unit)){
+    fun setOnCloseListener(listener: ((String) -> Unit)) {
         closeListener = listener
     }
 
     private fun closeFragment(markerNumber: Int) {
         owner.hideFloatView()
         when (markerNumber) {
-            1 -> { }
+            1 -> {
+            }
             2 -> setUserLocation(userLocationEditText.text.toString())
         }
         closeListener?.invoke(pointBLocationEditText.text.toString())
     }
-
 
 
 }
