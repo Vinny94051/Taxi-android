@@ -20,10 +20,11 @@ import com.example.taximuslim.databinding.AuthDriverCarPhotoFragmentBinding
 import com.example.taximuslim.databinding.AuthDriverDocumentsFragmentBinding
 import com.example.taximuslim.domain.models.driver.auth.DriverMainModel
 import com.example.taximuslim.presentation.view.auth.driver.carPhoto.AuthDriverCarPhoto
+import com.example.taximuslim.presentation.view.baseFragment.ObservableFragment
 import com.github.dhaval2404.imagepicker.ImagePicker
 import kotlinx.android.synthetic.main.activity_auth_driver_main.*
 
-class AuthDriverDocumentsFragment : Fragment() {
+class AuthDriverDocumentsFragment : ObservableFragment() {
 
     private lateinit var viewModel: AuthDriverDocumentsViewModel
     private lateinit var driverModel: DriverMainModel
@@ -43,7 +44,7 @@ class AuthDriverDocumentsFragment : Fragment() {
         binding.viewModel = viewModel
 
         driverModel = AuthDriverDocumentsFragmentArgs.fromBundle(arguments!!).driverModel
-
+        viewModel.initVIewModel(driverModel)
         return binding.root
     }
 
@@ -55,11 +56,15 @@ class AuthDriverDocumentsFragment : Fragment() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun setObservers() {
         viewModel.navigate.observe(viewLifecycleOwner, Observer{navigate ->
             if (navigate){
                 val navController = view!!.findNavController()
+
+                driverModel.driverLicenceNumb = viewModel.driverLicenceNumb.value!!
+                driverModel.driverLicenceFront = viewModel.driverLicenceFront.value!!
+                driverModel.driverLicenceBack = viewModel.driverLicenceBack.value!!
+
                 navController.navigate(AuthDriverDocumentsFragmentDirections
                     .actionAuthDriverDocumentsFragmentToAuthDriverValidatePersonFragment(driverModel))
                 viewModel.onNavigate()

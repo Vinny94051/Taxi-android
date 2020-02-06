@@ -103,7 +103,9 @@
             app:destination="@id/authDriverPublicOfferFragment" />
         <action
             android:id="@+id/action_driverAuthConfidentialityFragment_to_authDriverRequest"
-            app:destination="@id/authDriverRequest" />
+            app:destination="@id/authDriverRequest"
+            app:popUpTo="@+id/authDriverFirstStepFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/authDriverPublicOfferFragment"

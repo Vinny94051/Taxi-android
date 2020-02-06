@@ -38,6 +38,7 @@ class AuthDriverCarNumbFragment : ObservableFragment() {
 
         driverModel = AuthDriverCarNumbFragmentArgs.fromBundle(arguments!!)
             .driverModel
+        viewModel.initViewModel(driverModel)
 
         return binding.root
     }

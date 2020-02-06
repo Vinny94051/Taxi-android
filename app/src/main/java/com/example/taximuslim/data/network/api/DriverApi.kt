@@ -81,7 +81,7 @@ interface DriverApi {
     @GET("rule-driver")
     suspend fun fetchDriverRulesList(
         @Header("Authorization") token: String
-    ): List<DriverRule>
+    ): List<DriverRuleResponse>
 
     @GET("trip")
     suspend fun fetchOrderHistoryList(

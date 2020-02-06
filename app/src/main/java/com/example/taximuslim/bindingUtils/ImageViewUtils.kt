@@ -27,6 +27,14 @@ fun ImageView.setProfileImage(uri: Uri?) {
 
 }
 
+@BindingAdapter("src")
+fun ImageView.setSrc(uri: Uri?) {
+    Glide.with(this.context)
+        .load(uri)
+        .into(this)
+
+}
+
 @BindingAdapter("loading_status")
 fun ImageView.setStatus(status: LoadingStatus) {
     when (status) {

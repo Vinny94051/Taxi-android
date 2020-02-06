@@ -45,7 +45,7 @@ class AuthDriverAboutYouFragment : Fragment() {
 
         driverModel = AuthDriverAboutYouFragmentArgs.fromBundle(arguments!!)
             .driverModel
-
+        viewModel.initViewModel(driverModel)
         return binding.root
     }
 
@@ -71,7 +71,7 @@ class AuthDriverAboutYouFragment : Fragment() {
                 driverModel.profileSurname= viewModel.profileSurname.value!!
                 driverModel.profileEmail = viewModel.profileEmail.value!!
                 driverModel.taxiLicenceFront = viewModel.taxiLicenceFront.value!!
-                driverModel.driverLicenceBack = viewModel.taxiLicenceBack.value!!
+                driverModel.taxiLicenceBack = viewModel.taxiLicenceBack.value!!
                 navController.navigate(AuthDriverAboutYouFragmentDirections
                     .actionAuthDriverAboutYouFragmentToAuthDriverDocumentsFragment(driverModel))
                 viewModel.onNavigate()

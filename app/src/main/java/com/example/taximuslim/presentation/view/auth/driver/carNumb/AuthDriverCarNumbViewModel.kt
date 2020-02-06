@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.taximuslim.App
 import com.example.taximuslim.domain.auth.driver.DriverAuthInteractor
+import com.example.taximuslim.domain.models.driver.auth.DriverMainModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -28,6 +29,10 @@ class AuthDriverCarNumbViewModel : ViewModel() {
     private val _correct = MutableLiveData<Boolean>(null)
     val correct: LiveData<Boolean>
     get() = _correct
+
+    fun initViewModel(driverModel: DriverMainModel){
+        carNumb.value = driverModel.carNumb
+    }
 
     fun onMainButtonClick() {
         viewModelScope.launch(Dispatchers.Main) {

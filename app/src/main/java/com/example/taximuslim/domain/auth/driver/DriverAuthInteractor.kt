@@ -4,6 +4,7 @@ import com.example.taximuslim.data.network.remote.request.driver.*
 import com.example.taximuslim.domain.models.driver.auth.CarMark
 import com.example.taximuslim.domain.models.driver.auth.CarModel
 import com.example.taximuslim.domain.models.driver.auth.CarColor
+import com.example.taximuslim.domain.models.driver.auth.DriverRule
 
 interface DriverAuthInteractor {
 
@@ -24,4 +25,6 @@ interface DriverAuthInteractor {
     suspend fun updateProfile(request: UpdateProfileRequest): Boolean
 
     suspend fun updateDriverLicence(request: UpdateDriverLicenceRequest): Boolean
+
+    suspend fun fetchDriverRules(): List<DriverRule>
 }

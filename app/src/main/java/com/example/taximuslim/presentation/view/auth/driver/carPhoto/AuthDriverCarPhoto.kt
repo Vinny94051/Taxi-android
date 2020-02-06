@@ -44,6 +44,7 @@ class AuthDriverCarPhoto : ObservableFragment() {
         binding.viewModel = viewModel
         binding.driverModel = driverModel
 
+        viewModel.initViewModel(driverModel)
 
 
         return binding.root

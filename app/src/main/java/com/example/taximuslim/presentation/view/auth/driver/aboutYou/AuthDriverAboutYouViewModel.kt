@@ -10,6 +10,7 @@ import com.example.taximuslim.data.network.remote.request.driver.DeleteDriverIma
 import com.example.taximuslim.data.network.remote.request.driver.UpdateProfileRequest
 import com.example.taximuslim.data.network.remote.request.driver.UploadDriverImageRequest
 import com.example.taximuslim.domain.auth.driver.DriverAuthInteractor
+import com.example.taximuslim.domain.models.driver.auth.DriverMainModel
 import com.example.taximuslim.presentation.view.auth.driver.LoadingStatus
 import com.example.taximuslim.presentation.view.auth.driver.isComplete
 import com.example.taximuslim.utils.image.toBase64
@@ -38,9 +39,9 @@ class AuthDriverAboutYouViewModel : ViewModel() {
     val takeLicenceFrontImage = MutableLiveData<Boolean>(false)
     val takeLicenceBackImage = MutableLiveData<Boolean>(false)
 
-    val profileName = MutableLiveData<String>()
-    val profileSurname = MutableLiveData<String>()
-    val profileEmail = MutableLiveData<String>()
+    val profileName = MutableLiveData<String>("")
+    val profileSurname = MutableLiveData<String>("")
+    val profileEmail = MutableLiveData<String>("")
 
     val nameStatus = MutableLiveData<LoadingStatus>(LoadingStatus.NULL)
     val surnameStatus = MutableLiveData<LoadingStatus>(LoadingStatus.NULL)
@@ -61,6 +62,25 @@ class AuthDriverAboutYouViewModel : ViewModel() {
             if (it.isNotBlank()) {
                 emailStatus.value = LoadingStatus.COMPLETE
             }
+        }
+    }
+
+    fun initViewModel(driverModel: DriverMainModel){
+        profileName.value = driverModel.profileName
+        profileSurname.value = driverModel.profileSurname
+        profileEmail.value = driverModel.profileEmail
+
+        driverModel.profileImage?.let {
+            profileImage.value = it
+            profileImageStatus.value = LoadingStatus.COMPLETE
+        }
+        driverModel.taxiLicenceFront?.let {
+            taxiLicenceFront.value = it
+            taxiLicenceFrontStatus.value = LoadingStatus.COMPLETE
+        }
+        driverModel.taxiLicenceBack?.let {
+            taxiLicenceBack.value = it
+            taxiLicenceBackStatus.value = LoadingStatus.COMPLETE
         }
     }
 

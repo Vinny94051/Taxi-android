@@ -9,6 +9,7 @@ import com.example.taximuslim.App
 import com.example.taximuslim.data.network.remote.request.driver.DeleteDriverImageRequest
 import com.example.taximuslim.data.network.remote.request.driver.UploadDriverImageRequest
 import com.example.taximuslim.domain.auth.driver.DriverAuthInteractor
+import com.example.taximuslim.domain.models.driver.auth.DriverMainModel
 import com.example.taximuslim.presentation.view.auth.driver.LoadingStatus
 import com.example.taximuslim.utils.image.toBase64
 import kotlinx.coroutines.Dispatchers
@@ -35,6 +36,16 @@ class AuthDriverCarPhotoViewModel : ViewModel() {
     val takeCarPhoto = MutableLiveData<Boolean>(false)
     val takeCertificatePhoto = MutableLiveData<Boolean>(false)
 
+    fun initViewModel(driverModel: DriverMainModel){
+        driverModel.carImage?.let{
+            carImage.value = it
+            carImageStatus.value = LoadingStatus.COMPLETE
+        }
+        driverModel.carCertificateImage?.let{
+            certificateImage.value = it
+            certificateImageStatus.value = LoadingStatus.COMPLETE
+        }
+    }
 
     fun uploadCarImage() {
         viewModelScope.launch(Dispatchers.Main) {

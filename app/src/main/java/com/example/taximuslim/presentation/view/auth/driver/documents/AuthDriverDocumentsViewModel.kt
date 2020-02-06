@@ -10,6 +10,7 @@ import com.example.taximuslim.data.network.remote.request.driver.DeleteDriverIma
 import com.example.taximuslim.data.network.remote.request.driver.UpdateDriverLicenceRequest
 import com.example.taximuslim.data.network.remote.request.driver.UploadDriverImageRequest
 import com.example.taximuslim.domain.auth.driver.DriverAuthInteractor
+import com.example.taximuslim.domain.models.driver.auth.DriverMainModel
 import com.example.taximuslim.presentation.view.auth.driver.LoadingStatus
 import com.example.taximuslim.presentation.view.auth.driver.isComplete
 import com.example.taximuslim.utils.image.toBase64
@@ -44,6 +45,18 @@ class AuthDriverDocumentsViewModel : ViewModel() {
             if (it.isNotBlank()) {
                 driverLicenceNumbStatus.value = LoadingStatus.COMPLETE
             }
+        }
+    }
+
+    fun initVIewModel(driverModel: DriverMainModel){
+        driverLicenceNumb.value = driverModel.driverLicenceNumb
+        driverModel.driverLicenceFront?.let{
+            driverLicenceFront.value = it
+            driverLicenceFrontStatus.value = LoadingStatus.COMPLETE
+        }
+        driverModel.driverLicenceBack?.let{
+            driverLicenceBack.value = it
+            driverLicenceBackStatus.value = LoadingStatus.COMPLETE
         }
     }
 

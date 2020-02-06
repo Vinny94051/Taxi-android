@@ -40,17 +40,18 @@
                     android:scaleType="center"
                     app:profile_image="@{viewModel.profileImage}" />
 
-                <ProgressBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:theme="@style/WhiteAccent"
-                    app:loading_status="@{viewModel.profileImageStatus}" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/transparent_black"
+                    app:loading_status="@{viewModel.profileImageStatus}" />
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:theme="@style/WhiteAccent"
                     app:loading_status="@{viewModel.profileImageStatus}" />
 
             </androidx.cardview.widget.CardView>
@@ -232,9 +233,9 @@
                 style="@style/SecondaryText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/default_margin"
+                android:layout_marginStart="@dimen/default_margin"
                 android:layout_marginTop="12dp"
-                android:text="@string/photo_shoud_be_correct"
+                android:text="@string/photo_should_be_correct"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/licencePhotoFrontCard" />
 
@@ -316,7 +317,7 @@
                 android:layout_marginStart="@dimen/default_margin"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="@dimen/default_margin"
-                android:text="@string/photo_shoud_be_correct"
+                android:text="@string/photo_should_be_correct"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/licencePhotoBackCard" />
 

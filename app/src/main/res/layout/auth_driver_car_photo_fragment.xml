@@ -29,6 +29,7 @@
                 android:layout_marginStart="@dimen/default_margin"
                 android:layout_marginTop="@dimen/large_margin"
                 android:text="@string/info_about_car"
+                android:textColor="@color/colorLightGrey"
                 android:textAppearance="@style/ContrastFieldText"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -96,6 +97,7 @@
                         android:layout_marginStart="@dimen/small_margin"
                         android:text="@{driverModel.carMark.name + driverModel.carModel.name}"
                         android:textAppearance="@style/SecondaryText"
+                        android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="@+id/carMarkSeriesText"
                         app:layout_constraintStart_toEndOf="@id/carMarkSeriesText"
                         app:layout_constraintTop_toTopOf="@+id/carMarkSeriesText" />
@@ -134,6 +136,7 @@
                 android:layout_marginTop="@dimen/medium_margin"
                 android:text="@string/car_photo"
                 android:textAppearance="@style/ContrastFieldText"
+                android:textColor="@color/colorLightGrey"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/carInfoCard" />
 
@@ -146,7 +149,7 @@
                 android:text="@string/delete"
                 android:onClick="@{() -> viewModel.onDeleteCarImageClick()}"
                 app:delete_status="@{viewModel.carImageStatus}"
-                android:textColor="@color/colorThemeGreen"
+                android:textAppearance="@style/AccentText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/carInfoCard" />
 
@@ -206,6 +209,8 @@
                 android:layout_marginEnd="@dimen/default_margin"
                 android:text="@string/take_car_photo_with_numb"
                 android:textAppearance="@style/SecondaryText"
+                android:textSize="14sp"
+                android:fontFamily="@font/roboto_medium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/licencePhotoFrontCard" />
@@ -217,6 +222,7 @@
                 android:layout_marginStart="@dimen/default_margin"
                 android:layout_marginTop="@dimen/large_margin"
                 android:text="@string/car_sertificate"
+                android:textColor="@color/colorLightGrey"
                 android:textAppearance="@style/ContrastFieldText"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/takePhotoText" />
@@ -231,8 +237,7 @@
                 android:text="@string/delete"
                 android:onClick="@{() -> viewModel.onDeleteCertificateClick()}"
                 app:delete_status="@{viewModel.certificateImageStatus}"
-                android:textColor="@color/colorThemeGreen"
-                android:textSize="14sp"
+                android:textAppearance="@style/AccentText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/takePhotoText" />
 
@@ -294,6 +299,8 @@
                 android:lineSpacingExtra="4sp"
                 android:text="@string/take_car_photo_with_numb"
                 android:textAppearance="@style/SecondaryText"
+                android:textSize="14sp"
+                android:fontFamily="@font/roboto_medium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/carLicenceCard" />

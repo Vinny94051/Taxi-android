@@ -52,9 +52,10 @@
                     android:layout_margin="1dp"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
-                    android:textStyle="bold"
                     android:text="@={viewModel.driverLicenceNumb}"
                     android:inputType="textCapCharacters"
+                    android:textColor="#4F4F4F"
+                    tools:text="FDFEFEW"
                     android:background="@drawable/edit_text_shape"
                     android:backgroundTint="@android:color/white"
                     android:foregroundTint="@android:color/white"
@@ -140,7 +141,7 @@
                 android:layout_marginEnd="@dimen/default_margin"
                 android:layout_marginStart="@dimen/default_margin"
                 android:layout_marginTop="12dp"
-                android:text="@string/photo_shoud_be_correct"
+                android:text="@string/photo_should_be_correct"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/licencePhotoFrontCard" />
 
@@ -222,7 +223,7 @@
                 android:layout_marginStart="@dimen/default_margin"
                 android:layout_marginEnd="@dimen/default_margin"
                 android:layout_marginTop="12dp"
-                android:text="@string/photo_shoud_be_correct"
+                android:text="@string/photo_should_be_correct"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/licencePhotoBackCard" />
 

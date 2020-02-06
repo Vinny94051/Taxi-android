@@ -5,6 +5,7 @@ import com.example.taximuslim.domain.models.driver.auth.CarMark
 import com.example.taximuslim.domain.models.driver.auth.CarModel
 import com.example.taximuslim.data.repository.auth.driver.DriverAuthRepository
 import com.example.taximuslim.domain.models.driver.auth.CarColor
+import com.example.taximuslim.domain.models.driver.auth.DriverRule
 
 class DriverAuthInteractorImpl : DriverAuthInteractor {
 
@@ -38,6 +39,10 @@ class DriverAuthInteractorImpl : DriverAuthInteractor {
 
     override suspend fun deleteDriverImage(request: DeleteDriverImageRequest): Boolean {
         return repository.deleteDriverImage(request)
+    }
+
+    override suspend fun fetchDriverRules(): List<DriverRule> {
+        return repository.fetchDriverRules()
     }
 
     override suspend fun updateProfile(request: UpdateProfileRequest): Boolean {

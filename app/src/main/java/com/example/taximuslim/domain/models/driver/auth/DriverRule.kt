@@ -1,7 +1,9 @@
 package com.example.taximuslim.domain.models.driver.auth
 
+import android.net.Uri
+
 data class DriverRule(
-    val headline: String,
-    val image: String,
-    val text: String
+    val headLine: String,
+    val text: String,
+    val image: Uri
 )
