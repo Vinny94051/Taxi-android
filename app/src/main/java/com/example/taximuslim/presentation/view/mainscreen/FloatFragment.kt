@@ -1,4 +1,4 @@
-package com.example.taximuslim.presentation.view.clientorder
+package com.example.taximuslim.presentation.view.mainscreen
 
 import android.content.Context
 import android.util.Log
@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taximuslim.App
 import com.example.taximuslim.R
 import com.example.taximuslim.baseUI.fragment.BaseFragment
-import com.example.taximuslim.presentation.view.clientorder.list.prediction.PredictionAdapter
+import com.example.taximuslim.presentation.view.adapter.prediction.PredictionAdapter
 import com.example.taximuslim.utils.cursorToEnd
 import com.example.taximuslim.utils.mapfunc.MapManager
 import com.example.taximuslim.utils.mapfunc.PlacePredictions
@@ -21,7 +21,7 @@ import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.material.snackbar.Snackbar
 import com.jakewharton.rxbinding2.widget.textChanges
 import io.reactivex.android.schedulers.AndroidSchedulers
-import kotlinx.android.synthetic.main.fragment_choose_address.*
+import kotlinx.android.synthetic.main.fragment_float.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -48,7 +48,7 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
     var closeListener: ((String) -> Unit)? = null
 
 
-    override fun layoutId(): Int = R.layout.fragment_choose_address
+    override fun layoutId(): Int = R.layout.fragment_float
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

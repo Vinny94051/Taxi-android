@@ -5,14 +5,10 @@ import android.os.Bundle
 import android.text.Editable
 import android.view.View
 import android.view.Window
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.example.taximuslim.R
-import com.example.taximuslim.presentation.view.clientorder.MapsActivity
 import com.example.taximuslim.presentation.view.design.parents.ParentDialog
 import com.example.taximuslim.utils.PriceHolder
-import com.example.taximuslim.utils.toEditable
-import kotlinx.android.synthetic.main.activity_maps_controller.*
 import kotlinx.android.synthetic.main.dialog_price_window.*
 import java.lang.NumberFormatException
 

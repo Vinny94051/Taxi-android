@@ -1,4 +1,4 @@
-package com.example.taximuslim.presentation.view.clientorder.managers
+package com.example.taximuslim.presentation.view.mainscreen.managers
 
 import android.view.Gravity
 import android.view.View

@@ -11,7 +11,6 @@ import com.example.taximuslim.domain.models.google.Route
 import com.example.taximuslim.domain.models.guide.GuideCategoryModel
 import com.example.taximuslim.domain.order.IOrderInteractor
 import com.example.taximuslim.domain.order.models.TariffModel
-import com.example.taximuslim.presentation.view.clientorder.list.PlacesModel
 import com.example.taximuslim.utils.location.IUserLocationProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

@@ -1,4 +1,4 @@
-package com.example.taximuslim.presentation.view.clientorder.list
+package com.example.taximuslim.presentation.view.adapter.guide
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,23 +6,22 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.example.taximuslim.R
 import com.example.taximuslim.baseUI.viewholder.BaseViewHolder
 import com.example.taximuslim.domain.models.guide.GuideCategoryModel
 import com.example.taximuslim.utils.toDp
-import com.example.taximuslim.utils.toPx
 import kotlinx.android.synthetic.main.place_recycle_list.view.*
 
-class MapsViewHolder private constructor(itemView: View) : BaseViewHolder(itemView) {
+class MainScreenGuideViewHolder private constructor(itemView: View) : BaseViewHolder(itemView) {
 
     companion object {
-        fun from(parent: ViewGroup) = MapsViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.place_recycle_list,
-                parent, false
+        fun from(parent: ViewGroup) =
+            MainScreenGuideViewHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.place_recycle_list,
+                    parent, false
+                )
             )
-        )
     }
 
     private val imageViewBackImage: ImageView = itemView.back_img

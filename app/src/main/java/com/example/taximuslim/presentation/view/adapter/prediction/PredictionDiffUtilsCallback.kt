@@ -1,4 +1,4 @@
-package com.example.taximuslim.presentation.view.clientorder.list.prediction
+package com.example.taximuslim.presentation.view.adapter.prediction
 
 import androidx.recyclerview.widget.DiffUtil
 

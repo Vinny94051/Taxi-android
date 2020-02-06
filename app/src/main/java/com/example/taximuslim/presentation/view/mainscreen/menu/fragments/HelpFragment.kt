@@ -1,4 +1,4 @@
-package com.example.taximuslim.presentation.view.menu.fragments
+package com.example.taximuslim.presentation.view.mainscreen.menu.fragments
 
 import android.view.View
 import com.example.taximuslim.R

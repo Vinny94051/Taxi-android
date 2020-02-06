@@ -23,7 +23,7 @@
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".presentation.view.clientorder.MapsActivity" />
+            tools:context=".presentation.view.mainscreen.MapsActivity" />
 
         <ImageButton
             android:id="@+id/burger_menu_main"

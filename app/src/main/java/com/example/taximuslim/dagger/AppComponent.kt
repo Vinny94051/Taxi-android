@@ -8,9 +8,10 @@ import com.example.taximuslim.data.repository.order.OrderRepo
 import com.example.taximuslim.domain.auth.IAuthInteractor
 import com.example.taximuslim.presentation.view.auth.fragments.daughter.AuthorizationFragment
 import com.example.taximuslim.presentation.view.auth.fragments.daughter.EnterSmsCodeFragment
-import com.example.taximuslim.presentation.view.clientorder.FloatFragment
+import com.example.taximuslim.presentation.view.mainscreen.FloatFragment
 import com.example.taximuslim.presentation.viewmodel.auth.AuthViewModel
 import com.example.taximuslim.presentation.viewmodel.maps.MainViewModel
+import com.example.taximuslim.presentation.viewmodel.menu.GuideViewModel
 import com.example.taximuslim.utils.mapfunc.DistanceCalculator
 import com.example.taximuslim.utils.mapfunc.PolyManager
 import dagger.Component
@@ -37,5 +38,6 @@ interface AppComponent {
     fun inject(mapperDirections: MapperDirections)
     fun inject(polyManager: PolyManager)
     fun inject(guideRepo: GuideRepo)
+    fun inject(guideViewModel: GuideViewModel)
 
 }

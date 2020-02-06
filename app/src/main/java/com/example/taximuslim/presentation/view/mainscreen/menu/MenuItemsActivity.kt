@@ -1,13 +1,13 @@
-package com.example.taximuslim.presentation.view.menu
+package com.example.taximuslim.presentation.view.mainscreen.menu
 
 import android.os.Bundle
 import android.view.View
 import com.example.taximuslim.R
 import com.example.taximuslim.baseUI.activivty.BaseActivity
-import com.example.taximuslim.presentation.view.menu.fragments.GuideFragment
-import com.example.taximuslim.presentation.view.menu.fragments.HelpFragment
-import com.example.taximuslim.presentation.view.menu.fragments.HistoryFragment
-import com.example.taximuslim.presentation.view.menu.fragments.SettingsFragment
+import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.guide.GuideFragment
+import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.HelpFragment
+import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.HistoryFragment
+import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.SettingsFragment
 import kotlinx.android.synthetic.main.controller_menu_items.*
 
 class MenuItemsActivity : BaseActivity(), View.OnClickListener {
@@ -34,7 +34,7 @@ class MenuItemsActivity : BaseActivity(), View.OnClickListener {
     private fun chooseFragment(fragmentId: String) {
         when (fragmentId) {
             "GUIDE_FRAGMENT" -> {
-                replaceFragment(GuideFragment.INSTANCE, R.id.container_menu, fragmentId)
+                replaceFragment(GuideFragment.newInstance(), R.id.container_menu, fragmentId)
                 setHeadText(R.string.guide)
             }
             "HISTORY_FRAGMENT" -> {
@@ -54,6 +54,11 @@ class MenuItemsActivity : BaseActivity(), View.OnClickListener {
 
     private fun setHeadText(textId: Int) {
         text_head_menu.text = getString(textId)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
     }
 
 }

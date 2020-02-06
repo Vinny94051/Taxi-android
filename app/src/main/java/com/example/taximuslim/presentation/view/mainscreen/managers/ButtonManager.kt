@@ -1,4 +1,4 @@
-package com.example.taximuslim.presentation.view.clientorder.managers
+package com.example.taximuslim.presentation.view.mainscreen.managers
 
 import android.content.Context
 import android.text.Editable
@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import com.example.taximuslim.R
-import com.example.taximuslim.presentation.view.clientorder.MapsActivity
+import com.example.taximuslim.presentation.view.mainscreen.MapsActivity
 import com.example.taximuslim.utils.PriceHolder
 
 class ButtonManager(private val context: Context) {

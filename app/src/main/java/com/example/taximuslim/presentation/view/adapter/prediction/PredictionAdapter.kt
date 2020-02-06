@@ -1,4 +1,4 @@
-package com.example.taximuslim.presentation.view.clientorder.list.prediction
+package com.example.taximuslim.presentation.view.adapter.prediction
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter

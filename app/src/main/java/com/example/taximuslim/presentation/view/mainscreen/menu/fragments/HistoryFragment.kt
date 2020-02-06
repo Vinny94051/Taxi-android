@@ -1,4 +1,4 @@
-package com.example.taximuslim.presentation.view.menu.fragments
+package com.example.taximuslim.presentation.view.mainscreen.menu.fragments
 
 import com.example.taximuslim.R
 import com.example.taximuslim.baseUI.fragment.BaseFragment

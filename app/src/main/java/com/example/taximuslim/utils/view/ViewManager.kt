@@ -6,7 +6,7 @@ import android.text.Editable
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import com.example.taximuslim.presentation.view.clientorder.managers.ButtonManager
+import com.example.taximuslim.presentation.view.mainscreen.managers.ButtonManager
 import com.example.taximuslim.presentation.view.design.dialogswindow.PriceAlert
 import com.example.taximuslim.utils.PriceHolder
 

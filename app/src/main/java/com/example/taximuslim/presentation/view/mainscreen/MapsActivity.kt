@@ -1,4 +1,4 @@
-package com.example.taximuslim.presentation.view.clientorder
+package com.example.taximuslim.presentation.view.mainscreen
 
 import android.app.Activity
 import android.content.pm.PackageManager
@@ -16,12 +16,12 @@ import com.example.taximuslim.baseUI.activivty.BaseActivity
 import com.example.taximuslim.presentation.view.design.dialogswindow.CommentAlert
 import com.example.taximuslim.presentation.view.design.dialogswindow.PriceAlert
 import com.example.taximuslim.utils.mapfunc.MapManager
-import com.example.taximuslim.presentation.view.menu.fragments.GuideFragment
-import com.example.taximuslim.presentation.view.menu.fragments.HelpFragment
-import com.example.taximuslim.presentation.view.clientorder.list.PreceptAdapter
-import com.example.taximuslim.presentation.view.clientorder.managers.NavigationDrawerManager
-import com.example.taximuslim.presentation.view.menu.fragments.HistoryFragment
-import com.example.taximuslim.presentation.view.menu.fragments.SettingsFragment
+import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.guide.GuideFragment
+import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.HelpFragment
+import com.example.taximuslim.presentation.view.adapter.guide.MainScreenGuideAdapter
+import com.example.taximuslim.presentation.view.mainscreen.managers.NavigationDrawerManager
+import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.HistoryFragment
+import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.SettingsFragment
 import com.example.taximuslim.presentation.viewmodel.maps.MainViewModel
 import com.example.taximuslim.utils.*
 import com.example.taximuslim.utils.navigator.ControllerChanger
@@ -32,7 +32,7 @@ import kotlinx.android.synthetic.main.activity_maps_controller.*
 import com.example.taximuslim.R
 import com.example.taximuslim.data.network.dto.order.TariffRequest
 import com.example.taximuslim.domain.order.models.TariffModel
-import com.example.taximuslim.presentation.view.clientorder.managers.ButtonManager
+import com.example.taximuslim.presentation.view.mainscreen.managers.ButtonManager
 import com.example.taximuslim.utils.mapfunc.PolyManager
 import com.example.taximuslim.utils.view.ViewManager
 import com.google.android.gms.maps.*
@@ -58,7 +58,8 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
     private var priceAlert: PriceAlert? = null
     private var commentAlert: CommentAlert? = null
     private val mapManger = MapManager(this)
-    private val adapter = PreceptAdapter()
+    private val adapter =
+        MainScreenGuideAdapter()
     private val controllerChanger = ControllerChanger(this)
     private val viewManager = ViewManager(this)
     private lateinit var polyManager: PolyManager
@@ -97,7 +98,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             R.id.economy_order -> {
                 if (checkPointBEditText()) {
                     btnManager.checkEconomyBtnState()
-                    btnManager.setPriceInPriceAlert(PriceHolder.economy,getCurrentPrice())
+                    btnManager.setPriceInPriceAlert(PriceHolder.economy, getCurrentPrice())
                     showPriceAlertIfAlLeastOnButtonActive()
                     showPriceAndCommentEditTexts()
                 }
@@ -143,7 +144,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         }
     }
 
-
+    //TODO menu item activity не нужен
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_driver -> {
@@ -270,8 +271,12 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             })
 
             directionsLiveData.observe(this@MapsActivity, Observer { route ->
-                userLocationLatLng = mapManger.getLocationFromAddress(user_location.text.toString()) ?: LatLng(0.0,0.0)
-                viewManager.hideViews(locationTextView,userLocationMarker)
+                userLocationLatLng =
+                    mapManger.getLocationFromAddress(user_location.text.toString()) ?: LatLng(
+                        0.0,
+                        0.0
+                    )
+                viewManager.hideViews(locationTextView, userLocationMarker)
                 mMap.setOnCameraChangeListener(null)
                 polyManager.drawRoute(route, userLocationLatLng, pointBLatLng)
             })
@@ -281,7 +286,6 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             })
         }
     }
-
 
 
     private fun setOnFloatFragmentCloseListener() {
@@ -373,7 +377,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         return point
     }
 
-    private fun getCurrentPrice() : Editable =
-         tripPriceEditText.text ?: "".toEditable()
+    private fun getCurrentPrice(): Editable =
+        tripPriceEditText.text ?: "".toEditable()
 
 }
