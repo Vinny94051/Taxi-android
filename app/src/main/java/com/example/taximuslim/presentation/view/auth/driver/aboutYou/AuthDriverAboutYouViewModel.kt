@@ -65,7 +65,7 @@ class AuthDriverAboutYouViewModel : ViewModel() {
         }
     }
 
-    fun initViewModel(driverModel: DriverMainModel){
+    fun initViewModel(driverModel: DriverMainModel) {
         profileName.value = driverModel.profileName
         profileSurname.value = driverModel.profileSurname
         profileEmail.value = driverModel.profileEmail
@@ -85,26 +85,29 @@ class AuthDriverAboutYouViewModel : ViewModel() {
     }
 
     fun onTakeProfileImage() {
-        if ((profileImageStatus.value == LoadingStatus.ERROR)
-            || (profileImageStatus.value == LoadingStatus.NULL)
-        ) {
+        if (profileImageStatus.value == LoadingStatus.NULL) {
             takeProfileImage.value = true
+        }
+        if (profileImageStatus.value == LoadingStatus.ERROR) {
+            uploadProfileImage()
         }
     }
 
     fun onTakeLicenceFrontImage() {
-        if ((taxiLicenceFrontStatus.value == LoadingStatus.ERROR)
-            || (taxiLicenceFrontStatus.value == LoadingStatus.NULL)
-        ) {
+        if (taxiLicenceFrontStatus.value == LoadingStatus.NULL) {
             takeLicenceFrontImage.value = true
+        }
+        if (taxiLicenceFrontStatus.value == LoadingStatus.ERROR) {
+            uploadLicenceFront()
         }
     }
 
     fun onTakeLicenceBackImage() {
-        if ((taxiLicenceBackStatus.value == LoadingStatus.ERROR)
-            || (taxiLicenceBackStatus.value == LoadingStatus.NULL)
-        ) {
+        if (taxiLicenceBackStatus.value == LoadingStatus.NULL) {
             takeLicenceBackImage.value = true
+        }
+        if (taxiLicenceBackStatus.value == LoadingStatus.ERROR) {
+            uploadLicenceBack()
         }
     }
 

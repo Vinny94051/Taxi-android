@@ -48,31 +48,33 @@ class AuthDriverDocumentsViewModel : ViewModel() {
         }
     }
 
-    fun initVIewModel(driverModel: DriverMainModel){
+    fun initVIewModel(driverModel: DriverMainModel) {
         driverLicenceNumb.value = driverModel.driverLicenceNumb
-        driverModel.driverLicenceFront?.let{
+        driverModel.driverLicenceFront?.let {
             driverLicenceFront.value = it
             driverLicenceFrontStatus.value = LoadingStatus.COMPLETE
         }
-        driverModel.driverLicenceBack?.let{
+        driverModel.driverLicenceBack?.let {
             driverLicenceBack.value = it
             driverLicenceBackStatus.value = LoadingStatus.COMPLETE
         }
     }
 
     fun onDriverLicenceBackClick() {
-        if ((driverLicenceBackStatus.value == LoadingStatus.ERROR)
-            || (driverLicenceBackStatus.value == LoadingStatus.NULL)
-        ) {
+        if (driverLicenceBackStatus.value == LoadingStatus.NULL) {
             takeLicenceBack.value = true
+        }
+        if (driverLicenceBackStatus.value == LoadingStatus.ERROR) {
+            uploadDriverLicenceBack()
         }
     }
 
     fun onDriverLicenceFrontClick() {
-        if ((driverLicenceFrontStatus.value == LoadingStatus.ERROR)
-            || (driverLicenceFrontStatus.value == LoadingStatus.NULL)
-        ) {
+        if (driverLicenceFrontStatus.value == LoadingStatus.NULL) {
             takeLicenceFront.value = true
+        }
+        if (driverLicenceFrontStatus.value == LoadingStatus.ERROR) {
+            uploadDriverLicenceFront()
         }
     }
 
@@ -169,7 +171,7 @@ class AuthDriverDocumentsViewModel : ViewModel() {
             try {
                 val request = UpdateDriverLicenceRequest(driverLicenceNumb.value!!)
                 _navigate.value = interactor.updateDriverLicence(request)
-            } catch (e: Exception){
+            } catch (e: Exception) {
 
             }
         }

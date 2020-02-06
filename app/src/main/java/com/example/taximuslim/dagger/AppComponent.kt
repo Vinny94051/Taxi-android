@@ -15,6 +15,7 @@ import com.example.taximuslim.presentation.view.auth.driver.validatePerson.AuthD
 import com.example.taximuslim.presentation.view.auth.fragments.daughter.AuthorizationFragment
 import com.example.taximuslim.presentation.view.auth.fragments.daughter.EnterSmsCodeFragment
 import com.example.taximuslim.presentation.view.clientorder.FloatFragment
+import com.example.taximuslim.presentation.view.driver.driverMainScreen.DriverMainScreenViewModel
 import com.example.taximuslim.presentation.viewmodel.auth.AuthViewModel
 import com.example.taximuslim.presentation.viewmodel.maps.MainViewModel
 import com.example.taximuslim.utils.mapfunc.DistanceCalculator
@@ -47,4 +48,5 @@ interface AppComponent {
     fun inject(authDriverDocumentsViewModel: AuthDriverDocumentsViewModel)
     fun inject(authDriverValidatePersonViewModel: AuthDriverValidatePersonViewModel)
     fun inject(authDriverRuleViewModel: AuthDriverRuleViewModel)
+    fun inject(driverMainScreenViewModelModel: DriverMainScreenViewModel)
 }

@@ -56,9 +56,9 @@ class AuthDriverRuleViewModel : ViewModel() {
     fun nextRule() {
         rulePosition++
         if (rulePosition == rules.value!!.size){
+            rulePosition = 0
             _navigateToNext.value = true
         }else{
-            rulePosition = 0
             ruleCaption.value = rules.value!![rulePosition].headLine
             ruleDescription.value = rules.value!![rulePosition].text
             ruleImage.value = rules.value!![rulePosition].image

@@ -230,7 +230,9 @@
 
             <TextView
                 android:id="@+id/licenceFrontInfo"
-                style="@style/SecondaryText"
+                android:textAppearance="@style/SecondaryText"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="14sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/default_margin"
@@ -311,7 +313,9 @@
 
             <TextView
                 android:id="@+id/licenceBackInfo"
-                style="@style/SecondaryText"
+                android:textAppearance="@style/SecondaryText"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="14sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/default_margin"

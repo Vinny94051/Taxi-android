@@ -77,13 +77,17 @@ class DriverAuthRepository {
 
     suspend fun fetchDriverRules(): List<DriverRule>{
         val token = getAuthHeader(context)
-        val ruleList = api.fetchDriverRulesList(token).map{
+        return api.fetchDriverRulesList(token).map {
             DriverRule(
                 it.headline,
                 it.text,
                 it.image.toUri()
             )
         }
-        return ruleList
+    }
+
+    suspend fun isNewDriver(): Boolean{
+        val token = getAuthHeader(context)
+        return api.createDriver(token).status == "yes_new"
     }
 }

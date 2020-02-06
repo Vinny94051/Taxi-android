@@ -36,12 +36,12 @@ class AuthDriverCarPhotoViewModel : ViewModel() {
     val takeCarPhoto = MutableLiveData<Boolean>(false)
     val takeCertificatePhoto = MutableLiveData<Boolean>(false)
 
-    fun initViewModel(driverModel: DriverMainModel){
-        driverModel.carImage?.let{
+    fun initViewModel(driverModel: DriverMainModel) {
+        driverModel.carImage?.let {
             carImage.value = it
             carImageStatus.value = LoadingStatus.COMPLETE
         }
-        driverModel.carCertificateImage?.let{
+        driverModel.carCertificateImage?.let {
             certificateImage.value = it
             certificateImageStatus.value = LoadingStatus.COMPLETE
         }
@@ -76,7 +76,7 @@ class AuthDriverCarPhotoViewModel : ViewModel() {
                 )
                 val response = interactor.uploadDriverImage(request)
                 certificateImageStatus.value = if (response) LoadingStatus.COMPLETE
-                    else LoadingStatus.ERROR
+                else LoadingStatus.ERROR
             } catch (e: Exception) {
                 certificateImageStatus.value = LoadingStatus.ERROR
             }
@@ -115,18 +115,20 @@ class AuthDriverCarPhotoViewModel : ViewModel() {
     }
 
     fun onTakeCarPhotoClick() {
-        if ((carImageStatus.value == LoadingStatus.ERROR)
-            || (carImageStatus.value == LoadingStatus.NULL)
-        ) {
+        if (carImageStatus.value == LoadingStatus.NULL) {
             takeCarPhoto.value = true
+        }
+        if (carImageStatus.value == LoadingStatus.ERROR) {
+            uploadCarImage()
         }
     }
 
     fun onTakeCertificateClick() {
-        if ((certificateImageStatus.value == LoadingStatus.ERROR)
-            || (certificateImageStatus.value == LoadingStatus.NULL)
-        ) {
+        if (certificateImageStatus.value == LoadingStatus.NULL) {
             takeCertificatePhoto.value = true
+        }
+        if (certificateImageStatus.value == LoadingStatus.ERROR) {
+            uploadCertificateImage()
         }
     }
 

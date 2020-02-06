@@ -26,13 +26,13 @@
         <activity android:name=".presentation.view.TestUI">
         </activity>
         <activity android:name=".presentation.view.driver.driverMainScreen.DriverMainScreen" >
-
-        </activity>
-        <activity android:name=".presentation.view.auth.driver.AuthDriverMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".presentation.view.auth.driver.AuthDriverMainActivity">
+
         </activity>
 
         <meta-data

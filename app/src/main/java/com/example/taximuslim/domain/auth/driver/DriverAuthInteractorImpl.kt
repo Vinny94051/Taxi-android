@@ -52,4 +52,8 @@ class DriverAuthInteractorImpl : DriverAuthInteractor {
     override suspend fun updateDriverLicence(request: UpdateDriverLicenceRequest): Boolean {
         return repository.updateDriverLicence(request)
     }
+
+    override suspend fun isNewDriver(): Boolean {
+        return repository.isNewDriver()
+    }
 }

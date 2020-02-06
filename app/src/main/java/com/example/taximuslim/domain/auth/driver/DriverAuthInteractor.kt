@@ -27,4 +27,6 @@ interface DriverAuthInteractor {
     suspend fun updateDriverLicence(request: UpdateDriverLicenceRequest): Boolean
 
     suspend fun fetchDriverRules(): List<DriverRule>
+
+    suspend fun isNewDriver(): Boolean
 }
