@@ -1,8 +1,9 @@
 package com.example.taximuslim.domain.models.guide
 
 
-class PlaceByLocationModel (
+data class PlaceByLocationModel (
     val placeId : Int,
+    val category : String,
     val name : String,
     val text : String,
     val address : String,

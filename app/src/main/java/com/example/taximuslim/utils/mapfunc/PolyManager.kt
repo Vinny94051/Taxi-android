@@ -1,10 +1,12 @@
 package com.example.taximuslim.utils.mapfunc
 
+import android.content.Context
 import android.graphics.Color
 import com.example.taximuslim.App
 import com.example.taximuslim.R
 import com.example.taximuslim.domain.models.google.Route
 import com.example.taximuslim.utils.isNotEmpty
+import com.example.taximuslim.utils.toPx
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Polyline
@@ -24,14 +26,15 @@ class PolyManager(private var mMap: GoogleMap) {
     @Inject
     lateinit var addressIntentService: MapManager
 
+    @Inject
+    lateinit var context : Context
+
     fun drawRoute(route: Route, startPoint: LatLng, endPoint: LatLng) {
         val currentRoute = PolylineOptions()
             .apply {
-                width(20f)
-                color(Color.GREEN)
-                add(startPoint)
+                width(10f)
+                color(context.resources.getColor(R.color.colorThemeGreen))
                 for (point in route.steps) add(point)
-                add(endPoint)
             }
         if (line != null)
             line?.remove()
@@ -45,9 +48,9 @@ class PolyManager(private var mMap: GoogleMap) {
             MapManager.markerPointBLocation?.remove()
 
         MapManager.markerPointALocation =
-            addressIntentService.addMarker(mMap, startPoint, R.drawable.start_route_marker)
+            addressIntentService.addMarker(mMap, route.steps[0], R.drawable.start_route_marker)
         MapManager.markerPointBLocation =
-            addressIntentService.addMarker(mMap, endPoint, R.drawable.brown_marker)
+            addressIntentService.addMarker(mMap, route.steps[route.steps.size-1], R.drawable.brown_marker)
         addressIntentService.moveCameraToTwoMarkers(mMap)
 
         line = mMap.addPolyline(currentRoute)

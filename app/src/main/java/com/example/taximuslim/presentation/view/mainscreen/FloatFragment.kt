@@ -34,11 +34,10 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
     companion object {
         const val ID = "FLOAT_FRAGMENT"
         fun newInstance() = FloatFragment()
-
     }
 
     @Inject
-    lateinit var addressServiece: MapManager
+    lateinit var addressService: MapManager
 
     private lateinit var owner: MapsActivity
     private lateinit var viewManager: ViewManager
@@ -69,7 +68,7 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
 
     override fun onClick(view: View?) {
         when (view?.id) {
-            R.id.lineLayout -> closeFragment(1)
+            R.id.lineLayout -> owner.hideFloatView()
         }
     }
 
@@ -81,6 +80,7 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
             }
             MapsActivity.EDIT_TEXT_BOTTOM -> {
                 pointBLocationEditText.requestFocus()
+                changeViewTint(pointBLocationCard, R.color.colorThemeGreen)
             }
         }
     }
@@ -155,7 +155,7 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
     }
 
     private fun setUserLocation(address: String) {
-        addressServiece.getLocationFromAddress(address)?.toLocation()?.let { userLoc ->
+        addressService.getLocationFromAddress(address)?.toLocation()?.let { userLoc ->
             owner.viewModel.setLocation(userLoc)
         }
     }

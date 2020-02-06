@@ -11,7 +11,8 @@ import com.example.taximuslim.presentation.view.auth.fragments.daughter.EnterSms
 import com.example.taximuslim.presentation.view.mainscreen.FloatFragment
 import com.example.taximuslim.presentation.viewmodel.auth.AuthViewModel
 import com.example.taximuslim.presentation.viewmodel.maps.MainViewModel
-import com.example.taximuslim.presentation.viewmodel.menu.GuideViewModel
+import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.guide.GuideViewModel
+import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.guide.PlacesListViewModel
 import com.example.taximuslim.utils.mapfunc.DistanceCalculator
 import com.example.taximuslim.utils.mapfunc.PolyManager
 import dagger.Component
@@ -39,5 +40,6 @@ interface AppComponent {
     fun inject(polyManager: PolyManager)
     fun inject(guideRepo: GuideRepo)
     fun inject(guideViewModel: GuideViewModel)
+    fun inject(placesListViewModel: PlacesListViewModel)
 
 }

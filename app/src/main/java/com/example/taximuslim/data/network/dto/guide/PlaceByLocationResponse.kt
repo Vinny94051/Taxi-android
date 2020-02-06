@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName
 data class PlaceByLocationResponse(
     @SerializedName("id")
     val placeId : Int,
+    @SerializedName("category")
+    val category : String,
     @SerializedName("name")
     val name : String,
     @SerializedName("text")

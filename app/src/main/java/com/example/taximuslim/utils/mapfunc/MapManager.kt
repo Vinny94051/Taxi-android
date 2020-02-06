@@ -96,21 +96,19 @@ class MapManager(private val context: Context) {
     }
 
 
-    fun getLocationFromAddress(strAddress: String): LatLng? {
+    fun getLocationFromAddress(strAddress: String): LatLng {
+        val location: LatLng
+
         val address: MutableList<Address> =
-            try {
-                Geocoder(context).getFromLocationName(strAddress, 1)
-                    ?: return null
-            } catch (ex: IOException) {
-                Log.e("GetLocationFromAddress:", "IOE")
-                ex.printStackTrace()
-                return null
-            }
-        return LatLng(address[0].latitude, address[0].longitude)
+            Geocoder(context).getFromLocationName(strAddress, 1)
+
+        location = LatLng(address[0].latitude, address[0].longitude)
+
+        return location
     }
 
 
-    fun moveCameraToTwoMarkers(mMap : GoogleMap) {
+    fun moveCameraToTwoMarkers(mMap: GoogleMap) {
         if (markerPointBLocation.isNotEmpty()
             && markerPointALocation.isNotEmpty()
         ) {
@@ -126,8 +124,6 @@ class MapManager(private val context: Context) {
                 .include(markerPointBLocation?.position)
                 .build(), 200
         )
-
-
 
 
 }

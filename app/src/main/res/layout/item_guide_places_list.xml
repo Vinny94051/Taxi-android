@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/default_margin"
+    android:layout_marginEnd="@dimen/default_margin"
+    android:background="@drawable/fragment_main_back"
+    android:elevation="24dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/default_margin"
+        android:layout_marginStart="-16dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/placeImageView"
+                android:layout_width="match_parent"
+                android:layout_height="116dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/fragment_main_back"
+                android:src="@color/alert_black"
+                />
+
+            <TextView
+                android:id="@+id/placeTypeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/placeImageView"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="@dimen/default_margin"
+                android:text="Мечеть"
+                android:textAppearance="@style/ContrastFieldText"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/greenMarkerImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/placeTypeTextView"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="14dp"
+                android:src="@drawable/placeholder_green" />
+
+            <TextView
+                android:id="@+id/placeAddressTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/placeTypeTextView"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:layout_toEndOf="@id/greenMarkerImageView"
+                android:text="пл. Александра Невского, 2"
+                android:textAppearance="@style/RegularText" />
+
+            <TextView
+                android:id="@+id/distanceTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/placeImageView"
+                android:layout_marginEnd="28dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/default_margin"
+                android:background="@drawable/background_distance_text_view_guide_places_list"
+                android:paddingStart="@dimen/default_margin"
+                android:paddingTop="2dp"
+                android:paddingEnd="@dimen/default_margin"
+                android:paddingBottom="2dp"
+                android:text="2,6 км"
+                android:textAppearance="@style/ContrastFieldText"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+            <include
+                android:id="@+id/orderButton"
+                layout="@layout/gradient_button"
+                android:layout_width="292dp"
+                android:layout_height="48dp"
+                android:layout_below="@id/placeAddressTextView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="17dp"
+                android:layout_marginBottom="24dp" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

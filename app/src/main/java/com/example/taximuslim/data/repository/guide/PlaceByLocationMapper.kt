@@ -9,6 +9,7 @@ class PlaceByLocationMapper : IMapper<List<PlaceByLocationResponse>, List<PlaceB
         data.map { responseItem ->
             PlaceByLocationModel(
                 responseItem.placeId,
+                responseItem.category,
                 responseItem.name,
                 responseItem.text,
                 responseItem.address,

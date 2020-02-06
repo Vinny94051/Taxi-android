@@ -1,6 +1,5 @@
 package com.example.taximuslim.data.repository.guide
 
-import android.content.Context
 import android.util.Log
 import com.example.taximuslim.App
 import com.example.taximuslim.data.network.api.GuideApi
@@ -8,7 +7,6 @@ import com.example.taximuslim.data.network.dto.Token
 import com.example.taximuslim.domain.models.guide.GuideCategoryModel
 import com.example.taximuslim.domain.models.guide.PlaceByLocationModel
 import com.example.taximuslim.domain.models.guide.UserPlaceByLocationModel
-import com.example.taximuslim.utils.prefference.getAuthHeader
 import java.lang.Exception
 import javax.inject.Inject
 
