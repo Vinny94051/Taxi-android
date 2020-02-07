@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/endOfTripTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="36dp"
+        android:text="@string/end_of_trip"
+        android:textAppearance="@style/ContrastFieldText"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/closeImageView"
+        android:layout_width="@dimen/default_margin"
+        android:layout_height="@dimen/default_margin"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/ic_close_button"
+        android:layout_marginEnd="@dimen/default_margin" />
+
+    <TextView
+        android:id="@+id/commonInfoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/endOfTripTextView"
+        android:layout_marginStart="@dimen/small_margin"
+        android:layout_marginTop="36dp"
+        android:text="@string/common_info"
+        android:textAppearance="@style/ContrastFieldText" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/infoCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/commonInfoTextView"
+        android:layout_marginStart="@dimen/small_margin"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="@dimen/small_margin"
+        android:background="@android:color/white"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="4dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/greenPlaceHolderImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/carTextView"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginTop="@dimen/default_margin"
+                android:src="@drawable/placeholder_green" />
+
+            <ImageView
+                android:id="@+id/brownPlaceHolderImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/greenPlaceHolderImageView"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginTop="@dimen/default_margin"
+                android:src="@drawable/placeholder_light_brown" />
+
+            <TextView
+                android:id="@+id/pointAAddressTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp12"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_toEndOf="@id/greenPlaceHolderImageView"
+                android:text="пл. Александра Невского, 2"
+                android:textAppearance="@style/RegularText" />
+
+            <TextView
+                android:id="@+id/pointBAddressTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/greenPlaceHolderImageView"
+                android:layout_marginStart="@dimen/dp12"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_toEndOf="@id/greenPlaceHolderImageView"
+                android:text="Багрицкого 5"
+                android:textAppearance="@style/RegularText" />
+
+            <ImageView
+                android:id="@+id/priceImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/brownPlaceHolderImageView"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginTop="18dp"
+                android:src="@drawable/cost_icon" />
+
+
+            <TextView
+                android:id="@+id/priceTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/brownPlaceHolderImageView"
+                android:layout_marginStart="19dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="@dimen/dp12"
+                android:layout_toEndOf="@id/priceImageView"
+                android:text="1200 Rub"
+                android:textAppearance="@style/RegularText" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/thanksCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/infoCardView"
+        android:layout_marginStart="@dimen/small_margin"
+        android:layout_marginTop="24dp"
+        android:background="@android:color/white"
+        app:cardCornerRadius="4dp"
+        android:elevation="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/small_margin">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/thanksTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/big_margin"
+                android:layout_marginBottom="@dimen/big_margin"
+                android:layout_centerHorizontal="true"
+                android:textSize="16sp"
+                android:textAppearance="@style/ContrastFieldText"
+                android:text="@string/thanks_for_trip" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

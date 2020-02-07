@@ -6,6 +6,7 @@ import com.example.taximuslim.data.network.api.OrderAPi
 import com.example.taximuslim.data.network.dto.Token
 import com.example.taximuslim.data.network.dto.order.TariffsResponse
 import com.example.taximuslim.data.network.dto.order.TariffRequest
+import com.example.taximuslim.domain.order.models.OrderModel
 import com.example.taximuslim.domain.order.models.TariffModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,7 +23,7 @@ class OrderRepo {
     lateinit var api: OrderAPi
 
     @Inject
-    lateinit var token : Token
+    lateinit var token: Token
 
     fun getTarrifs(
         tariffRequest: TariffRequest,
@@ -44,6 +45,18 @@ class OrderRepo {
                 }
             }
         })
+    }
+
+    suspend fun createOrder(order: OrderModel, listener: (Int) -> Unit) {
+        try {
+            val result = api.createOrder(token.token, MapperOrder().mapToEntity(order))
+            Log.e("OrderRepo:", result.toString())
+            listener.invoke(result.tripId)
+        } catch (ex: Exception) {
+            Log.e("OrderRepoFail", "puk puk")
+            ex.printStackTrace()
+        }
+
     }
 
 }

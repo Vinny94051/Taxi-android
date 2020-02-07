@@ -33,6 +33,7 @@ import kotlinx.android.synthetic.main.activity_maps_controller.*
 import com.example.taximuslim.R
 import com.example.taximuslim.data.network.dto.order.TariffRequest
 import com.example.taximuslim.domain.models.guide.GuideCategoryModel
+import com.example.taximuslim.domain.order.models.OrderModel
 import com.example.taximuslim.domain.order.models.TariffModel
 import com.example.taximuslim.presentation.view.driver.driverMainScreen.DriverMainScreen
 import com.example.taximuslim.presentation.view.mainscreen.managers.ButtonManager
@@ -74,6 +75,8 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
     private var pointBLatLng = LatLng(0.0, 0.0)
     private lateinit var floatFragmentInstance: FloatFragment
     lateinit var placeAddress: String
+    private var paymentType: Int = 0
+    private var tarrif: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         hideActionBar()
@@ -107,6 +110,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
                     btnManager.setPriceInPriceAlert(PriceHolder.economy, getCurrentPrice())
                     showPriceAlertIfAlLeastOnButtonActive()
                     showPriceAndCommentEditTexts()
+                    tarrif = 1
                 }
             }
             R.id.comfort_order -> {
@@ -115,6 +119,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
                     btnManager.setPriceInPriceAlert(PriceHolder.comfort, getCurrentPrice())
                     showPriceAlertIfAlLeastOnButtonActive()
                     showPriceAndCommentEditTexts()
+                    tarrif = 2
                 }
             }
             R.id.business_order -> {
@@ -123,12 +128,21 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
                     btnManager.setPriceInPriceAlert(PriceHolder.business, getCurrentPrice())
                     showPriceAlertIfAlLeastOnButtonActive()
                     showPriceAndCommentEditTexts()
+                    tarrif = 3
                 }
             }
-            R.id.main_button_order_taxi -> {
-            }
+            R.id.main_button_order_taxi -> orderCar()
             R.id.burger_menu_main -> NavigationDrawerManager.showNavigationDrawer(drawer_layout)
             R.id.myLocationBtn -> updateLocation()
+            R.id.cashRadioBtn -> {
+                paymentType = 1
+                main_button_order_taxi.setOnClickListener(this)
+            }
+            R.id.bankRadioBtn -> {
+                paymentType = 2
+                main_button_order_taxi.setOnClickListener(this)
+
+            }
         }
     }
 
@@ -229,10 +243,11 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         economy_order.setOnClickListener(this)
         comfort_order.setOnClickListener(this)
         business_order.setOnClickListener(this)
-        main_button_order_taxi.setOnClickListener(this)
         burger_menu_main.setOnClickListener(this)
         nav_view.setNavigationItemSelectedListener(this)
         myLocationBtn.setOnClickListener(this)
+        cashRadioBtn.setOnClickListener(this)
+        bankRadioBtn.setOnClickListener(this)
         priceAlert = PriceAlert(this as Activity)
         commentAlert = CommentAlert(
             this as Activity
@@ -396,5 +411,25 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
 
     private fun getCurrentPrice(): Editable =
         tripPriceEditText.text ?: "".toEditable()
+
+
+    private fun createOrder(): OrderModel {
+        return OrderModel(
+            userLocation,
+            userLocationLatLng.latitude,
+            userLocationLatLng.longitude,
+            pointBLocation,
+            pointBLatLng.latitude,
+            pointBLatLng.longitude,
+            tariff = if (tarrif != 0) tarrif else throw Exception("Invalid Tariff"),
+            price = getCurrentPrice().toString().replace(" Rub", "").toInt(),
+            comment = if (CommentHolder.comment.isNotEmpty()) CommentHolder.comment.toString() else "",
+            paymentType = if (paymentType != 0) paymentType else throw Exception("Invalid Payment Type")
+        )
+    }
+
+    private fun orderCar() =
+        viewModel.createOrder(createOrder())
+
 
 }
