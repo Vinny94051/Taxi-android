@@ -1,6 +1,7 @@
 package com.example.taximuslim.presentation.view.mainscreen
 
 import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Point
 import android.location.Location
@@ -32,6 +33,7 @@ import kotlinx.android.synthetic.main.activity_maps_controller.*
 import com.example.taximuslim.R
 import com.example.taximuslim.data.network.dto.order.TariffRequest
 import com.example.taximuslim.domain.order.models.TariffModel
+import com.example.taximuslim.presentation.view.driver.driverMainScreen.DriverMainScreen
 import com.example.taximuslim.presentation.view.mainscreen.managers.ButtonManager
 import com.example.taximuslim.utils.mapfunc.PolyManager
 import com.example.taximuslim.utils.view.ViewManager
@@ -148,7 +150,9 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_driver -> {
-                showToast("Driver activity") //   controllerChanger.openMenuController("")
+                val intent = Intent(this, DriverMainScreen::class.java)
+                startActivity(intent)
+                finish()
             }
             R.id.nav_guide ->
                 controllerChanger.openMenuController(GuideFragment.FRAGMENT_ID)

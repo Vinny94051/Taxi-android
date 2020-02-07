@@ -16,7 +16,6 @@ import com.example.taximuslim.presentation.view.auth.driver.rules.AuthDriverRule
 import com.example.taximuslim.presentation.view.auth.driver.validatePerson.AuthDriverValidatePersonViewModel
 import com.example.taximuslim.presentation.view.auth.fragments.daughter.AuthorizationFragment
 import com.example.taximuslim.presentation.view.auth.fragments.daughter.EnterSmsCodeFragment
-import com.example.taximuslim.presentation.view.clientorder.FloatFragment
 import com.example.taximuslim.presentation.view.driver.driverMainScreen.DriverMainScreenViewModel
 import com.example.taximuslim.presentation.view.mainscreen.FloatFragment
 import com.example.taximuslim.presentation.viewmodel.auth.AuthViewModel
