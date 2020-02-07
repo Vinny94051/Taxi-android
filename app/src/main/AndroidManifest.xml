@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -23,11 +23,8 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
         tools:targetApi="m">
-        <activity android:name=".presentation.view.TestUI">
-        </activity>
-        <activity android:name=".presentation.view.driver.driverMainScreen.DriverMainScreen" >
-
-        </activity>
+        <activity android:name=".presentation.view.TestUI"></activity>
+        <activity android:name=".presentation.view.driver.driverMainScreen.DriverMainScreen" />
         <activity android:name=".presentation.view.auth.driver.AuthDriverMainActivity">
 
         </activity>
@@ -54,8 +51,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.view.auth.AuthActivity"
-            android:windowSoftInputMode="adjustPan" >
+        <activity
+            android:name=".presentation.view.auth.AuthActivity"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
