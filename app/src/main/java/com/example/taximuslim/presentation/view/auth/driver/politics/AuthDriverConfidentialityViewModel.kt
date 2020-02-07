@@ -5,18 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class AuthDriverConfidentialityViewModel : ViewModel() {
-    var politicsSelected = MutableLiveData<Boolean>().also{ it.value = false }
-    fun onCheckBoxClick(){
-        politicsSelected.value = !(politicsSelected.value ?: false)
-    }
-
-    private val _navigateToNext = MutableLiveData<Boolean>()
+    private val _navigateToNext = MutableLiveData<Boolean>(false)
     val navigateToNext: LiveData<Boolean>
         get() = _navigateToNext
 
+
     fun onMainButtonClick(){
-        //TODO
-        _navigateToNext.value = true
+            _navigateToNext.value = true
     }
 
     fun onNavigateToNext(){

@@ -7,6 +7,9 @@
         <variable
             name="viewModel"
             type="com.example.taximuslim.presentation.view.auth.driver.carPhoto.AuthDriverCarPhotoViewModel" />
+        <variable
+            name="driverModel"
+            type="com.example.taximuslim.domain.models.driver.auth.DriverMainModel" />
     </data>
 
     <ScrollView
@@ -26,6 +29,7 @@
                 android:layout_marginStart="@dimen/default_margin"
                 android:layout_marginTop="@dimen/large_margin"
                 android:text="@string/info_about_car"
+                android:textColor="@color/colorLightGrey"
                 android:textAppearance="@style/ContrastFieldText"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -91,32 +95,34 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/small_margin"
-                        android:layout_marginTop="12dp"
-                        android:textColor="@color/contrastTextColor"
+                        android:text="@{driverModel.carMark.name + driverModel.carModel.name}"
+                        android:textAppearance="@style/SecondaryText"
                         android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/carMarkSeriesText"
                         app:layout_constraintStart_toEndOf="@id/carMarkSeriesText"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="@+id/carMarkSeriesText" />
 
                     <TextView
                         android:id="@+id/carColor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/small_margin"
-                        android:layout_marginTop="@dimen/small_margin"
-                        android:textSize="14sp"
+                        android:text="@{driverModel.carColor.name}"
+                        android:textAppearance="@style/SecondaryText"
+                        app:layout_constraintBottom_toBottomOf="@+id/carColorText"
                         app:layout_constraintStart_toEndOf="@id/carColorText"
-                        app:layout_constraintTop_toBottomOf="@id/carMarkSeries" />
+                        app:layout_constraintTop_toTopOf="@+id/carColorText" />
 
                     <TextView
                         android:id="@+id/carNumb"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/small_margin"
-                        android:layout_marginTop="@dimen/small_margin"
-                        android:textColor="@color/contrastTextColor"
-                        android:textSize="14sp"
+                        android:text="@{driverModel.carNumb}"
+                        android:textAppearance="@style/SecondaryText"
+                        app:layout_constraintBottom_toBottomOf="@+id/carNumbText"
                         app:layout_constraintStart_toEndOf="@id/carNumbText"
-                        app:layout_constraintTop_toBottomOf="@id/carColor" />
+                        app:layout_constraintTop_toTopOf="@+id/carNumbText" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -130,6 +136,7 @@
                 android:layout_marginTop="@dimen/medium_margin"
                 android:text="@string/car_photo"
                 android:textAppearance="@style/ContrastFieldText"
+                android:textColor="@color/colorLightGrey"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/carInfoCard" />
 
@@ -139,11 +146,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/medium_margin"
                 android:layout_marginEnd="@dimen/default_margin"
-                android:lineSpacingExtra="2sp"
-                android:visibility="gone"
                 android:text="@string/delete"
-                android:textColor="@color/colorThemeGreen"
-                android:textSize="14sp"
+                android:onClick="@{() -> viewModel.onDeleteCarImageClick()}"
+                app:delete_status="@{viewModel.carImageStatus}"
+                android:textAppearance="@style/AccentText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/carInfoCard" />
 
@@ -157,6 +163,7 @@
                 app:cardBackgroundColor="@color/colorCardBackground"
                 app:cardElevation="12dp"
                 app:cardCornerRadius="@dimen/default_card_radius"
+                android:onClick="@{() -> viewModel.onTakeCarPhotoClick()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/carPhotoText">
@@ -166,15 +173,30 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="center"
+                    app:image="@{viewModel.carImage}"
                     android:src="@drawable/take_photo_placeholder" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/transparent_black"
+                    app:loading_status="@{viewModel.carImageStatus}"/>
 
                 <ImageView
                     android:id="@+id/licenceFrontPhotoCorrect"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    app:loading_status="@{viewModel.carImageStatus}"
+                    android:src="@drawable/ic_success_loading" />
+
+                <ProgressBar
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:visibility="gone"
-                    android:src="@drawable/ic_success_loading" />
+                    app:loading_status="@{viewModel.carImageStatus}"
+                    android:theme="@style/WhiteAccent"/>
 
             </androidx.cardview.widget.CardView>
 
@@ -187,6 +209,8 @@
                 android:layout_marginEnd="@dimen/default_margin"
                 android:text="@string/take_car_photo_with_numb"
                 android:textAppearance="@style/SecondaryText"
+                android:textSize="14sp"
+                android:fontFamily="@font/roboto_medium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/licencePhotoFrontCard" />
@@ -198,6 +222,7 @@
                 android:layout_marginStart="@dimen/default_margin"
                 android:layout_marginTop="@dimen/large_margin"
                 android:text="@string/car_sertificate"
+                android:textColor="@color/colorLightGrey"
                 android:textAppearance="@style/ContrastFieldText"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/takePhotoText" />
@@ -206,13 +231,13 @@
                 android:id="@+id/deleteLicencePhotoText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 android:layout_marginTop="@dimen/large_margin"
                 android:layout_marginEnd="@dimen/default_margin"
                 android:lineSpacingExtra="2sp"
                 android:text="@string/delete"
-                android:textColor="@color/colorThemeGreen"
-                android:textSize="14sp"
+                android:onClick="@{() -> viewModel.onDeleteCertificateClick()}"
+                app:delete_status="@{viewModel.certificateImageStatus}"
+                android:textAppearance="@style/AccentText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/takePhotoText" />
 
@@ -225,25 +250,42 @@
                 android:layout_marginEnd="@dimen/default_margin"
                 app:cardBackgroundColor="@color/colorCardBackground"
                 app:cardElevation="12dp"
+                android:onClick="@{() -> viewModel.onTakeCertificateClick()}"
                 app:cardCornerRadius="@dimen/default_card_radius"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/carLicenceText">
+
 
                 <ImageView
                     android:id="@+id/carLicenceImage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="center"
+                    app:image="@{viewModel.certificateImage}"
                     android:src="@drawable/take_photo_placeholder" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/transparent_black"
+                    app:loading_status="@{viewModel.certificateImageStatus}"/>
 
                 <ImageView
                     android:id="@+id/licencePhotoCorrect"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    app:loading_status="@{viewModel.certificateImageStatus}"
+                    android:src="@drawable/ic_error_loading" />
+
+                <ProgressBar
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:visibility="gone"
-                    android:src="@drawable/ic_error_loading" />
+                    app:loading_status="@{viewModel.certificateImageStatus}"
+                    android:theme="@style/WhiteAccent"/>
 
             </androidx.cardview.widget.CardView>
 
@@ -257,6 +299,8 @@
                 android:lineSpacingExtra="4sp"
                 android:text="@string/take_car_photo_with_numb"
                 android:textAppearance="@style/SecondaryText"
+                android:textSize="14sp"
+                android:fontFamily="@font/roboto_medium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/carLicenceCard" />
@@ -266,7 +310,7 @@
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_marginTop="@dimen/large_margin"
-                android:onClick="@{() -> viewModel.checkDataAndGoNext()}"
+                android:onClick="@{() -> viewModel.onMainButtonClick()}"
                 android:layout_marginStart="@dimen/button_horizontal_margin"
                 android:layout_marginEnd="@dimen/button_horizontal_margin"
                 android:layout_marginBottom="@dimen/default_bottom_margin"

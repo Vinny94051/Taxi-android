@@ -2,6 +2,6 @@ package com.example.taximuslim.presentation.view.driver.support
 
 import androidx.lifecycle.ViewModel
 
-class DraverSupportViewModel : ViewModel() {
+class DriverSupportViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }

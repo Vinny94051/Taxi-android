@@ -5,33 +5,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.example.taximuslim.R
 import com.example.taximuslim.databinding.AuthDriverConfidentialityFragmentBinding
+import com.example.taximuslim.presentation.view.baseFragment.ObservableFragment
 
-class AuthDriverConfidentialityFragment : Fragment() {
+class AuthDriverConfidentialityFragment : ObservableFragment() {
 
     private lateinit var viewModel: AuthDriverConfidentialityViewModel
+    private lateinit var binding: AuthDriverConfidentialityFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         (activity as AppCompatActivity).supportActionBar!!.hide()
-        val binding = AuthDriverConfidentialityFragmentBinding.inflate(inflater, container, false)
+        binding = AuthDriverConfidentialityFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProviders.of(this).get(AuthDriverConfidentialityViewModel::class.java)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        return binding.root
-    }
 
-    override fun onStart() {
-        super.onStart()
-        setObservers()
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,13 +41,19 @@ class AuthDriverConfidentialityFragment : Fragment() {
         }
     }
 
-    private fun setObservers() {
+    override fun setObservers() {
         val navController = view!!.findNavController()
         viewModel.navigateToNext.observe(viewLifecycleOwner, Observer { navigate ->
             if (navigate) {
-                navController.navigate(R.id.action_driverAuthConfidentialityFragment_to_authDriverRequest)
                 viewModel.onNavigateToNext()
+                if (binding.politicCheckBox.isChecked) {
+                    navController.navigate(R.id.action_driverAuthConfidentialityFragment_to_authDriverRequest)
+                } else {
+                    Toast.makeText(context, getString(R.string.take_politics), Toast.LENGTH_SHORT)
+                        .show()
+                }
             }
+
         })
         viewModel.navigateToPolitics.observe(viewLifecycleOwner, Observer { navigate ->
             if (navigate) {

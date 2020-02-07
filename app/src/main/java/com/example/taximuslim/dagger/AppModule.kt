@@ -6,6 +6,8 @@ import com.example.taximuslim.data.network.dto.Token
 import com.example.taximuslim.data.repository.auth.AuthRepo
 import com.example.taximuslim.domain.auth.AuthInteractor
 import com.example.taximuslim.domain.auth.IAuthInteractor
+import com.example.taximuslim.domain.auth.driver.DriverAuthInteractor
+import com.example.taximuslim.domain.auth.driver.DriverAuthInteractorImpl
 import com.example.taximuslim.domain.order.IOrderInteractor
 import com.example.taximuslim.domain.order.OrderInteractor
 import com.example.taximuslim.presentation.viewmodel.auth.AuthViewModel
@@ -53,5 +55,9 @@ class AppModule(private val app: Application) {
     @Provides
     fun provideToken() : Token = Token(getAuthHeader(app))
 
+
+    @Provides
+    fun provideDriverInfoInteractor(): DriverAuthInteractor =
+        DriverAuthInteractorImpl()
 
 }

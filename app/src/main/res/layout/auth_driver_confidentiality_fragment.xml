@@ -54,10 +54,9 @@
                     android:id="@+id/politicCheckBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/default_margin"
                     android:layout_marginTop="@dimen/medium_margin"
                     style="@style/CheckBox"
-                    app:bindSelected="@{viewModel.politicsSelected}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/politicsText" />
 
@@ -68,6 +67,7 @@
                     android:layout_marginStart="@dimen/small_margin"
                     android:layout_marginEnd="12dp"
                     android:textAppearance="@style/SecondaryText"
+                    android:textSize="14sp"
                     android:onClick="@{() -> viewModel.onPoliticsClick()}"
                     android:text="@string/confidentiality_politics"
                     android:lineSpacingExtra="4dp"

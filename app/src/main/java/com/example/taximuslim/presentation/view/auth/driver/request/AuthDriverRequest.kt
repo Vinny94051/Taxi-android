@@ -1,5 +1,6 @@
 package com.example.taximuslim.presentation.view.auth.driver.request
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,8 +13,10 @@ import androidx.lifecycle.Observer
 
 import com.example.taximuslim.R
 import com.example.taximuslim.databinding.AuthDriverRequestFragmentBinding
+import com.example.taximuslim.presentation.view.baseFragment.ObservableFragment
+import com.example.taximuslim.presentation.view.driver.driverMainScreen.DriverMainScreen
 
-class AuthDriverRequest : Fragment() {
+class AuthDriverRequest : ObservableFragment() {
 
     private lateinit var viewModel: AuthDriverRequestViewModel
 
@@ -25,7 +28,8 @@ class AuthDriverRequest : Fragment() {
         val binding = AuthDriverRequestFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProviders.of(this).get(AuthDriverRequestViewModel::class.java)
         binding.lifecycleOwner = viewLifecycleOwner
-        return inflater.inflate(R.layout.auth_driver_request_fragment, container, false)
+        binding.viewModel = viewModel
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,15 +40,14 @@ class AuthDriverRequest : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
-    override fun onStart() {
-        super.onStart()
-        setObservers()
-    }
 
-    private fun setObservers(){
+    override fun setObservers(){
         viewModel.mainNavigation.observe(viewLifecycleOwner, Observer{navigate ->
             if(navigate){
                 viewModel.onMainNavigate()
+                val intent = Intent(context, DriverMainScreen::class.java)
+                startActivity(intent)
+                activity!!.finish()
             }
         })
     }

@@ -6,6 +6,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.example.taximuslim.R
+import com.example.taximuslim.utils.prefference.saveVerToken
 import kotlinx.android.synthetic.main.activity_auth_driver_main.*
 
 class AuthDriverMainActivity : AppCompatActivity() {
@@ -16,6 +17,7 @@ class AuthDriverMainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.arrow_to_left_black)
+
         toolbar.setNavigationIcon(R.drawable.arrow_to_left_black)
         NavigationUI.setupActionBarWithNavController(this, this.findNavController(R.id.nav_host_fragment))
     }

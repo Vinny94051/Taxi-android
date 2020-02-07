@@ -4,7 +4,6 @@
     android:background="@drawable/arrow_stroke_bg"
     android:layout_alignParentBottom="true"
     android:layout_centerHorizontal="true"
-    android:foreground="?attr/selectableItemBackground"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -35,7 +34,6 @@
     <ImageView
         android:layout_width="72dp"
         android:layout_height="0dp"
-        android:layout_alignParentEnd="true"
         android:background="@drawable/arrow_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
