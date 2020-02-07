@@ -39,7 +39,7 @@ class EnterNumberFragment : BaseAuthFragment() {
     }
 
     private fun enterTextViewAction() {
-        owner.replaceFragment(
+        owner.addFragment(
             AuthorizationFragment.newInstance(),
             R.id.container,
             AuthorizationFragment.FRAGMENT_ID
@@ -50,7 +50,7 @@ class EnterNumberFragment : BaseAuthFragment() {
         if (NumberValidator.isValidNumber(enter_number.text.toString())) {
             (activity as AuthActivity).saveNumber(enter_number)
             (activity as AuthActivity)
-                .replaceFragment(
+                .addFragment(
                     EnterSmsCodeFragment.INSTANCE,
                     R.id.container,
                     EnterSmsCodeFragment.FRAGMENT_ID

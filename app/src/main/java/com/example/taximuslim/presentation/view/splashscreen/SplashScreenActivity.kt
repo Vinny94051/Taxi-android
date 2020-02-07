@@ -11,7 +11,7 @@ class SplashScreenActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        replaceFragment(
+        addFragment(
             SplashScreenFragment.INSTANCE,
             R.id.container_splash_screen,
             SplashScreenFragment.FRAGMENT_ID

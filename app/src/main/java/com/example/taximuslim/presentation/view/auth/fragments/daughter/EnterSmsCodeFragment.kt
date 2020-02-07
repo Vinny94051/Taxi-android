@@ -14,7 +14,6 @@ import com.example.taximuslim.data.network.dto.auth.CheckSmsCodeRequest
 import com.example.taximuslim.presentation.view.auth.AuthActivity
 import com.example.taximuslim.presentation.view.auth.fragments.base.BaseAuthFragment
 import com.example.taximuslim.presentation.viewmodel.auth.AuthViewModel
-import com.example.taximuslim.utils.prefference.getAuthHeader
 import com.example.taximuslim.utils.prefference.saveVerToken
 import com.example.taximuslim.utils.toEditable
 import javax.inject.Inject
@@ -49,7 +48,7 @@ class EnterSmsCodeFragment : BaseAuthFragment() {
         when (p0?.id) {
             R.id.back_btn -> {
                 (activity as AuthActivity)
-                    .replaceFragment(
+                    .addFragment(
                         EnterNumberFragment.INSTANCE, R.id.container,
                         EnterNumberFragment.FRAGMENT_ID
                     )
@@ -117,7 +116,7 @@ class EnterSmsCodeFragment : BaseAuthFragment() {
 
     private fun openGeoDataFragment() {
         (activity as AuthActivity)
-            .replaceFragment(
+            .addFragment(
                 GeoDataFragment.INSTANCE,
                 R.id.container,
                 GeoDataFragment.FRAGMENT_ID

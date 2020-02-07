@@ -32,9 +32,11 @@ import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_maps_controller.*
 import com.example.taximuslim.R
 import com.example.taximuslim.data.network.dto.order.TariffRequest
+import com.example.taximuslim.domain.models.guide.GuideCategoryModel
 import com.example.taximuslim.domain.order.models.TariffModel
 import com.example.taximuslim.presentation.view.driver.driverMainScreen.DriverMainScreen
 import com.example.taximuslim.presentation.view.mainscreen.managers.ButtonManager
+import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.guide.PlaceDescriptionFragment.Companion.PLACE
 import com.example.taximuslim.utils.mapfunc.PolyManager
 import com.example.taximuslim.utils.view.ViewManager
 import com.google.android.gms.maps.*
@@ -71,7 +73,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
     private var userLocationLatLng = LatLng(0.0, 0.0)
     private var pointBLatLng = LatLng(0.0, 0.0)
     private lateinit var floatFragmentInstance: FloatFragment
-
+    lateinit var placeAddress: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         hideActionBar()
@@ -82,6 +84,8 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         initNavigationDrawer()
         initMap()
         viewManager.hideViews(floatView)
+        placeAddress = intent.getStringExtra(PLACE) ?: "Empty"
+
     }
 
     override fun onStart() {
@@ -131,10 +135,9 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         mMap.uiSettings.isCompassEnabled = false
-        if (permissionManager.checkLocationPermissions()) updateLocation()
         polyManager = PolyManager(mMap)
         mMap.animateCamera(CameraUpdateFactory.zoomTo(MAP_ZOOM))
-
+        if (permissionManager.checkLocationPermissions()) updateLocation()
         mMap.setOnCameraChangeListener { cameraPosition ->
             Log.e("camera change listener:", cameraPosition.toString())
             countScreenCenter()
@@ -144,6 +147,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
                 user_location.text = location.toEditable()
             }
         }
+
     }
 
     //TODO menu item activity не нужен
@@ -193,7 +197,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         this@MapsActivity.forFocusEditTextId = forFocusEditTextId
         userLocation = user_location.text.toString()
         floatFragmentInstance = FloatFragment.newInstance()
-        replaceFragment(floatFragmentInstance, R.id.floatView, FloatFragment.ID)
+        addFragment(floatFragmentInstance, R.id.floatView, FloatFragment.ID)
         viewManager.showViews(shadow, floatView)
         viewManager.animViewUpToBottomAnim(floatView, 0f, 500)
         rootLayout.isClickable = false
@@ -252,6 +256,13 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
                 locationPrediction = location.toLatLng()
                 loadTarrifsByCountry(location)
                 setUserLocationText(location)
+                if (placeAddress != "Empty") {
+                    pointBLocation = placeAddress
+                    pointBEditText.text = placeAddress.toEditable()
+                    viewModel.loadRoutes(userLocation, placeAddress)
+                    placeAddress = "Empty"
+                    viewModel.loadLocation()
+                }
             })
 
         PriceAlert.priceLiveData.observe(this, Observer { price ->
@@ -276,10 +287,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
 
             directionsLiveData.observe(this@MapsActivity, Observer { route ->
                 userLocationLatLng =
-                    mapManger.getLocationFromAddress(user_location.text.toString()) ?: LatLng(
-                        0.0,
-                        0.0
-                    )
+                    mapManger.getLocationFromAddress(user_location.text.toString())
                 viewManager.hideViews(locationTextView, userLocationMarker)
                 mMap.setOnCameraChangeListener(null)
                 polyManager.drawRoute(route, userLocationLatLng, pointBLatLng)
@@ -289,6 +297,8 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
                 adapter.submitList(places)
             })
         }
+
+
     }
 
 
@@ -296,7 +306,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         floatFragmentInstance.setOnCloseListener { pointB ->
             if (pointB.isNotEmpty()) {
                 viewModel.loadRoutes(userLocation, pointB)
-                pointBLatLng = mapManger.getLocationFromAddress(pointB)!!
+                pointBLatLng = mapManger.getLocationFromAddress(pointB)
             }
         }
     }
@@ -359,6 +369,9 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recyclerList.adapter = adapter
         viewModel.loadGuideCategories()
+        adapter.setOnItemClickListener { category: GuideCategoryModel ->
+            controllerChanger.openMenuController(GuideFragment.FRAGMENT_ID, category.categoryId)
+        }
     }
 
     private fun loadTarrifs(location: TariffRequest) = viewModel.loadTariffs(location)

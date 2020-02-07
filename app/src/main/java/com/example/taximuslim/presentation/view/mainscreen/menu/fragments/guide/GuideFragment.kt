@@ -34,6 +34,25 @@ class GuideFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         initViewModel()
         initList()
+        if (owner.guideCategory != 0) {
+            viewModel.currentLocation.observe(this@GuideFragment, Observer { location ->
+                owner.userPlaceByLocation = UserPlaceByLocationModel(
+                    owner.guideCategory,
+                    55.5807418,
+                    36.8237481
+                    //         location.latitude,
+                    //       location.longitude
+                )
+                owner.addFragment(
+                    PlaceListFragment.newInstance(),
+                    R.id.container_menu,
+                    PlaceListFragment.ID
+                )
+                owner.removeFragment(this)
+
+            })
+            viewModel.loadLocation()
+        }
     }
 
     private fun initViewModel() {
@@ -52,12 +71,12 @@ class GuideFragment : BaseFragment() {
             viewModel.currentLocation.observe(this@GuideFragment, Observer { location ->
                 owner.userPlaceByLocation = UserPlaceByLocationModel(
                     categoryId,
-//                    55.5807418,
-//                    36.8237481
-                    location.latitude,
-                    location.longitude
+                    55.5807418,
+                    36.8237481
+                    //         location.latitude,
+                    //       location.longitude
                 )
-                owner.replaceFragment(
+                owner.addFragment(
                     PlaceListFragment.newInstance(),
                     R.id.container_menu,
                     PlaceListFragment.ID
