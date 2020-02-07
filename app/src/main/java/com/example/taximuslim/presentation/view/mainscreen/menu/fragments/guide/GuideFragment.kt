@@ -52,10 +52,10 @@ class GuideFragment : BaseFragment() {
             viewModel.currentLocation.observe(this@GuideFragment, Observer { location ->
                 owner.userPlaceByLocation = UserPlaceByLocationModel(
                     categoryId,
-                    55.5807418,
-                    36.8237481
-                 //   location.latitude,
-                  //  location.longitude
+//                    55.5807418,
+//                    36.8237481
+                    location.latitude,
+                    location.longitude
                 )
                 owner.replaceFragment(
                     PlaceListFragment.newInstance(),
