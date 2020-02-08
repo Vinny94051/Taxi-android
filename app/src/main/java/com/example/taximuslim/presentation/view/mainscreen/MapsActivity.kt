@@ -100,6 +100,11 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         viewManager.setOnFocusListener(user_location) { openFloatView(EDIT_TEXT_TOP) }
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (permissionManager.checkLocationPermissions()) updateLocation()
+    }
+
     override fun layoutId() = R.layout.activity_maps_controller
 
     override fun onClick(p0: View?) {
