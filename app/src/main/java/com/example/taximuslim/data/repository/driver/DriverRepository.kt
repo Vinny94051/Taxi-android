@@ -3,6 +3,7 @@ package com.example.taximuslim.data.repository.driver
 import android.content.Context
 import com.example.taximuslim.App
 import com.example.taximuslim.data.network.api.DriverApi
+import com.example.taximuslim.data.network.remote.response.driver.DriverIncome
 import com.example.taximuslim.domain.models.driver.OrderHistoryModel
 import com.example.taximuslim.utils.prefference.getAuthHeader
 import javax.inject.Inject
@@ -28,5 +29,10 @@ class DriverRepository{
                 it.clientReply, it.request, it.startAddress, it.status, it.time, it.timeToGet
             )
         }
+    }
+
+    suspend fun fetchDriverIncome(): DriverIncome{
+        val token = getAuthHeader(context)
+        return api.fetchDriverIncome(token)
     }
 }

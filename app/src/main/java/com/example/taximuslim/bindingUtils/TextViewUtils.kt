@@ -12,7 +12,7 @@ import java.util.*
 @SuppressLint("SetTextI18n")
 @BindingAdapter("price")
 fun TextView.setPrice(price: String) {
-    this.text = "${price}RUB"
+    this.text = "${price} RUB"
 }
 
 @SuppressLint("SetTextI18n")

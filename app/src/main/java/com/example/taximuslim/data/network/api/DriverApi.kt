@@ -82,13 +82,22 @@ interface DriverApi {
         @Header("Authorization") token: String
     ): List<DriverRuleResponse>
 
+    @POST("driver/create")
+    suspend fun createDriver(
+        @Header("Authorization") token: String
+    ): StatusResponse
+
+
+
+
+
     @GET("trip")
     suspend fun fetchOrderHistoryList(
         @Header("Authorization") token: String
     ): List<OrderHistoryResponse>
 
-    @POST("driver/create")
-    suspend fun createDriver(
+    @GET("earnings")
+    suspend fun fetchDriverIncome(
         @Header("Authorization") token: String
-    ): StatusResponse
+    ): DriverIncome
 }
