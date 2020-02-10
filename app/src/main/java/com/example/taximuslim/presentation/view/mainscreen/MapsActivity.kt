@@ -51,7 +51,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
     companion object {
         const val EDIT_TEXT_TOP = "top"
         const val EDIT_TEXT_BOTTOM = "bottom"
-        private const val MAP_ZOOM = 17f
+        const val MAP_ZOOM = 17f
     }
 
 
@@ -310,17 +310,27 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
                     mapManger.getLocationFromAddress(user_location.text.toString())
                 viewManager.hideViews(locationTextView, userLocationMarker)
                 mMap.setOnCameraChangeListener(null)
-                polyManager.drawRoute(route, userLocationLatLng, pointBLatLng)
+                polyManager.drawRoute(route)
             })
 
             guideCategoriesLiveData.observe(this@MapsActivity, Observer { places ->
                 adapter.submitList(places)
+            })
+
+            tripIdLivedata.observe(this@MapsActivity, Observer { id ->
+             tripId = id
+                replaceFragment(
+                    TripProcessFragment.newInstance(),
+                    R.id.container,
+                    TripProcessFragment.ID
+                )
             })
         }
 
 
     }
 
+    var tripId : Int = 0
 
     private fun setOnFloatFragmentCloseListener() {
         floatFragmentInstance.setOnCloseListener { pointB ->

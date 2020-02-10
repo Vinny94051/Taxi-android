@@ -20,6 +20,7 @@ import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.material.snackbar.Snackbar
 import com.jakewharton.rxbinding2.widget.textChanges
+import io.reactivex.ObservableTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_float.*
 import java.util.concurrent.TimeUnit
@@ -103,7 +104,6 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
 
     private fun setEditTextDebounce(editText: EditText, action: Int) = editText
         .textChanges()
-        .skip(1)
         .map { address -> address.toString() }
         .doOnNext {
             mainProgressbar.visibility = View.VISIBLE
@@ -155,7 +155,7 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
     }
 
     private fun setUserLocation(address: String) {
-        addressService.getLocationFromAddress(address)?.toLocation()?.let { userLoc ->
+        addressService.getLocationFromAddress(address).toLocation().let { userLoc ->
             owner.viewModel.setLocation(userLoc)
         }
     }
