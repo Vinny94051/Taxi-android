@@ -2,6 +2,7 @@ package com.example.taximuslim.dagger
 
 import com.example.taximuslim.data.repository.auth.AuthRepo
 import com.example.taximuslim.data.repository.auth.driver.DriverAuthRepository
+import com.example.taximuslim.data.repository.driver.DriverRepository
 import com.example.taximuslim.data.repository.google.GoogleRepo
 import com.example.taximuslim.data.repository.google.MapperDirections
 import com.example.taximuslim.data.repository.guide.GuideRepo
@@ -17,6 +18,7 @@ import com.example.taximuslim.presentation.view.auth.driver.validatePerson.AuthD
 import com.example.taximuslim.presentation.view.auth.fragments.daughter.AuthorizationFragment
 import com.example.taximuslim.presentation.view.auth.fragments.daughter.EnterSmsCodeFragment
 import com.example.taximuslim.presentation.view.driver.driverMainScreen.DriverMainScreenViewModel
+import com.example.taximuslim.presentation.view.driver.driverOrderHistory.DriverOrderHistoryViewModel
 import com.example.taximuslim.presentation.view.mainscreen.FloatFragment
 import com.example.taximuslim.presentation.viewmodel.auth.AuthViewModel
 import com.example.taximuslim.presentation.viewmodel.maps.MainViewModel
@@ -59,5 +61,6 @@ interface AppComponent {
     fun inject(guideRepo: GuideRepo)
     fun inject(guideViewModel: GuideViewModel)
     fun inject(placesListViewModel: PlacesListViewModel)
-
+    fun inject(driverRepository: DriverRepository)
+    fun inject(driverOrderHistoryViewModel: DriverOrderHistoryViewModel)
 }

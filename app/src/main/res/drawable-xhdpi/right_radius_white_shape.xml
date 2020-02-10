@@ -2,6 +2,6 @@
     android:shape="rectangle">
     <solid
         android:color="@android:color/white"/>
-    <corners android:topRightRadius="@dimen/default_margin"
-        android:bottomRightRadius="@dimen/default_margin"/>
+    <corners android:topRightRadius="@dimen/large_margin"
+        android:bottomRightRadius="@dimen/large_margin"/>
 </shape>

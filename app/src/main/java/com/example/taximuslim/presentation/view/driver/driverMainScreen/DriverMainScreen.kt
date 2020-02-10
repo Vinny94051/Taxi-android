@@ -12,6 +12,7 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.onNavDestinationSelected
 import com.example.taximuslim.R
 import com.example.taximuslim.presentation.view.auth.driver.AuthDriverMainActivity
+import com.example.taximuslim.utils.prefference.saveVerToken
 import kotlinx.android.synthetic.main.activity_driver_main_screen.*
 import kotlinx.android.synthetic.main.auth_driver_choose_car_fragment.*
 
@@ -24,6 +25,7 @@ class DriverMainScreen : AppCompatActivity() {
         setContentView(R.layout.activity_driver_main_screen)
         val navController = this.findNavController(R.id.nav_host_fragment)
         NavigationUI.setupWithNavController(nav_view, navController)
+        saveVerToken(this,"lZ_uqfkxn8DnOpm6jwbI9XJyJMDKsLZ4_1577428367" )
 
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

@@ -4,9 +4,8 @@ import com.example.taximuslim.data.network.remote.request.driver.*
 import com.example.taximuslim.data.network.remote.response.driver.*
 import com.example.taximuslim.domain.models.driver.auth.CarInfo
 import com.example.taximuslim.domain.models.driver.auth.DriverProfile
-import com.example.taximuslim.domain.models.driver.auth.DriverRule
 import com.example.taximuslim.domain.models.driver.auth.LicenceNumb
-import com.example.taximuslim.domain.models.driver.order.OrderHistory
+import com.example.taximuslim.domain.models.driver.order.OrderHistoryResponse
 import retrofit2.http.*
 
 interface DriverApi {
@@ -86,7 +85,7 @@ interface DriverApi {
     @GET("trip")
     suspend fun fetchOrderHistoryList(
         @Header("Authorization") token: String
-    ): List<OrderHistory>
+    ): List<OrderHistoryResponse>
 
     @POST("driver/create")
     suspend fun createDriver(

@@ -8,6 +8,8 @@ import com.example.taximuslim.domain.auth.AuthInteractor
 import com.example.taximuslim.domain.auth.IAuthInteractor
 import com.example.taximuslim.domain.auth.driver.DriverAuthInteractor
 import com.example.taximuslim.domain.auth.driver.DriverAuthInteractorImpl
+import com.example.taximuslim.domain.interactors.DriverInteractor
+import com.example.taximuslim.domain.interactors.DriverInteractorImpl
 import com.example.taximuslim.domain.order.IOrderInteractor
 import com.example.taximuslim.domain.order.OrderInteractor
 import com.example.taximuslim.presentation.viewmodel.auth.AuthViewModel
@@ -59,5 +61,9 @@ class AppModule(private val app: Application) {
     @Provides
     fun provideDriverInfoInteractor(): DriverAuthInteractor =
         DriverAuthInteractorImpl()
+
+    @Provides
+    fun provideDriverInteractor(): DriverInteractor =
+        DriverInteractorImpl()
 
 }

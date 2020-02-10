@@ -1,6 +1,7 @@
 package com.example.taximuslim.domain.auth.driver
 
 import com.example.taximuslim.data.network.remote.request.driver.*
+import com.example.taximuslim.domain.models.driver.OrderHistoryModel
 import com.example.taximuslim.domain.models.driver.auth.CarMark
 import com.example.taximuslim.domain.models.driver.auth.CarModel
 import com.example.taximuslim.domain.models.driver.auth.CarColor
@@ -29,4 +30,5 @@ interface DriverAuthInteractor {
     suspend fun fetchDriverRules(): List<DriverRule>
 
     suspend fun isNewDriver(): Boolean
+
 }

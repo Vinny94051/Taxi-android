@@ -26,10 +26,10 @@
         <activity android:name=".presentation.view.TestUI">
         </activity>
         <activity android:name=".presentation.view.driver.driverMainScreen.DriverMainScreen" >
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".presentation.view.auth.driver.AuthDriverMainActivity">
 
@@ -59,10 +59,10 @@
         </activity>
         <activity android:name=".presentation.view.auth.AuthActivity"
             android:windowSoftInputMode="adjustPan" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
 
         </activity>
         <activity android:name=".presentation.view.splashscreen.SplashScreenActivity">

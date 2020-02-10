@@ -1,18 +1,15 @@
 package com.example.taximuslim.presentation.view.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taximuslim.databinding.DriverOrderHistoryItemBinding
-import com.example.taximuslim.databinding.DriverOrderItemBinding
-import com.example.taximuslim.domain.models.driver.DriverOrderHistoryModel
-import com.example.taximuslim.domain.models.driver.DriverOrderModel
+import com.example.taximuslim.domain.models.driver.OrderHistoryModel
 
-class DriverOrderHistoryAdapter :
-    ListAdapter<DriverOrderHistoryModel, DriverOrderHistoryAdapter.ViewHolder>(Companion) {
+class OrderHistoryAdapter :
+    ListAdapter<OrderHistoryModel, OrderHistoryAdapter.ViewHolder>(Companion) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
@@ -25,7 +22,7 @@ class DriverOrderHistoryAdapter :
 
     class ViewHolder(private val binding: DriverOrderHistoryItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(order: DriverOrderHistoryModel) {
+        fun bind(order: OrderHistoryModel) {
             binding.order = order
         }
 
@@ -39,17 +36,17 @@ class DriverOrderHistoryAdapter :
 
     }
 
-    companion object : DiffUtil.ItemCallback<DriverOrderHistoryModel>() {
+    companion object : DiffUtil.ItemCallback<OrderHistoryModel>() {
         override fun areItemsTheSame(
-            oldItem: DriverOrderHistoryModel,
-            newItem: DriverOrderHistoryModel
+            oldItem: OrderHistoryModel,
+            newItem: OrderHistoryModel
         ): Boolean {
             return oldItem == newItem
         }
 
         override fun areContentsTheSame(
-            oldItem: DriverOrderHistoryModel,
-            newItem: DriverOrderHistoryModel
+            oldItem: OrderHistoryModel,
+            newItem: OrderHistoryModel
         ): Boolean {
             return newItem == oldItem
         }

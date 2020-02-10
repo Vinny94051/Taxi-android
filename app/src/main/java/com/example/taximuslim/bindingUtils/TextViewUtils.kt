@@ -6,6 +6,8 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.example.taximuslim.R
 import com.example.taximuslim.presentation.view.auth.driver.LoadingStatus
+import java.text.SimpleDateFormat
+import java.util.*
 
 @SuppressLint("SetTextI18n")
 @BindingAdapter("price")
@@ -28,7 +30,7 @@ fun TextView.setDistance(distance: String) {
 @SuppressLint("SetTextI18n")
 @BindingAdapter("car_class")
 fun TextView.setCarClass(carClass: String?) {
-    carClass?.let{
+    carClass?.let {
         this.text = this.context.getString(R.string.car_class, carClass)
     }
 }
@@ -36,9 +38,9 @@ fun TextView.setCarClass(carClass: String?) {
 @SuppressLint("SetTextI18n")
 @BindingAdapter("delete_status")
 fun TextView.setDeleteTrigger(status: LoadingStatus) {
-    visibility = if (status == LoadingStatus.COMPLETE){
+    visibility = if (status == LoadingStatus.COMPLETE) {
         View.VISIBLE
-    }else{
+    } else {
         View.GONE
     }
 }
@@ -46,10 +48,19 @@ fun TextView.setDeleteTrigger(status: LoadingStatus) {
 @SuppressLint("SetTextI18n")
 @BindingAdapter("take_status")
 fun TextView.setTakeTrigger(status: LoadingStatus) {
-    visibility = if ((status == LoadingStatus.ERROR) || (status == LoadingStatus.NULL)){
+    visibility = if ((status == LoadingStatus.ERROR) || (status == LoadingStatus.NULL)) {
         View.VISIBLE
-    }else{
+    } else {
         View.GONE
     }
+}
+
+@SuppressLint("SetTextI18n")
+@BindingAdapter("date")
+fun TextView.setDate(dateAndTime: String) {
+    val date = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).parse(dateAndTime)
+    val formatter = SimpleDateFormat("dd MMMM HH:mm", Locale.getDefault())
+    text = formatter.format(date)
+
 }
 
