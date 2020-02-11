@@ -27,8 +27,8 @@ class DriverProfileViewModel : ViewModel(), LifecycleObserver {
                 val profileResponse = interactor.fetchProfile()
                 profile.value = profileResponse
 
-                val balanceResposne = interactor.fetchBalance()
-                balance.value = balanceResposne.toString()
+                val balanceResponse = interactor.fetchBalance()
+                balance.value = balanceResponse.toString()
             }catch (e: Exception){
                 throw e
             }

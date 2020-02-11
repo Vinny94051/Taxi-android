@@ -25,8 +25,8 @@ class OrderInteractor : IOrderInteractor {
         }
     }
 
-    override fun getDirections(start: String, end: String, listener: ((Route) -> Unit)) {
-        googleRepo.getDirections(start, end) { route ->
+    override fun getDirections(startAddress: String, endAddress: String, listener: ((Route) -> Unit)) {
+        googleRepo.getDirections(startAddress, endAddress) { route ->
             listener.invoke(route)
         }
     }

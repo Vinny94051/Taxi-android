@@ -1,6 +1,7 @@
 package com.example.taximuslim.domain.models.driver
 
 import com.example.taximuslim.domain.models.driver.auth.Request
+import com.example.taximuslim.domain.models.google.Route
 
 data class  OrderHistoryModel(
     val auto: String,
@@ -25,5 +26,6 @@ data class  OrderHistoryModel(
     val startAddress: String,
     val status: Int,
     val time: String,
-    val timeToGet: Any
+    val timeToGet: Any,
+    var route: Route? = null
 )

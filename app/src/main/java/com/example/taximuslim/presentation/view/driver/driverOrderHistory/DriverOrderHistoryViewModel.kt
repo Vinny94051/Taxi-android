@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.taximuslim.App
 import com.example.taximuslim.domain.interactors.DriverInteractor
 import com.example.taximuslim.domain.models.driver.OrderHistoryModel
+import com.example.taximuslim.domain.order.IOrderInteractor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -14,16 +15,29 @@ import javax.inject.Inject
 class DriverOrderHistoryViewModel : ViewModel() {
     init {
         App.appComponent.inject(this)
+        orderHistory.observeForever{
+            it.forEach {orderHistoryModel ->
+                googleInteractor.getDirections(orderHistoryModel.startAddress, orderHistoryModel.endAddress){
+                    orderHistoryModel.route = it
+                }
+            }
+        }
     }
 
     @Inject
     lateinit var interactor: DriverInteractor
+
+    @Inject
+    lateinit var googleInteractor: IOrderInteractor
+
+    val loadHistory = MutableLiveData<Boolean>(false)
 
     val ethernetError = MutableLiveData<Boolean>()
 
     private val _orderHistory = MutableLiveData<List<OrderHistoryModel>>()
     val orderHistory: LiveData<List<OrderHistoryModel>>
         get() = _orderHistory
+
 
     fun fetchOrderHistory(){
         viewModelScope.launch(Dispatchers.Main) {
