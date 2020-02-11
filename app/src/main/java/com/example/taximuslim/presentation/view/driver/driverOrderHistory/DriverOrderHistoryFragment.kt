@@ -50,7 +50,8 @@ class DriverOrderHistoryFragment : ObservableFragment() {
         viewModel.loadHistory.observe(viewLifecycleOwner, Observer {
             if (it){
                 viewModel.loadHistory.value = false
-                adapter.submitList(viewModel.orderHistory.value)
+                val history = viewModel.orderHistory.value
+                adapter.submitList(history)
             }
         })
         viewModel.fetchOrderHistory()

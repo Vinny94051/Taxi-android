@@ -40,5 +40,5 @@ data class OrderHistoryResponse(
     val status: Int,
     val time: String,
     @SerializedName("time_to_get")
-    val timeToGet: Any
+    val timeToGet: String?
 )

@@ -26,6 +26,6 @@ data class  OrderHistoryModel(
     val startAddress: String,
     val status: Int,
     val time: String,
-    val timeToGet: Any,
+    val timeToGet: String?,
     var route: Route? = null
 )

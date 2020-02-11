@@ -13,6 +13,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class DriverOrderHistoryViewModel : ViewModel() {
+
+    private val _orderHistory = MutableLiveData<List<OrderHistoryModel>>()
+    val orderHistory: LiveData<List<OrderHistoryModel>>
+        get() = _orderHistory
+
     init {
         App.appComponent.inject(this)
         orderHistory.observeForever{
@@ -21,6 +26,7 @@ class DriverOrderHistoryViewModel : ViewModel() {
                     orderHistoryModel.route = it
                 }
             }
+            loadHistory.value = true
         }
     }
 
@@ -34,9 +40,6 @@ class DriverOrderHistoryViewModel : ViewModel() {
 
     val ethernetError = MutableLiveData<Boolean>()
 
-    private val _orderHistory = MutableLiveData<List<OrderHistoryModel>>()
-    val orderHistory: LiveData<List<OrderHistoryModel>>
-        get() = _orderHistory
 
 
     fun fetchOrderHistory(){
