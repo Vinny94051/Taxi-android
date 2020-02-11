@@ -100,4 +100,14 @@ interface DriverApi {
     suspend fun fetchDriverIncome(
         @Header("Authorization") token: String
     ): DriverIncome
+
+    @GET("profile")
+    suspend fun fetchProfile(
+        @Header("Authorization") token: String
+    ): ProfileResponse
+
+    @GET("money")
+    suspend fun fetchBalance(
+        @Header("Authorization") token: String
+    ): Double
 }

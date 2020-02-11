@@ -35,6 +35,14 @@ fun ImageView.setSrc(uri: Uri?) {
 
 }
 
+@BindingAdapter("src")
+fun ImageView.setSrcString(uri: String?) {
+    Glide.with(this.context)
+        .load("http://23.105.226.153:1111/upload/$uri")
+        .into(this)
+
+}
+
 @BindingAdapter("loading_status")
 fun ImageView.setStatus(status: LoadingStatus) {
     when (status) {

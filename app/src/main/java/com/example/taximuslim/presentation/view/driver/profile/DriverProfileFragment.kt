@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.ViewModelProvider
 
 import com.example.taximuslim.R
 import com.example.taximuslim.databinding.DriverProfileFragmentBinding
@@ -24,11 +25,12 @@ class DriverProfileFragment : ObservableFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProviders.of(this).get(DriverProfileViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(DriverProfileViewModel::class.java)
         val binding = DriverProfileFragmentBinding.inflate(inflater, container, false)
-        binding.viewMdoel = viewModel
+        binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        return inflater.inflate(R.layout.driver_profile_fragment, container, false)
+        viewLifecycleOwner.lifecycle.addObserver(viewModel)
+        return binding.root
     }
 
     override fun setUIState() {

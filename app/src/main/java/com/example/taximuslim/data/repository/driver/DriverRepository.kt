@@ -4,7 +4,9 @@ import android.content.Context
 import com.example.taximuslim.App
 import com.example.taximuslim.data.network.api.DriverApi
 import com.example.taximuslim.data.network.remote.response.driver.DriverIncome
+import com.example.taximuslim.data.network.remote.response.driver.ProfileResponse
 import com.example.taximuslim.domain.models.driver.OrderHistoryModel
+import com.example.taximuslim.domain.models.driver.ProfileModel
 import com.example.taximuslim.utils.prefference.getAuthHeader
 import javax.inject.Inject
 
@@ -34,5 +36,22 @@ class DriverRepository{
     suspend fun fetchDriverIncome(): DriverIncome{
         val token = getAuthHeader(context)
         return api.fetchDriverIncome(token)
+    }
+
+    suspend fun fetchProfile(): ProfileModel {
+        val token = getAuthHeader(context)
+        val response =  api.fetchProfile(token)
+        return ProfileModel(response.car, response.carColor, response.carImagePhoto,
+            response.carImageRegistrationCertificate, response.carModel, response.carNumber,
+            response.clientIdTrip, response.clientName, response.clientTripStatus, response.documentImageBack,
+            response.documentImageFont, response.documentNumber, response.driver, response.driverIdTrip,
+            response.driverName, response.driverTripStatus, response.email, response.image,response.imageLicenseBack,
+            response.imageLicenseFont, response.moderationClient, response.moderationDriver, response.phone,
+            response.profile, response.surname)
+    }
+
+    suspend fun fetchBalance(): Double{
+        val token = getAuthHeader(context)
+        return api.fetchBalance(token)
     }
 }

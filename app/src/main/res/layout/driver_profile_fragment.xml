@@ -5,7 +5,7 @@
 
     <data>
         <variable
-            name="viewMdoel"
+            name="viewModel"
             type="com.example.taximuslim.presentation.view.driver.profile.DriverProfileViewModel" />
     </data>
 
@@ -68,6 +68,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/medium_margin"
                         android:layout_marginEnd="@dimen/medium_margin"
+                        app:price="@{viewModel.balance}"
                         android:textAppearance="@style/ContrastFieldText"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -80,6 +81,7 @@
                         android:layout_marginStart="@dimen/medium_margin"
                         android:layout_marginEnd="@dimen/medium_margin"
                         android:layout_marginBottom="@dimen/medium_margin"
+                        android:onClick="@{() -> viewModel.onPayClick()}"
                         android:background="@drawable/arrow_stroke_bg"
                         android:foreground="?attr/selectableItemBackground"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -141,6 +143,7 @@
                 android:layout_marginTop="@dimen/large_margin"
                 android:layout_marginEnd="@dimen/medium_margin"
                 android:text="@string/change"
+                android:onClick="@{() -> viewModel.onChangeProfileClick()}"
                 android:textAppearance="@style/AccentText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView" />
@@ -195,6 +198,7 @@
                         android:layout_marginEnd="@dimen/medium_margin"
                         android:ellipsize="end"
                         android:maxLines="1"
+                        android:text="@{viewModel.profile.carModel}"
                         android:textAppearance="@style/RegularText"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@id/center"
@@ -220,6 +224,7 @@
                         android:layout_marginEnd="@dimen/medium_margin"
                         android:ellipsize="end"
                         android:maxLines="1"
+                        android:text="@{viewModel.profile.carColor}"
                         android:textAppearance="@style/RegularText"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@id/center"
@@ -245,6 +250,7 @@
                         android:layout_marginEnd="@dimen/medium_margin"
                         android:ellipsize="end"
                         android:maxLines="1"
+                        android:text="@{viewModel.profile.carNumber}"
                         android:textAppearance="@style/RegularText"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@id/center"
@@ -282,6 +288,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="center"
+                            app:src="@{viewModel.profile.carImagePhoto}"
                             android:src="@drawable/take_photo_placeholder" />
 
                     </androidx.cardview.widget.CardView>
@@ -316,6 +323,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="center"
+                            app:src="@{viewModel.profile.carImageRegistrationCertificate}"
                             android:src="@drawable/take_photo_placeholder" />
 
                     </androidx.cardview.widget.CardView>
@@ -340,6 +348,7 @@
                         android:layout_marginEnd="@dimen/medium_margin"
                         android:ellipsize="end"
                         android:maxLines="1"
+                        android:text="@{viewModel.profile.driverName}"
                         android:textAppearance="@style/RegularText"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@id/center"
@@ -365,6 +374,7 @@
                         android:layout_marginEnd="@dimen/medium_margin"
                         android:ellipsize="end"
                         android:maxLines="1"
+                        android:text="@{viewModel.profile.surname}"
                         android:textAppearance="@style/RegularText"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@id/center"
@@ -390,6 +400,7 @@
                         android:layout_marginEnd="@dimen/medium_margin"
                         android:ellipsize="end"
                         android:maxLines="1"
+                        android:text="@{viewModel.profile.email}"
                         android:textAppearance="@style/RegularText"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@id/center"
@@ -427,6 +438,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="center"
+                            app:src="@{viewModel.profile.imageLicenseFont}"
                             android:src="@drawable/take_photo_placeholder" />
 
                     </androidx.cardview.widget.CardView>
@@ -461,6 +473,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="center"
+                            app:src="@{viewModel.profile.imageLicenseBack}"
                             android:src="@drawable/take_photo_placeholder" />
 
                     </androidx.cardview.widget.CardView>
@@ -485,6 +498,7 @@
                         android:layout_marginStart="@dimen/default_margin"
                         android:layout_marginTop="12dp"
                         android:layout_marginEnd="@dimen/medium_margin"
+                        android:text="@{viewModel.profile.documentNumber}"
                         android:textAppearance="@style/RegularText"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@id/center"
@@ -523,6 +537,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="center"
+                            app:src="@{viewModel.profile.documentImageFont}"
                             android:src="@drawable/take_photo_placeholder" />
                     </androidx.cardview.widget.CardView>
 
@@ -558,6 +573,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="center"
+                            app:src="@{viewModel.profile.documentImageBack}"
                             android:src="@drawable/take_photo_placeholder" />
 
                     </androidx.cardview.widget.CardView>
@@ -594,6 +610,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="center"
+                            app:src="@{viewModel.profile.image}"
                             android:src="@drawable/take_photo_placeholder" />
 
                     </androidx.cardview.widget.CardView>
