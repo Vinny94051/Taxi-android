@@ -2,7 +2,9 @@ package com.example.taximuslim.data.network.dto.order
 
 import com.google.gson.annotations.SerializedName
 
-data class StatusRequest (
+data class ChooseDriverRequest(
     @SerializedName("id_trip")
-    val tripId : Int
+    val tripId : Int,
+    @SerializedName("id_driver")
+    val driverId : Int
 )

@@ -3,12 +3,9 @@ package com.example.taximuslim.presentation.view.mainscreen
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.dynamicanimation.animation.DynamicAnimation
 import androidx.dynamicanimation.animation.SpringAnimation
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.example.taximuslim.App
 import com.example.taximuslim.R
@@ -16,6 +13,7 @@ import com.example.taximuslim.baseUI.fragment.BaseFragment
 import com.example.taximuslim.baseUI.fragment.BaseFragmentCompanion
 import com.example.taximuslim.presentation.viewmodel.maps.TripViewModel
 import com.example.taximuslim.utils.mapfunc.MapManager
+import com.example.taximuslim.utils.view.ViewManager
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -33,7 +31,7 @@ class TripProcessFragment : BaseFragment(), OnMapReadyCallback {
         override val ID: String
             get() = "TRIP_PROCESS_FRAGMENT"
 
-        override fun newInstance(): Fragment =
+        override fun newInstance() =
             TripProcessFragment()
     }
 
@@ -41,6 +39,8 @@ class TripProcessFragment : BaseFragment(), OnMapReadyCallback {
     private lateinit var mapView: MapView
     private lateinit var owner: MapsActivity
     private val viewModel = TripViewModel()
+    private lateinit var chooseDriverFragment: ChooseDriverFragment
+    private lateinit var viewManager: ViewManager
 
     @Inject
     lateinit var mapManager: MapManager
@@ -49,6 +49,7 @@ class TripProcessFragment : BaseFragment(), OnMapReadyCallback {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         owner = context as MapsActivity
+        viewManager = ViewManager(owner)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -56,6 +57,9 @@ class TripProcessFragment : BaseFragment(), OnMapReadyCallback {
         mapView = googleMapTrip
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
+        cancelOrderTextView.setOnClickListener {
+            viewModel.cancelOrder(owner.tripId)
+        }
     }
 
     override fun layoutId(): Int = R.layout.fragment_trip_process
@@ -66,7 +70,6 @@ class TripProcessFragment : BaseFragment(), OnMapReadyCallback {
         showUserLocation()
         mMap.uiSettings.isScrollGesturesEnabled = false
         mMap.uiSettings.isZoomControlsEnabled = false
-        //TODO  addAnimation(userMarker)
     }
 
 
@@ -76,6 +79,76 @@ class TripProcessFragment : BaseFragment(), OnMapReadyCallback {
 
         viewModel.statusLiveData.observe(this, Observer { response ->
             Log.e("RESPONSE::::::", response.toString())
+            when (response.status) {
+                1 -> {
+                    if (!router.isFragmentInStack(ChooseDriverFragment.ID)) {
+                        viewManager.hideViews(userMarker)
+
+                        chooseDriverFragment =
+                            ChooseDriverFragment.newInstance()
+                        (chooseDriverFragment).apply {
+                            drivers = response.drivers
+                            tripId = owner.tripId
+                        }
+                        router.addFragment(
+                            chooseDriverFragment,
+                            R.id.fragment_container_trip,
+                            ChooseDriverFragment.ID
+                        )
+                    }
+                }
+                2 -> {
+                    viewManager.hideViews(cardView, cancelOrderTextView)
+                    viewManager.showViews(userMarker)
+                }
+
+                3 -> {
+                    if (!router.isFragmentInStack(DriverOnTheWayFragment.ID)) {
+                        val fragment =
+                            DriverOnTheWayFragment.newInstance()
+                        fragment.statusAndDrivers = response
+                        router.replaceFragment(
+                            fragment,
+                            R.id.fragment_container_trip,
+                            DriverOnTheWayFragment.ID
+                        )
+                        viewManager.showViews(cardView, cancelOrderTextView)
+                        viewManager.hideViews(userMarker)
+                    }
+                }
+                4 -> {
+                    if (!router.isFragmentInStack(DriverWaitFragment.ID)) {
+                        val fragment = DriverWaitFragment.newInstance()
+                        fragment.statusAndDrivers = response
+
+                        router.replaceFragment(
+                            fragment,
+                            R.id.fragment_container_trip,
+                            DriverWaitFragment.ID
+                        )
+                    }
+                }
+
+                5 -> {
+                    viewManager.hideViews(cardView, cancelOrderTextView)
+                    viewManager.showViews(timeInTripCardView)
+                }
+
+                6 -> {
+
+                    val fragment = TripEndFragment.newInstance()
+                    fragment.statusAndDrivers = response
+                    owner.replaceFragment(fragment, R.id.container, TripEndFragment.ID)
+                }
+
+            }
+        })
+
+        viewModel.cancelOrderStatusLiveData.observe(this, Observer { status ->
+            when (status.status) {
+                true -> owner.removeFragment(this)
+                else -> showToast("Что-то пошло не так.")
+            }
         })
 
         viewModel.fetchOrderStatus(owner.tripId)
@@ -112,4 +185,6 @@ class TripProcessFragment : BaseFragment(), OnMapReadyCallback {
     private fun addAnimation(view: View) {
         SpringAnimation(view, DynamicAnimation.TRANSLATION_Y, 0f)
     }
+
+
 }

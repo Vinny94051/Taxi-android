@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -14,15 +15,14 @@
         android:id="@+id/userMarker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/circle_green"
         android:layout_centerInParent="true"
-        />
+        android:src="@drawable/circle_green" />
 
     <TextView
         android:id="@+id/cancelOrderTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/searchTextView"
+        android:layout_above="@id/cardView"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="@dimen/small_margin"
@@ -30,21 +30,55 @@
         android:textAppearance="@style/ContrastFieldText"
         android:textColor="@android:color/holo_red_dark" />
 
-    <TextView
-        android:id="@+id/searchTextView"
+    <RelativeLayout
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="72dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="@dimen/small_margin"
         android:layout_marginBottom="12dp"
         android:background="@drawable/fragment_main_back"
+        android:elevation="@dimen/default_margin">
+
+        <FrameLayout
+            android:id="@+id/fragment_container_trip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/searchTextView"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:gravity="start"
+                android:paddingStart="@dimen/big_margin"
+                android:paddingTop="24dp"
+                android:text="@string/search_free_drivers"
+                android:textAppearance="@style/ContrastFieldText"
+                android:textSize="16sp"
+                tools:ignore="RtlSymmetry" />
+        </FrameLayout>
+    </RelativeLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/timeInTripCardView"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/small_margin"
         android:elevation="@dimen/default_margin"
-        android:gravity="start"
-        android:paddingStart="@dimen/big_margin"
-        android:paddingTop="24dp"
-        android:text="@string/search_free_drivers"
-        android:textAppearance="@style/ContrastFieldText"
-        android:textSize="16sp"
-        tools:ignore="RtlSymmetry" />
+        android:visibility="gone"
+        app:cardCornerRadius="@dimen/default_margin">
+
+        <TextView
+            android:id="@+id/timeInTripTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Осталось ехать 10 минут"
+            android:textAppearance="@style/ContrastFieldText" />
+
+
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

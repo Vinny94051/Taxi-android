@@ -2,6 +2,7 @@ package com.example.taximuslim.data.repository.order
 
 
 import com.example.taximuslim.data.network.dto.order.TariffRequest
+import com.example.taximuslim.domain.order.models.BooleanStatus
 import com.example.taximuslim.domain.order.models.OrderModel
 import com.example.taximuslim.domain.order.models.StatusAndDrivers
 import com.example.taximuslim.domain.order.models.TariffModel
@@ -34,5 +35,22 @@ interface IOrderRepository {
      * Return drivers status and list of drivers which accept order
      */
     fun fetchOrderStatus(tripId: Int) : Single<StatusAndDrivers>
+
+
+    /**
+     * @param tripId - id number of current trip
+     *
+     * Client cancel order
+     */
+    fun cancelOrder(tripId: Int) : Single<BooleanStatus>
+
+
+    /**
+     * @param tripId - id number of current trip
+     * @param driverId - id of choosing driver
+     *
+     * User choose the driver who will ride him
+     */
+    fun chooseDriver(tripId: Int, driverId: Int): Single<BooleanStatus>
 
 }

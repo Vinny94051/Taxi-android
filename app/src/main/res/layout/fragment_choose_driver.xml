@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/fragment_main_back"
-    android:elevation="@dimen/default_margin"
     >
 
     <TextView
@@ -32,8 +31,20 @@
         android:layout_width="match_parent"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="28dp"
+        android:layout_marginBottom="@dimen/dp12"
         android:layout_below="@id/driverRecyclerList"
         />
 
+    <ProgressBar
+        android:id="@+id/mainProgressbar"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:translationZ="20dp"
+        android:layout_marginTop="@dimen/default_margin"
+        android:indeterminate="true"
+        android:visibility="gone" />
 
 </RelativeLayout>

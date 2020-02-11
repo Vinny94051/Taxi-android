@@ -408,9 +408,13 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
 
 
     override fun onBackPressed() {
+        when {
+            !rootLayout.isClickable -> hideFloatView()
+            supportFragmentManager.findFragmentByTag(TripEndFragment.ID) != null -> {
+                removeFragment(supportFragmentManager.findFragmentByTag(TripEndFragment.ID)!!)
+            }
+        }
         super.onBackPressed()
-        if (!rootLayout.isClickable)
-            hideFloatView()
     }
 
     private fun countScreenCenter(): Point {

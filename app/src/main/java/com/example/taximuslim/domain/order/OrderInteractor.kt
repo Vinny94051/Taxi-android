@@ -1,5 +1,6 @@
 package com.example.taximuslim.domain.order
 
+import android.util.Log
 import com.example.taximuslim.App
 import com.example.taximuslim.data.network.dto.order.TariffRequest
 import com.example.taximuslim.data.repository.google.GoogleRepo
@@ -10,6 +11,7 @@ import com.example.taximuslim.domain.models.google.Route
 import com.example.taximuslim.domain.models.guide.GuideCategoryModel
 import com.example.taximuslim.domain.models.guide.PlaceByLocationModel
 import com.example.taximuslim.domain.models.guide.UserPlaceByLocationModel
+import com.example.taximuslim.domain.order.models.BooleanStatus
 import com.example.taximuslim.domain.order.models.OrderModel
 import com.example.taximuslim.domain.order.models.StatusAndDrivers
 import com.example.taximuslim.domain.order.models.TariffModel
@@ -23,6 +25,10 @@ class OrderInteractor : IOrderInteractor {
 
     init {
         App.appComponent.inject(this)
+    }
+
+    companion object {
+        const val TAG = "order interactor : "
     }
 
     @Inject
@@ -73,7 +79,19 @@ class OrderInteractor : IOrderInteractor {
             .subscribeOn(Schedulers.io())
             .delay(5, TimeUnit.SECONDS)
             .repeat()
-
-
     }
+
+    override fun cancelOrder(tripId: Int): Single<BooleanStatus> =
+        orderRepo.cancelOrder(tripId)
+            .doOnError { t ->
+                Log.e(TAG, t.message.toString())
+            }
+            .subscribeOn(Schedulers.io())
+
+    override fun chooseDriver(tripId: Int, driverId: Int): Single<BooleanStatus> =
+        orderRepo.chooseDriver(tripId, driverId)
+            .doOnError { t ->
+                Log.e(TAG, t.message.toString())
+            }
+            .subscribeOn(Schedulers.io())
 }
