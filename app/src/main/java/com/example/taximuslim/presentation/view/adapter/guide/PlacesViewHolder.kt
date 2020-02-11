@@ -14,49 +14,57 @@ import com.example.taximuslim.domain.models.guide.PlaceByLocationModel
 import kotlinx.android.synthetic.main.gradient_button.view.*
 import kotlinx.android.synthetic.main.item_guide_places_list.view.*
 
-class PlacesViewHolder private constructor(itemView : View) : BaseViewHolder(itemView) {
+class PlacesViewHolder private constructor(itemView: View) : BaseViewHolder(itemView) {
 
-    companion object{
-        fun from(parent : ViewGroup)=
+    companion object {
+        fun from(parent: ViewGroup) =
             PlacesViewHolder(
                 LayoutInflater.from(parent.context).inflate(
-                    R.layout.item_guide_places_list ,
+                    R.layout.item_guide_places_list,
                     parent, false
                 )
             )
     }
 
-    private val placeImage : ImageView = itemView.placeImageView
-    private val placeType : TextView = itemView.placeTypeTextView
-    private val addressText : TextView = itemView.placeAddressTextView
-    private val distanceText : TextView = itemView.distanceTextView
-    private var onItemClickListener : ((Int) -> Unit)? = null
-    private var buttonText : TextView = itemView.main_btn_text
-
+    private val placeImage: ImageView = itemView.placeImageView
+    private val placeType: TextView = itemView.placeTypeTextView
+    private val addressText: TextView = itemView.placeAddressTextView
+    private val distanceText: TextView = itemView.distanceTextView
+    private var onItemClickListener: ((Int) -> Unit)? = null
+    private var onOrderButtonClickListener: ((String) -> Unit)? = null
+    private var buttonText: TextView = itemView.main_btn_text
 
 
     override fun <T> bindView(item: T) {
 
         buttonText.text = "Заказать"
 
-         (item as PlaceByLocationModel).apply {
-             distanceText.text = "$distance км"
-             addressText.text = address
-             placeType.text = category
-             Glide.with(placeImage.context)
-                 .load(imageUrl)
-                 .transform(CenterCrop(), RoundedCorners(16))
-                 .into(placeImage)
+        (item as PlaceByLocationModel).apply {
+            distanceText.text = "$distance км"
+            addressText.text = address
+            placeType.text = category
+            Glide.with(placeImage.context)
+                .load(imageUrl)
+                .transform(CenterCrop(), RoundedCorners(16))
+                .into(placeImage)
 
-             itemView.rootView.setOnClickListener {
-                 onItemClickListener?.invoke(adapterPosition)
-             }
-         }
+            itemView.rootView.setOnClickListener {
+                onItemClickListener?.invoke(adapterPosition)
+            }
+
+            itemView.orderButton.setOnClickListener {
+                onOrderButtonClickListener?.invoke(address)
+            }
+        }
 
 
     }
 
-    fun setOnItemClickListener(listener : ((Int) -> Unit)){
+    fun setOnItemClickListener(listener: ((Int) -> Unit)) {
         onItemClickListener = listener
+    }
+
+    fun setOnOrderButtonClickListener(listener: ((String) -> Unit)) {
+        onOrderButtonClickListener = listener
     }
 }

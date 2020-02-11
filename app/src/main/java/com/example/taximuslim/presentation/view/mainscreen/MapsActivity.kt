@@ -32,9 +32,12 @@ import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_maps_controller.*
 import com.example.taximuslim.R
 import com.example.taximuslim.data.network.dto.order.TariffRequest
+import com.example.taximuslim.domain.models.guide.GuideCategoryModel
+import com.example.taximuslim.domain.order.models.OrderModel
 import com.example.taximuslim.domain.order.models.TariffModel
 import com.example.taximuslim.presentation.view.driver.driverMainScreen.DriverMainScreen
 import com.example.taximuslim.presentation.view.mainscreen.managers.ButtonManager
+import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.guide.PlaceDescriptionFragment.Companion.PLACE
 import com.example.taximuslim.utils.mapfunc.PolyManager
 import com.example.taximuslim.utils.view.ViewManager
 import com.google.android.gms.maps.*
@@ -48,7 +51,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
     companion object {
         const val EDIT_TEXT_TOP = "top"
         const val EDIT_TEXT_BOTTOM = "bottom"
-        private const val MAP_ZOOM = 17f
+        const val MAP_ZOOM = 17f
     }
 
 
@@ -71,7 +74,9 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
     private var userLocationLatLng = LatLng(0.0, 0.0)
     private var pointBLatLng = LatLng(0.0, 0.0)
     private lateinit var floatFragmentInstance: FloatFragment
-
+    lateinit var placeAddress: String
+    private var paymentType: Int = 0
+    private var tarrif: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         hideActionBar()
@@ -82,6 +87,8 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         initNavigationDrawer()
         initMap()
         viewManager.hideViews(floatView)
+        placeAddress = intent.getStringExtra(PLACE) ?: "Empty"
+
     }
 
     override fun onStart() {
@@ -91,6 +98,11 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         hideFloatView()
         viewManager.setOnFocusListener(pointBEditText) { openFloatView(EDIT_TEXT_BOTTOM) }
         viewManager.setOnFocusListener(user_location) { openFloatView(EDIT_TEXT_TOP) }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (permissionManager.checkLocationPermissions()) updateLocation()
     }
 
     override fun layoutId() = R.layout.activity_maps_controller
@@ -103,6 +115,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
                     btnManager.setPriceInPriceAlert(PriceHolder.economy, getCurrentPrice())
                     showPriceAlertIfAlLeastOnButtonActive()
                     showPriceAndCommentEditTexts()
+                    tarrif = 1
                 }
             }
             R.id.comfort_order -> {
@@ -111,6 +124,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
                     btnManager.setPriceInPriceAlert(PriceHolder.comfort, getCurrentPrice())
                     showPriceAlertIfAlLeastOnButtonActive()
                     showPriceAndCommentEditTexts()
+                    tarrif = 2
                 }
             }
             R.id.business_order -> {
@@ -119,22 +133,30 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
                     btnManager.setPriceInPriceAlert(PriceHolder.business, getCurrentPrice())
                     showPriceAlertIfAlLeastOnButtonActive()
                     showPriceAndCommentEditTexts()
+                    tarrif = 3
                 }
             }
-            R.id.main_button_order_taxi -> {
-            }
+            R.id.main_button_order_taxi -> orderCar()
             R.id.burger_menu_main -> NavigationDrawerManager.showNavigationDrawer(drawer_layout)
             R.id.myLocationBtn -> updateLocation()
+            R.id.cashRadioBtn -> {
+                paymentType = 1
+                main_button_order_taxi.setOnClickListener(this)
+            }
+            R.id.bankRadioBtn -> {
+                paymentType = 2
+                main_button_order_taxi.setOnClickListener(this)
+
+            }
         }
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         mMap.uiSettings.isCompassEnabled = false
-        if (permissionManager.checkLocationPermissions()) updateLocation()
         polyManager = PolyManager(mMap)
         mMap.animateCamera(CameraUpdateFactory.zoomTo(MAP_ZOOM))
-
+        if (permissionManager.checkLocationPermissions()) updateLocation()
         mMap.setOnCameraChangeListener { cameraPosition ->
             Log.e("camera change listener:", cameraPosition.toString())
             countScreenCenter()
@@ -144,6 +166,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
                 user_location.text = location.toEditable()
             }
         }
+
     }
 
     //TODO menu item activity не нужен
@@ -193,7 +216,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         this@MapsActivity.forFocusEditTextId = forFocusEditTextId
         userLocation = user_location.text.toString()
         floatFragmentInstance = FloatFragment.newInstance()
-        replaceFragment(floatFragmentInstance, R.id.floatView, FloatFragment.ID)
+        addFragment(floatFragmentInstance, R.id.floatView, FloatFragment.ID)
         viewManager.showViews(shadow, floatView)
         viewManager.animViewUpToBottomAnim(floatView, 0f, 500)
         rootLayout.isClickable = false
@@ -225,10 +248,11 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         economy_order.setOnClickListener(this)
         comfort_order.setOnClickListener(this)
         business_order.setOnClickListener(this)
-        main_button_order_taxi.setOnClickListener(this)
         burger_menu_main.setOnClickListener(this)
         nav_view.setNavigationItemSelectedListener(this)
         myLocationBtn.setOnClickListener(this)
+        cashRadioBtn.setOnClickListener(this)
+        bankRadioBtn.setOnClickListener(this)
         priceAlert = PriceAlert(this as Activity)
         commentAlert = CommentAlert(
             this as Activity
@@ -252,6 +276,13 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
                 locationPrediction = location.toLatLng()
                 loadTarrifsByCountry(location)
                 setUserLocationText(location)
+                if (placeAddress != "Empty") {
+                    pointBLocation = placeAddress
+                    pointBEditText.text = placeAddress.toEditable()
+                    viewModel.loadRoutes(userLocation, placeAddress)
+                    placeAddress = "Empty"
+                    viewModel.loadLocation()
+                }
             })
 
         PriceAlert.priceLiveData.observe(this, Observer { price ->
@@ -276,27 +307,36 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
 
             directionsLiveData.observe(this@MapsActivity, Observer { route ->
                 userLocationLatLng =
-                    mapManger.getLocationFromAddress(user_location.text.toString()) ?: LatLng(
-                        0.0,
-                        0.0
-                    )
+                    mapManger.getLocationFromAddress(user_location.text.toString())
                 viewManager.hideViews(locationTextView, userLocationMarker)
                 mMap.setOnCameraChangeListener(null)
-                polyManager.drawRoute(route, userLocationLatLng, pointBLatLng)
+                polyManager.drawRoute(route)
             })
 
             guideCategoriesLiveData.observe(this@MapsActivity, Observer { places ->
                 adapter.submitList(places)
             })
+
+            tripIdLivedata.observe(this@MapsActivity, Observer { id ->
+             tripId = id
+                replaceFragment(
+                    TripProcessFragment.newInstance(),
+                    R.id.container,
+                    TripProcessFragment.ID
+                )
+            })
         }
+
+
     }
 
+    var tripId : Int = 0
 
     private fun setOnFloatFragmentCloseListener() {
         floatFragmentInstance.setOnCloseListener { pointB ->
             if (pointB.isNotEmpty()) {
                 viewModel.loadRoutes(userLocation, pointB)
-                pointBLatLng = mapManger.getLocationFromAddress(pointB)!!
+                pointBLatLng = mapManger.getLocationFromAddress(pointB)
             }
         }
     }
@@ -359,6 +399,9 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recyclerList.adapter = adapter
         viewModel.loadGuideCategories()
+        adapter.setOnItemClickListener { category: GuideCategoryModel ->
+            controllerChanger.openMenuController(GuideFragment.FRAGMENT_ID, category.categoryId)
+        }
     }
 
     private fun loadTarrifs(location: TariffRequest) = viewModel.loadTariffs(location)
@@ -383,5 +426,25 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
 
     private fun getCurrentPrice(): Editable =
         tripPriceEditText.text ?: "".toEditable()
+
+
+    private fun createOrder(): OrderModel {
+        return OrderModel(
+            userLocation,
+            userLocationLatLng.latitude,
+            userLocationLatLng.longitude,
+            pointBLocation,
+            pointBLatLng.latitude,
+            pointBLatLng.longitude,
+            tariff = if (tarrif != 0) tarrif else throw Exception("Invalid Tariff"),
+            price = getCurrentPrice().toString().replace(" Rub", "").toInt(),
+            comment = if (CommentHolder.comment.isNotEmpty()) CommentHolder.comment.toString() else "",
+            paymentType = if (paymentType != 0) paymentType else throw Exception("Invalid Payment Type")
+        )
+    }
+
+    private fun orderCar() =
+        viewModel.createOrder(createOrder())
+
 
 }

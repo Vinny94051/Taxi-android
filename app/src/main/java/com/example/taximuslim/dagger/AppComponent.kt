@@ -8,6 +8,7 @@ import com.example.taximuslim.data.repository.google.MapperDirections
 import com.example.taximuslim.data.repository.guide.GuideRepo
 import com.example.taximuslim.data.repository.order.OrderRepo
 import com.example.taximuslim.domain.auth.IAuthInteractor
+import com.example.taximuslim.domain.order.OrderInteractor
 import com.example.taximuslim.presentation.view.auth.driver.aboutYou.AuthDriverAboutYouViewModel
 import com.example.taximuslim.presentation.view.auth.driver.car.AuthDriverChooseCarViewModel
 import com.example.taximuslim.presentation.view.auth.driver.carNumb.AuthDriverCarNumbViewModel
@@ -22,10 +23,12 @@ import com.example.taximuslim.presentation.view.driver.driverMainScreen.DriverMa
 import com.example.taximuslim.presentation.view.driver.driverOrderHistory.DriverOrderHistoryViewModel
 import com.example.taximuslim.presentation.view.driver.profile.DriverProfileViewModel
 import com.example.taximuslim.presentation.view.mainscreen.FloatFragment
+import com.example.taximuslim.presentation.view.mainscreen.TripProcessFragment
 import com.example.taximuslim.presentation.viewmodel.auth.AuthViewModel
 import com.example.taximuslim.presentation.viewmodel.maps.MainViewModel
 import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.guide.GuideViewModel
 import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.guide.PlacesListViewModel
+import com.example.taximuslim.presentation.viewmodel.maps.TripViewModel
 import com.example.taximuslim.utils.mapfunc.DistanceCalculator
 import com.example.taximuslim.utils.mapfunc.PolyManager
 import dagger.Component
@@ -68,4 +71,7 @@ interface AppComponent {
     fun inject(driverIncomeViewModel: DriverIncomeViewModel)
     fun inject(driverProfileViewModel: DriverProfileViewModel)
 
+    fun inject(orderInteractor: OrderInteractor)
+    fun inject(tripProcessFragment: TripProcessFragment)
+    fun inject(tripViewModel: TripViewModel)
 }

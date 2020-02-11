@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/googleMapTrip"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:apiKey="@string/api_key" />
+
+    <ImageView
+        android:id="@+id/userMarker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/circle_green"
+        android:layout_centerInParent="true"
+        />
+
+    <TextView
+        android:id="@+id/cancelOrderTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/searchTextView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="@dimen/small_margin"
+        android:text="@string/cancel_order"
+        android:textAppearance="@style/ContrastFieldText"
+        android:textColor="@android:color/holo_red_dark" />
+
+    <TextView
+        android:id="@+id/searchTextView"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="@dimen/small_margin"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/fragment_main_back"
+        android:elevation="@dimen/default_margin"
+        android:gravity="start"
+        android:paddingStart="@dimen/big_margin"
+        android:paddingTop="24dp"
+        android:text="@string/search_free_drivers"
+        android:textAppearance="@style/ContrastFieldText"
+        android:textSize="16sp"
+        tools:ignore="RtlSymmetry" />
+
+</RelativeLayout>

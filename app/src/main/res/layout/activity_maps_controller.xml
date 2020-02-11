@@ -446,7 +446,13 @@
         android:translationZ="20dp"
         android:background="@drawable/background_float_fragment"
         android:visibility="gone">
-
     </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:translationZ="120dp"
+        />
 
 </RelativeLayout>

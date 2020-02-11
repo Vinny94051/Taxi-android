@@ -24,7 +24,8 @@ import javax.inject.Singleton
 @Module(
     includes = [
         ApiModule::class,
-        LocationModule::class
+        LocationModule::class,
+        DataModule::class
     ]
 )
 class AppModule(private val app: Application) {
@@ -52,10 +53,10 @@ class AppModule(private val app: Application) {
         MapManager(app)
 
     @Provides
-    fun providesDecodePoly() : IDecodePoly = DecodePoly()
+    fun providesDecodePoly(): IDecodePoly = DecodePoly()
 
     @Provides
-    fun provideToken() : Token = Token(getAuthHeader(app))
+    fun provideToken(): Token = Token(getAuthHeader(app))
 
 
     @Provides

@@ -215,4 +215,11 @@
     <string name="fill_all_fields">Заполните все поля.</string>
     <string name="load_all_data">Загрузите все необходимые даныне.</string>
     <string name="take_politics">Согласитесь с политикой \nконфинденциальности.</string>
+    <string name="make_call">Позвонить</string>
+    <string name="end_of_trip">Поездка завершена!</string>
+    <string name="common_info">Общая информация</string>
+    <string name="thanks_for_trip">Спасибо, что выбрали нас!</string>
+    <string name="api_key">AIzaSyDcrOph1sg1RemEd-XkUavOdr1O5uf6WLg</string>
+    <string name="search_free_drivers">Ищем свободных водителей...</string>
+    <string name="cancel_order">Отменить заказ</string>
 </resources>

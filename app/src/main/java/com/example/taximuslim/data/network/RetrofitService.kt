@@ -5,6 +5,7 @@ import com.example.taximuslim.data.network.api.DriverApi
 import com.example.taximuslim.data.network.api.GoogleMapApi
 import com.example.taximuslim.data.network.api.GuideApi
 import com.example.taximuslim.data.network.api.OrderAPi
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -21,6 +22,7 @@ class RetrofitService {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
 
     private fun getRetrofitForGoogleApi() =

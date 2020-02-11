@@ -10,6 +10,7 @@ import com.example.taximuslim.data.network.dto.order.TariffRequest
 import com.example.taximuslim.domain.models.google.Route
 import com.example.taximuslim.domain.models.guide.GuideCategoryModel
 import com.example.taximuslim.domain.order.IOrderInteractor
+import com.example.taximuslim.domain.order.models.OrderModel
 import com.example.taximuslim.domain.order.models.TariffModel
 import com.example.taximuslim.utils.location.IUserLocationProvider
 import kotlinx.coroutines.Dispatchers
@@ -48,8 +49,8 @@ class MainViewModel : BaseViewModel() {
     val tarriffsLiveData: LiveData<TariffModel>
         get() = _tariffsLiveData
 
-    fun loadTariffs( location: TariffRequest) {
-        interactor.getTariffies( location) { tariffs ->
+    fun loadTariffs(location: TariffRequest) {
+        interactor.getTariffies(location) { tariffs ->
             _tariffsLiveData.value = tariffs
         }
     }
@@ -68,14 +69,25 @@ class MainViewModel : BaseViewModel() {
     val guideCategoriesLiveData: LiveData<List<GuideCategoryModel>>
         get() = _guideCategoriesLiveData
 
-    fun loadGuideCategories(){
+    fun loadGuideCategories() {
         viewModelScope.launch(Dispatchers.Main) {
             interactor.getCategories { categoryList ->
                 _guideCategoriesLiveData.value = categoryList
 
             }
         }
+    }
 
+    private val _tripIdLiveData = MutableLiveData<Int>()
+    val tripIdLivedata: LiveData<Int>
+        get() = _tripIdLiveData
+
+    fun createOrder(order: OrderModel) {
+        viewModelScope.launch {
+            interactor.createOrder(order) { tripId ->
+                _tripIdLiveData.value = tripId
+            }
+        }
     }
 
 

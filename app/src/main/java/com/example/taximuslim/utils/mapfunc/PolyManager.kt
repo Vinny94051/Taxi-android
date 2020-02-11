@@ -29,7 +29,7 @@ class PolyManager(private var mMap: GoogleMap) {
     @Inject
     lateinit var context : Context
 
-    fun drawRoute(route: Route, startPoint: LatLng, endPoint: LatLng) {
+    fun drawRoute(route: Route) {
         val currentRoute = PolylineOptions()
             .apply {
                 width(10f)

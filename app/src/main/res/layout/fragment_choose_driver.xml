@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fragment_main_back"
+    android:elevation="@dimen/default_margin"
+    >
+
+    <TextView
+        android:id="@+id/chooseDriverTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:text="Выберите водителя"
+        android:textAppearance="@style/ContrastFieldText"
+        android:textSize="18sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/driverRecyclerList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/chooseDriverTextView"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="@dimen/default_margin"
+        />
+
+    <include android:id="@+id/continueButton"
+        layout="@layout/gradient_button"
+        android:layout_height="48dp"
+        android:layout_width="match_parent"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="28dp"
+        android:layout_below="@id/driverRecyclerList"
+        />
+
+
+</RelativeLayout>
