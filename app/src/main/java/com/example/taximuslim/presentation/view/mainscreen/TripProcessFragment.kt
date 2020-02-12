@@ -16,7 +16,9 @@ import com.example.taximuslim.domain.order.models.StatusAndDrivers
 import com.example.taximuslim.presentation.viewmodel.maps.TripViewModel
 import com.example.taximuslim.utils.mapfunc.MapManager
 import com.example.taximuslim.utils.mapfunc.PolyManager
+import com.example.taximuslim.utils.view.MarkerAnimation
 import com.example.taximuslim.utils.view.ViewManager
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -65,6 +67,7 @@ class TripProcessFragment : BaseFragment(), OnMapReadyCallback {
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
         cancelOrderTextView.setOnClickListener {
+            MarkerAnimation.hideMarker()
             viewModel.cancelOrder(owner.tripId)
         }
     }
@@ -78,6 +81,7 @@ class TripProcessFragment : BaseFragment(), OnMapReadyCallback {
         mMap.uiSettings.isScrollGesturesEnabled = false
         mMap.uiSettings.isZoomControlsEnabled = false
         polyManager = PolyManager(mMap)
+        MarkerAnimation.startAnimation(rootView)
     }
 
 
@@ -137,7 +141,7 @@ class TripProcessFragment : BaseFragment(), OnMapReadyCallback {
 
         viewModel.directionsLiveData.observe(this, Observer { route ->
             if (!isRouteDrawed) {
-                polyManager.drawRoute(route)
+                polyManager.drawRouteWithOutPadding(route)
                 isRouteDrawed = true
             }
         })
@@ -148,6 +152,7 @@ class TripProcessFragment : BaseFragment(), OnMapReadyCallback {
     private fun firstStatusAction(response: StatusAndDrivers) {
         if (!router.isFragmentInStack(ChooseDriverFragment.ID)) {
             viewManager.hideViews(userMarker)
+            MarkerAnimation.hideMarker()
             ChooseDriverFragment.newInstance().apply {
                 drivers = response.drivers
                 tripId = owner.tripId
@@ -161,16 +166,10 @@ class TripProcessFragment : BaseFragment(), OnMapReadyCallback {
         }
     }
 
-    //TODO open like third status
-    private fun secondStatusAction() = viewManager.apply {
-        hideViews(cardView, cancelOrderTextView)
-        showViews(userMarker)
-    }
-
     private var lastDriverTime: String = ""
 
     private fun thirdStatusAction(response: StatusAndDrivers) {
-        if (!router.isFragmentInStack(DriverOnTheWayFragment.ID) && lastDriverTime != response.timeToGet && response.timeToGet != "null") {
+        if (!router.isFragmentInStack(DriverOnTheWayFragment.ID) || lastDriverTime != response.timeToGet) {
             val fragment =
                 DriverOnTheWayFragment.newInstance()
             fragment.statusAndDrivers = response
@@ -196,12 +195,26 @@ class TripProcessFragment : BaseFragment(), OnMapReadyCallback {
             val fragment = DriverWaitFragment.newInstance()
             fragment.statusAndDrivers = response
 
+            PolyManager.line?.remove()
+            MapManager.markerPointALocation?.remove()
+            MapManager.markerPointBLocation?.remove()
+
+            mMap.animateCamera(
+                CameraUpdateFactory.newLatLng(
+                    LatLng(
+                        response.startPointLatitude,
+                        response.startPointLongitude
+                    )
+                )
+            )
 
             driverMarker = mapManager.addMarker(
                 mMap,
                 LatLng(response.startPointLatitude, response.startPointLongitude),
                 R.drawable.ic_driver_car_marker
             )
+
+
             router.replaceFragment(
                 fragment,
                 R.id.fragment_container_trip,

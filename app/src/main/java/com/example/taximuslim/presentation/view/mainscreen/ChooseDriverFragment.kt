@@ -1,7 +1,6 @@
 package com.example.taximuslim.presentation.view.mainscreen
 
 import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taximuslim.R

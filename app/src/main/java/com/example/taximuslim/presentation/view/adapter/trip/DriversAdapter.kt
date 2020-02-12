@@ -25,7 +25,7 @@ class DriversAdapter : ListAdapter<DriverModel, DriversViewHolder>(Companion) {
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: DriversViewHolder, position: Int) {
-        holder.driverDescription.text = getItem(position).name + getItem(position).car
+        holder.driverDescription.text = getItem(position).name + " (" + getItem(position).car + ")"
         holder.radioButton.isChecked = lastSelectedPosition == position
         holder.setOnRadioButtonStateListener { lastCheckedPosition ->
             lastSelectedPosition = lastCheckedPosition

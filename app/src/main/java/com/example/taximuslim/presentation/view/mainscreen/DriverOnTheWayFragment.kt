@@ -27,7 +27,7 @@ class DriverOnTheWayFragment : BaseFragment() {
         pointBAddressTextView.text = statusAndDrivers.endPointAddress
         timeTextView.text = statusAndDrivers.time
         driverStatusTextView.text =
-            "Водитель прибудет через " + if (statusAndDrivers.timeToGet == "null") "0  мин" else statusAndDrivers.timeToGet
+            "Водитель прибудет через " + if (statusAndDrivers.timeToGet == "null") "6  мин" else statusAndDrivers.timeToGet
     }
 
     override fun layoutId(): Int = R.layout.fragment_driver_on_the_way

@@ -318,7 +318,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             })
 
             tripIdLivedata.observe(this@MapsActivity, Observer { id ->
-             tripId = id
+                tripId = id
                 replaceFragment(
                     TripProcessFragment.newInstance(),
                     R.id.container,
@@ -330,7 +330,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
 
     }
 
-    var tripId : Int = 0
+    var tripId: Int = 0
 
     private fun setOnFloatFragmentCloseListener() {
         floatFragmentInstance.setOnCloseListener { pointB ->
@@ -414,6 +414,8 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
                 supportFragmentManager.fragments.forEach { item ->
                     removeFragment(item)
                 }
+                finish()
+                startActivity(intent)
             }
         }
         super.onBackPressed()
