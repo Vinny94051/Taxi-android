@@ -1,5 +1,6 @@
 package com.example.taximuslim.presentation.view.mainscreen
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -11,12 +12,16 @@ import com.example.taximuslim.App
 import com.example.taximuslim.R
 import com.example.taximuslim.baseUI.fragment.BaseFragment
 import com.example.taximuslim.baseUI.fragment.BaseFragmentCompanion
+import com.example.taximuslim.domain.order.models.StatusAndDrivers
 import com.example.taximuslim.presentation.viewmodel.maps.TripViewModel
 import com.example.taximuslim.utils.mapfunc.MapManager
+import com.example.taximuslim.utils.mapfunc.PolyManager
 import com.example.taximuslim.utils.view.ViewManager
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import kotlinx.android.synthetic.main.fragment_trip_process.*
 import javax.inject.Inject
 
@@ -39,8 +44,10 @@ class TripProcessFragment : BaseFragment(), OnMapReadyCallback {
     private lateinit var mapView: MapView
     private lateinit var owner: MapsActivity
     private val viewModel = TripViewModel()
-    private lateinit var chooseDriverFragment: ChooseDriverFragment
     private lateinit var viewManager: ViewManager
+    private lateinit var polyManager: PolyManager
+    private var isRouteDrawed = false
+    private lateinit var driverMarker: Marker
 
     @Inject
     lateinit var mapManager: MapManager
@@ -70,89 +77,16 @@ class TripProcessFragment : BaseFragment(), OnMapReadyCallback {
         showUserLocation()
         mMap.uiSettings.isScrollGesturesEnabled = false
         mMap.uiSettings.isZoomControlsEnabled = false
+        polyManager = PolyManager(mMap)
     }
 
 
     override fun onResume() {
         super.onResume()
         mapView.onResume()
-
-        viewModel.statusLiveData.observe(this, Observer { response ->
-            Log.e("RESPONSE::::::", response.toString())
-            when (response.status) {
-                1 -> {
-                    if (!router.isFragmentInStack(ChooseDriverFragment.ID)) {
-                        viewManager.hideViews(userMarker)
-
-                        chooseDriverFragment =
-                            ChooseDriverFragment.newInstance()
-                        (chooseDriverFragment).apply {
-                            drivers = response.drivers
-                            tripId = owner.tripId
-                        }
-                        router.addFragment(
-                            chooseDriverFragment,
-                            R.id.fragment_container_trip,
-                            ChooseDriverFragment.ID
-                        )
-                    }
-                }
-                2 -> {
-                    viewManager.hideViews(cardView, cancelOrderTextView)
-                    viewManager.showViews(userMarker)
-                }
-
-                3 -> {
-                    if (!router.isFragmentInStack(DriverOnTheWayFragment.ID)) {
-                        val fragment =
-                            DriverOnTheWayFragment.newInstance()
-                        fragment.statusAndDrivers = response
-                        router.replaceFragment(
-                            fragment,
-                            R.id.fragment_container_trip,
-                            DriverOnTheWayFragment.ID
-                        )
-                        viewManager.showViews(cardView, cancelOrderTextView)
-                        viewManager.hideViews(userMarker)
-                    }
-                }
-                4 -> {
-                    if (!router.isFragmentInStack(DriverWaitFragment.ID)) {
-                        val fragment = DriverWaitFragment.newInstance()
-                        fragment.statusAndDrivers = response
-
-                        router.replaceFragment(
-                            fragment,
-                            R.id.fragment_container_trip,
-                            DriverWaitFragment.ID
-                        )
-                    }
-                }
-
-                5 -> {
-                    viewManager.hideViews(cardView, cancelOrderTextView)
-                    viewManager.showViews(timeInTripCardView)
-                }
-
-                6 -> {
-
-                    val fragment = TripEndFragment.newInstance()
-                    fragment.statusAndDrivers = response
-                    owner.replaceFragment(fragment, R.id.container, TripEndFragment.ID)
-                }
-
-            }
-        })
-
-        viewModel.cancelOrderStatusLiveData.observe(this, Observer { status ->
-            when (status.status) {
-                true -> owner.removeFragment(this)
-                else -> showToast("Что-то пошло не так.")
-            }
-        })
-
-        viewModel.fetchOrderStatus(owner.tripId)
+        initObservers()
     }
+
 
     override fun onPause() {
         super.onPause()
@@ -180,6 +114,139 @@ class TripProcessFragment : BaseFragment(), OnMapReadyCallback {
         )
         mapManager.moveCameraToLocation(mMap, userLocation, MapsActivity.MAP_ZOOM)
     }
+
+    private fun initObservers() {
+        viewModel.statusLiveData.observe(this, Observer { response ->
+            Log.e("RESPONSE::", response.toString())
+            when (response.status) {
+                1 -> firstStatusAction(response)
+                2 -> thirdStatusAction(response)
+                3 -> thirdStatusAction(response)
+                4 -> fourthStatusAction(response)
+                5 -> fiveStatusAction(response)
+                6 -> statusSixAction(response)
+            }
+        })
+
+        viewModel.cancelOrderStatusLiveData.observe(this, Observer { status ->
+            when (status.status) {
+                true -> owner.removeFragment(this)
+                else -> showToast("Что-то пошло не так.")
+            }
+        })
+
+        viewModel.directionsLiveData.observe(this, Observer { route ->
+            if (!isRouteDrawed) {
+                polyManager.drawRoute(route)
+                isRouteDrawed = true
+            }
+        })
+
+        viewModel.fetchOrderStatus(owner.tripId)
+    }
+
+    private fun firstStatusAction(response: StatusAndDrivers) {
+        if (!router.isFragmentInStack(ChooseDriverFragment.ID)) {
+            viewManager.hideViews(userMarker)
+            ChooseDriverFragment.newInstance().apply {
+                drivers = response.drivers
+                tripId = owner.tripId
+
+                router.addFragment(
+                    this,
+                    R.id.fragment_container_trip,
+                    ChooseDriverFragment.ID
+                )
+            }
+        }
+    }
+
+    //TODO open like third status
+    private fun secondStatusAction() = viewManager.apply {
+        hideViews(cardView, cancelOrderTextView)
+        showViews(userMarker)
+    }
+
+    private var lastDriverTime: String = ""
+
+    private fun thirdStatusAction(response: StatusAndDrivers) {
+        if (!router.isFragmentInStack(DriverOnTheWayFragment.ID) && lastDriverTime != response.timeToGet && response.timeToGet != "null") {
+            val fragment =
+                DriverOnTheWayFragment.newInstance()
+            fragment.statusAndDrivers = response
+            router.replaceFragment(
+                fragment,
+                R.id.fragment_container_trip,
+                DriverOnTheWayFragment.ID
+            )
+            drawDriverRoute(
+                response.driverPositionLatitude,
+                response.driverPositionLongitude,
+                response.startPointAddress
+            )
+
+            viewManager.showViews(cardView, cancelOrderTextView)
+            viewManager.hideViews(userMarker)
+            lastDriverTime = response.timeToGet
+        }
+    }
+
+    private fun fourthStatusAction(response: StatusAndDrivers) {
+        if (!router.isFragmentInStack(DriverWaitFragment.ID)) {
+            val fragment = DriverWaitFragment.newInstance()
+            fragment.statusAndDrivers = response
+
+
+            driverMarker = mapManager.addMarker(
+                mMap,
+                LatLng(response.startPointLatitude, response.startPointLongitude),
+                R.drawable.ic_driver_car_marker
+            )
+            router.replaceFragment(
+                fragment,
+                R.id.fragment_container_trip,
+                DriverWaitFragment.ID
+            )
+        }
+        viewManager.showViews(cardView)
+        viewManager.hideViews(userMarker, cancelOrderTextView)
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun fiveStatusAction(response: StatusAndDrivers) = viewManager.apply {
+        isRouteDrawed = false
+        driverMarker.remove()
+        if (!isRouteDrawed)
+            viewModel.loadRoutes(response.startPointAddress, response.endPointAddress)
+
+        hideViews(cardView, cancelOrderTextView)
+        timeInTripTextView.text = "Осталось ехать " + response.time
+        showViews(timeInTripCardView)
+    }
+
+    private fun statusSixAction(response: StatusAndDrivers) {
+        if (owner.supportFragmentManager.findFragmentByTag(TripEndFragment.ID) == null) {
+
+
+            TripEndFragment.newInstance().apply {
+                statusAndDrivers = response
+                this@TripProcessFragment.owner.replaceFragment(
+                    this,
+                    R.id.container,
+                    TripEndFragment.ID
+                )
+            }
+        }
+    }
+
+    private fun drawDriverRoute(
+        startLat: Double,
+        startLng: Double,
+        endPointAddress: String
+    ) = viewModel.loadRoutes(
+        mapManager.latLngToAddress(LatLng(startLat, startLng)),
+        endPointAddress
+    )
 
 
     private fun addAnimation(view: View) {

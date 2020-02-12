@@ -25,7 +25,7 @@ class MapperOrderStatus : IMapper<OrderStatusResponse, StatusAndDrivers> {
             data.comment,
             data.distance,
             data.time,
-            data.timeToGet ?: "",
+            data.timeToGet ?: "null",
             data.car,
             data.clientReply,
             data.date,

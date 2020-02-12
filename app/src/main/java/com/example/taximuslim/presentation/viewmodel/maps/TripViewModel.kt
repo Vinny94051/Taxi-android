@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.taximuslim.App
 import com.example.taximuslim.baseUI.viewmodel.BaseViewModel
+import com.example.taximuslim.domain.models.google.Route
 import com.example.taximuslim.domain.order.IOrderInteractor
 import com.example.taximuslim.domain.order.models.BooleanStatus
 import com.example.taximuslim.domain.order.models.StatusAndDrivers
@@ -74,5 +75,15 @@ class TripViewModel : BaseViewModel() {
                     _chooseDriverLiveData.value = response
                 }
         )
+    }
+
+    private val _directionsLiveData = MutableLiveData<Route>()
+    val directionsLiveData: LiveData<Route>
+        get() = _directionsLiveData
+
+    fun loadRoutes(start: String, end: String) {
+        interactor.getDirections(start, end) { route ->
+            _directionsLiveData.value = route
+        }
     }
 }

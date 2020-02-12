@@ -411,7 +411,9 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         when {
             !rootLayout.isClickable -> hideFloatView()
             supportFragmentManager.findFragmentByTag(TripEndFragment.ID) != null -> {
-                removeFragment(supportFragmentManager.findFragmentByTag(TripEndFragment.ID)!!)
+                supportFragmentManager.fragments.forEach { item ->
+                    removeFragment(item)
+                }
             }
         }
         super.onBackPressed()
