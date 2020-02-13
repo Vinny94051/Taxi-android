@@ -1,5 +1,6 @@
 package com.example.taximuslim.data.network.api
 
+import com.example.taximuslim.data.network.dto.order.OrderRequest
 import com.example.taximuslim.data.network.remote.request.driver.*
 import com.example.taximuslim.data.network.remote.response.driver.*
 import com.example.taximuslim.domain.models.driver.auth.CarInfo
@@ -88,9 +89,6 @@ interface DriverApi {
     ): StatusResponse
 
 
-
-
-
     @GET("trip")
     suspend fun fetchOrderHistoryList(
         @Header("Authorization") token: String
@@ -129,4 +127,12 @@ interface DriverApi {
         @Header("Authorization") token: String,
         @Body body: SmsCodeRequest
     ): StatusResponse
+
+    @GET("trip/trip-orders")
+    suspend fun fetchTripList(
+        @Header("Authorization") token: String,
+        @Body body: OrderRequest
+    )  : List<OrderResponse>
+
+
 }
