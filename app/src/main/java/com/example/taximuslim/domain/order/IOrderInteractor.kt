@@ -5,6 +5,7 @@ import com.example.taximuslim.domain.models.google.Route
 import com.example.taximuslim.domain.models.guide.GuideCategoryModel
 import com.example.taximuslim.domain.models.guide.PlaceByLocationModel
 import com.example.taximuslim.domain.models.guide.UserPlaceByLocationModel
+import com.example.taximuslim.domain.order.models.BooleanStatus
 import com.example.taximuslim.domain.order.models.OrderModel
 import com.example.taximuslim.domain.order.models.StatusAndDrivers
 import com.example.taximuslim.domain.order.models.TariffModel
@@ -23,4 +24,8 @@ interface IOrderInteractor {
     suspend fun createOrder(order: OrderModel, listener: ((Int) -> Unit))
 
     fun fetchOrderStatus(tripId: Int): Observable<StatusAndDrivers>
+
+    fun cancelOrder(tripId: Int): Single<BooleanStatus>
+
+    fun chooseDriver(tripId: Int, driverId : Int) : Single<BooleanStatus>
 }

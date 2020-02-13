@@ -29,6 +29,17 @@ abstract class BaseActivity : AppCompatActivity() {
             .commit()
     }
 
+    fun addFragmentW(fragment: Fragment, container: Int, tag: String) {
+        if (supportFragmentManager.findFragmentByTag(tag) == null) {
+            fragment.enterTransition = Slide(Gravity.END)
+            fragment.exitTransition = Slide(Gravity.START)
+            supportFragmentManager
+                .beginTransaction()
+                .replace(container, fragment, tag)
+                .commit()
+        }
+    }
+
     fun replaceFragment(fragment: Fragment, container: Int, tag: String) {
         fragment.enterTransition = Slide(Gravity.END)
         fragment.exitTransition = Slide(Gravity.START)

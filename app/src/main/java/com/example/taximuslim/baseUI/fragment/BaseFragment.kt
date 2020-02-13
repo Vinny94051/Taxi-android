@@ -12,11 +12,15 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.Fragment
 import com.example.taximuslim.R
+import com.example.taximuslim.baseUI.FragmentRouter
 import com.example.taximuslim.utils.showToast
 
 abstract class BaseFragment : Fragment() {
 
     open fun buttonText(): String = ""
+    protected val router: FragmentRouter
+        get() = FragmentRouter(childFragmentManager)
+
 
     @LayoutRes
     abstract fun layoutId(): Int
@@ -46,7 +50,8 @@ abstract class BaseFragment : Fragment() {
     fun changeEditTextTint(editText: EditText, @ColorRes color: Int) =
         DrawableCompat.setTint(editText.background, ContextCompat.getColor(context!!, color))
 
-    fun changeViewTint(view : View, @ColorRes color : Int) =
+    fun changeViewTint(view: View, @ColorRes color: Int) =
         DrawableCompat.setTint(view.background, ContextCompat.getColor(context!!, color))
+
 
 }

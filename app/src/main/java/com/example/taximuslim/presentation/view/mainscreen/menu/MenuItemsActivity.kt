@@ -9,6 +9,7 @@ import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.guide.
 import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.HelpFragment
 import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.HistoryFragment
 import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.SettingsFragment
+import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.guide.PlaceListFragment
 import com.example.taximuslim.utils.navigator.ControllerChanger
 import kotlinx.android.synthetic.main.controller_menu_items.*
 
@@ -38,7 +39,7 @@ class MenuItemsActivity : BaseActivity(), View.OnClickListener {
     private fun chooseFragment(fragmentId: String) {
         when (fragmentId) {
             "GUIDE_FRAGMENT" -> {
-                addFragment(GuideFragment.newInstance(), R.id.container_menu, fragmentId)
+                addFragmentW(GuideFragment.newInstance(), R.id.container_menu, fragmentId)
                 setHeadText(R.string.guide)
             }
             "HISTORY_FRAGMENT" -> {
@@ -46,7 +47,7 @@ class MenuItemsActivity : BaseActivity(), View.OnClickListener {
                 setHeadText(R.string.history)
             }
             "HELP_FRAGMENT" -> {
-                addFragment(HelpFragment.INSTANCE, R.id.container_menu, fragmentId)
+                addFragmentW(HelpFragment.INSTANCE, R.id.container_menu, fragmentId)
                 setHeadText(R.string.help)
             }
             "SETTINGS_FRAGMENT" -> {
@@ -61,7 +62,10 @@ class MenuItemsActivity : BaseActivity(), View.OnClickListener {
     }
 
     override fun onBackPressed() {
-        if (supportFragmentManager.fragments.size == 2)
+        if (supportFragmentManager.fragments.size == 1 || supportFragmentManager.findFragmentByTag(
+                PlaceListFragment.ID
+            ) != null
+        )
             finish()
         else
             super.onBackPressed()

@@ -184,7 +184,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             R.id.nav_settings ->
                 controllerChanger.openMenuController(SettingsFragment.FRAGMENT_ID)
             R.id.nav_help ->
-                controllerChanger.openMenuController(HelpFragment.FRAGMENT_ID)
+                controllerChanger.openMenuController(HelpFragment.ID)
         }
         return false
     }
@@ -318,7 +318,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             })
 
             tripIdLivedata.observe(this@MapsActivity, Observer { id ->
-             tripId = id
+                tripId = id
                 replaceFragment(
                     TripProcessFragment.newInstance(),
                     R.id.container,
@@ -330,7 +330,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
 
     }
 
-    var tripId : Int = 0
+    var tripId: Int = 0
 
     private fun setOnFloatFragmentCloseListener() {
         floatFragmentInstance.setOnCloseListener { pointB ->
@@ -408,9 +408,17 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
 
 
     override fun onBackPressed() {
+        when {
+            !rootLayout.isClickable -> hideFloatView()
+            supportFragmentManager.findFragmentByTag(TripEndFragment.ID) != null -> {
+                supportFragmentManager.fragments.forEach { item ->
+                    removeFragment(item)
+                }
+                finish()
+                startActivity(intent)
+            }
+        }
         super.onBackPressed()
-        if (!rootLayout.isClickable)
-            hideFloatView()
     }
 
     private fun countScreenCenter(): Point {
