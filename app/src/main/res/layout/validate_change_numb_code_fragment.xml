@@ -45,6 +45,7 @@
                 android:layout_marginEnd="8dp"
                 android:backgroundTint="@color/sms_input_tint"
                 android:hint="@string/zero_hint"
+                android:text="@={viewModel.numb1}"
                 android:inputType="number"
                 android:maxLength="1"
                 android:textAlignment="center"
@@ -59,6 +60,7 @@
                 android:backgroundTint="@color/sms_input_tint"
                 android:clickable="false"
                 android:hint="@string/zero_hint"
+                android:text="@={viewModel.numb2}"
                 android:inputType="number"
                 android:maxLength="1"
                 android:textAlignment="center"
@@ -73,6 +75,7 @@
                 android:backgroundTint="@color/sms_input_tint"
                 android:clickable="false"
                 android:hint="@string/zero_hint"
+                android:text="@={viewModel.numb3}"
                 android:inputType="number"
                 android:maxLength="1"
                 android:textAlignment="center"
@@ -86,23 +89,30 @@
                 android:backgroundTint="@color/sms_input_tint"
                 android:clickable="false"
                 android:hint="@string/zero_hint"
+                android:text="@={viewModel.numb4}"
                 android:inputType="number"
                 android:maxLength="1"
                 android:textAlignment="center"
                 android:textSize="@dimen/number_sms_code_size" />
         </LinearLayout>
 
-        <include
-            layout="@layout/gradient_button"
-            android:id="@+id/mainButton"
+        <LinearLayout
             android:layout_height="48dp"
             android:layout_width="0dp"
             android:layout_marginBottom="72dp"
+            android:onClick="@{() -> viewModel.onMainButtonClick()}"
             android:layout_marginStart="@dimen/large_margin"
             android:layout_marginEnd="@dimen/large_margin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent">
+        <include
+            layout="@layout/gradient_button"
+            android:id="@+id/mainButton"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+             />
+        </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,9 +23,10 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="190dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/default_margin"
             android:layout_marginEnd="@dimen/default_margin"
+            android:paddingBottom="@dimen/default_margin"
             android:layout_marginBottom="80dp"
             android:elevation="12dp"
             app:cardCornerRadius="@dimen/default_margin"
@@ -45,54 +46,78 @@
                     android:text="@string/numb_changing"
                     android:textAppearance="@style/AccentText"
                     android:textSize="20sp"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/changeNumbDescription"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/medium_margin"
                     android:layout_marginStart="@dimen/default_margin"
+                    android:layout_marginTop="@dimen/medium_margin"
                     android:layout_marginEnd="@dimen/default_margin"
+                    android:fontFamily="@font/roboto"
                     android:gravity="center"
                     android:text="@string/change_numb_instruction"
                     android:textAppearance="@style/ContrastFieldText"
-                    android:fontFamily="@font/roboto"
-                    app:layout_constraintTop_toBottomOf="@id/numbChangingText"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/numbChangingText" />
 
                 <LinearLayout
+                    android:id="@+id/linearLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_margin"
                     android:layout_marginStart="@dimen/large_margin"
+                    android:layout_marginTop="@dimen/default_margin"
                     android:layout_marginEnd="@dimen/large_margin"
                     android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/changeNumbDescription">
 
                     <TextView
                         android:id="@+id/seven"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
                         android:gravity="center"
                         android:text="+7"
-                        android:textAppearance="@style/ContrastFieldText"
-                        android:fontFamily="@font/roboto" />
+                        android:textAppearance="@style/ContrastFieldText" />
 
                     <EditText
                         android:id="@+id/editNumb"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:inputType="number"
                         android:hint="@string/enter_phone_numb"
-                        android:maxEms="12"
-                        android:textAppearance="@style/ContrastFieldText"
-                        android:fontFamily="@font/roboto" />
+                        app:status="@{viewModel.phoneStatus}"
+                        android:text="@={viewModel.phoneNumb}"
+                        android:maxEms="10"
+                        android:maxLength="10"
+                        android:textAppearance="@style/ContrastFieldText" />
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/errorMessage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/large_margin"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:layout_marginEnd="@dimen/large_margin"
+                    android:textAppearance="@style/ErrorText"
+                    android:gravity="center"
+                    android:visibility="@{viewModel.existError}"
+                    android:layout_marginBottom="@dimen/default_margin"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                    android:text="@string/numb_already_exist">
+
+                </TextView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

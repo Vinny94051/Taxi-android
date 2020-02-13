@@ -13,4 +13,10 @@ interface DriverInteractor {
     suspend fun fetchProfile(): ProfileModel
 
     suspend fun fetchBalance(): Double
+
+    suspend fun changePhone(phone: String): String
+
+    suspend fun changeName(name: String): String
+
+    suspend fun sendSmsCode(code: String): Boolean
 }

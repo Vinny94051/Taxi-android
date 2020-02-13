@@ -47,7 +47,13 @@
         android:id="@+id/validateChangeNumbCodeFragment"
         android:name="com.example.taximuslim.presentation.view.driver.settings.changeNumber.validateCode.ValidateChangeNumbCodeFragment"
         android:label="@string/numb_changing"
-        tools:layout="@layout/validate_change_numb_code_fragment" />
+        tools:layout="@layout/validate_change_numb_code_fragment" >
+        <action
+            android:id="@+id/action_validateChangeNumbCodeFragment_to_driverSettingsFragment"
+            app:destination="@id/driverSettingsFragment"
+            app:popUpTo="@+id/driverSettingsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/driverOrderFragment"
         android:name="com.example.taximuslim.presentation.view.driver.driverOrders.DriverOrderFragment"

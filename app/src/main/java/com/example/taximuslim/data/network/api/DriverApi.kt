@@ -110,4 +110,23 @@ interface DriverApi {
     suspend fun fetchBalance(
         @Header("Authorization") token: String
     ): Double
+
+
+    @POST("profile/update-name-client")
+    suspend fun changeName(
+        @Header("Authorization") token: String,
+        @Body body: ChangeNameRequest
+    ): ChangeNameResponse
+
+    @POST("profile/update-phone-client")
+    suspend fun changePhone(
+        @Header("Authorization") token: String,
+        @Body body: ChangePhoneRequest
+    ): StatusResponse
+
+    @POST("profile/update-phone-code-client")
+    suspend fun sendSmsCode(
+        @Header("Authorization") token: String,
+        @Body body: SmsCodeRequest
+    ): StatusResponse
 }

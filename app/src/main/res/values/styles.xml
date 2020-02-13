@@ -84,6 +84,13 @@
         <item name="android:textColor">#424242</item>
     </style>
 
+    <style name="ErrorText">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+        <item name="android:textColor">#CF121D</item>
+    </style>
+
     <style name="EditTextStyle" parent="TextAppearance.MaterialComponents.Headline2">
         <item name="fontFamily">@font/roboto</item>
         <item name="android:textSize">14sp</item>

@@ -12,13 +12,17 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 
 import com.example.taximuslim.R
 import com.example.taximuslim.databinding.ValidateChangeNumbCodeFragmentBinding
+import com.example.taximuslim.presentation.view.baseFragment.ObservableFragment
 import kotlinx.android.synthetic.main.activity_auth_driver_main.*
 import kotlinx.android.synthetic.main.validate_change_numb_code_fragment.*
 
-class ValidateChangeNumbCodeFragment : Fragment() {
+class ValidateChangeNumbCodeFragment : ObservableFragment() {
 
     private lateinit var viewModel: ValidateChangeNumbCodeViewModel
 
@@ -28,7 +32,7 @@ class ValidateChangeNumbCodeFragment : Fragment() {
     ): View? {
         (activity as AppCompatActivity).toolbar.setNavigationIcon(R.drawable.arrow_to_left_black)
         (activity as AppCompatActivity).supportActionBar?.show()
-        viewModel = ViewModelProviders.of(this).get(ValidateChangeNumbCodeViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(ValidateChangeNumbCodeViewModel::class.java)
         val binding =ValidateChangeNumbCodeFragmentBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
@@ -41,10 +45,19 @@ class ValidateChangeNumbCodeFragment : Fragment() {
         buttonText?.let { mainButtonText ->
             mainButtonText.text = getString(R.string.start)
         }
-        setListeners()
     }
 
-    private fun setListeners(){
+    override fun setObservers() {
+        viewModel.navigate.observe(viewLifecycleOwner, Observer { navigate ->
+            if (navigate == true){
+                viewModel.navigate.value = true
+                val navController = view!!.findNavController()
+                navController.navigate(R.id.action_validateChangeNumbCodeFragment_to_driverSettingsFragment)
+            }
+        })
+    }
+
+    override fun setListeners(){
         setListenersOnEditText(editCode1)
         setListenersOnEditText(editCode2)
         setListenersOnEditText(editCode3)

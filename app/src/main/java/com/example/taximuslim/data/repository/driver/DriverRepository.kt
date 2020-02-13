@@ -3,6 +3,9 @@ package com.example.taximuslim.data.repository.driver
 import android.content.Context
 import com.example.taximuslim.App
 import com.example.taximuslim.data.network.api.DriverApi
+import com.example.taximuslim.data.network.remote.request.driver.ChangeNameRequest
+import com.example.taximuslim.data.network.remote.request.driver.ChangePhoneRequest
+import com.example.taximuslim.data.network.remote.request.driver.SmsCodeRequest
 import com.example.taximuslim.data.network.remote.response.driver.DriverIncome
 import com.example.taximuslim.data.network.remote.response.driver.ProfileResponse
 import com.example.taximuslim.domain.models.driver.OrderHistoryModel
@@ -53,5 +56,20 @@ class DriverRepository{
     suspend fun fetchBalance(): Double{
         val token = getAuthHeader(context)
         return api.fetchBalance(token)
+    }
+
+    suspend fun changeName(name: String): String{
+        val token = getAuthHeader(context)
+        return (api.changeName(token, ChangeNameRequest(name))).name
+    }
+
+    suspend fun changePhone(phone: String): String{
+        val token = getAuthHeader(context)
+        return (api.changePhone(token, ChangePhoneRequest(phone))).status
+    }
+
+    suspend fun sendSmsCode(code: String): Boolean{
+        val token = getAuthHeader(context)
+        return (api.sendSmsCode(token, SmsCodeRequest(code))).status != "no_code"
     }
 }

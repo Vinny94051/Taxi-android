@@ -22,6 +22,9 @@ import com.example.taximuslim.presentation.view.driver.driverIncome.DriverIncome
 import com.example.taximuslim.presentation.view.driver.driverMainScreen.DriverMainScreenViewModel
 import com.example.taximuslim.presentation.view.driver.driverOrderHistory.DriverOrderHistoryViewModel
 import com.example.taximuslim.presentation.view.driver.profile.DriverProfileViewModel
+import com.example.taximuslim.presentation.view.driver.settings.DriverSettingsViewModel
+import com.example.taximuslim.presentation.view.driver.settings.changeNumber.ChangeNumbViewModel
+import com.example.taximuslim.presentation.view.driver.settings.changeNumber.validateCode.ValidateChangeNumbCodeViewModel
 import com.example.taximuslim.presentation.view.mainscreen.FloatFragment
 import com.example.taximuslim.presentation.view.mainscreen.TripProcessFragment
 import com.example.taximuslim.presentation.viewmodel.auth.AuthViewModel
@@ -48,7 +51,7 @@ interface AppComponent {
     fun inject(target: AuthorizationFragment)
     fun inject(enterSmsCodeFragment: EnterSmsCodeFragment)
     fun inject(mainViewModel: MainViewModel)
-    fun inject(orderRepo : OrderRepo)
+    fun inject(orderRepo: OrderRepo)
     fun inject(distanceCalculator: DistanceCalculator)
     fun inject(floatFragment: FloatFragment)
     fun inject(googleRepo: GoogleRepo)
@@ -74,4 +77,7 @@ interface AppComponent {
     fun inject(orderInteractor: OrderInteractor)
     fun inject(tripProcessFragment: TripProcessFragment)
     fun inject(tripViewModel: TripViewModel)
+    fun inject(driverSettingsViewModel: DriverSettingsViewModel)
+    fun inject(changeNumbViewModel: ChangeNumbViewModel)
+    fun inject(validateChangeNumbCodeViewModel: ValidateChangeNumbCodeViewModel)
 }

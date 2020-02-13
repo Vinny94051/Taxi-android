@@ -25,4 +25,16 @@ class DriverInteractorImpl : DriverInteractor {
     override suspend fun fetchBalance(): Double {
         return repository.fetchBalance()
     }
+
+    override suspend fun changePhone(phone: String): String {
+        return repository.changePhone(phone)
+    }
+
+    override suspend fun changeName(name: String): String {
+       return repository.changeName(name)
+    }
+
+    override suspend fun sendSmsCode(code: String): Boolean {
+        return repository.sendSmsCode(code)
+    }
 }
