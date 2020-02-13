@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -28,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="@string/number_for_cnnection"
-                android:textStyle="bold" />
+                android:textAppearance="@style/RegularText" />
 
             <TextView
                 android:id="@+id/number"
@@ -36,45 +37,25 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="24dp"
-                android:text="@string/stub_number" />
+                android:text="@string/stub_number"
+                android:textAppearance="@style/RegularText" />
         </RelativeLayout>
 
-        <RelativeLayout
+
+        <include
             android:id="@+id/enter_button"
+            layout="@layout/gradient_button"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_below="@id/number_for_connection_layout"
+            android:layout_below="@+id/number_for_connection_layout"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="32dp"
-            android:background="@drawable/arrow_stroke_bg">
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="24dp"
 
-            <TextView
-                android:id="@+id/main_btn_text"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="1dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/arrow_overlay"
-                android:paddingStart="20dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="8dp"
-                android:text="@string/call_us"
-                android:textAppearance="@style/start"
-                android:textStyle="bold"
-                tools:ignore="RtlSymmetry" />
+            />
 
-            <ImageView
-                android:layout_width="72dp"
-                android:layout_height="48dp"
-                android:layout_alignParentEnd="true"
-                android:background="@drawable/arrow_bg"
-                android:padding="4dp"
-                android:src="@drawable/arrow_forward_black_24dp" />
-        </RelativeLayout>
     </RelativeLayout>
 
     <RelativeLayout
@@ -87,157 +68,117 @@
         android:background="@drawable/fragment_main_back"
         android:elevation="16dp">
 
-        <LinearLayout
-            android:id="@+id/owner_mail"
+
+        <TextView
+            android:id="@+id/recieverEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="28dp"
+            android:text="@string/owner"
+            android:textAppearance="@style/RegularText" />
+
+        <TextView
+            android:id="@+id/mail_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="28dp"
+            android:layout_toEndOf="@id/recieverEmail"
+            android:text="@string/stub_mail"
+            android:textAppearance="@style/RegularText" />
+
+
+        <TextView
+            android:id="@+id/theme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/recieverEmail"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="28dp"
+            android:text="@string/them_text"
+            android:textAppearance="@style/RegularText" />
+
+        <EditText
+            android:id="@+id/theme_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="18dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="@string/owner"
-                android:textColor="@android:color/black" />
-
-            <TextView
-                android:id="@+id/mail_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="44dp"
-                android:layout_marginEnd="24dp"
-                android:text="@string/stub_mail"
-                android:textColor="@android:color/black" />
-        </LinearLayout>
+            android:layout_below="@id/mail_text"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="24dp"
+            android:layout_toEndOf="@id/theme"
+            android:text="@string/stub_data"
+            android:textAppearance="@style/RegularText" />
 
 
-        <LinearLayout
-            android:id="@+id/your_email_layout"
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/theme"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="28dp"
+            android:text="@string/text_text"
+            android:textAppearance="@style/RegularText" />
+
+        <EditText
+            android:id="@+id/text_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/owner_mail"
-            android:layout_marginStart="16dp"
+            android:layout_below="@id/theme"
+            android:layout_marginStart="38dp"
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="18dp"
-            android:orientation="horizontal">
+            android:layout_marginEnd="24dp"
+            android:layout_toEndOf="@id/text"
+            android:hint="@string/enter_message_text"
+            android:singleLine="true"
+            android:textAppearance="@style/RegularText" />
 
-            <TextView
-                android:id="@+id/your_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="@string/your_email_text"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/email_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="24dp"
-                android:hint="@string/example_mail_ru"
-                android:singleLine="true"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/theme_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/your_email_layout"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="18dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/theme"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="@string/them_text"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/theme_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="44dp"
-                android:layout_marginEnd="24dp"
-                android:text="@string/stub_data"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/text_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/theme_layout"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="18dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="@string/text_text"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/text_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="38dp"
-                android:layout_marginEnd="24dp"
-                android:singleLine="true"
-                android:hint="@string/enter_message_text"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/sent_letter_button"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_below="@id/text_layout"
+            android:layout_below="@+id/text_input"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="28dp"
             android:layout_marginBottom="32dp"
             android:background="@drawable/arrow_stroke_bg">
 
-            <TextView
-                android:id="@+id/mail_text_btn"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:layout_margin="1dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
                 android:background="@drawable/arrow_overlay"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:paddingStart="20dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="8dp"
-                android:text="@string/sent_letter"
-                android:textAppearance="@style/start"
-                android:textStyle="bold"
-                tools:ignore="RtlSymmetry" />
+                android:textAppearance="@style/AccentText"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlSymmetry"
+                android:text="Отправить письмо" />
 
             <ImageView
                 android:layout_width="72dp"
-                android:layout_height="48dp"
-                android:layout_alignParentEnd="true"
+                android:layout_height="0dp"
                 android:background="@drawable/arrow_bg"
-                android:padding="4dp"
-                android:src="@drawable/arrow_forward_black_24dp" />
-        </RelativeLayout>
+                android:scaleType="center"
+                android:src="@drawable/arrow_to_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </RelativeLayout>

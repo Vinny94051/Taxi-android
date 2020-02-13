@@ -49,7 +49,6 @@ object MarkerAnimation {
         layout.addView(circle, params)
 
 
-
         val circle2 = ImageView(context)
         circle2.setImageDrawable(context.getDrawable(R.drawable.circle_vector))
         createAnimation(circle2, 3.0f, 3.0f, 0.3f, 1000)

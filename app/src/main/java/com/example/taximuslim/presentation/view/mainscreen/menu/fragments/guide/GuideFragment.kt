@@ -43,12 +43,13 @@ class GuideFragment : BaseFragment() {
                     //         location.latitude,
                     //       location.longitude
                 )
+                owner.removeFragment(this)
+
                 owner.addFragment(
                     PlaceListFragment.newInstance(),
                     R.id.container_menu,
                     PlaceListFragment.ID
                 )
-                owner.removeFragment(this)
 
             })
             viewModel.loadLocation()

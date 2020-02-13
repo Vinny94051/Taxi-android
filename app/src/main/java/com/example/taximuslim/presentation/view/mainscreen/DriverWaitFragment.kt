@@ -53,8 +53,6 @@ class DriverWaitFragment : BaseFragment() {
 
     var counter = 0
     private fun makeACall() {
-
-
         when (permissionManager.checkCallPermission()) {
             true -> {
                 val intent =

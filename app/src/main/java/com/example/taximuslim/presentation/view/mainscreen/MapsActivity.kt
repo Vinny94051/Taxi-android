@@ -184,7 +184,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             R.id.nav_settings ->
                 controllerChanger.openMenuController(SettingsFragment.FRAGMENT_ID)
             R.id.nav_help ->
-                controllerChanger.openMenuController(HelpFragment.FRAGMENT_ID)
+                controllerChanger.openMenuController(HelpFragment.ID)
         }
         return false
     }
