@@ -16,7 +16,7 @@ class StartFragment : BaseAuthFragment() {
         when (p0?.id) {
             R.id.main_button -> {
                 (activity as AuthActivity)
-                    .replaceFragment(
+                    .addFragment(
                         WelcomeFragment.INSTANCE, R.id.container,
                         WelcomeFragment.FRAGMENT_ID
                     )

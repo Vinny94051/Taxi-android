@@ -22,7 +22,9 @@ class PlaceListAdapter : ListAdapter<PlaceByLocationModel, PlacesViewHolder>(Com
 
     }
 
-    private var onItemClickListListener: ((Int) -> Unit)? = null
+    private var onItemClickListListener: ((PlaceByLocationModel) -> Unit)? = null
+    private var onOrderButtonClickListListener: ((String) -> Unit)? = null
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlacesViewHolder =
         PlacesViewHolder.from(parent)
@@ -31,12 +33,20 @@ class PlaceListAdapter : ListAdapter<PlaceByLocationModel, PlacesViewHolder>(Com
     override fun onBindViewHolder(holder: PlacesViewHolder, position: Int) {
         holder.bindView(getItem(position))
         holder.setOnItemClickListener { pos ->
-            onItemClickListListener?.invoke(pos)
+            onItemClickListListener?.invoke(getItem(pos))
+        }
+        holder.setOnOrderButtonClickListener { address ->
+            onOrderButtonClickListListener?.invoke(address)
         }
     }
 
-    fun setOnItemClickListener(listener: ((Int) -> Unit)) {
+    fun setOnItemClickListener(listener: ((PlaceByLocationModel) -> Unit)) {
         onItemClickListListener = listener
+    }
+
+
+    fun setOnOrderButtonClickListener(listener: ((String) -> Unit)) {
+        onOrderButtonClickListListener = listener
     }
 
 }

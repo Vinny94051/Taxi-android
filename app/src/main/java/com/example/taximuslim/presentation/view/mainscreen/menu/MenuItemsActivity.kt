@@ -9,6 +9,8 @@ import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.guide.
 import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.HelpFragment
 import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.HistoryFragment
 import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.SettingsFragment
+import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.guide.PlaceListFragment
+import com.example.taximuslim.utils.navigator.ControllerChanger
 import kotlinx.android.synthetic.main.controller_menu_items.*
 
 class MenuItemsActivity : BaseActivity(), View.OnClickListener {
@@ -19,12 +21,14 @@ class MenuItemsActivity : BaseActivity(), View.OnClickListener {
     }
 
     var userPlaceByLocation: UserPlaceByLocationModel? = null
+    var guideCategory: Int = 0
 
     override fun layoutId() = R.layout.controller_menu_items
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         chooseFragment(intent.getStringExtra("fragmentId")!!)
+        guideCategory = intent.getIntExtra(ControllerChanger.CATEGORY_ID, 0)
         initViews()
     }
 
@@ -35,19 +39,19 @@ class MenuItemsActivity : BaseActivity(), View.OnClickListener {
     private fun chooseFragment(fragmentId: String) {
         when (fragmentId) {
             "GUIDE_FRAGMENT" -> {
-                replaceFragment(GuideFragment.newInstance(), R.id.container_menu, fragmentId)
+                addFragmentW(GuideFragment.newInstance(), R.id.container_menu, fragmentId)
                 setHeadText(R.string.guide)
             }
             "HISTORY_FRAGMENT" -> {
-                replaceFragment(HistoryFragment.INSTANCE, R.id.container_menu, fragmentId)
+                addFragment(HistoryFragment.INSTANCE, R.id.container_menu, fragmentId)
                 setHeadText(R.string.history)
             }
             "HELP_FRAGMENT" -> {
-                replaceFragment(HelpFragment.INSTANCE, R.id.container_menu, fragmentId)
+                addFragmentW(HelpFragment.INSTANCE, R.id.container_menu, fragmentId)
                 setHeadText(R.string.help)
             }
             "SETTINGS_FRAGMENT" -> {
-                replaceFragment(SettingsFragment.INSTANCE, R.id.container_menu, fragmentId)
+                addFragment(SettingsFragment.INSTANCE, R.id.container_menu, fragmentId)
                 setHeadText(R.string.settings)
             }
         }
@@ -58,10 +62,13 @@ class MenuItemsActivity : BaseActivity(), View.OnClickListener {
     }
 
     override fun onBackPressed() {
-        if (supportFragmentManager.fragments.last().tag == GuideFragment.FRAGMENT_ID)
+        if (supportFragmentManager.fragments.size == 1 || supportFragmentManager.findFragmentByTag(
+                PlaceListFragment.ID
+            ) != null
+        )
             finish()
-        else super.onBackPressed()
-
+        else
+            super.onBackPressed()
     }
 
 }

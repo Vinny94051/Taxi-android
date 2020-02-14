@@ -26,14 +26,14 @@ class GeoDataFragment : BaseAuthFragment() {
         when (p0?.id) {
             R.id.main_button_add_geo -> {
                 //TODO запрос разрешения на локацию
-                (activity as AuthActivity).replaceFragment(
+                (activity as AuthActivity).addFragment(
                     TOUAgreeFragment.INSTANCE,
                     R.id.container,
                     TOUAgreeFragment.FRAGMENT_ID
                 )
             }
             R.id.back_btn_geo -> {
-                (activity as AuthActivity).replaceFragment(
+                (activity as AuthActivity).addFragment(
                     EnterSmsCodeFragment.INSTANCE,
                     R.id.container,
                     EnterSmsCodeFragment.FRAGMENT_ID

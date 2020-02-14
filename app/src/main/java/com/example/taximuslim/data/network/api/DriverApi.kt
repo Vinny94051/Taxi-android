@@ -1,12 +1,12 @@
 package com.example.taximuslim.data.network.api
 
+import com.example.taximuslim.data.network.dto.order.OrderRequest
 import com.example.taximuslim.data.network.remote.request.driver.*
 import com.example.taximuslim.data.network.remote.response.driver.*
 import com.example.taximuslim.domain.models.driver.auth.CarInfo
 import com.example.taximuslim.domain.models.driver.auth.DriverProfile
-import com.example.taximuslim.domain.models.driver.auth.DriverRule
 import com.example.taximuslim.domain.models.driver.auth.LicenceNumb
-import com.example.taximuslim.domain.models.driver.order.OrderHistory
+import com.example.taximuslim.domain.models.driver.order.OrderHistoryResponse
 import retrofit2.http.*
 
 interface DriverApi {
@@ -83,13 +83,56 @@ interface DriverApi {
         @Header("Authorization") token: String
     ): List<DriverRuleResponse>
 
-    @GET("trip")
-    suspend fun fetchOrderHistoryList(
-        @Header("Authorization") token: String
-    ): List<OrderHistory>
-
     @POST("driver/create")
     suspend fun createDriver(
         @Header("Authorization") token: String
     ): StatusResponse
+
+
+    @GET("trip")
+    suspend fun fetchOrderHistoryList(
+        @Header("Authorization") token: String
+    ): List<OrderHistoryResponse>
+
+    @GET("earnings")
+    suspend fun fetchDriverIncome(
+        @Header("Authorization") token: String
+    ): DriverIncome
+
+    @GET("profile")
+    suspend fun fetchProfile(
+        @Header("Authorization") token: String
+    ): ProfileResponse
+
+    @GET("money")
+    suspend fun fetchBalance(
+        @Header("Authorization") token: String
+    ): Double
+
+
+    @POST("profile/update-name-client")
+    suspend fun changeName(
+        @Header("Authorization") token: String,
+        @Body body: ChangeNameRequest
+    ): ChangeNameResponse
+
+    @POST("profile/update-phone-client")
+    suspend fun changePhone(
+        @Header("Authorization") token: String,
+        @Body body: ChangePhoneRequest
+    ): StatusResponse
+
+    @POST("profile/update-phone-code-client")
+    suspend fun sendSmsCode(
+        @Header("Authorization") token: String,
+        @Body body: SmsCodeRequest
+    ): StatusResponse
+
+    @GET("trip/trip-orders")
+    suspend fun fetchTripList(
+        @Header("Authorization") token: String,
+        @Body body: OrderRequest
+    )  : List<OrderResponse>
+
+
 }

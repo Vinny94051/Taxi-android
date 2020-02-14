@@ -13,6 +13,12 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.*
 import java.io.IOException
 import java.util.*
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.drawable.Drawable
+import com.google.android.gms.maps.model.BitmapDescriptor
+
 
 class MapManager(private val context: Context) {
 
@@ -78,6 +84,30 @@ class MapManager(private val context: Context) {
                 .icon(BitmapDescriptorFactory.fromResource(markerIconId))
         )
 
+    fun addMarker(
+        mMap: GoogleMap,
+        location: LatLng,
+        markerIconId: Drawable
+    ): Marker =
+        mMap.addMarker(
+            MarkerOptions()
+                .position(location)
+                .icon(getMarkerIconFromDrawable(markerIconId))
+        )
+
+
+    private fun getMarkerIconFromDrawable(drawable: Drawable): BitmapDescriptor {
+        val canvas = Canvas()
+        val bitmap = Bitmap.createBitmap(
+            drawable.intrinsicWidth,
+            drawable.intrinsicHeight,
+            Bitmap.Config.ARGB_8888
+        )
+        canvas.setBitmap(bitmap)
+        drawable.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
+        drawable.draw(canvas)
+        return BitmapDescriptorFactory.fromBitmap(bitmap)
+    }
 
     fun moveCameraToLocation(mMap: GoogleMap, location: LatLng, zoom: Float) {
         mMap.apply {
@@ -97,12 +127,13 @@ class MapManager(private val context: Context) {
 
 
     fun getLocationFromAddress(strAddress: String): LatLng {
-        val location: LatLng
+        var location: LatLng = LatLng(0.0, 0.0)
 
         val address: MutableList<Address> =
             Geocoder(context).getFromLocationName(strAddress, 1)
 
-        location = LatLng(address[0].latitude, address[0].longitude)
+        if (!address.isNullOrEmpty())
+            location = LatLng(address[0].latitude, address[0].longitude)
 
         return location
     }

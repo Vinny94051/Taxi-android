@@ -8,6 +8,8 @@ import com.example.taximuslim.domain.auth.AuthInteractor
 import com.example.taximuslim.domain.auth.IAuthInteractor
 import com.example.taximuslim.domain.auth.driver.DriverAuthInteractor
 import com.example.taximuslim.domain.auth.driver.DriverAuthInteractorImpl
+import com.example.taximuslim.domain.interactors.DriverInteractor
+import com.example.taximuslim.domain.interactors.DriverInteractorImpl
 import com.example.taximuslim.domain.order.IOrderInteractor
 import com.example.taximuslim.domain.order.OrderInteractor
 import com.example.taximuslim.presentation.viewmodel.auth.AuthViewModel
@@ -22,7 +24,8 @@ import javax.inject.Singleton
 @Module(
     includes = [
         ApiModule::class,
-        LocationModule::class
+        LocationModule::class,
+        DataModule::class
     ]
 )
 class AppModule(private val app: Application) {
@@ -50,14 +53,18 @@ class AppModule(private val app: Application) {
         MapManager(app)
 
     @Provides
-    fun providesDecodePoly() : IDecodePoly = DecodePoly()
+    fun providesDecodePoly(): IDecodePoly = DecodePoly()
 
     @Provides
-    fun provideToken() : Token = Token(getAuthHeader(app))
+    fun provideToken(): Token = Token(getAuthHeader(app))
 
 
     @Provides
     fun provideDriverInfoInteractor(): DriverAuthInteractor =
         DriverAuthInteractorImpl()
+
+    @Provides
+    fun provideDriverInteractor(): DriverInteractor =
+        DriverInteractorImpl()
 
 }

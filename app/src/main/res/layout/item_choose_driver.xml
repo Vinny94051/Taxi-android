@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dp12"
+    >
+
+    <RadioButton
+        android:id="@+id/choseDriverRadioButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:buttonTint="@color/colorThemeGreen"
+        />
+
+    <TextView
+        android:id="@+id/driverNameAndCarTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/choseDriverRadioButton"
+        android:layout_marginStart="@dimen/small_margin"
+        android:textAppearance="@style/RegularText"
+        android:layout_marginTop="6dp"
+        />
+
+</RelativeLayout>

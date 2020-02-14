@@ -6,6 +6,8 @@ import com.example.taximuslim.data.network.api.DriverApi
 import com.example.taximuslim.data.network.api.GoogleMapApi
 import com.example.taximuslim.data.network.api.GuideApi
 import com.example.taximuslim.data.network.api.OrderAPi
+import com.example.taximuslim.data.repository.order.IOrderRepository
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -38,10 +40,10 @@ object ApiModule {
     @Provides
     fun provideGuideApi(retrofit: RetrofitService) : GuideApi = retrofit.getGuideApi()
 
-
-
     @JvmStatic
     @Singleton
     @Provides
     fun provideDriverApi(retrofit: RetrofitService) : DriverApi = retrofit.getDriverApi()
+
+
 }

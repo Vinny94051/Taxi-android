@@ -17,9 +17,10 @@ class SplashScreenFragment : BaseFragment(), View.OnClickListener {
     //TODO fix white line on the top of the screen
     override fun onClick(p0: View?) {
         when (p0?.id) {
-            R.id.to_order_main_btn ->
+            R.id.to_order_main_btn -> {
                 startActivity(Intent(this.activity!!, MapsActivity::class.java))
-
+                activity?.finish()
+            }
         }
     }
 

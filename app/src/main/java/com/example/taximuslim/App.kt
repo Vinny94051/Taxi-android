@@ -17,7 +17,6 @@ class App : Application() {
     companion object {
         private var instance: App? = null
         lateinit var appComponent: AppComponent
-        fun getApplicationContext(): Context = instance!!.applicationContext
         const val API_KEY = "AIzaSyDcrOph1sg1RemEd-XkUavOdr1O5uf6WLg"
         const val API_KEY_DIRECTIONS = "AIzaSyCOsDzwdBQCwZjJ9keUKeBYdUBydijVSoI"
     }

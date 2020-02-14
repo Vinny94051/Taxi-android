@@ -15,7 +15,7 @@ class DistanceCalculator {
     lateinit var addressIntentService: MapManager
 
     private fun createLocationFromAddress(address: String): Location? =
-        addressIntentService.getLocationFromAddress(address)?.toLocation()
+        addressIntentService.getLocationFromAddress(address).toLocation()
 
     fun calculateDistanceBetweenTwoAddresses(address1: String, address2: String): Float {
         val pointA = createLocationFromAddress(address1)

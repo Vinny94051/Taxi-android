@@ -53,7 +53,7 @@ class AuthorizationFragment : BaseAuthFragment() {
                 }
             }
             R.id.registrationTextView -> {
-                (activity as AuthActivity).replaceFragment(
+                (activity as AuthActivity).addFragment(
                     StartFragment.INSTANCE,
                     R.id.container,
                     StartFragment.FRAGMENT_ID
@@ -85,7 +85,7 @@ class AuthorizationFragment : BaseAuthFragment() {
                         RegistrationStatus.ENTRY -> {
                             (activity as AuthActivity).apply {
                                 saveNumber(phoneNumberEditText)
-                                replaceFragment(
+                                addFragment(
                                     EnterSmsCodeFragment.INSTANCE,
                                     R.id.container,
                                     EnterSmsCodeFragment.FRAGMENT_ID

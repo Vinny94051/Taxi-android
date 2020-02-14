@@ -29,6 +29,7 @@ class DriverIncomeFragment : ObservableFragment() {
         val binding = DriverIncomeFragmentBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+        viewLifecycleOwner.lifecycle.addObserver(viewModel)
         return binding.root
     }
 

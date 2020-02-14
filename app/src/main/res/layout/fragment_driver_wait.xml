@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/fragment_main_back">
+
+    <TextView
+        android:id="@+id/carTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="@dimen/dp12"
+        android:text="Ожидает серый BMW 7017 CB-8"
+        android:textAppearance="@style/ContrastFieldText" />
+
+    <ImageView
+        android:id="@+id/greenPlaceHolderImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/carTextView"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="@dimen/default_margin"
+        android:src="@drawable/placeholder_green" />
+
+    <ImageView
+        android:id="@+id/brownPlaceHolderImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/greenPlaceHolderImageView"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="@dimen/dp12"
+        android:src="@drawable/placeholder_light_brown" />
+
+    <TextView
+        android:id="@+id/pointAAddressTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/carTextView"
+        android:layout_marginStart="@dimen/dp12"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_toEndOf="@id/greenPlaceHolderImageView"
+        android:text="пл. Александра Невского, 2"
+        android:textAppearance="@style/RegularText" />
+
+    <TextView
+        android:id="@+id/pointBAddressTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pointAAddressTextView"
+        android:layout_marginStart="@dimen/dp12"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_toEndOf="@id/greenPlaceHolderImageView"
+        android:text="Багрицкого 5"
+        android:textAppearance="@style/RegularText" />
+
+
+    <TextView
+        android:id="@+id/driverStatusTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pointBAddressTextView"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="@dimen/dp12"
+        android:text="Водитель на месте"
+        android:textAppearance="@style/ContrastFieldText" />
+
+    <Button
+        android:id="@+id/makeACallButton"
+        android:layout_width="120dp"
+        android:layout_height="24dp"
+        android:layout_below="@id/pointBAddressTextView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/small_margin"
+        android:layout_marginEnd="28dp"
+        android:background="@drawable/background_distance_text_view_guide_places_list"
+        android:text="@string/make_call"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white" />
+</RelativeLayout>

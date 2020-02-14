@@ -14,10 +14,10 @@ class NavigationDrawerManager  {
         fun showNavigationDrawer(drawerLayout : DrawerLayout) {
             if (!isDrawerOpen) {
                 drawerLayout.visibility = View.VISIBLE
-                drawerLayout.openDrawer(Gravity.LEFT)
+                drawerLayout.openDrawer(Gravity.LEFT, true)
                 isDrawerOpen = true
             }else if(isDrawerOpen) {
-                drawerLayout.closeDrawer(Gravity.LEFT)
+                drawerLayout.closeDrawer(Gravity.LEFT, true)
                 drawerLayout.visibility = View.GONE
                 isDrawerOpen = false
             }
@@ -31,7 +31,7 @@ class NavigationDrawerManager  {
                             GravityCompat.START
                         )
                     ) {
-                        drawerLayout.closeDrawer(Gravity.LEFT)
+                        drawerLayout.closeDrawer(Gravity.LEFT, true)
                         drawerLayout.visibility = View.GONE
                         isDrawerOpen = false
                     }

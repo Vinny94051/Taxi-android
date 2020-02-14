@@ -11,7 +11,7 @@ class WelcomeFragment : BaseAuthFragment() {
         when (p0?.id) {
             R.id.main_button_welcome -> {
                 (activity as AuthActivity)
-                    .replaceFragment(
+                    .addFragment(
                         EnterNumberFragment.INSTANCE, R.id.container,
                         EnterNumberFragment.FRAGMENT_ID
                     )

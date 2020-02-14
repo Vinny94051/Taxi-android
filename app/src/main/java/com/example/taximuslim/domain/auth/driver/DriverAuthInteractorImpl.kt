@@ -4,6 +4,7 @@ import com.example.taximuslim.data.network.remote.request.driver.*
 import com.example.taximuslim.domain.models.driver.auth.CarMark
 import com.example.taximuslim.domain.models.driver.auth.CarModel
 import com.example.taximuslim.data.repository.auth.driver.DriverAuthRepository
+import com.example.taximuslim.domain.models.driver.OrderHistoryModel
 import com.example.taximuslim.domain.models.driver.auth.CarColor
 import com.example.taximuslim.domain.models.driver.auth.DriverRule
 
@@ -56,4 +57,5 @@ class DriverAuthInteractorImpl : DriverAuthInteractor {
     override suspend fun isNewDriver(): Boolean {
         return repository.isNewDriver()
     }
+
 }

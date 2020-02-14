@@ -3,7 +3,6 @@ package com.example.taximuslim.presentation.view.auth.fragments.daughter.tou
 import android.content.Intent
 import android.text.Html
 import android.view.View
-import androidx.lifecycle.Observer
 import com.example.taximuslim.R
 import com.example.taximuslim.presentation.view.auth.AuthActivity
 import com.example.taximuslim.presentation.view.auth.fragments.base.BaseAuthFragment
@@ -25,7 +24,7 @@ class TOUAgreeFragment : BaseAuthFragment() {
                     showToast(getString(R.string.tou_exception))
             }
             R.id.checkBox -> {
-                (activity as AuthActivity).replaceFragment(
+                (activity as AuthActivity).addFragment(
                     TOUTextFragment.INSTANCE, R.id.container,
                     TOUTextFragment.FRAGMENT_ID
                 )

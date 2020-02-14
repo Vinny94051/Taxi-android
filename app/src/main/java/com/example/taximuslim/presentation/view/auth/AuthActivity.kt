@@ -5,7 +5,6 @@ import android.widget.EditText
 import com.example.taximuslim.R
 import com.example.taximuslim.baseUI.activivty.BaseActivity
 import com.example.taximuslim.presentation.view.auth.fragments.daughter.AuthorizationFragment
-import kotlinx.android.synthetic.main.fragment_enter_number.*
 
 class AuthActivity : BaseActivity() {
 
@@ -19,7 +18,7 @@ class AuthActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        replaceFragment(
+        addFragment(
             AuthorizationFragment.newInstance(),
             R.id.container,
             AuthorizationFragment.FRAGMENT_ID
