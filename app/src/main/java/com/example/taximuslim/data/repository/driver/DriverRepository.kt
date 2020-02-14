@@ -3,6 +3,7 @@ package com.example.taximuslim.data.repository.driver
 import android.content.Context
 import com.example.taximuslim.App
 import com.example.taximuslim.data.network.api.DriverApi
+import com.example.taximuslim.data.network.dto.driver.PaymentResult
 import com.example.taximuslim.data.network.remote.request.driver.ChangeNameRequest
 import com.example.taximuslim.data.network.remote.request.driver.ChangePhoneRequest
 import com.example.taximuslim.data.network.remote.request.driver.SmsCodeRequest
@@ -71,5 +72,8 @@ class DriverRepository{
     suspend fun sendSmsCode(code: String): Boolean{
         val token = getAuthHeader(context)
         return (api.sendSmsCode(token, SmsCodeRequest(code))).status != "no_code"
+    }
+    suspend fun sentPaymentResult(paymentToken : String, price : Double){
+        api.sentPaymentResult(getAuthHeader(context), PaymentResult(paymentToken, price.toString()))
     }
 }

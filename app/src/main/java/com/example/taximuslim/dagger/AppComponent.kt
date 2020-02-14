@@ -9,6 +9,7 @@ import com.example.taximuslim.data.repository.guide.GuideRepo
 import com.example.taximuslim.data.repository.order.OrderRepo
 import com.example.taximuslim.domain.auth.IAuthInteractor
 import com.example.taximuslim.domain.order.OrderInteractor
+import com.example.taximuslim.presentation.view.TestUI
 import com.example.taximuslim.presentation.view.auth.driver.aboutYou.AuthDriverAboutYouViewModel
 import com.example.taximuslim.presentation.view.auth.driver.car.AuthDriverChooseCarViewModel
 import com.example.taximuslim.presentation.view.auth.driver.carNumb.AuthDriverCarNumbViewModel
@@ -80,4 +81,5 @@ interface AppComponent {
     fun inject(driverSettingsViewModel: DriverSettingsViewModel)
     fun inject(changeNumbViewModel: ChangeNumbViewModel)
     fun inject(validateChangeNumbCodeViewModel: ValidateChangeNumbCodeViewModel)
+    fun inject(testUI: TestUI)
 }

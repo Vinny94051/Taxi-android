@@ -24,6 +24,17 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField('String', 'YANDEX_APPLICATION_KEY', YANDEX_APPLICATION_KEY)
+            resValue("string", "yandex_application_key", YANDEX_APPLICATION_KEY)
+            buildConfigField('String', 'SHOP_ID', SHOP_ID)
+            resValue("string", "shop_id", SHOP_ID)
+        }
+
+        debug{
+            buildConfigField('String', 'YANDEX_APPLICATION_KEY', YANDEX_APPLICATION_KEY)
+            resValue("string", "yandex_application_key", YANDEX_APPLICATION_KEY)
+            buildConfigField('String', 'SHOP_ID', SHOP_ID)
+            resValue("string", "shop_id", SHOP_ID)
         }
     }
     dataBinding {
@@ -110,5 +121,7 @@ dependencies {
 
     implementation 'androidx.dynamicanimation:dynamicanimation:1.0.0'
 
+    //YandexC
+    implementation 'com.yandex.money:checkout:3.0.2'
 
 }

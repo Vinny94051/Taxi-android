@@ -25,7 +25,13 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
         tools:targetApi="m">
 
-        <activity android:name=".presentation.view.TestUI"></activity>
+        <activity android:name=".presentation.view.TestUI">
+
+                        <intent-filter>
+                            <action android:name="android.intent.action.MAIN" />
+                            <category android:name="android.intent.category.LAUNCHER" />
+                        </intent-filter>
+        </activity>
         <activity android:name=".presentation.view.driver.driverMainScreen.DriverMainScreen" />
 
 
@@ -49,11 +55,11 @@
             android:label="@string/title_activity_maps_controller"
             android:windowSoftInputMode="adjustPan">
 
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.VIEW" />-->
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity
             android:name=".presentation.view.auth.AuthActivity"

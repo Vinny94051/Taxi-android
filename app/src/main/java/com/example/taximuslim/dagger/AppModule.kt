@@ -17,6 +17,8 @@ import com.example.taximuslim.utils.mapfunc.DecodePoly
 import com.example.taximuslim.utils.mapfunc.MapManager
 import com.example.taximuslim.utils.mapfunc.IDecodePoly
 import com.example.taximuslim.utils.prefference.getAuthHeader
+import com.example.taximuslim.utils.yandex.IYandexCashBox
+import com.example.taximuslim.utils.yandex.YandexCashbox
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -66,5 +68,8 @@ class AppModule(private val app: Application) {
     @Provides
     fun provideDriverInteractor(): DriverInteractor =
         DriverInteractorImpl()
+
+    @Provides
+    fun providesYandexCashBox() : IYandexCashBox = YandexCashbox(app)
 
 }
