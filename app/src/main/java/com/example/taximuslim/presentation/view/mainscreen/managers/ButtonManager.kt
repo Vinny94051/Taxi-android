@@ -49,9 +49,6 @@ class ButtonManager(private val context: Context) {
             buttonsStates[BUSINESS_BUTTON_NUMBER] = false
             setActivateState(economyOrder, ecoImageView)
             buttonsStates[ECONOMY_BUTTON_NUMBER] = true
-        } else {
-            buttonsStates[ECONOMY_BUTTON_NUMBER] = false
-            setDefaultState(economyOrder, ecoImageView)
         }
     }
 
@@ -64,9 +61,6 @@ class ButtonManager(private val context: Context) {
             setDefaultState(economyOrder, ecoImageView)
             buttonsStates[ECONOMY_BUTTON_NUMBER] = false
 
-        } else {
-            buttonsStates[COMFORT_BUTTON_NUMBER] = false
-            setDefaultState(comfortOrder, comfortImageView)
         }
     }
 
@@ -78,9 +72,6 @@ class ButtonManager(private val context: Context) {
             buttonsStates[BUSINESS_BUTTON_NUMBER] = true
             setDefaultState(economyOrder, ecoImageView)
             buttonsStates[ECONOMY_BUTTON_NUMBER] = false
-        } else {
-            buttonsStates[BUSINESS_BUTTON_NUMBER] = false
-            setDefaultState(businessOrder, businessImageView)
         }
     }
 

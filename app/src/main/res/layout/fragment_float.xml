@@ -11,9 +11,8 @@
         android:id="@+id/lineLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/large_margin"
-        android:foreground="?attr/selectableItemBackgroundBorderless"
         android:background="@drawable/background_float_fragment"
-        >
+        android:foreground="?attr/selectableItemBackgroundBorderless">
 
         <View
             android:id="@+id/line"
@@ -49,7 +48,7 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="13dp"
-                android:paddingTop="6dp"
+                android:layout_marginEnd="6dp"
                 android:src="@drawable/ic_magnifier"
                 android:translationZ="90dp" />
 
@@ -57,13 +56,12 @@
                 android:id="@+id/userLocationEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="1dp"
                 android:layout_toEndOf="@id/searchIcon"
                 android:backgroundTint="@android:color/white"
-                android:hint="Откуда"
-                android:inputType="text"
-                android:maxLines="1"
+                android:hint="@string/from_where"
+                android:imeOptions="actionNext"
                 android:paddingEnd="12dp"
+                android:singleLine="true"
                 android:textAppearance="@style/RegularText"
                 android:textColor="#808080" />
         </RelativeLayout>
@@ -96,6 +94,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="13dp"
+                android:layout_marginEnd="@dimen/small_margin"
                 android:src="@drawable/placeholder_light_brown"
                 android:translationZ="90dp" />
 
@@ -103,15 +102,13 @@
                 android:id="@+id/pointBLocationEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="1dp"
                 android:layout_toEndOf="@id/placeholderIcon"
                 android:backgroundTint="@android:color/white"
                 android:gravity="center_vertical"
-                android:hint="Куда"
-                android:inputType="text"
+                android:hint="@string/where"
                 android:imeOptions="actionSearch"
-                android:maxLines="1"
                 android:paddingEnd="12dp"
+                android:singleLine="true"
                 android:textAppearance="@style/RegularText"
                 android:textColor="#808080" />
         </RelativeLayout>
@@ -126,12 +123,12 @@
 
     <ProgressBar
         android:id="@+id/mainProgressbar"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_below="@id/pointBLocationCard"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/default_margin"
         android:indeterminate="true"
-        android:visibility="gone" />
+        android:visibility="visible" />
 </RelativeLayout>

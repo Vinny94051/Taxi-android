@@ -19,7 +19,7 @@
         android:layout_toEndOf="@id/choseDriverRadioButton"
         android:layout_marginStart="@dimen/small_margin"
         android:textAppearance="@style/RegularText"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="6dp"
         />
 
 </RelativeLayout>

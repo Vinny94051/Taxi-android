@@ -38,6 +38,7 @@ class ChooseDriverFragment : BaseFragment() {
         viewModel.chooseDriverLiveData.observe(this, Observer { status ->
             if (status.status) {
                 mainProgressbar.visibility = View.VISIBLE
+
             } else showToast("Что-то пошло не так")
         })
     }

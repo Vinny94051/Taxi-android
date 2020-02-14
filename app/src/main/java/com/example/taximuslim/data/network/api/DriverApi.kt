@@ -1,5 +1,6 @@
 package com.example.taximuslim.data.network.api
 
+import com.example.taximuslim.data.network.dto.driver.PaymentResult
 import com.example.taximuslim.data.network.dto.order.OrderRequest
 import com.example.taximuslim.data.network.remote.request.driver.*
 import com.example.taximuslim.data.network.remote.response.driver.*
@@ -133,6 +134,13 @@ interface DriverApi {
         @Header("Authorization") token: String,
         @Body body: OrderRequest
     )  : List<OrderResponse>
+
+    @POST("money/pay")
+    suspend fun sentPaymentResult(
+        @Header("Authorization") token: String,
+        @Body paymentResult : PaymentResult
+    )
+
 
 
 }
