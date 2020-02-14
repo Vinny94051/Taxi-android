@@ -5,11 +5,12 @@ import com.example.taximuslim.App
 import com.example.taximuslim.data.network.api.DriverApi
 import com.example.taximuslim.data.network.remote.request.driver.ChangeNameRequest
 import com.example.taximuslim.data.network.remote.request.driver.ChangePhoneRequest
+import com.example.taximuslim.data.network.remote.request.driver.OrderListRequest
 import com.example.taximuslim.data.network.remote.request.driver.SmsCodeRequest
 import com.example.taximuslim.data.network.remote.response.driver.DriverIncome
-import com.example.taximuslim.data.network.remote.response.driver.ProfileResponse
 import com.example.taximuslim.domain.models.driver.OrderHistoryModel
 import com.example.taximuslim.domain.models.driver.ProfileModel
+import com.example.taximuslim.domain.models.driver.order.DriverOrderModel
 import com.example.taximuslim.utils.prefference.getAuthHeader
 import javax.inject.Inject
 
@@ -71,5 +72,16 @@ class DriverRepository{
     suspend fun sendSmsCode(code: String): Boolean{
         val token = getAuthHeader(context)
         return (api.sendSmsCode(token, SmsCodeRequest(code))).status != "no_code"
+    }
+
+    suspend fun fetchOrderList(request: OrderListRequest): List<DriverOrderModel>{
+        val token = getAuthHeader(context)
+        val orderList = api.fetchOrderList(token, request).map {
+            DriverOrderModel(
+                it.id, it.clientName, it.startAddress, it.startLat, it.startLgn, it.endAddress,
+                it.endLat, it.endLgn, it.price, it.comment, it.distance, it.date, it.time
+            )
+        }
+        return orderList
     }
 }

@@ -1,13 +1,12 @@
 package com.example.taximuslim.presentation.view.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taximuslim.databinding.DriverOrderItemBinding
-import com.example.taximuslim.domain.models.driver.DriverOrderModel
+import com.example.taximuslim.domain.models.driver.order.DriverOrderModel
 
 class DriverOrderAdapter: ListAdapter<DriverOrderModel,DriverOrderAdapter.ViewHolder>(Companion){
 

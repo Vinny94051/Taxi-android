@@ -128,10 +128,10 @@ interface DriverApi {
         @Body body: SmsCodeRequest
     ): StatusResponse
 
-    @GET("trip/trip-orders")
-    suspend fun fetchTripList(
+    @POST("trip/trip-orders")
+    suspend fun fetchOrderList(
         @Header("Authorization") token: String,
-        @Body body: OrderRequest
+        @Body body: OrderListRequest
     )  : List<OrderResponse>
 
 

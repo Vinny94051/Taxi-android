@@ -1,9 +1,11 @@
 package com.example.taximuslim.domain.interactors
 
+import com.example.taximuslim.data.network.remote.request.driver.OrderListRequest
 import com.example.taximuslim.data.network.remote.response.driver.DriverIncome
 import com.example.taximuslim.data.repository.driver.DriverRepository
 import com.example.taximuslim.domain.models.driver.ProfileModel
 import com.example.taximuslim.domain.models.driver.OrderHistoryModel
+import com.example.taximuslim.domain.models.driver.order.DriverOrderModel
 
 class DriverInteractorImpl : DriverInteractor {
 
@@ -36,5 +38,9 @@ class DriverInteractorImpl : DriverInteractor {
 
     override suspend fun sendSmsCode(code: String): Boolean {
         return repository.sendSmsCode(code)
+    }
+
+    override suspend fun fetchOrderList(request: OrderListRequest): List<DriverOrderModel> {
+        return repository.fetchOrderList(request)
     }
 }

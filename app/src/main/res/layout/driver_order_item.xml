@@ -7,7 +7,7 @@
 
         <variable
             name="order"
-            type="com.example.taximuslim.domain.models.driver.DriverOrderModel" />
+            type="com.example.taximuslim.domain.models.driver.order.DriverOrderModel" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -37,6 +37,7 @@
                 android:layout_marginStart="@dimen/medium_margin"
                 android:layout_marginTop="@dimen/default_margin"
                 android:textAppearance="@style/ContrastFieldText"
+                android:text="@{order.clientName}"
                 android:textSize="16sp"
                 android:maxLines="1"
                 android:ellipsize="end"
@@ -133,7 +134,7 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="@dimen/medium_margin"
                 android:fontFamily="@font/roboto_medium"
-                android:text=""
+                android:text="@{order.time}"
                 android:textAppearance="@style/SecondaryText"
                 android:textSize="16sp"
                 android:singleLine="true"

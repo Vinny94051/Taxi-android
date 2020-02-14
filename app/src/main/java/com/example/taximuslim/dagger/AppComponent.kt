@@ -21,6 +21,7 @@ import com.example.taximuslim.presentation.view.auth.fragments.daughter.EnterSms
 import com.example.taximuslim.presentation.view.driver.driverIncome.DriverIncomeViewModel
 import com.example.taximuslim.presentation.view.driver.driverMainScreen.DriverMainScreenViewModel
 import com.example.taximuslim.presentation.view.driver.driverOrderHistory.DriverOrderHistoryViewModel
+import com.example.taximuslim.presentation.view.driver.driverOrders.DriverOrderViewModel
 import com.example.taximuslim.presentation.view.driver.profile.DriverProfileViewModel
 import com.example.taximuslim.presentation.view.driver.settings.DriverSettingsViewModel
 import com.example.taximuslim.presentation.view.driver.settings.changeNumber.ChangeNumbViewModel
@@ -80,4 +81,5 @@ interface AppComponent {
     fun inject(driverSettingsViewModel: DriverSettingsViewModel)
     fun inject(changeNumbViewModel: ChangeNumbViewModel)
     fun inject(validateChangeNumbCodeViewModel: ValidateChangeNumbCodeViewModel)
+    fun inject(driverOrderViewModel: DriverOrderViewModel)
 }
