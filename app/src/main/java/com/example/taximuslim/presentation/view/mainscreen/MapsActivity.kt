@@ -249,7 +249,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         comfort_order.setOnClickListener(this)
         business_order.setOnClickListener(this)
         burger_menu_main.setOnClickListener(this)
-        nav_view.setNavigationItemSelectedListener(this)
+        navView.setNavigationItemSelectedListener(this)
         myLocationBtn.setOnClickListener(this)
         cashRadioBtn.setOnClickListener(this)
         bankRadioBtn.setOnClickListener(this)

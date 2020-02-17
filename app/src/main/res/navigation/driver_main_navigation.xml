@@ -59,4 +59,12 @@
         android:name="com.example.taximuslim.presentation.view.driver.driverOrders.DriverOrderFragment"
         android:label="driver_order_fragment"
         tools:layout="@layout/driver_order_fragment" />
+    <fragment
+        android:id="@+id/onlineRegistrationFragment"
+        android:name="com.example.taximuslim.presentation.view.driver.onlineRegistration.OnlineRegistrationFragment"
+        android:label="OnlineRegistrationFragment" />
+    <fragment
+        android:id="@+id/becamePassengerFragment"
+        android:name="com.example.taximuslim.presentation.view.driver.becamePassenger.BecamePassengerFragment"
+        android:label="BecamePassengerFragment" />
 </navigation>

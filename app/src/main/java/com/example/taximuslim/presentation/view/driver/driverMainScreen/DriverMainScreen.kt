@@ -3,6 +3,7 @@ package com.example.taximuslim.presentation.view.driver.driverMainScreen
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.Observer
@@ -13,8 +14,8 @@ import androidx.navigation.ui.onNavDestinationSelected
 import com.example.taximuslim.R
 import com.example.taximuslim.presentation.view.auth.driver.AuthDriverMainActivity
 import com.example.taximuslim.utils.prefference.saveVerToken
+import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_driver_main_screen.*
-import kotlinx.android.synthetic.main.auth_driver_choose_car_fragment.*
 
 class DriverMainScreen : AppCompatActivity() {
 
@@ -24,7 +25,7 @@ class DriverMainScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_driver_main_screen)
         val navController = this.findNavController(R.id.nav_host_fragment)
-        NavigationUI.setupWithNavController(nav_view, navController)
+
         saveVerToken(this,"lZ_uqfkxn8DnOpm6jwbI9XJyJMDKsLZ4_1577428367" )
 
         setSupportActionBar(toolbar)
@@ -33,8 +34,8 @@ class DriverMainScreen : AppCompatActivity() {
         toolbar.setNavigationIcon(R.drawable.arrow_to_left_black)
         supportActionBar?.hide()
 
-        NavigationUI.setupActionBarWithNavController(this, navController)
-
+        NavigationUI.setupWithNavController(navView, navController)
+        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         viewModel = ViewModelProvider(this)[DriverMainScreenViewModel::class.java]
         lifecycle.addObserver(viewModel)
     }
