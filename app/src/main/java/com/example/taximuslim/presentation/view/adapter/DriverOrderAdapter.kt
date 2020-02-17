@@ -1,7 +1,9 @@
 package com.example.taximuslim.presentation.view.adapter
 
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -30,6 +32,16 @@ class DriverOrderAdapter: ListAdapter<DriverOrderModel,DriverOrderAdapter.ViewHo
             binding.order = order
             binding.takeOrder.setOnClickListener{
                 takeOrderListener(order)
+            }
+            binding.commentText.setOnClickListener {
+                val textView = it as TextView
+                if (textView.lineCount == 1) {
+                    textView.isSingleLine = false
+                    textView.ellipsize = TextUtils.TruncateAt.MARQUEE
+                }else{
+                    textView.isSingleLine = true
+                    textView.ellipsize = TextUtils.TruncateAt.END
+                }
             }
             binding.executePendingBindings()
         }
