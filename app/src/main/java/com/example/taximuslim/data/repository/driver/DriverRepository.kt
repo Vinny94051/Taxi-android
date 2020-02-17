@@ -74,9 +74,9 @@ class DriverRepository{
         return (api.sendSmsCode(token, SmsCodeRequest(code))).status != "no_code"
     }
 
-    suspend fun fetchOrderList(request: OrderListRequest): List<DriverOrderModel>{
+    suspend fun fetchOrderList(request: OrderListRequest): List<DriverOrderModel>?{
         val token = getAuthHeader(context)
-        val orderList = api.fetchOrderList(token, request).map {
+        val orderList = api.fetchOrderList(token, request)?.map {
             DriverOrderModel(
                 it.id, it.clientName, it.startAddress, it.startLat, it.startLgn, it.endAddress,
                 it.endLat, it.endLgn, it.price, it.comment, it.distance, it.date, it.time

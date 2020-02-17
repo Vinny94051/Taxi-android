@@ -40,7 +40,7 @@ class DriverInteractorImpl : DriverInteractor {
         return repository.sendSmsCode(code)
     }
 
-    override suspend fun fetchOrderList(request: OrderListRequest): List<DriverOrderModel> {
+    override suspend fun fetchOrderList(request: OrderListRequest): List<DriverOrderModel>? {
         return repository.fetchOrderList(request)
     }
 }

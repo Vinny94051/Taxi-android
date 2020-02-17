@@ -38,7 +38,10 @@ class DriverOrderViewModel : ViewModel(), LifecycleObserver {
                             val orderList = interactor.fetchOrderList(
                                 OrderListRequest(lat, lng)
                             )
-                            driverOrderList.value = orderList
+                            orderList?.let{
+                                driverOrderList.value = it
+                            }
+
                         } catch (e: Exception) {
                             e.printStackTrace()
                         }

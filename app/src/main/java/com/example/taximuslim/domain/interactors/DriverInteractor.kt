@@ -22,5 +22,5 @@ interface DriverInteractor {
 
     suspend fun sendSmsCode(code: String): Boolean
 
-    suspend fun fetchOrderList(request: OrderListRequest): List<DriverOrderModel>
+    suspend fun fetchOrderList(request: OrderListRequest): List<DriverOrderModel>?
 }
