@@ -1,5 +1,6 @@
 package com.example.taximuslim.presentation.view.driver.driverMainScreen
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
@@ -16,6 +17,7 @@ import com.example.taximuslim.presentation.view.auth.driver.AuthDriverMainActivi
 import com.example.taximuslim.utils.prefference.saveVerToken
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_driver_main_screen.*
+import kotlinx.android.synthetic.main.nav_header_navigation_drawer.*
 
 class DriverMainScreen : AppCompatActivity() {
 
@@ -56,6 +58,7 @@ class DriverMainScreen : AppCompatActivity() {
         setObservers()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setObservers() {
         viewModel.isNewDriver.observe(this, Observer{
             if (it == true){
@@ -63,6 +66,10 @@ class DriverMainScreen : AppCompatActivity() {
                 val intent = Intent(this, AuthDriverMainActivity::class.java)
                 startActivity(intent)
             }
+        })
+        viewModel.profile.observe(this, Observer {
+            nav_head_text_head.text = it.driverName
+            nav_text_number.text = "+${it.phone}"
         })
     }
 
