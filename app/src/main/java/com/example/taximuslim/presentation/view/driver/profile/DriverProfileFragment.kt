@@ -7,16 +7,27 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
+import com.example.taximuslim.App
 
 import com.example.taximuslim.R
 import com.example.taximuslim.databinding.DriverProfileFragmentBinding
 import com.example.taximuslim.presentation.view.baseFragment.ObservableFragment
+import com.example.taximuslim.utils.yandex.IYandexCashBox
 import kotlinx.android.synthetic.main.activity_auth_driver_main.toolbar
 import kotlinx.android.synthetic.main.activity_driver_main_screen.*
+import javax.inject.Inject
 
 class DriverProfileFragment : ObservableFragment() {
 
-        private lateinit var viewModel: DriverProfileViewModel
+    init {
+        App.appComponent.inject(this)
+    }
+
+    private lateinit var viewModel: DriverProfileViewModel
+
+    @Inject
+    lateinit var yandexCashBox: IYandexCashBox
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

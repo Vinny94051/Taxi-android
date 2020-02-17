@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Taxi</string>
+    <string name="app_name">Правильный путь</string>
     <string name="auth_high">В приложении вы сможете:</string>
     <string name="first_text">—Просмотреть ближайшие мечети, халяльные места и заказать к ним такси</string>
     <string name="second_text">— Устанавливать цену за такси, которую считаете сраведливой</string>

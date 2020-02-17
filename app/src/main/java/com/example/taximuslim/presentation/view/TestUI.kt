@@ -6,16 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import com.example.taximuslim.App
 import com.example.taximuslim.R
 import com.example.taximuslim.presentation.view.design.customAlert.InputNameAlert
-import com.example.taximuslim.presentation.view.design.customAlert.LogoutAlert
 import com.example.taximuslim.utils.yandex.IYandexCashBox
 import kotlinx.android.synthetic.main.driver_order_fragment.*
 import ru.yandex.money.android.sdk.*
-import java.math.BigDecimal
-import java.util.*
 import javax.inject.Inject
 
 class TestUI : AppCompatActivity() {
@@ -52,17 +48,22 @@ class TestUI : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == yandexCahsbox.successCode()) {
-            when (resultCode) {
-                Activity.RESULT_OK -> {
-                    data?.let {
-                        val result = Checkout.createTokenizationResult(it)
-                        Log.e("yandex good", result.paymentToken)
+        when(requestCode){
+            IYandexCashBox.REQUEST_CODE_TOKENIZE -> {
+                when (resultCode) {
+                    Activity.RESULT_OK -> {
+                        data?.let {
+                            val result = Checkout.createTokenizationResult(it)
+                            Log.e("yandex good", result.paymentToken)
+                        }
+                    }
+                    Activity.RESULT_CANCELED -> {
+                        Log.e("yandex error", "canceled")
                     }
                 }
-                Activity.RESULT_CANCELED -> {
-                    Log.e("yandex error", "canceled")
-                }
+            }
+            IYandexCashBox.REQUEST_CODE_3DS -> {
+
             }
         }
     }

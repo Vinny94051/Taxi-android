@@ -1,4 +1,4 @@
-package com.example.taximuslim.data.network.remote.response.GoogleMapDirectionResponse
+package com.example.taximuslim.data.network.remote.response.googleMapDirectionResponse
 
 data class Route(
     val bounds: Bounds,
