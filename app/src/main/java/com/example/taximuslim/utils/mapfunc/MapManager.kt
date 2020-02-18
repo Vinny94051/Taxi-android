@@ -127,7 +127,7 @@ class MapManager(private val context: Context) {
 
 
     fun getLocationFromAddress(strAddress: String): LatLng {
-        var location: LatLng = LatLng(0.0, 0.0)
+        var location = LatLng(0.0, 0.0)
 
         val address: MutableList<Address> =
             Geocoder(context).getFromLocationName(strAddress, 1)

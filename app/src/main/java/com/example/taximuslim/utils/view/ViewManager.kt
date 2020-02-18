@@ -9,6 +9,13 @@ import android.widget.EditText
 import com.example.taximuslim.presentation.view.mainscreen.managers.ButtonManager
 import com.example.taximuslim.presentation.view.design.dialogswindow.PriceAlert
 import com.example.taximuslim.utils.PriceHolder
+import android.animation.AnimatorListenerAdapter
+import android.opengl.ETC1.getHeight
+import androidx.core.view.ViewCompat.animate
+import android.R.attr.translationY
+import android.animation.Animator
+import android.view.animation.Animation
+
 
 class ViewManager(var activity: Context) {
 
@@ -58,4 +65,36 @@ class ViewManager(var activity: Context) {
                 foo()
         }
     }
+
+    fun hideViewWithAnimate(view : View){
+        view.animate()
+            .translationY(view.height.toFloat())
+            .alpha(0.0f)
+            .setDuration(300)
+            .setListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    super.onAnimationEnd(animation)
+                    view.visibility = View.GONE
+                }
+            })
+    }
+
+    fun showViewWithAnimate(view : View){
+        view.setOnClickListener { object : Animation.AnimationListener{
+            override fun onAnimationRepeat(animation: Animation?) {}
+            override fun onAnimationEnd(animation: Animation?) {}
+
+            override fun onAnimationStart(animation: Animation?) {
+                view.visibility = View.VISIBLE
+            }
+        } }
+        view.visibility = View.VISIBLE
+
+        view.animate()
+            .translationY(view.height.toFloat())
+            .alpha(1.0f).duration = 300
+
+    }
+
+
 }

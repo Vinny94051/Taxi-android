@@ -18,10 +18,7 @@ import com.example.taximuslim.utils.mapfunc.MapManager
 import com.example.taximuslim.utils.mapfunc.PolyManager
 import com.example.taximuslim.utils.view.MarkerAnimation
 import com.example.taximuslim.utils.view.ViewManager
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.MapView
-import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import kotlinx.android.synthetic.main.fragment_trip_process.*
@@ -140,10 +137,9 @@ class TripProcessFragment : BaseFragment(), OnMapReadyCallback {
         })
 
         viewModel.directionsLiveData.observe(this, Observer { route ->
-            if (!isRouteDrawed) {
                 polyManager.drawRouteWithOutPadding(route)
-                isRouteDrawed = true
-            }
+
+
         })
 
         viewModel.fetchOrderStatus(owner.tripId)
@@ -153,6 +149,8 @@ class TripProcessFragment : BaseFragment(), OnMapReadyCallback {
         if (!router.isFragmentInStack(ChooseDriverFragment.ID)) {
             viewManager.hideViews(userMarker)
             MarkerAnimation.hideMarker()
+            viewModel.loadRoutes(response.startPointAddress, response.endPointAddress)
+
             ChooseDriverFragment.newInstance().apply {
                 drivers = response.drivers
                 tripId = owner.tripId
@@ -173,15 +171,21 @@ class TripProcessFragment : BaseFragment(), OnMapReadyCallback {
             val fragment =
                 DriverOnTheWayFragment.newInstance()
             fragment.statusAndDrivers = response
-            router.replaceFragment(
-                fragment,
-                R.id.fragment_container_trip,
-                DriverOnTheWayFragment.ID
-            )
+
+            PolyManager.line?.remove()
+            MapManager.markerPointALocation?.remove()
+            MapManager.markerPointBLocation?.remove()
+
             drawDriverRoute(
                 response.driverPositionLatitude,
                 response.driverPositionLongitude,
                 response.startPointAddress
+            )
+
+            router.replaceFragment(
+                fragment,
+                R.id.fragment_container_trip,
+                DriverOnTheWayFragment.ID
             )
 
             viewManager.showViews(cardView, cancelOrderTextView)
@@ -199,20 +203,16 @@ class TripProcessFragment : BaseFragment(), OnMapReadyCallback {
             MapManager.markerPointALocation?.remove()
             MapManager.markerPointBLocation?.remove()
 
-            mMap.animateCamera(
-                CameraUpdateFactory.newLatLng(
-                    LatLng(
-                        response.startPointLatitude,
-                        response.startPointLongitude
-                    )
-                )
-            )
-
             driverMarker = mapManager.addMarker(
                 mMap,
                 LatLng(response.startPointLatitude, response.startPointLongitude),
                 R.drawable.ic_driver_car_marker
             )
+
+            mapManager.moveCameraToLocation(mMap,LatLng(
+                response.startPointLatitude,
+                response.startPointLongitude
+            ), 17f)
 
 
             router.replaceFragment(
@@ -227,10 +227,9 @@ class TripProcessFragment : BaseFragment(), OnMapReadyCallback {
 
     @SuppressLint("SetTextI18n")
     private fun fiveStatusAction(response: StatusAndDrivers) = viewManager.apply {
-        isRouteDrawed = false
         driverMarker.remove()
-        if (!isRouteDrawed)
-            viewModel.loadRoutes(response.startPointAddress, response.endPointAddress)
+        isRouteDrawed = false
+        viewModel.loadRoutes(response.startPointAddress, response.endPointAddress)
 
         hideViews(cardView, cancelOrderTextView)
         timeInTripTextView.text = "Осталось ехать " + response.time
@@ -260,11 +259,4 @@ class TripProcessFragment : BaseFragment(), OnMapReadyCallback {
         mapManager.latLngToAddress(LatLng(startLat, startLng)),
         endPointAddress
     )
-
-
-    private fun addAnimation(view: View) {
-        SpringAnimation(view, DynamicAnimation.TRANSLATION_Y, 0f)
-    }
-
-
 }

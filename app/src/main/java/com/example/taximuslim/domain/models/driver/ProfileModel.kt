@@ -1,7 +1,6 @@
 package com.example.taximuslim.domain.models.driver
 
 
-import com.google.gson.annotations.SerializedName
 
 data class ProfileModel(
     val car: String,

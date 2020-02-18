@@ -45,7 +45,7 @@ class FloatFragment : BaseFragment(), View.OnClickListener {
     private lateinit var placePredictions: PlacePredictions
     private var adapter = PredictionAdapter()
 
-    var closeListener: ((String) -> Unit)? = null
+    private var closeListener: ((String) -> Unit)? = null
 
 
     override fun layoutId(): Int = R.layout.fragment_float

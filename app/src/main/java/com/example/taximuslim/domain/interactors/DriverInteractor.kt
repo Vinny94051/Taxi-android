@@ -1,9 +1,12 @@
 package com.example.taximuslim.domain.interactors
 
+import com.example.taximuslim.data.network.dto.yandex.cashbox.PaymentRequest
+import com.example.taximuslim.data.network.dto.yandex.cashbox.PaymentResponse
 import com.example.taximuslim.data.network.remote.request.driver.OrderListRequest
 import com.example.taximuslim.data.network.remote.response.driver.DriverIncome
 import com.example.taximuslim.domain.models.driver.ProfileModel
 import com.example.taximuslim.domain.models.driver.OrderHistoryModel
+import io.reactivex.Single
 import com.example.taximuslim.domain.models.driver.order.DriverOrderModel
 
 interface DriverInteractor {
@@ -21,6 +24,17 @@ interface DriverInteractor {
     suspend fun changeName(name: String): String
 
     suspend fun sendSmsCode(code: String): Boolean
+
+
+    /**
+     * @param payment - object for creating 3d secure link
+     *
+     * @return response which contains all fields which has PaymentRequest and 3d secure link
+     * Single - RxJava object which you need to observe
+     *
+     * Function for getting 3ds link
+     */
+    fun makePayment(payment: PaymentRequest) : Single<PaymentResponse>
 
     suspend fun fetchOrderList(request: OrderListRequest): List<DriverOrderModel>?
 }

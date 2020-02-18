@@ -1,50 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="240dp"
-    android:background="@drawable/fragment_main_back"
-    >
+    android:background="@drawable/fragment_main_back">
 
-    <TextView
-        android:id="@+id/chooseDriverTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="12dp"
-        android:text="Выберите водителя"
-        android:textAppearance="@style/ContrastFieldText"
-        android:textSize="18sp" />
+        <TextView
+            android:id="@+id/chooseDriverTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:text="Выберите водителя"
+            android:textAppearance="@style/ContrastFieldText"
+            android:textSize="18sp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/driverRecyclerList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/chooseDriverTextView"
-        android:layout_marginTop="@dimen/default_margin"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="@dimen/default_margin"
-        />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/driverRecyclerList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/chooseDriverTextView"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin" />
 
-    <include android:id="@+id/continueButton"
-        layout="@layout/gradient_button"
-        android:layout_height="48dp"
-        android:layout_width="match_parent"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="@dimen/dp12"
-        android:layout_alignParentBottom="true"
-        />
+        <include
+            android:id="@+id/continueButton"
+            layout="@layout/gradient_button"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="@dimen/dp12" />
+
 
     <ProgressBar
         android:id="@+id/mainProgressbar"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:translationZ="20dp"
         android:layout_marginTop="@dimen/default_margin"
         android:indeterminate="true"
+        android:translationZ="20dp"
         android:visibility="gone" />
-
 </RelativeLayout>

@@ -8,7 +8,9 @@ import com.example.taximuslim.data.repository.google.MapperDirections
 import com.example.taximuslim.data.repository.guide.GuideRepo
 import com.example.taximuslim.data.repository.order.OrderRepo
 import com.example.taximuslim.domain.auth.IAuthInteractor
+import com.example.taximuslim.domain.interactors.DriverInteractorImpl
 import com.example.taximuslim.domain.order.OrderInteractor
+import com.example.taximuslim.presentation.view.TestUI
 import com.example.taximuslim.presentation.view.auth.driver.aboutYou.AuthDriverAboutYouViewModel
 import com.example.taximuslim.presentation.view.auth.driver.car.AuthDriverChooseCarViewModel
 import com.example.taximuslim.presentation.view.auth.driver.carNumb.AuthDriverCarNumbViewModel
@@ -21,6 +23,7 @@ import com.example.taximuslim.presentation.view.auth.fragments.daughter.EnterSms
 import com.example.taximuslim.presentation.view.driver.driverIncome.DriverIncomeViewModel
 import com.example.taximuslim.presentation.view.driver.driverMainScreen.DriverMainScreenViewModel
 import com.example.taximuslim.presentation.view.driver.driverOrderHistory.DriverOrderHistoryViewModel
+import com.example.taximuslim.presentation.view.driver.profile.DriverProfileFragment
 import com.example.taximuslim.presentation.view.driver.driverOrders.DriverOrderViewModel
 import com.example.taximuslim.presentation.view.driver.profile.DriverProfileViewModel
 import com.example.taximuslim.presentation.view.driver.settings.DriverSettingsViewModel
@@ -81,5 +84,8 @@ interface AppComponent {
     fun inject(driverSettingsViewModel: DriverSettingsViewModel)
     fun inject(changeNumbViewModel: ChangeNumbViewModel)
     fun inject(validateChangeNumbCodeViewModel: ValidateChangeNumbCodeViewModel)
+    fun inject(testUI: TestUI)
+    fun inject(driverInteractorImpl: DriverInteractorImpl)
+    fun inject(driverProfileFragment: DriverProfileFragment)
     fun inject(driverOrderViewModel: DriverOrderViewModel)
 }

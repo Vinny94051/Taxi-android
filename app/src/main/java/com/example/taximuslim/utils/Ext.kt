@@ -5,10 +5,7 @@ import android.content.res.Resources
 import android.database.Observable
 import android.location.Location
 import android.os.Build
-import android.text.Editable
-import android.text.Html
-import android.text.SpannableStringBuilder
-import android.text.Spanned
+import android.text.*
 import android.view.Window
 import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
@@ -20,7 +17,6 @@ import com.google.android.gms.maps.model.Marker
 import io.reactivex.subjects.ReplaySubject
 import java.math.RoundingMode
 import java.text.DecimalFormat
-
 
 
 fun Location.toLatLng(): LatLng = LatLng(this.latitude, this.longitude)
@@ -71,6 +67,10 @@ fun Activity.hideActionBar() {
 
 
 fun EditText.cursorToEnd() = this.setSelection(this.text.toString().length)
+
+fun EditText.spellcheckingOff() {
+    this.inputType = InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS
+}
 
 fun Int.toDp() = (this * Resources.getSystem().displayMetrics.density).toInt()
 

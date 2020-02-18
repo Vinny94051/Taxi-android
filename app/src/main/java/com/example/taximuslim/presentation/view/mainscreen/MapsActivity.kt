@@ -7,6 +7,7 @@ import android.graphics.Point
 import android.location.Location
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
 import android.text.SpannableStringBuilder
 import android.util.Log
 import android.view.MenuItem
@@ -137,7 +138,9 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
                 }
             }
             R.id.main_button_order_taxi -> orderCar()
-            R.id.burger_menu_main -> NavigationDrawerManager.showNavigationDrawer(drawer_layout)
+            R.id.burger_menu_main -> {
+                NavigationDrawerManager.showNavigationDrawer(drawer_layout)
+            }
             R.id.myLocationBtn -> updateLocation()
             R.id.cashRadioBtn -> {
                 paymentType = 1
@@ -254,6 +257,10 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
         cashRadioBtn.setOnClickListener(this)
         bankRadioBtn.setOnClickListener(this)
         priceAlert = PriceAlert(this as Activity)
+        user_location.spellcheckingOff()
+        pointBEditText.spellcheckingOff()
+        tripPriceEditText.spellcheckingOff()
+        commentEditText.spellcheckingOff()
         commentAlert = CommentAlert(
             this as Activity
         )
@@ -265,6 +272,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
             viewManager.removeFocusFromEditTexts(tripPriceEditText, commentEditText)
         }
     }
+
 
     private fun updateLocation() = viewModel.loadLocation()
 
@@ -358,7 +366,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
     private fun setUserLocationText(location: Location) {
         userLocationLatLng = location.toLatLng()
         userLocation = mapManger.latLngToAddress(location.toLatLng())
-        user_location.text = SpannableStringBuilder(userLocation)
+        user_location.text = userLocation.toEditable()
     }
 
 
@@ -415,7 +423,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener,
                     removeFragment(item)
                 }
                 finish()
-                startActivity(intent)
+                startActivity(Intent(this, MapsActivity::class.java))
             }
         }
         super.onBackPressed()
