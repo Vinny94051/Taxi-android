@@ -1,25 +1,14 @@
 package com.example.taximuslim.presentation.view.driver.profile
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
-import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.lifecycle.*
 import com.example.taximuslim.App
-import com.example.taximuslim.data.network.dto.yandex.cashbox.PaymentRequest
 import com.example.taximuslim.data.network.dto.yandex.cashbox.PaymentResponse
 import com.example.taximuslim.domain.interactors.DriverInteractor
 import com.example.taximuslim.domain.models.driver.ProfileModel
-import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import ru.yandex.money.android.sdk.Amount
-import ru.yandex.money.android.sdk.Checkout
-import ru.yandex.money.android.sdk.PaymentParameters
-import ru.yandex.money.android.sdk.SavePaymentMethod
 import java.lang.Exception
-import java.math.BigDecimal
-import java.util.*
 import javax.inject.Inject
 
 class DriverProfileViewModel : ViewModel(), LifecycleObserver {
@@ -29,7 +18,7 @@ class DriverProfileViewModel : ViewModel(), LifecycleObserver {
 
     val profile = MutableLiveData<ProfileModel>()
     val balance = MutableLiveData<String>("0")
-    val payment = MutableLiveData<PaymentResponse>()
+    val payment = MutableLiveData<Boolean>(false)
 
     @Inject
     lateinit var interactor: DriverInteractor
@@ -56,15 +45,16 @@ class DriverProfileViewModel : ViewModel(), LifecycleObserver {
     }
 
 
-    @SuppressLint("CheckResult")
-    fun onPayClick(payment: PaymentRequest) {
-        interactor.makePayment(payment)
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnError { exception ->
-                Log.e("DriverProfileVM:", exception.message.toString())
-            }
-            .subscribe { response ->
-                this@DriverProfileViewModel.payment.value = response
-            }
+
+    fun onPayClick() {
+        payment.value = true
+//        interactor.makePayment(payment)
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .doOnError { exception ->
+//                Log.e("DriverProfileVM:", exception.message.toString())
+//            }
+//            .subscribe { response ->
+//                this@DriverProfileViewModel.payment.value = response
+//            }
     }
 }

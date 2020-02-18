@@ -21,20 +21,21 @@ import com.example.taximuslim.presentation.view.auth.driver.validatePerson.AuthD
 import com.example.taximuslim.presentation.view.auth.fragments.daughter.AuthorizationFragment
 import com.example.taximuslim.presentation.view.auth.fragments.daughter.EnterSmsCodeFragment
 import com.example.taximuslim.presentation.view.driver.driverIncome.DriverIncomeViewModel
+import com.example.taximuslim.presentation.view.driver.driverMainScreen.DriverMainScreen
 import com.example.taximuslim.presentation.view.driver.driverMainScreen.DriverMainScreenViewModel
 import com.example.taximuslim.presentation.view.driver.driverOrderHistory.DriverOrderHistoryViewModel
-import com.example.taximuslim.presentation.view.driver.profile.DriverProfileFragment
 import com.example.taximuslim.presentation.view.driver.driverOrders.DriverOrderViewModel
+import com.example.taximuslim.presentation.view.driver.profile.DriverProfileFragment
 import com.example.taximuslim.presentation.view.driver.profile.DriverProfileViewModel
 import com.example.taximuslim.presentation.view.driver.settings.DriverSettingsViewModel
 import com.example.taximuslim.presentation.view.driver.settings.changeNumber.ChangeNumbViewModel
 import com.example.taximuslim.presentation.view.driver.settings.changeNumber.validateCode.ValidateChangeNumbCodeViewModel
 import com.example.taximuslim.presentation.view.mainscreen.FloatFragment
 import com.example.taximuslim.presentation.view.mainscreen.TripProcessFragment
-import com.example.taximuslim.presentation.viewmodel.auth.AuthViewModel
-import com.example.taximuslim.presentation.viewmodel.maps.MainViewModel
 import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.guide.GuideViewModel
 import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.guide.PlacesListViewModel
+import com.example.taximuslim.presentation.viewmodel.auth.AuthViewModel
+import com.example.taximuslim.presentation.viewmodel.maps.MainViewModel
 import com.example.taximuslim.presentation.viewmodel.maps.TripViewModel
 import com.example.taximuslim.utils.mapfunc.DistanceCalculator
 import com.example.taximuslim.utils.mapfunc.PolyManager
@@ -88,4 +89,5 @@ interface AppComponent {
     fun inject(driverInteractorImpl: DriverInteractorImpl)
     fun inject(driverProfileFragment: DriverProfileFragment)
     fun inject(driverOrderViewModel: DriverOrderViewModel)
+    fun inject(driverMainScreen: DriverMainScreen)
 }
