@@ -55,7 +55,7 @@ class DriverProfileViewModel : ViewModel(), LifecycleObserver {
 
     }
 
-
+    //TODO data binding его не видит
     @SuppressLint("CheckResult")
     fun onPayClick(payment: PaymentRequest) {
         interactor.makePayment(payment)

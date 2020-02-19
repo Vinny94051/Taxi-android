@@ -25,6 +25,5 @@ class App : Application() {
         return DaggerAppComponent.builder().appModule(AppModule(app))
             .apiModule(ApiModule)
             .build()
-
     }
 }
