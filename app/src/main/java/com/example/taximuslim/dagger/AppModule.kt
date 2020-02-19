@@ -12,6 +12,7 @@ import com.example.taximuslim.domain.interactors.DriverInteractor
 import com.example.taximuslim.domain.interactors.DriverInteractorImpl
 import com.example.taximuslim.domain.order.IOrderInteractor
 import com.example.taximuslim.domain.order.OrderInteractor
+import com.example.taximuslim.domain.yandex.IYandexInteractor
 import com.example.taximuslim.presentation.viewmodel.auth.AuthViewModel
 import com.example.taximuslim.utils.mapfunc.DecodePoly
 import com.example.taximuslim.utils.mapfunc.MapManager
@@ -71,5 +72,8 @@ class AppModule(private val app: Application) {
 
     @Provides
     fun providesYandexCashBox() : IYandexCashBox = YandexCashbox(app)
+
+    @Provides
+    fun providesYandexInteractor() : IYandexInteractor = DriverInteractorImpl()
 
 }

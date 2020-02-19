@@ -25,7 +25,9 @@
             app:layout_constraintBottom_toBottomOf="@+id/settingsButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/settingsButton" />
+            app:layout_constraintTop_toTopOf="@+id/settingsButton"
+            android:visibility="gone"
+            />
 
         <ImageButton
             android:id="@+id/settingsButton"

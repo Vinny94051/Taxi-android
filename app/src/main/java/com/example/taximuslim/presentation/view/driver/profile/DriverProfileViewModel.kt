@@ -55,16 +55,15 @@ class DriverProfileViewModel : ViewModel(), LifecycleObserver {
 
     }
 
-    //TODO data binding его не видит
-    @SuppressLint("CheckResult")
-    fun onPayClick(payment: PaymentRequest) {
-        interactor.makePayment(payment)
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnError { exception ->
-                Log.e("DriverProfileVM:", exception.message.toString())
-            }
-            .subscribe { response ->
-                this@DriverProfileViewModel.payment.value = response
-            }
+
+    fun onPayClick() {
+//        interactor.makePayment(payment)
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .doOnError { exception ->
+//                Log.e("DriverProfileVM:", exception.message.toString())
+//            }
+//            .subscribe { response ->
+//                this@DriverProfileViewModel.payment.value = response
+//            }
     }
 }

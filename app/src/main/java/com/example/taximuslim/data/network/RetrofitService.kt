@@ -30,7 +30,7 @@ class RetrofitService {
 
     private fun getRetrofitForYandexApi() =
         Retrofit.Builder()
-            .baseUrl(BASE_URL_YANDEX_API)
+            .baseUrl(BASE_URL)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build()

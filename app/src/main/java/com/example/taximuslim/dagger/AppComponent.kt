@@ -34,6 +34,7 @@ import com.example.taximuslim.presentation.viewmodel.auth.AuthViewModel
 import com.example.taximuslim.presentation.viewmodel.maps.MainViewModel
 import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.guide.GuideViewModel
 import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.guide.PlacesListViewModel
+import com.example.taximuslim.presentation.viewmodel.YandexViewModel
 import com.example.taximuslim.presentation.viewmodel.maps.TripViewModel
 import com.example.taximuslim.utils.mapfunc.DistanceCalculator
 import com.example.taximuslim.utils.mapfunc.PolyManager
@@ -86,4 +87,5 @@ interface AppComponent {
     fun inject(testUI: TestUI)
     fun inject(driverInteractorImpl: DriverInteractorImpl)
     fun inject(driverProfileFragment: DriverProfileFragment)
+    fun inject(yandexViewModel: YandexViewModel)
 }

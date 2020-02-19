@@ -5,14 +5,8 @@ import com.google.gson.annotations.SerializedName
 data class PaymentRequest(
     @SerializedName("payment_token")
     val paymentToken : String,
-    @SerializedName("amount")
-    val amount: Amount,
-    @SerializedName("confirmation")
-    val confirmation : Confirmation,
-    @SerializedName("capture")
-    val isCanceling : Boolean,
-    @SerializedName("description")
-    val description : String
+    @SerializedName("value")
+    val value : String
 )
 
 data class PaymentResponse(
@@ -31,7 +25,9 @@ data class PaymentResponse(
     @SerializedName("description")
     val description : String,
     @SerializedName("recipient")
-    val recipient : Recipient
+    val recipient : Recipient,
+    @SerializedName("balance")
+    val pay : String
 )
 
 
@@ -45,9 +41,8 @@ data class Amount(
 data class Confirmation(
     @SerializedName("type")
     val type : String,
-    @SerializedName("enforce")
-    val enforce : Boolean,
-    @SerializedName("return_url")
+
+    @SerializedName("confirmation_url")
     val url : String
 )
 
