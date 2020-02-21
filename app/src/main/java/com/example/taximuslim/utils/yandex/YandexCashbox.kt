@@ -30,7 +30,11 @@ class YandexCashbox @Inject constructor(var context: Context) : IYandexCashBox {
             clientApplicationKey,
             shopId,
             SavePaymentMethod.OFF,
-            hashSetOf(PaymentMethodType.BANK_CARD, PaymentMethodType.SBERBANK)
+            hashSetOf(
+                PaymentMethodType.BANK_CARD,
+                PaymentMethodType.SBERBANK,
+                PaymentMethodType.GOOGLE_PAY
+            )
         )
 
         val intent = Checkout.createTokenizeIntent(context, payParameters)

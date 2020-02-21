@@ -45,7 +45,11 @@ class OrderInteractor : IOrderInteractor {
         }
     }
 
-    override fun getDirections(startAddress: String, endAddress: String, listener: ((Route) -> Unit)) {
+    override fun getDirections(
+        startAddress: String,
+        endAddress: String,
+        listener: ((Route) -> Unit)
+    ) {
         googleRepo.getDirections(startAddress, endAddress) { route ->
             listener.invoke(route)
         }
@@ -77,8 +81,11 @@ class OrderInteractor : IOrderInteractor {
         return orderRepo.fetchOrderStatus(tripId)
             .toObservable()
             .subscribeOn(Schedulers.io())
-            .delay(5, TimeUnit.SECONDS)
+            .delay(3, TimeUnit.SECONDS)
             .repeat()
+            .doOnError {
+                Log.e("FetchOrderStatus", it.message + " " + it.localizedMessage)
+            }
     }
 
     override fun cancelOrder(tripId: Int): Single<BooleanStatus> =

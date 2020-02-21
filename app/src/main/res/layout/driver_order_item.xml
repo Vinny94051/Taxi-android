@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="order"
-            type="com.example.taximuslim.domain.models.driver.DriverOrderModel" />
+            type="com.example.taximuslim.domain.models.driver.OrderToDriverModel" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -40,6 +39,7 @@
                 android:textSize="16sp"
                 android:maxLines="1"
                 android:ellipsize="end"
+                android:text="@{order.clientName}"
                 app:layout_constraintEnd_toStartOf="@+id/routeDistance"
                 app:layout_constraintStart_toStartOf="@id/start"
                 app:layout_constraintTop_toTopOf="parent"
@@ -133,7 +133,7 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="@dimen/medium_margin"
                 android:fontFamily="@font/roboto_medium"
-                android:text=""
+                android:text="@{order.time}"
                 android:textAppearance="@style/SecondaryText"
                 android:textSize="16sp"
                 android:singleLine="true"

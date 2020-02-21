@@ -1,5 +1,7 @@
 package com.example.taximuslim.data.network.api
 
+import com.example.taximuslim.data.network.dto.driver.DriverLocation
+import com.example.taximuslim.data.network.dto.driver.OrderListResponse
 import com.example.taximuslim.data.network.dto.driver.PaymentResult
 import com.example.taximuslim.data.network.dto.order.OrderRequest
 import com.example.taximuslim.data.network.remote.request.driver.*
@@ -8,6 +10,8 @@ import com.example.taximuslim.domain.models.driver.auth.CarInfo
 import com.example.taximuslim.domain.models.driver.auth.DriverProfile
 import com.example.taximuslim.domain.models.driver.auth.LicenceNumb
 import com.example.taximuslim.domain.models.driver.order.OrderHistoryResponse
+import io.reactivex.Observable
+import io.reactivex.Single
 import retrofit2.http.*
 
 interface DriverApi {
@@ -129,18 +133,18 @@ interface DriverApi {
         @Body body: SmsCodeRequest
     ): StatusResponse
 
-    @GET("trip/trip-orders")
-    suspend fun fetchTripList(
+    @POST("trip/trip-orders")
+    fun fetchTripList(
         @Header("Authorization") token: String,
-        @Body body: OrderRequest
-    )  : List<OrderResponse>
+        @Body body: DriverLocation
+    ): Observable<List<OrderResponse>?>
+    // )  : Observable<List<OrderListResponse>>
 
     @POST("money/pay")
     suspend fun sentPaymentResult(
         @Header("Authorization") token: String,
-        @Body paymentResult : PaymentResult
+        @Body paymentResult: PaymentResult
     )
-
 
 
 }

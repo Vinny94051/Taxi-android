@@ -22,13 +22,13 @@
             android:id="@+id/driverSupportFragment"
             android:title="@string/support_service" />
 
-            <item
-                android:id="@+id/tempId"
-                android:title="@string/online_registration"/>
+        <item
+            android:id="@+id/tempId"
+            android:title="@string/online_registration" />
 
-            <item
-                android:id="@+id/tempId2"
-                android:title="@string/become_passenger"/>
+        <item
+            android:id="@+id/tempId2"
+            android:title="@string/become_passenger" />
 
     </group>
 

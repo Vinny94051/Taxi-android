@@ -8,8 +8,23 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taximuslim.databinding.DriverOrderItemBinding
 import com.example.taximuslim.domain.models.driver.DriverOrderModel
+import com.example.taximuslim.domain.models.driver.OrderToDriverModel
 
-class DriverOrderAdapter: ListAdapter<DriverOrderModel,DriverOrderAdapter.ViewHolder>(Companion){
+class DriverOrderAdapter :
+    ListAdapter<OrderToDriverModel, DriverOrderAdapter.ViewHolder>(Companion) {
+
+    companion object : DiffUtil.ItemCallback<OrderToDriverModel>() {
+        override fun areItemsTheSame(
+            oldItem: OrderToDriverModel,
+            newItem: OrderToDriverModel
+        ) = oldItem.id == newItem.id
+
+        override fun areContentsTheSame(
+            oldItem: OrderToDriverModel,
+            newItem: OrderToDriverModel
+        ) = oldItem == newItem
+
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
@@ -20,35 +35,21 @@ class DriverOrderAdapter: ListAdapter<DriverOrderModel,DriverOrderAdapter.ViewHo
         holder.bind(order)
     }
 
-    class ViewHolder(private val binding: DriverOrderItemBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(order: DriverOrderModel){
-            binding.order = order
-        }
+    class ViewHolder(private val binding: DriverOrderItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        companion object{
-            fun from(parent: ViewGroup): ViewHolder{
+        companion object {
+            fun from(parent: ViewGroup): ViewHolder {
                 val inflater = LayoutInflater.from(parent.context)
-                val binding
-                        = DriverOrderItemBinding.inflate(inflater, parent, false)
+                val binding = DriverOrderItemBinding.inflate(inflater, parent, false)
                 return ViewHolder(binding)
             }
         }
 
-    }
-
-    companion object: DiffUtil.ItemCallback<DriverOrderModel>(){
-        override fun areItemsTheSame(
-            oldItem: DriverOrderModel,
-            newItem: DriverOrderModel
-        ): Boolean {
-            return oldItem == newItem
-        }
-
-        override fun areContentsTheSame(
-            oldItem: DriverOrderModel,
-            newItem: DriverOrderModel
-        ): Boolean {
-           return newItem == oldItem
+        fun bind(order: OrderToDriverModel) {
+            binding.order = order
         }
     }
+
+
 }

@@ -25,19 +25,6 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
         tools:targetApi="m">
 
-        <activity android:name=".presentation.view.TestUI">
-
-                        <intent-filter>
-                            <action android:name="android.intent.action.MAIN" />
-                            <category android:name="android.intent.category.LAUNCHER" />
-                        </intent-filter>
-        </activity>
-        <activity android:name=".presentation.view.driver.driverMainScreen.DriverMainScreen" />
-
-
-        <activity android:name=".presentation.view.auth.driver.AuthDriverMainActivity">
-
-        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -50,34 +37,38 @@
             android:name=".utils.mapfunc.MapManager"
             android:exported="false" />
 
+
+        <activity android:name=".presentation.view.TestUI">
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
+
+        </activity>
+        <activity android:name=".presentation.view.driver.driverMainScreen.DriverMainScreen" />
+        <activity android:name=".presentation.view.auth.driver.AuthDriverMainActivity" />
         <activity
             android:name=".presentation.view.mainscreen.MapsActivity"
             android:label="@string/title_activity_maps_controller"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan" />
 
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.VIEW" />-->
-
-<!--                <category android:name="android.intent.category.DEFAULT" />-->
-<!--            </intent-filter>-->
-        </activity>
         <activity
             android:name=".presentation.view.auth.AuthActivity"
             android:windowSoftInputMode="adjustPan">
 
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
         <activity android:name="com.example.taximuslim.presentation.view.mainscreen.menu.MenuItemsActivity" />
-        <activity android:name=".presentation.view.splashscreen.SplashScreenActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity android:name=".presentation.view.splashscreen.SplashScreenActivity">
 
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
         </activity>
     </application>
 

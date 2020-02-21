@@ -5,14 +5,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.example.taximuslim.App
 import com.example.taximuslim.R
 import com.example.taximuslim.data.network.dto.yandex.cashbox.PaymentRequest
 import com.example.taximuslim.data.network.dto.yandex.cashbox.PaymentResponse
 import com.example.taximuslim.data.network.dto.yandex.cashbox.SentIdPayRequest
-import com.example.taximuslim.presentation.view.design.customAlert.InputNameAlert
 import com.example.taximuslim.presentation.viewmodel.YandexViewModel
 import com.example.taximuslim.utils.yandex.IYandexCashBox
 import kotlinx.android.synthetic.main.driver_order_fragment.*
@@ -37,9 +35,9 @@ class TestUI : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        createPayBtn.setOnClickListener {
-            createPay()
-        }
+//        createPayBtn.setOnClickListener {
+//            createPay()
+//        }
         initYandexViewModel()
     }
 
