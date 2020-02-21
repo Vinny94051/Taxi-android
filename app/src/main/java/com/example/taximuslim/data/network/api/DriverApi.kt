@@ -1,9 +1,11 @@
 package com.example.taximuslim.data.network.api
 
 import com.example.taximuslim.data.network.dto.driver.DriverLocation
+import com.example.taximuslim.data.network.dto.driver.FetchDriverStatusRequest
 import com.example.taximuslim.data.network.dto.driver.OrderListResponse
 import com.example.taximuslim.data.network.dto.driver.PaymentResult
 import com.example.taximuslim.data.network.dto.order.OrderRequest
+import com.example.taximuslim.data.network.dto.order.OrderStatusResponse
 import com.example.taximuslim.data.network.remote.request.driver.*
 import com.example.taximuslim.data.network.remote.response.driver.*
 import com.example.taximuslim.domain.models.driver.auth.CarInfo
@@ -138,13 +140,18 @@ interface DriverApi {
         @Header("Authorization") token: String,
         @Body body: DriverLocation
     ): Observable<List<OrderResponse>?>
-    // )  : Observable<List<OrderListResponse>>
 
     @POST("money/pay")
     suspend fun sentPaymentResult(
         @Header("Authorization") token: String,
         @Body paymentResult: PaymentResult
     )
+
+    @POST("trip/trip-order-driver-status")
+    fun fetchDriverStatus(
+        @Header("Authorization") token: String,
+        @Body body: FetchDriverStatusRequest
+    ) : Single<OrderStatusResponse>
 
 
 }

@@ -53,6 +53,7 @@ class TestUI : AppCompatActivity() {
                     Activity.RESULT_OK -> {
                         data?.let {
                             val result = Checkout.createTokenizationResult(it)
+                           //TODO result.paymentMethodType
                             Log.e("yandex good", result.paymentToken)
                             yandexViewModel.makePayment(
                                 PaymentRequest(

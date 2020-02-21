@@ -7,8 +7,12 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.transition.Slide
+import com.example.taximuslim.baseUI.FragmentRouter
 
 abstract class BaseActivity : AppCompatActivity() {
+
+    protected val router: FragmentRouter
+        get() = FragmentRouter(supportFragmentManager)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

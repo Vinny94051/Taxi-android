@@ -85,6 +85,7 @@ class AuthorizationFragment : BaseAuthFragment() {
                         RegistrationStatus.ENTRY -> {
                             (activity as AuthActivity).apply {
                                 saveNumber(phoneNumberEditText)
+                                isAuth = true
                                 addFragment(
                                     EnterSmsCodeFragment.INSTANCE,
                                     R.id.container,

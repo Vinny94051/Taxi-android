@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/driverTripMapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <FrameLayout
+        android:id="@+id/fragment_container_driver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+    <TextView
+        android:id="@+id/waitingClientTextView"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="@dimen/small_margin"
+        android:layout_marginBottom="@dimen/dp12"
+        android:background="@drawable/fragment_main_back"
+        android:elevation="@dimen/default_margin"
+        android:gravity="center"
+        android:translationZ="2dp"
+        android:text="Ждем выбора пассажира"
+        android:textAlignment="center"
+        android:textAppearance="@style/ContrastFieldText" />
+
+</RelativeLayout>

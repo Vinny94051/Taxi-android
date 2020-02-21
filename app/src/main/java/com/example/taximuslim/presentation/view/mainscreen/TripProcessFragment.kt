@@ -78,7 +78,7 @@ class TripProcessFragment : BaseFragment(), OnMapReadyCallback {
         mMap.uiSettings.isScrollGesturesEnabled = false
         mMap.uiSettings.isZoomControlsEnabled = false
         polyManager = PolyManager(mMap)
-        MarkerAnimation.startAnimation(rootView)
+        MarkerAnimation.startAnimation(rootView,R.drawable.circle_vector)
     }
 
 

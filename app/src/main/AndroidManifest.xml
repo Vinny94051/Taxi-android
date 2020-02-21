@@ -57,9 +57,9 @@
             android:windowSoftInputMode="adjustPan">
 
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name="com.example.taximuslim.presentation.view.mainscreen.menu.MenuItemsActivity" />
@@ -70,6 +70,7 @@
             <!--                <category android:name="android.intent.category.LAUNCHER" />-->
             <!--            </intent-filter>-->
         </activity>
+        <activity android:name=".presentation.view.driver.driverTripProccess.main.DriverTripProcessActivity" />
     </application>
 
 </manifest>

@@ -14,6 +14,7 @@ class AuthActivity : BaseActivity() {
 
 
     var userNumber: String? = null
+    var isAuth = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

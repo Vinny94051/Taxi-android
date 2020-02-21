@@ -59,15 +59,15 @@ class DriverMainScreenViewModel : ViewModel(), LifecycleObserver {
 
     val payment = MutableLiveData<PaymentResponse>()
 
-    @SuppressLint("CheckResult")
-    fun makePayment(payment: PaymentRequest){
-        driverInteractor.makePayment(payment)
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnError { exception ->
-                Log.e("DriverProfileVM:", exception.message.toString())
-            }
-            .subscribe { response ->
-                this.payment.value = response
-            }
-    }
+//    @SuppressLint("CheckResult")
+//    fun makePayment(payment: PaymentRequest){
+//        driverInteractor.makePayment(payment)
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .doOnError { exception ->
+//                Log.e("DriverProfileVM:", exception.message.toString())
+//            }
+//            .subscribe { response ->
+//                this.payment.value = response
+//            }
+//    }
 }

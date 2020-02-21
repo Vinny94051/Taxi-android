@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/supportTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:text="Нужна помощь?"
+        android:textAppearance="@style/ContrastFieldText" />
+
+    <TextView
+        android:id="@+id/openSupportButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_toEndOf="@+id/supportTextView"
+        android:background="@drawable/background_driver_on_the_spot_btn"
+        android:paddingStart="@dimen/default_margin"
+        android:paddingEnd="@dimen/default_margin"
+        android:text="Служба поддержки"
+        android:textAppearance="@style/ContrastFieldText"
+        android:textColor="@android:color/white" />
+
+
+    <RelativeLayout
+        android:id="@+id/infoLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/openSupportButton"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:background="@drawable/fragment_main_back"
+        android:elevation="@dimen/default_margin">
+
+        <ImageView
+            android:id="@+id/greenPlaceHolderImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/carTextView"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="@dimen/default_margin"
+            android:src="@drawable/placeholder_green" />
+
+        <ImageView
+            android:id="@+id/brownPlaceHolderImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/greenPlaceHolderImageView"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="@dimen/dp12"
+            android:src="@drawable/placeholder_light_brown" />
+
+        <TextView
+            android:id="@+id/pointAAddressTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp12"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_toEndOf="@id/greenPlaceHolderImageView"
+            android:text="пл. Александра Невского, 2"
+            android:textAppearance="@style/RegularText" />
+
+        <TextView
+            android:id="@+id/pointBAddressTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pointAAddressTextView"
+            android:layout_marginStart="@dimen/dp12"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_toEndOf="@id/greenPlaceHolderImageView"
+            android:text="Багрицкого 5"
+            android:textAppearance="@style/RegularText" />
+
+        <TextView
+            android:id="@+id/timeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pointAAddressTextView"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_toEndOf="@id/pointBAddressTextView"
+            android:text="13 минут"
+            android:textAppearance="@style/RegularText"
+            android:textColor="#808080" />
+
+        <ImageView
+            android:id="@+id/priceImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/brownPlaceHolderImageView"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="18dp"
+            android:src="@drawable/cost_icon" />
+
+
+        <TextView
+            android:id="@+id/priceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/brownPlaceHolderImageView"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="@dimen/dp12"
+            android:layout_toEndOf="@id/priceImageView"
+            android:text="1200 Rub"
+            android:textAppearance="@style/RegularText" />
+
+
+        <include
+            android:id="@+id/startTripBtn"
+            layout="@layout/gradient_button"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@id/priceImageView"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="@dimen/dp12" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

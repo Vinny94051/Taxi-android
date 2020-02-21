@@ -55,8 +55,6 @@ class DriverOrderFragment : ObservableFragment() {
         binding = DriverOrderFragmentBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.recycler.adapter = adapter
-        viewLifecycleOwner.lifecycle.addObserver(viewModel)
         return binding.root
     }
 
@@ -74,6 +72,14 @@ class DriverOrderFragment : ObservableFragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        (strokeTougle.background as GradientDrawable).setStroke(
+            2.toDp(),
+            resources.getColor(R.color.red)
+        )
+    }
+
     override fun setUIState() {
         (activity as AppCompatActivity).supportActionBar?.hide()
         (activity as AppCompatActivity).drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
@@ -83,6 +89,7 @@ class DriverOrderFragment : ObservableFragment() {
     override fun setObservers() {
         viewModel.orderToDriverModelListLiveData.observe(this, Observer { response ->
             Log.e("REE::", response.toString())
+            if (response.isNotEmpty()) ordersPlaceHolderTextView.visibility = View.GONE
             adapter.submitList(response)
         })
     }
@@ -93,32 +100,46 @@ class DriverOrderFragment : ObservableFragment() {
     }
 
     private fun initTougle() {
-        val transitionBack: TransitionDrawable = stateButton.background as TransitionDrawable
-        val transitionStroke: GradientDrawable = strokeTougle.background as GradientDrawable
-        var state = true
-
-
-        val scale1 = ObjectAnimator.ofFloat(stateButton, "translationX", 270f)
-        scale1.interpolator = FastOutSlowInInterpolator()
-        val scale2 = ObjectAnimator.ofFloat(stateButton, "translationX", 0.0f)
-        scale2.interpolator = FastOutSlowInInterpolator()
 
         stateButton.setOnClickListener {
-            if (state) {
-                transitionBack.reverseTransition(200)
-                transitionStroke.setStroke(2.toDp(), resources.getColor(R.color.colorThemeGreen))
-                stateButton.text = "Свободен"
-                shadow.visibility = View.GONE
-                scale1.start()
-                state = false
-            } else {
-                transitionBack.reverseTransition(200)
-                transitionStroke.setStroke(2.toDp(), resources.getColor(R.color.red))
-                stateButton.text = "Занят"
-                scale2.start()
-                shadow.visibility = View.VISIBLE
-                state = true
+
+            val transitionBack: TransitionDrawable = stateButton.background as TransitionDrawable
+            val transitionStroke: GradientDrawable = strokeTougle.background as GradientDrawable
+            var state = true
+
+
+            val scale1 = ObjectAnimator.ofFloat(
+                stateButton,
+                "translationX",
+                (strokeTougle.width - stateButton.width - 8.toDp()
+                        - (shadowButton.width - stateButton.width)).toFloat()
+            )
+            scale1.interpolator = FastOutSlowInInterpolator()
+            val scale2 = ObjectAnimator.ofFloat(stateButton, "translationX", 0.0f)
+            scale2.interpolator = FastOutSlowInInterpolator()
+
+            stateButton.setOnClickListener {
+                if (state) {
+                    transitionBack.reverseTransition(200)
+                    transitionStroke.setStroke(
+                        2.toDp(),
+                        resources.getColor(R.color.colorThemeGreen)
+                    )
+                    stateButton.text = "Свободен"
+                    shadow.visibility = View.GONE
+                    scale1.start()
+                    state = false
+                } else {
+                    transitionBack.reverseTransition(200)
+                    transitionStroke.setStroke(2.toDp(), resources.getColor(R.color.red))
+                    stateButton.text = "Занят"
+                    scale2.start()
+                    shadow.visibility = View.VISIBLE
+                    state = true
+                }
             }
+            stateButton.performClick()
         }
+
     }
 }

@@ -1,5 +1,6 @@
 package com.example.taximuslim.presentation.view.auth.fragments.daughter
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextWatcher
 import android.view.View
@@ -13,6 +14,7 @@ import com.example.taximuslim.App
 import com.example.taximuslim.data.network.dto.auth.CheckSmsCodeRequest
 import com.example.taximuslim.presentation.view.auth.AuthActivity
 import com.example.taximuslim.presentation.view.auth.fragments.base.BaseAuthFragment
+import com.example.taximuslim.presentation.view.splashscreen.SplashScreenActivity
 import com.example.taximuslim.presentation.viewmodel.auth.AuthViewModel
 import com.example.taximuslim.utils.prefference.saveVerToken
 import com.example.taximuslim.utils.toEditable
@@ -74,7 +76,7 @@ class EnterSmsCodeFragment : BaseAuthFragment() {
                 "{status=no code}" -> showErrorView(getString(R.string.error_message_bad_code))
                 else -> {
                     saveVerToken(context!!, token)
-                    openGeoDataFragment()
+                    openNextPage()
                 }
             }
         })
@@ -114,13 +116,17 @@ class EnterSmsCodeFragment : BaseAuthFragment() {
         errorMessageTextView.visibility = View.GONE
     }
 
-    private fun openGeoDataFragment() {
-        (activity as AuthActivity)
-            .addFragment(
-                GeoDataFragment.INSTANCE,
-                R.id.container,
-                GeoDataFragment.FRAGMENT_ID
-            )
+    private fun openNextPage() {
+        if ((activity as AuthActivity).isAuth) {
+            startActivity(Intent(activity, SplashScreenActivity::class.java))
+            activity?.finish()
+        } else
+            (activity as AuthActivity)
+                .addFragment(
+                    GeoDataFragment.INSTANCE,
+                    R.id.container,
+                    GeoDataFragment.FRAGMENT_ID
+                )
     }
 
 
