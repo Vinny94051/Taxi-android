@@ -37,7 +37,7 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
-                    android:id="@+id/changeNameText"
+                    android:id="@+id/cashText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/medium_margin"
@@ -70,8 +70,8 @@
                     android:text="@string/change_numb"
                     android:onClick="@{() -> viewModel.onChangeNumbClick()}"
                     android:textAppearance="@style/ContrastFieldText"
-                    app:layout_constraintStart_toStartOf="@+id/changeNameText"
-                    app:layout_constraintTop_toBottomOf="@id/changeNameText" />
+                    app:layout_constraintStart_toStartOf="@+id/cashText"
+                    app:layout_constraintTop_toBottomOf="@id/cashText" />
 
                 <TextView
                     android:id="@+id/numbText"

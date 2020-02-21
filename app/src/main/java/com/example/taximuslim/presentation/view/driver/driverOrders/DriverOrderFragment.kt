@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -50,10 +51,12 @@ class DriverOrderFragment : ObservableFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProviders.of(this).get(DriverOrderViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(DriverOrderViewModel::class.java)
         binding = DriverOrderFragmentBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+        binding.recycler.adapter = adapter
+        viewLifecycleOwner.lifecycle.addObserver(viewModel)
         return binding.root
     }
 

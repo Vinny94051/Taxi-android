@@ -23,11 +23,11 @@
             android:title="@string/support_service" />
 
         <item
-            android:id="@+id/tempId"
+            android:id="@+id/onlineRegistrationFragment"
             android:title="@string/online_registration" />
 
         <item
-            android:id="@+id/tempId2"
+            android:id="@+id/becamePassengerFragment"
             android:title="@string/become_passenger" />
 
     </group>

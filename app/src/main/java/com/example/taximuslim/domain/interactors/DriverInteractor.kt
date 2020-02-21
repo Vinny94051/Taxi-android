@@ -11,6 +11,7 @@ import com.example.taximuslim.domain.models.driver.OrderHistoryModel
 import com.example.taximuslim.domain.models.driver.OrderToDriverModel
 import io.reactivex.Observable
 import io.reactivex.Single
+import com.example.taximuslim.domain.models.driver.order.DriverOrderModel
 
 interface DriverInteractor {
 

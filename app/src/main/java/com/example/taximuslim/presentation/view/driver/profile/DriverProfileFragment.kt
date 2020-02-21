@@ -6,12 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.taximuslim.App
 
 import com.example.taximuslim.R
 import com.example.taximuslim.databinding.DriverProfileFragmentBinding
 import com.example.taximuslim.presentation.view.baseFragment.ObservableFragment
+import com.example.taximuslim.presentation.view.design.customAlert.InputCashAlert
+import com.example.taximuslim.presentation.view.driver.driverMainScreen.payment
 import com.example.taximuslim.utils.yandex.IYandexCashBox
 import kotlinx.android.synthetic.main.activity_auth_driver_main.toolbar
 import kotlinx.android.synthetic.main.activity_driver_main_screen.*
@@ -46,5 +49,22 @@ class DriverProfileFragment : ObservableFragment() {
         (activity as AppCompatActivity).supportActionBar?.show()
         (activity as AppCompatActivity).drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         (activity as AppCompatActivity).burgerButton.visibility = View.GONE
+    }
+
+    override fun setObservers() {
+        viewModel.payment.observe(viewLifecycleOwner, Observer{
+            if (it) {
+                viewModel.payment.value = false
+                InputCashAlert(context!!) { cash ->
+                    if (cash != null) {
+                        payment = cash.toDouble()
+                        yandexCashBox.makePayment(
+                            "title", "subtitle", cash.toDouble(),
+                            activity as AppCompatActivity
+                        )
+                    }
+                }.show()
+            }
+        })
     }
 }

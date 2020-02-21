@@ -19,6 +19,7 @@ import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
+import com.example.taximuslim.domain.models.driver.order.DriverOrderModel
 
 class DriverInteractorImpl : DriverInteractor, IYandexInteractor {
 

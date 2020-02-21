@@ -224,4 +224,5 @@
     <string name="cancel_order">Отменить заказ</string>
     <string name="numb_already_exist">Аккаунт под этим номером уже существует. Введите новый номер или смените аккаунт</string>
     <string name="from_where">Откуда</string>
+    <string name="cash_description">Введите сумму, на которую вы хотите пополнить счет в рублях</string>
 </resources>

@@ -1,8 +1,9 @@
 package com.example.taximuslim.presentation.view.adapter
 
+import android.text.TextUtils
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -32,7 +33,7 @@ class DriverOrderAdapter :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val order = getItem(position)
-        holder.bind(order)
+        holder.bind(order, takeOrderListener)
     }
 
     class ViewHolder(private val binding: DriverOrderItemBinding) :
