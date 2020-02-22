@@ -5,6 +5,7 @@ import android.view.View
 import com.example.taximuslim.R
 import com.example.taximuslim.baseUI.activivty.BaseActivity
 import com.example.taximuslim.domain.models.guide.UserPlaceByLocationModel
+import com.example.taximuslim.presentation.view.driver.settings.DriverSettingsFragment
 import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.guide.GuideFragment
 import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.HelpFragment
 import com.example.taximuslim.presentation.view.mainscreen.menu.fragments.HistoryFragment
@@ -51,7 +52,7 @@ class MenuItemsActivity : BaseActivity(), View.OnClickListener {
                 setHeadText(R.string.help)
             }
             "SETTINGS_FRAGMENT" -> {
-                addFragment(SettingsFragment.INSTANCE, R.id.container_menu, fragmentId)
+                addFragment(DriverSettingsFragment(), R.id.container_menu, fragmentId)
                 setHeadText(R.string.settings)
             }
         }

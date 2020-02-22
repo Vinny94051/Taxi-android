@@ -13,6 +13,7 @@ import com.example.taximuslim.utils.permissions.PermissionManager
 import kotlinx.android.synthetic.main.fragment_help.*
 import android.content.ActivityNotFoundException
 import android.icu.util.Calendar
+import androidx.appcompat.app.AppCompatActivity
 import com.example.taximuslim.utils.toEditable
 import java.text.SimpleDateFormat
 import java.util.*
@@ -29,7 +30,7 @@ class HelpFragment : BaseFragment(), View.OnClickListener, IInitViews {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        permissionManager = PermissionManager(context as MenuItemsActivity)
+        permissionManager = PermissionManager(context as AppCompatActivity)
         permissionManager.checkCallPermission()
     }
 

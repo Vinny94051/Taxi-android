@@ -19,6 +19,7 @@ import com.example.taximuslim.presentation.view.auth.driver.documents.AuthDriver
 import com.example.taximuslim.presentation.view.auth.driver.rules.AuthDriverRuleViewModel
 import com.example.taximuslim.presentation.view.auth.driver.validatePerson.AuthDriverValidatePersonViewModel
 import com.example.taximuslim.presentation.view.auth.fragments.daughter.AuthorizationFragment
+import com.example.taximuslim.presentation.view.auth.fragments.daughter.EnterNumberFragment
 import com.example.taximuslim.presentation.view.auth.fragments.daughter.EnterSmsCodeFragment
 import com.example.taximuslim.presentation.view.driver.driverIncome.DriverIncomeViewModel
 import com.example.taximuslim.presentation.view.driver.driverMainScreen.DriverMainScreenViewModel
@@ -96,4 +97,5 @@ interface AppComponent {
     fun inject(yandexViewModel: YandexViewModel)
     fun inject(driverTripProcessActivity: DriverTripProcessActivity)
     fun inject(driverTripProcessViewModel: DriverTripProcessViewModel)
+    fun inject(enterNumberFragment: EnterNumberFragment)
 }

@@ -40,8 +40,8 @@ class GuideFragment : BaseFragment() {
                     owner.guideCategory,
                     55.5807418,
                     36.8237481
-                    //         location.latitude,
-                    //       location.longitude
+//                    location.latitude,
+//                           location.longitude
                 )
                 owner.removeFragment(this)
 
@@ -74,8 +74,8 @@ class GuideFragment : BaseFragment() {
                     categoryId,
                     55.5807418,
                     36.8237481
-                    //         location.latitude,
-                    //       location.longitude
+//                             location.latitude,
+//                           location.longitude
                 )
                 owner.addFragment(
                     PlaceListFragment.newInstance(),

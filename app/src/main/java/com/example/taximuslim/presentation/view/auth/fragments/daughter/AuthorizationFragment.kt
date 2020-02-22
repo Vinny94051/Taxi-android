@@ -109,7 +109,7 @@ class AuthorizationFragment : BaseAuthFragment() {
         phoneNumberEditText.setCompoundDrawablesWithIntrinsicBounds(
             0,
             0,
-            R.drawable.ic_error_auth,
+            R.drawable.ic_error_auth_v2,
             0
         )
         errorTextView.text = errorMessage

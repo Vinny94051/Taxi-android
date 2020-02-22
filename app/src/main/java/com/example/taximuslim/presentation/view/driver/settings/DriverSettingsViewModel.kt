@@ -1,5 +1,6 @@
 package com.example.taximuslim.presentation.view.driver.settings
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.taximuslim.App
 import com.example.taximuslim.domain.interactors.DriverInteractor
@@ -29,6 +30,8 @@ class DriverSettingsViewModel : ViewModel(), LifecycleObserver {
                 profileName.value = profile.driverName
                 profileNumb.value = profile.phone
             }catch (e: Exception){
+                Log.e("dsvm:", e.message.toString())
+                e.printStackTrace()
             }
         }
     }

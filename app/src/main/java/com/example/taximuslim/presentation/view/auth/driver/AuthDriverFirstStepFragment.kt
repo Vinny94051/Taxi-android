@@ -1,5 +1,6 @@
 package com.example.taximuslim.presentation.view.auth.driver
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,11 +12,12 @@ import androidx.navigation.Navigation
 
 import com.example.taximuslim.R
 import com.example.taximuslim.domain.models.driver.auth.DriverMainModel
+import com.example.taximuslim.presentation.view.mainscreen.MapsActivity
 import kotlinx.android.synthetic.main.activity_auth_driver_main.*
 import kotlinx.android.synthetic.main.fragment_auth_driver_first_step.*
 
 
-class AuthDriverFirstStepFragment : Fragment(){
+class AuthDriverFirstStepFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,8 +33,16 @@ class AuthDriverFirstStepFragment : Fragment(){
         (activity as AppCompatActivity).supportActionBar!!.hide()
     }
 
-    private fun setListeners(){
+    private fun setListeners() {
         setOnNextButtonListener()
+        setOnDoLaterListener()
+    }
+
+    private fun setOnDoLaterListener() {
+        doLaterTextView.setOnClickListener {
+            startActivity(Intent(activity, MapsActivity::class.java))
+            activity?.finish()
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,10 +53,14 @@ class AuthDriverFirstStepFragment : Fragment(){
         }
     }
 
-    private fun setOnNextButtonListener(){
-        mainButton.setOnClickListener{
+    private fun setOnNextButtonListener() {
+        mainButton.setOnClickListener {
             Navigation.findNavController(it)
-                .navigate(AuthDriverFirstStepFragmentDirections.actionAuthDriverFirstStepFragmentToAuthDriverChooseCarFragment(DriverMainModel()))
+                .navigate(
+                    AuthDriverFirstStepFragmentDirections.actionAuthDriverFirstStepFragmentToAuthDriverChooseCarFragment(
+                        DriverMainModel()
+                    )
+                )
 //                .navigate(R.id.action_authDriverFirstStepFragment_to_authDriverChooseCarFragment)
         }
     }

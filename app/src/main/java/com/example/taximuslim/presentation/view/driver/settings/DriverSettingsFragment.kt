@@ -17,6 +17,7 @@ import com.example.taximuslim.presentation.view.baseFragment.ObservableFragment
 import com.example.taximuslim.presentation.view.design.customAlert.InputNameAlert
 import kotlinx.android.synthetic.main.activity_auth_driver_main.toolbar
 import kotlinx.android.synthetic.main.activity_driver_main_screen.*
+import java.lang.Exception
 
 class DriverSettingsFragment : ObservableFragment() {
 
@@ -35,12 +36,12 @@ class DriverSettingsFragment : ObservableFragment() {
     }
 
     override fun setObservers() {
-        viewModel.changeNameNavigate.observe(viewLifecycleOwner, Observer {navigate ->
-            navigate?.let{
+        viewModel.changeNameNavigate.observe(viewLifecycleOwner, Observer { navigate ->
+            navigate?.let {
                 if (navigate) {
                     viewModel.onChangeNameNavigate()
-                    InputNameAlert(context!!) {name ->
-                        if (name != null){
+                    InputNameAlert(context!!) { name ->
+                        if (name != null) {
                             viewModel.changeName(name)
                         }
                     }.show()
@@ -48,8 +49,8 @@ class DriverSettingsFragment : ObservableFragment() {
                 }
             }
         })
-        viewModel.changeNumbNavigate.observe(viewLifecycleOwner, Observer {navigate ->
-            navigate?.let{
+        viewModel.changeNumbNavigate.observe(viewLifecycleOwner, Observer { navigate ->
+            navigate?.let {
                 if (navigate) {
                     view?.findNavController()
                         ?.navigate(R.id.action_driverSettingsFragment_to_changeNumbFragment)
@@ -68,9 +69,13 @@ class DriverSettingsFragment : ObservableFragment() {
     }
 
     override fun setUIState() {
-        (activity as AppCompatActivity).toolbar.setNavigationIcon(R.drawable.arrow_to_left_black)
-        (activity as AppCompatActivity).supportActionBar?.show()
-        (activity as AppCompatActivity).drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-        (activity as AppCompatActivity).burgerButton.visibility = View.GONE
+        try {
+            (activity as AppCompatActivity).toolbar.setNavigationIcon(R.drawable.arrow_to_left_black)
+            (activity as AppCompatActivity).supportActionBar?.show()
+            (activity as AppCompatActivity).drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+            (activity as AppCompatActivity).burgerButton.visibility = View.GONE
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
     }
 }
